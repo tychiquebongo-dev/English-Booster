@@ -1,0 +1,221 @@
+/* ==========================================================================
+   ENGLISH BOOSTER — RESPONSIVE STYLESHEET
+   Mobile, Tablet, Desktop & Wide Screens
+   ========================================================================== */
+
+/* Large Tablets & Small Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --container-max: 960px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .how-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .founder-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .founder-photo-wrap {
+    width: 180px;
+    margin: 0 auto;
+  }
+
+  .founder-info {
+    align-items: center;
+  }
+
+  .founder-badge {
+    align-self: center;
+  }
+
+  .founder-contacts {
+    justify-content: center;
+  }
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 70px;
+  }
+
+  .nav-links,
+  .nav-actions .btn-login,
+  .nav-actions .btn-primary {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .mobile-bottom-dock {
+    display: flex;
+  }
+
+  /* Add bottom padding to body so bottom dock doesn't obscure content */
+  body {
+    padding-bottom: 76px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-badge-wrap {
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-trust {
+    justify-content: center;
+  }
+
+  .floating-chip-1 {
+    left: 5px;
+    top: 5px;
+  }
+
+  .floating-chip-2 {
+    right: 5px;
+    bottom: 10px;
+  }
+
+  .feature-showcase-grid,
+  .feature-showcase-grid.reverse {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .challenge-hero-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .stat-card {
+    padding: 20px 14px;
+  }
+
+  .stat-value {
+    font-size: 2.2rem;
+  }
+
+  .how-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .social-auth-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+
+  /* Chat & Call Layouts on Tablet/Mobile */
+  .chat-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .chat-sidebar {
+    display: none; /* Can be toggled with drawer */
+  }
+
+  .chat-sidebar.active-mobile {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+  }
+
+  .call-stage-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Small Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    padding: 28px 18px;
+  }
+
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+}

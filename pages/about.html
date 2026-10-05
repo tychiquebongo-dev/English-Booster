@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About English Booster & Founder Tychique Bongo</title>
+  <meta name="description" content="Discover our mission to connect people across the globe and help them speak fluent English with confidence. Meet our founder Tychique Bongo.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <style>
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .faq-question {
+      padding: 18px 22px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color var(--transition-fast);
+    }
+    .faq-question:hover {
+      background: rgba(0, 242, 254, 0.05);
+    }
+    .faq-answer {
+      padding: 0 22px 18px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-icon {
+      transition: transform var(--transition-fast);
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CRYSTAL BACKGROUND -->
+  <div class="crystal-bg-wrapper" aria-hidden="true">
+    <div class="crystal-orb crystal-orb-1"></div>
+    <div class="crystal-orb crystal-orb-2"></div>
+    <div class="crystal-grid-overlay"></div>
+  </div>
+
+  <header>
+    <nav class="site-nav scrolled" id="main-nav">
+      <div class="container nav-container">
+        <a href="../index.html" class="nav-brand">
+          <div class="brand-globe">🌎</div>
+          <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
+          <li><a href="community.html" class="nav-link">Community</a></li>
+          <li><a href="challenges.html" class="nav-link">Challenges</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
+          <a href="login.html" class="btn btn-secondary btn-sm">Log in</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="../index.html" class="mobile-nav-link"><span>🏠</span> Home</a></li>
+      <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
+      <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><span>💎</span> Pricing</a></li>
+      <li><a href="about.html" class="mobile-nav-link active"><span>ℹ️</span> About</a></li>
+    </ul>
+  </div>
+
+  <main class="container" style="padding-top: calc(var(--nav-height) + 30px); padding-bottom: 70px;">
+    <!-- MISSION HEADER -->
+    <div style="max-width: 780px; margin: 0 auto 60px; text-align: center;" class="reveal-init">
+      <span class="crystal-badge" style="margin-bottom: 12px;">Our Purpose</span>
+      <h1 style="font-size: 3rem; letter-spacing: -0.02em; line-height: 1.15;">
+        Why <span class="text-gradient-cyan">English Booster?</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.2rem; margin-top: 18px; line-height: 1.7;">
+        English Booster connects people from different cultures and countries through one universal language: <strong>English</strong>.
+      </p>
+      <div class="glass-card" style="padding: 24px; margin-top: 24px; border-color: rgba(0,242,254,0.3); background: rgba(0,242,254,0.05);">
+        <p style="font-size: 1.25rem; font-weight: 700; color: #ffffff;">
+          "Help people speak English with confidence by giving them real opportunities to communicate."
+        </p>
+      </div>
+    </div>
+
+    <!-- CORE PILLARS GRID -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 80px;" class="reveal-init">
+      <div class="glass-card" style="padding: 30px;">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🤝</div>
+        <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Human Connection First</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Fluency does not come from memorizing vocabulary lists in isolation. It emerges when you interact with real people who listen, respond, and share genuine life stories.
+        </p>
+      </div>
+
+      <div class="glass-card" style="padding: 30px;">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🤖</div>
+        <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Intelligent Pedagogical AI</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Our AI acts as an encouraging mentor in the background — offering gentle grammatical corrections with explanations so you learn naturally without fear.
+        </p>
+      </div>
+
+      <div class="glass-card" style="padding: 30px;">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🌍</div>
+        <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Global Inclusivity</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          From Abidjan and Tokyo to Madrid and Lagos, we welcome learners of all cultural backgrounds and CEFR proficiency levels from A1 beginners to C2 proficients.
+        </p>
+      </div>
+    </div>
+
+    <!-- FOUNDER & LEADERSHIP SECTION -->
+    <div style="margin-bottom: 80px;" class="reveal-init">
+      <div class="section-header">
+        <span class="crystal-badge section-tag">Leadership & Contact</span>
+        <h2 class="section-title">The Vision Behind English Booster</h2>
+      </div>
+
+      <div class="glass-card founder-card">
+        <div class="founder-photo-wrap">
+          <img src="../assets/images/tychique-bongo.jpg" alt="Tychique Bongo — Founder & CEO of English Booster">
+        </div>
+
+        <div class="founder-info">
+          <span class="crystal-badge founder-badge">Founder & Creator</span>
+          <h3 class="founder-name">Tychique Bongo</h3>
+          <div class="founder-role">Lead Full-Stack Architect · EdTech Entrepreneur</div>
+          <p class="founder-bio">
+            "Millions of people spend years studying English in classrooms but freeze when speaking to a foreigner or answering in an interview. English Booster is built to bridge that gap through everyday practice, supportive AI coaching, and international friendships."
+          </p>
+
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 14px 18px; margin: 10px 0; font-size: 0.9rem;">
+            <div><strong>Direct Contact Information:</strong></div>
+            <div style="margin-top: 4px; color: var(--text-muted);">
+              📞 Phone: <strong>+225 07 05 88 46 87</strong> | 💬 WhatsApp: <strong>+242 905 37 12</strong> | 📧 Email: <strong>tychiquebongo</strong>
+            </div>
+          </div>
+
+          <div class="founder-contacts">
+            <a href="https://wa.me/24209053712" target="_blank" rel="noopener noreferrer" class="founder-btn btn-whatsapp">
+              <span>💬</span> WhatsApp Direct
+            </a>
+            <a href="tel:+2250705884687" class="founder-btn btn-call">
+              <span>📞</span> Call Founder
+            </a>
+            <a href="mailto:tychiquebongo@englishbooster.io" class="founder-btn btn-email">
+              <span>📧</span> Send Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREQUENTLY ASKED QUESTIONS (ACCORDION) -->
+    <div style="max-width: 800px; margin: 0 auto 80px;" class="reveal-init">
+      <div class="section-header">
+        <span class="crystal-badge section-tag">FAQ</span>
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What if I make mistakes while speaking?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Making mistakes is the foundation of spoken language acquisition! English Booster fosters a supportive, zero-judgment atmosphere. Both your partner and our AI assistant are here to help you grow.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How does the AI Match Score work?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Our algorithm evaluates your CEFR level, target goals (e.g. travel vs. career), shared interests, and typical availability timezones to suggest the most compatible practice partners.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I practice using audio without turning on my video?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! You have full control. You can exchange voice notes in chat, join audio-only calls, or turn on your camera whenever you feel comfortable.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How can I reach the founder or report feedback?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          You can reach Tychique Bongo directly via WhatsApp (+242 905 37 12), phone (+225 07 05 88 46 87), or email. We read and implement community feedback every single week!
+        </div>
+      </div>
+    </div>
+
+    <!-- LEGAL SUMMARY -->
+    <div id="legal" class="glass-card" style="padding: 30px;" class="reveal-init">
+      <h4 style="font-size: 1.2rem; margin-bottom: 12px; color: var(--cyan-primary);">Legal & Community Guidelines</h4>
+      <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+        English Booster is dedicated to polite, respectful international exchange. Harassment, discriminatory language, and commercial spam are strictly prohibited. Conversations are protected with industry-standard TLS encryption.
+      </p>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+        const icon = q.querySelector('.faq-icon');
+        icon.textContent = item.classList.contains('active') ? '−' : '+';
+      });
+    });
+  </script>
+</body>
+</html>

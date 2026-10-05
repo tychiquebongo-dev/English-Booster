@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Forum — English Booster</title>
+  <meta name="description" content="Join the global English Booster community. Ask questions, discuss idioms, share milestones, and practice together.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+</head>
+<body>
+
+  <!-- CRYSTAL BACKGROUND -->
+  <div class="crystal-bg-wrapper" aria-hidden="true">
+    <div class="crystal-orb crystal-orb-1"></div>
+    <div class="crystal-orb crystal-orb-2"></div>
+    <div class="crystal-grid-overlay"></div>
+  </div>
+
+  <header>
+    <nav class="site-nav scrolled" id="main-nav">
+      <div class="container nav-container">
+        <a href="../index.html" class="nav-brand">
+          <div class="brand-globe">🌎</div>
+          <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
+          <li><a href="chat.html" class="nav-link">Chat</a></li>
+          <li><a href="call.html" class="nav-link">Live Call</a></li>
+          <li><a href="challenges.html" class="nav-link">Challenges</a></li>
+          <li><a href="community.html" class="nav-link active">Community</a></li>
+          <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
+          <a href="profile.html" class="partner-avatar" style="width: 40px; height: 40px; font-size: 1rem;">
+            AR
+            <span class="avatar-badge-flag">🇪🇸</span>
+          </a>
+          <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
+      <li><a href="chat.html" class="mobile-nav-link"><span>💬</span> Live Chat</a></li>
+      <li><a href="call.html" class="mobile-nav-link"><span>🎙️</span> Live Call</a></li>
+      <li><a href="challenges.html" class="mobile-nav-link"><span>🎯</span> Daily Challenges</a></li>
+      <li><a href="community.html" class="mobile-nav-link active"><span>👥</span> Community</a></li>
+      <li><a href="leaderboard.html" class="mobile-nav-link"><span>🏆</span> Leaderboard</a></li>
+      <li><a href="profile.html" class="mobile-nav-link"><span>👤</span> Profile</a></li>
+    </ul>
+  </div>
+
+  <main class="container" style="padding-top: calc(var(--nav-height) + 30px); padding-bottom: 60px;">
+    <div style="max-width: 820px; margin: 0 auto;">
+      <!-- HEADER -->
+      <div style="margin-bottom: 28px;" class="reveal-init">
+        <span class="crystal-badge" style="margin-bottom: 10px;">Global Community Feed</span>
+        <h1 style="font-size: 2.5rem; letter-spacing: -0.02em;">English Booster Community</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px;">
+          Share daily learnings, ask tricky grammar questions, and celebrate your speaking breakthroughs.
+        </p>
+      </div>
+
+      <!-- CREATE NEW POST CARD -->
+      <div class="glass-card" style="padding: 24px; margin-bottom: 30px;" class="reveal-init">
+        <form id="new-post-form">
+          <div style="display: flex; gap: 14px; margin-bottom: 14px;">
+            <div class="partner-avatar" style="width: 44px; height: 44px;">
+              AR
+              <span class="avatar-badge-flag">🇪🇸</span>
+            </div>
+            <textarea id="new-post-content" class="form-control" placeholder="Share an idiom you learned, a pronunciation question, or a speaking milestone..." rows="3" style="resize: vertical;"></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <label for="new-post-tag" style="font-size: 0.85rem; color: var(--text-muted);">Topic Tag:</label>
+              <select id="new-post-tag" class="form-control" style="padding: 6px 12px; font-size: 0.85rem; width: auto;">
+                <option value="#IdiomOfTheDay">#IdiomOfTheDay</option>
+                <option value="#Pronunciation">#Pronunciation</option>
+                <option value="#GrammarTip">#GrammarTip</option>
+                <option value="#Milestone">#Milestone</option>
+                <option value="#Discussion">#Discussion</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">
+              <span>🚀</span> Publish Post (+25 XP)
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- FEED POSTS CONTAINER -->
+      <div id="community-posts-container" class="community-feed">
+        <!-- Rendered by js/community.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM DOCK -->
+  <nav class="mobile-bottom-dock">
+    <a href="dashboard.html" class="dock-item">
+      <span class="dock-icon">🏠</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="partners.html" class="dock-item">
+      <span class="dock-icon">🔎</span>
+      <span>Discover</span>
+    </a>
+    <a href="chat.html" class="dock-item">
+      <span class="dock-icon">💬</span>
+      <span class="dock-badge">1</span>
+      <span>Chat</span>
+    </a>
+    <a href="community.html" class="dock-item active">
+      <span class="dock-icon">👥</span>
+      <span>Community</span>
+    </a>
+    <a href="profile.html" class="dock-item">
+      <span class="dock-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/community.js"></script>
+</body>
+</html>

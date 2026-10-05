@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans — English Booster</title>
+  <meta name="description" content="Simple and transparent pricing for English Booster. Free, Premium, and Pro plans to master spoken English.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+</head>
+<body>
+
+  <!-- CRYSTAL BACKGROUND -->
+  <div class="crystal-bg-wrapper" aria-hidden="true">
+    <div class="crystal-orb crystal-orb-1"></div>
+    <div class="crystal-orb crystal-orb-2"></div>
+    <div class="crystal-grid-overlay"></div>
+  </div>
+
+  <header>
+    <nav class="site-nav scrolled" id="main-nav">
+      <div class="container nav-container">
+        <a href="../index.html" class="nav-brand">
+          <div class="brand-globe">🌎</div>
+          <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
+          <li><a href="community.html" class="nav-link">Community</a></li>
+          <li><a href="challenges.html" class="nav-link">Challenges</a></li>
+          <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
+          <a href="login.html" class="btn btn-secondary btn-sm">Log in</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="../index.html" class="mobile-nav-link"><span>🏠</span> Home</a></li>
+      <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
+      <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link active"><span>💎</span> Pricing</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><span>ℹ️</span> About</a></li>
+    </ul>
+  </div>
+
+  <main class="container" style="padding-top: calc(var(--nav-height) + 30px); padding-bottom: 70px;">
+    <!-- HEADER -->
+    <div style="text-align: center; max-width: 680px; margin: 0 auto 40px;" class="reveal-init">
+      <span class="crystal-badge" style="margin-bottom: 12px;">Accessible EdTech Plans</span>
+      <h1 style="font-size: 2.8rem; letter-spacing: -0.02em;">Invest in Confident Global Communication</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 8px;">
+        Choose the plan that suits your goals. Cancel or upgrade anytime with zero friction.
+      </p>
+
+      <!-- Billing Period Toggle -->
+      <div style="display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: var(--radius-full); margin-top: 24px;">
+        <span id="monthly-label" style="font-weight: 700; font-size: 0.9rem; color: var(--cyan-primary);">Monthly</span>
+        <label class="switch" style="position: relative; display: inline-block; width: 44px; height: 24px;">
+          <input type="checkbox" id="pricing-toggle" style="opacity: 0; width: 0; height: 0;">
+          <span style="position: absolute; cursor: pointer; inset: 0; background-color: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 24px; transition: .3s;" class="slider"></span>
+        </label>
+        <span id="annual-label" style="font-size: 0.9rem; color: var(--text-muted);">
+          Annual <span class="crystal-badge crystal-badge-emerald" style="font-size: 0.72rem; padding: 2px 8px;">Save 20%</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- PRICING TIERS -->
+    <div class="pricing-grid">
+      <!-- FREE -->
+      <div class="glass-card pricing-card reveal-init">
+        <div class="pricing-header">
+          <h3 class="pricing-tier">FREE</h3>
+          <div class="pricing-cost">
+            <span class="pricing-number">$0</span>
+            <span class="pricing-period">/ month</span>
+          </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Essential access for casual conversational practice.
+        </p>
+        <ul class="pricing-features-list">
+          <li class="pricing-feature-item"><span>✓</span> Basic learner profile</li>
+          <li class="pricing-feature-item"><span>✓</span> Find conversation partners</li>
+          <li class="pricing-feature-item"><span>✓</span> Limited conversations / week</li>
+          <li class="pricing-feature-item"><span>✓</span> Community forum access</li>
+          <li class="pricing-feature-item"><span>✓</span> Daily challenges</li>
+        </ul>
+        <button class="btn btn-secondary plan-select-btn" data-plan="Free" style="width: 100%;">
+          Get Started Free
+        </button>
+      </div>
+
+      <!-- PREMIUM (FEATURED) -->
+      <div class="glass-card pricing-card featured reveal-init reveal-delay-1">
+        <span class="popular-ribbon">Most Popular</span>
+        <div class="pricing-header">
+          <h3 class="pricing-tier text-gradient-cyan">PREMIUM</h3>
+          <div class="pricing-cost">
+            <span class="pricing-number text-gradient-cyan" id="price-premium">$4.99</span>
+            <span class="pricing-period">/ month</span>
+          </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Unlimited conversations and complete AI feedback.
+        </p>
+        <ul class="pricing-features-list">
+          <li class="pricing-feature-item"><span>✓</span> <strong>Unlimited</strong> conversations</li>
+          <li class="pricing-feature-item"><span>✓</span> <strong>AI English Coach</strong> with voice assistant</li>
+          <li class="pricing-feature-item"><span>✓</span> Advanced pedagogical corrections</li>
+          <li class="pricing-feature-item"><span>✓</span> Advanced compatibility matching</li>
+          <li class="pricing-feature-item"><span>✓</span> Progress analytics & fluency radar</li>
+          <li class="pricing-feature-item"><span>✓</span> Unlimited challenges & badges</li>
+        </ul>
+        <button class="btn btn-primary plan-select-btn" data-plan="Premium ($4.99/mo)" style="width: 100%;">
+          Choose Premium
+        </button>
+      </div>
+
+      <!-- PRO -->
+      <div class="glass-card pricing-card reveal-init reveal-delay-2">
+        <div class="pricing-header">
+          <h3 class="pricing-tier">PRO</h3>
+          <div class="pricing-cost">
+            <span class="pricing-number" id="price-pro">$9.99</span>
+            <span class="pricing-period">/ month</span>
+          </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Engineered for career advancement, interviews & business.
+        </p>
+        <ul class="pricing-features-list">
+          <li class="pricing-feature-item"><span>✓</span> Everything in Premium</li>
+          <li class="pricing-feature-item"><span>✓</span> <strong>Business English</strong> modules</li>
+          <li class="pricing-feature-item"><span>✓</span> <strong>Job interview</strong> simulation practice</li>
+          <li class="pricing-feature-item"><span>✓</span> Advanced AI personalized coaching</li>
+          <li class="pricing-feature-item"><span>✓</span> Professional corporate vocabulary</li>
+          <li class="pricing-feature-item"><span>✓</span> Personalized learning plan</li>
+        </ul>
+        <button class="btn btn-purple plan-select-btn" data-plan="Pro ($9.99/mo)" style="width: 100%;">
+          Choose Pro
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--cyan-primary);
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: rgba(0, 242, 254, 0.2);
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+  </style>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Annual toggle logic
+    const toggle = document.getElementById('pricing-toggle');
+    const premPrice = document.getElementById('price-premium');
+    const proPrice = document.getElementById('price-pro');
+    const monthlyLabel = document.getElementById('monthly-label');
+    const annualLabel = document.getElementById('annual-label');
+
+    toggle?.addEventListener('change', () => {
+      if (toggle.checked) {
+        premPrice.textContent = '$3.99';
+        proPrice.textContent = '$7.99';
+        monthlyLabel.style.color = 'var(--text-muted)';
+        annualLabel.style.color = 'var(--cyan-primary)';
+      } else {
+        premPrice.textContent = '$4.99';
+        proPrice.textContent = '$9.99';
+        monthlyLabel.style.color = 'var(--cyan-primary)';
+        annualLabel.style.color = 'var(--text-muted)';
+      }
+    });
+
+    // Plan selection modal
+    document.querySelectorAll('.plan-select-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const plan = btn.getAttribute('data-plan');
+        window.EnglishBooster.showToast(`Selected Plan: ${plan}`, 'Redirecting to secure setup...', 'success');
+        window.EnglishBooster.SoundFX.playSuccess();
+        setTimeout(() => {
+          window.location.href = 'register.html';
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>

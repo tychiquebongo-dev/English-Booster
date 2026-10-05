@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Challenges & Gamification — English Booster</title>
+  <meta name="description" content="Complete daily English speaking challenges, earn XP, unlock achievements, and climb the global leaderboard.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+</head>
+<body>
+
+  <!-- CRYSTAL BACKGROUND -->
+  <div class="crystal-bg-wrapper" aria-hidden="true">
+    <div class="crystal-orb crystal-orb-1"></div>
+    <div class="crystal-orb crystal-orb-2"></div>
+    <div class="crystal-grid-overlay"></div>
+  </div>
+
+  <header>
+    <nav class="site-nav scrolled" id="main-nav">
+      <div class="container nav-container">
+        <a href="../index.html" class="nav-brand">
+          <div class="brand-globe">🌎</div>
+          <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
+          <li><a href="chat.html" class="nav-link">Chat</a></li>
+          <li><a href="call.html" class="nav-link">Live Call</a></li>
+          <li><a href="challenges.html" class="nav-link active">Challenges</a></li>
+          <li><a href="community.html" class="nav-link">Community</a></li>
+          <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
+          <a href="profile.html" class="partner-avatar" style="width: 40px; height: 40px; font-size: 1rem;">
+            AR
+            <span class="avatar-badge-flag">🇪🇸</span>
+          </a>
+          <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
+      <li><a href="chat.html" class="mobile-nav-link"><span>💬</span> Live Chat</a></li>
+      <li><a href="call.html" class="mobile-nav-link"><span>🎙️</span> Live Call</a></li>
+      <li><a href="challenges.html" class="mobile-nav-link active"><span>🎯</span> Daily Challenges</a></li>
+      <li><a href="community.html" class="mobile-nav-link"><span>👥</span> Community</a></li>
+      <li><a href="leaderboard.html" class="mobile-nav-link"><span>🏆</span> Leaderboard</a></li>
+      <li><a href="profile.html" class="mobile-nav-link"><span>👤</span> Profile</a></li>
+    </ul>
+  </div>
+
+  <main class="container" style="padding-top: calc(var(--nav-height) + 30px); padding-bottom: 60px;">
+    <!-- HEADER -->
+    <div style="margin-bottom: 30px;" class="reveal-init">
+      <span class="crystal-badge crystal-badge-amber" style="margin-bottom: 10px;">Gamification & Daily Habit</span>
+      <h1 style="font-size: 2.5rem; letter-spacing: -0.02em;">Today's English Challenge</h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px;">
+        Practice 10 minutes every day to establish fluent speaking reflex and earn bonus XP.
+      </p>
+    </div>
+
+    <!-- MAIN CHALLENGE CARD -->
+    <div id="challenge-interactive-area" class="glass-card challenge-hero-card reveal-init" style="margin-bottom: 50px;">
+      <div class="challenge-details">
+        <span class="crystal-badge crystal-badge-amber">🎯 Featured Speaking Challenge</span>
+        <h2 style="font-size: 2rem;">Speak with another person or record for 10 minutes.</h2>
+
+        <div class="challenge-prompt-box">
+          Topic: "What is your dream destination?"
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Talk about why you chose this place, what foods you want to try, what landmarks you would visit, and who you would travel with.
+        </p>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="crystal-badge crystal-badge-emerald" style="font-size: 0.9rem; padding: 8px 16px;">
+            ⭐ Reward: +100 XP
+          </span>
+          <span style="color: var(--amber-accent); font-weight: 700; font-size: 0.9rem;">
+            🔥 Extends 7-day streak
+          </span>
+        </div>
+      </div>
+
+      <!-- Interactive Voice Recording Studio -->
+      <div class="challenge-interactive-box">
+        <button id="challenge-mic-btn" class="mic-circle-btn" title="Tap to start recording">
+          🎙️
+        </button>
+
+        <div id="challenge-record-time" style="font-size: 1.8rem; font-family: var(--font-mono); font-weight: 800; color: var(--cyan-primary);">
+          00:00
+        </div>
+
+        <div id="challenge-status-text" style="font-size: 0.88rem; color: var(--text-muted);">
+          Tap the microphone to record your speech response.
+        </div>
+
+        <button id="btn-submit-challenge" class="btn btn-secondary" style="width: 100%;" disabled>
+          Submit Answer & Claim +100 XP
+        </button>
+      </div>
+    </div>
+
+    <!-- XP REWARD SYSTEM BREAKDOWN -->
+    <div style="margin-bottom: 50px;" class="reveal-init">
+      <h3 style="font-size: 1.6rem; margin-bottom: 20px;">⚡ How to Earn XP</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
+        <div class="glass-card" style="padding: 20px; display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 1.8rem; color: var(--cyan-primary);">🎙️</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.2rem; color: var(--cyan-primary);">+10 XP</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">10 minutes speaking</div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding: 20px; display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 1.8rem; color: var(--purple-primary);">📚</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.2rem; color: var(--purple-primary);">+20 XP</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Learn 5 new expressions</div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding: 20px; display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 1.8rem; color: var(--emerald-accent);">🤝</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.2rem; color: var(--emerald-accent);">+50 XP</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Complete live conversation</div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding: 20px; display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 1.8rem; color: var(--amber-accent);">🎯</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.2rem; color: var(--amber-accent);">+100 XP</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Complete daily challenge</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGES REWARD GALLERY -->
+    <div class="reveal-init">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="font-size: 1.6rem;">🏆 Achievement Badges</h3>
+        <span style="font-size: 0.9rem; color: var(--text-muted);">4 of 6 Unlocked</span>
+      </div>
+
+      <div id="badges-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px;">
+        <!-- Rendered by js/challenges.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM DOCK -->
+  <nav class="mobile-bottom-dock">
+    <a href="dashboard.html" class="dock-item">
+      <span class="dock-icon">🏠</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="partners.html" class="dock-item">
+      <span class="dock-icon">🔎</span>
+      <span>Discover</span>
+    </a>
+    <a href="chat.html" class="dock-item">
+      <span class="dock-icon">💬</span>
+      <span class="dock-badge">1</span>
+      <span>Chat</span>
+    </a>
+    <a href="challenges.html" class="dock-item active">
+      <span class="dock-icon">🎯</span>
+      <span>Challenges</span>
+    </a>
+    <a href="profile.html" class="dock-item">
+      <span class="dock-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/challenges.js"></script>
+</body>
+</html>

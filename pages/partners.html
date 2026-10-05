@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Conversation Partners — English Booster</title>
+  <meta name="description" content="Discover and connect with conversation partners worldwide based on CEFR level, shared interests, and AI compatibility.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+</head>
+<body>
+
+  <!-- CRYSTAL BACKGROUND -->
+  <div class="crystal-bg-wrapper" aria-hidden="true">
+    <div class="crystal-orb crystal-orb-1"></div>
+    <div class="crystal-orb crystal-orb-2"></div>
+    <div class="crystal-grid-overlay"></div>
+  </div>
+
+  <!-- FIXED APP NAVBAR -->
+  <header>
+    <nav class="site-nav scrolled" id="main-nav">
+      <div class="container nav-container">
+        <a href="../index.html" class="nav-brand">
+          <div class="brand-globe">🌎</div>
+          <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="partners.html" class="nav-link active">Find Partners</a></li>
+          <li><a href="chat.html" class="nav-link">Chat</a></li>
+          <li><a href="call.html" class="nav-link">Live Call</a></li>
+          <li><a href="challenges.html" class="nav-link">Challenges</a></li>
+          <li><a href="community.html" class="nav-link">Community</a></li>
+          <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
+          <a href="profile.html" class="partner-avatar" style="width: 40px; height: 40px; font-size: 1rem;">
+            AR
+            <span class="avatar-badge-flag">🇪🇸</span>
+          </a>
+          <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="partners.html" class="mobile-nav-link active"><span>🔎</span> Find Partners</a></li>
+      <li><a href="chat.html" class="mobile-nav-link"><span>💬</span> Live Chat</a></li>
+      <li><a href="call.html" class="mobile-nav-link"><span>🎙️</span> Live Call</a></li>
+      <li><a href="challenges.html" class="mobile-nav-link"><span>🎯</span> Daily Challenges</a></li>
+      <li><a href="community.html" class="mobile-nav-link"><span>👥</span> Community</a></li>
+      <li><a href="leaderboard.html" class="mobile-nav-link"><span>🏆</span> Leaderboard</a></li>
+      <li><a href="profile.html" class="mobile-nav-link"><span>👤</span> Profile</a></li>
+    </ul>
+  </div>
+
+  <main class="container" style="padding-top: calc(var(--nav-height) + 30px); padding-bottom: 60px;">
+    <!-- HEADER TITLE & INTRO -->
+    <div style="margin-bottom: 28px;" class="reveal-init">
+      <span class="crystal-badge" style="margin-bottom: 10px;">International Matching Engine</span>
+      <h1 style="font-size: 2.5rem; letter-spacing: -0.02em;">Find Your English Partner</h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px; max-width: 680px;">
+        Connect with friendly speakers worldwide. Filter by CEFR proficiency, shared passions, and real-time availability.
+      </p>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="glass-card" style="padding: 24px; margin-bottom: 32px;" class="reveal-init">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; align-items: flex-end;">
+        <!-- Search Keyword -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="filter-search" style="font-size: 0.82rem;">Search by Name / Interest</label>
+          <input type="text" id="filter-search" class="form-control" placeholder="e.g. Travel, Tech, Sofia" style="padding: 10px 14px;">
+        </div>
+
+        <!-- English Level Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="filter-level" style="font-size: 0.82rem;">English Level</label>
+          <select id="filter-level" class="form-control" style="padding: 10px 14px;">
+            <option value="all">All Levels (A1 - C2)</option>
+            <option value="A1">A1 — Beginner</option>
+            <option value="A2">A2 — Elementary</option>
+            <option value="B1">B1 — Intermediate</option>
+            <option value="B2">B2 — Upper Intermediate</option>
+            <option value="C1">C1 — Advanced</option>
+            <option value="C2">C2 — Proficient</option>
+          </select>
+        </div>
+
+        <!-- Country Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="filter-country" style="font-size: 0.82rem;">Country</label>
+          <input type="text" id="filter-country" class="form-control" placeholder="Spain, Japan, Nigeria..." style="padding: 10px 14px;">
+        </div>
+
+        <!-- Goal Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="filter-goal" style="font-size: 0.82rem;">Learning Goal</label>
+          <select id="filter-goal" class="form-control" style="padding: 10px 14px;">
+            <option value="all">All Goals</option>
+            <option value="Improve Speaking">Improve Speaking</option>
+            <option value="Career">Career & Tech</option>
+            <option value="Business">Business</option>
+            <option value="Travel">Travel</option>
+            <option value="Exams">Exams</option>
+            <option value="Social Communication">Social Communication</option>
+          </select>
+        </div>
+
+        <!-- Online Now Toggle -->
+        <div style="display: flex; align-items: center; height: 46px;">
+          <label class="custom-checkbox-label" for="filter-online" style="font-weight: 600;">
+            <input type="checkbox" id="filter-online">
+            <span>🟢 Online Now Only</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNERS CARDS GRID -->
+    <div id="partners-container" class="partners-grid">
+      <!-- Generated dynamically by js/matching.js -->
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM DOCK -->
+  <nav class="mobile-bottom-dock">
+    <a href="dashboard.html" class="dock-item">
+      <span class="dock-icon">🏠</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="partners.html" class="dock-item active">
+      <span class="dock-icon">🔎</span>
+      <span>Discover</span>
+    </a>
+    <a href="chat.html" class="dock-item">
+      <span class="dock-icon">💬</span>
+      <span class="dock-badge">1</span>
+      <span>Chat</span>
+    </a>
+    <a href="community.html" class="dock-item">
+      <span class="dock-icon">👥</span>
+      <span>Community</span>
+    </a>
+    <a href="profile.html" class="dock-item">
+      <span class="dock-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/matching.js"></script>
+</body>
+</html>
