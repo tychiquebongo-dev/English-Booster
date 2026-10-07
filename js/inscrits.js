@@ -586,6 +586,95 @@ class RegisteredMembersApp {
     const directForm = document.getElementById('form-inscrire-direct');
     if (!directForm) return;
 
+    const passInput = document.getElementById('reg-password');
+    const confirmPassInput = document.getElementById('reg-confirm-password');
+    const togglePassBtn = document.getElementById('btn-toggle-reg-pass');
+    const togglePassText = document.getElementById('toggle-pass-text');
+    const strengthBar = document.getElementById('reg-pass-strength-bar');
+    const strengthText = document.getElementById('reg-pass-strength-text');
+    const matchIndicator = document.getElementById('reg-pass-match-indicator');
+
+    // 1. Show/Hide Password Toggle
+    let isPasswordVisible = false;
+    togglePassBtn?.addEventListener('click', () => {
+      isPasswordVisible = !isPasswordVisible;
+      const newType = isPasswordVisible ? 'text' : 'password';
+      if (passInput) passInput.type = newType;
+      if (confirmPassInput) confirmPassInput.type = newType;
+      
+      const isFr = document.documentElement.lang === 'fr' || (window.EnglishBoosterI18n && window.EnglishBoosterI18n.currentLang === 'fr');
+      if (togglePassText) {
+        togglePassText.textContent = isPasswordVisible 
+          ? (isFr ? 'Masquer' : 'Hide') 
+          : (isFr ? 'Afficher' : 'Show');
+      }
+      const iconSpan = togglePassBtn.querySelector('span:first-child');
+      if (iconSpan) iconSpan.textContent = isPasswordVisible ? '🙈' : '👁️';
+    });
+
+    // 2. Real-time Password Strength Calculation
+    passInput?.addEventListener('input', () => {
+      const val = passInput.value;
+      let score = 0;
+      if (val.length >= 6) score += 25;
+      if (val.length >= 8) score += 25;
+      if (/[A-Z]/.test(val)) score += 20;
+      if (/[0-9]/.test(val)) score += 15;
+      if (/[^A-Za-z0-9]/.test(val)) score += 15;
+
+      const isFr = document.documentElement.lang === 'fr' || (window.EnglishBoosterI18n && window.EnglishBoosterI18n.currentLang === 'fr');
+
+      if (strengthBar && strengthText) {
+        if (val.length === 0) {
+          strengthBar.style.width = '0%';
+          strengthText.textContent = '—';
+          strengthText.style.color = 'var(--text-muted)';
+        } else if (score < 50) {
+          strengthBar.style.width = '33%';
+          strengthBar.style.background = '#ef4444';
+          strengthText.textContent = isFr ? 'Faible' : 'Weak';
+          strengthText.style.color = '#ef4444';
+        } else if (score < 80) {
+          strengthBar.style.width = '66%';
+          strengthBar.style.background = '#f59e0b';
+          strengthText.textContent = isFr ? 'Moyen' : 'Medium';
+          strengthText.style.color = '#f59e0b';
+        } else {
+          strengthBar.style.width = '100%';
+          strengthBar.style.background = '#22c55e';
+          strengthText.textContent = isFr ? 'Fort & Sécurisé' : 'Strong & Secure';
+          strengthText.style.color = '#22c55e';
+        }
+      }
+
+      checkPasswordMatch();
+    });
+
+    // 3. Real-time Password Match Indicator
+    function checkPasswordMatch() {
+      if (!confirmPassInput || !matchIndicator) return;
+      const pass = passInput ? passInput.value : '';
+      const confirm = confirmPassInput.value;
+      const isFr = document.documentElement.lang === 'fr' || (window.EnglishBoosterI18n && window.EnglishBoosterI18n.currentLang === 'fr');
+
+      if (confirm.length === 0) {
+        matchIndicator.style.display = 'none';
+        return;
+      }
+
+      matchIndicator.style.display = 'inline-block';
+      if (pass === confirm) {
+        matchIndicator.style.color = '#22c55e';
+        matchIndicator.textContent = isFr ? '✓ Correspond' : '✓ Match';
+      } else {
+        matchIndicator.style.color = '#ef4444';
+        matchIndicator.textContent = isFr ? '✕ Ne correspond pas' : '✕ No match';
+      }
+    }
+
+    confirmPassInput?.addEventListener('input', checkPasswordMatch);
+
+    // 4. Form Submission
     directForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const nomInput = document.getElementById('reg-nom');
@@ -596,6 +685,8 @@ class RegisteredMembersApp {
       const nom = nomInput?.value.trim();
       const prenom = prenomInput?.value.trim();
       const email = emailInput?.value.trim();
+      const password = passInput?.value || '';
+      const confirmPass = confirmPassInput?.value || '';
       const paysData = (paysSelect?.value || "Côte d'Ivoire|🇨🇮").split('|');
 
       if (!nom || !prenom || !email) {
@@ -609,6 +700,26 @@ class RegisteredMembersApp {
         return;
       }
 
+      if (!password || password.length < 6) {
+        window.EnglishBooster.showToast(
+          'Mot de passe requis', 
+          'Veuillez créer un mot de passe sécurisé d\'au moins 6 caractères.', 
+          'error'
+        );
+        passInput?.focus();
+        return;
+      }
+
+      if (password !== confirmPass) {
+        window.EnglishBooster.showToast(
+          'Mots de passe non identiques', 
+          'La confirmation du mot de passe ne correspond pas au mot de passe saisi.', 
+          'error'
+        );
+        confirmPassInput?.focus();
+        return;
+      }
+
       const chosenAvatar = document.getElementById('inscrits-avatar-picker-wrap-selected-val')?.value || 'assets/avatars/alex.jpg';
 
       const newMember = {
@@ -616,6 +727,7 @@ class RegisteredMembersApp {
         nom: nom,
         prenom: prenom,
         email: email,
+        password: password,
         nationalite: paysData[0],
         drapeau: paysData[1] || '🌐',
         level: 'B1',
@@ -641,6 +753,7 @@ class RegisteredMembersApp {
       window.EnglishBooster.updateUserState({
         fullName: `${prenom} ${nom}`,
         email: email,
+        password: password,
         avatar: chosenAvatar,
         country: `${paysData[0]} ${paysData[1]}`,
         isLoggedIn: true
@@ -667,12 +780,15 @@ class RegisteredMembersApp {
 
       window.EnglishBooster.showToast(
         'Inscription Validée ! 🎉',
-        `Félicitations ${prenom} ${nom} ! Vous êtes désormais inscrit dans English Booster.`,
+        `Félicitations ${prenom} ${nom} ! Votre compte et votre mot de passe sont enregistrés avec succès.`,
         'success',
         4500
       );
 
       directForm.reset();
+      if (strengthBar) strengthBar.style.width = '0%';
+      if (strengthText) strengthText.textContent = '—';
+      if (matchIndicator) matchIndicator.style.display = 'none';
     });
   }
 }

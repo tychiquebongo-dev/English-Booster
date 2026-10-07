@@ -25,6 +25,42 @@ function initRegisterForm() {
   const termsCheckbox = document.getElementById('reg-terms');
   const strengthBar = document.getElementById('password-strength-fill');
   const strengthText = document.getElementById('password-strength-text');
+  const confirmPasswordInput = document.getElementById('reg-confirm-password');
+  const togglePassBtn = document.getElementById('btn-toggle-register-pass');
+  const matchMsg = document.getElementById('register-pass-match-msg');
+
+  // Toggle Password Visibility in Register
+  if (togglePassBtn && passwordInput) {
+    let isVisible = false;
+    togglePassBtn.addEventListener('click', () => {
+      isVisible = !isVisible;
+      const type = isVisible ? 'text' : 'password';
+      passwordInput.type = type;
+      if (confirmPasswordInput) confirmPasswordInput.type = type;
+      togglePassBtn.textContent = isVisible ? '🙈 Hide' : '👁️ Show';
+    });
+  }
+
+  // Real-time Confirm Password Match Check
+  if (confirmPasswordInput && passwordInput) {
+    confirmPasswordInput.addEventListener('input', () => {
+      if (!confirmPasswordInput.value) {
+        if (matchMsg) matchMsg.style.display = 'none';
+        return;
+      }
+      if (matchMsg) {
+        matchMsg.style.display = 'inline-block';
+        if (confirmPasswordInput.value === passwordInput.value) {
+          matchMsg.style.color = '#22c55e';
+          matchMsg.textContent = '✓ Match';
+          setValid(confirmPasswordInput);
+        } else {
+          matchMsg.style.color = '#ef4444';
+          matchMsg.textContent = '✕ No match';
+        }
+      }
+    });
+  }
 
   // Real-time email validation
   if (emailInput) {
@@ -111,6 +147,18 @@ function initRegisterForm() {
     if (passwordInput.value.length < 6) {
       setInvalid(passwordInput, 'Password must be at least 6 characters');
       isValid = false;
+    } else {
+      setValid(passwordInput);
+    }
+
+    // Validate Confirm Password
+    if (confirmPasswordInput) {
+      if (!confirmPasswordInput.value || confirmPasswordInput.value !== passwordInput.value) {
+        setInvalid(confirmPasswordInput, 'Passwords do not match');
+        isValid = false;
+      } else {
+        setValid(confirmPasswordInput);
+      }
     }
 
     // Validate Terms
@@ -133,6 +181,7 @@ function initRegisterForm() {
     const newUser = {
       fullName: fullNameInput.value.trim(),
       email: emailInput.value.trim(),
+      password: passwordInput.value,
       avatar: selectedAvatar,
       country: countryInput ? countryInput.value : 'Global 🌐',
       phone: phoneInput ? phoneInput.value.trim() : '',

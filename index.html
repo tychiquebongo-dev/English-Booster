@@ -761,10 +761,10 @@
         </div>
 
         <div style="text-align: center; margin-top: 36px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;" class="reveal-init">
-          <a href="pages/inscrits.html" class="btn btn-secondary" style="border-color: var(--blue-400);">
-            ✍️ Inscrivez-vous dans English Booster (NOM, Prénom, Email) →
+          <a href="pages/inscrits.html" class="btn btn-secondary" style="border-color: var(--blue-400);" data-i18n="partners_btn_inscrits">
+            ✍️ Inscrivez-vous dans English Booster (NOM, Prénom, Email, Mot de passe) →
           </a>
-          <a href="pages/partners.html" class="btn btn-primary">
+          <a href="pages/partners.html" class="btn btn-primary" data-i18n="partners_btn_explore">
             Explore All 10,000+ Active Partners →
           </a>
         </div>
@@ -1047,64 +1047,78 @@
           <!-- FREE -->
           <div class="glass-card pricing-card reveal-init">
             <div class="pricing-header">
-              <h3 class="pricing-tier">FREE</h3>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 class="pricing-tier" data-i18n="pricing_free_title">FREE</h3>
+                <span class="pricing-audience-tag" data-i18n="pricing_free_audience">For beginners & casual explorers</span>
+              </div>
               <div class="pricing-cost">
-                <span class="pricing-number">$0</span>
-                <span class="pricing-period">/ month</span>
+                <span class="pricing-number" data-i18n="pricing_free_cost">$0</span>
+                <span class="pricing-period" data-i18n="pricing_per_month">/ month</span>
               </div>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Great for beginners starting their journey.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="pricing_free_desc">Essential access for casual conversational practice with global partners.</p>
             <ul class="pricing-features-list">
-              <li class="pricing-feature-item"><span>✓</span> Basic learner profile</li>
-              <li class="pricing-feature-item"><span>✓</span> Find conversation partners</li>
-              <li class="pricing-feature-item"><span>✓</span> Limited conversations / week</li>
-              <li class="pricing-feature-item"><span>✓</span> Community forum access</li>
-              <li class="pricing-feature-item"><span>✓</span> Daily challenges</li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_free_1">3 weekly 1-on-1 partner conversations</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_free_2">Basic text & voice chat</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_free_3">Browse registered community directory</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_free_4">1 live speech challenge per day</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_free_6">No credit card required</span></li>
             </ul>
-            <a href="pages/register.html" class="btn btn-secondary" style="width: 100%;">Get Started Free</a>
+            <a href="pages/register.html" class="btn btn-secondary" style="width: 100%;" data-i18n="pricing_btn_free">Get Started Free</a>
           </div>
 
           <!-- PREMIUM (FEATURED) -->
           <div class="glass-card pricing-card featured reveal-init reveal-delay-1">
-            <span class="popular-ribbon">Most Popular</span>
+            <span class="popular-ribbon" data-i18n="pricing_popular_badge">Most Popular</span>
             <div class="pricing-header">
-              <h3 class="pricing-tier text-gradient-cyan">PREMIUM</h3>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 class="pricing-tier text-gradient-cyan" data-i18n="pricing_premium_title">PREMIUM</h3>
+                <span class="pricing-audience-tag" data-i18n="pricing_premium_audience">For active daily learners & students</span>
+              </div>
               <div class="pricing-cost">
-                <span class="pricing-number text-gradient-cyan">$4.99</span>
-                <span class="pricing-period">/ month</span>
+                <span class="pricing-number text-gradient-cyan" data-i18n="pricing_premium_cost">$4.99</span>
+                <span class="pricing-period" data-i18n="pricing_per_month">/ month</span>
               </div>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">For learners committed to conversational mastery.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="pricing_premium_desc">Unlimited real-time conversations, HD video calls, and instant AI voice coaching.</p>
             <ul class="pricing-features-list">
-              <li class="pricing-feature-item"><span>✓</span> <strong>Unlimited</strong> conversations</li>
-              <li class="pricing-feature-item"><span>✓</span> <strong>AI English Coach</strong> with voice</li>
-              <li class="pricing-feature-item"><span>✓</span> Advanced grammar corrections</li>
-              <li class="pricing-feature-item"><span>✓</span> AI compatibility matching</li>
-              <li class="pricing-feature-item"><span>✓</span> Progress analytics & radar</li>
-              <li class="pricing-feature-item"><span>✓</span> Unlimited challenges & badges</li>
+              <li class="pricing-feature-item"><span>✓</span> <strong><span data-i18n="pricing_feat_prem_1">Unlimited 1-on-1 conversations & HD video calls</span></strong></li>
+              <li class="pricing-feature-item"><span>✓</span> <strong><span data-i18n="pricing_feat_prem_2">Real-time AI English Coach & phonetic feedback</span></strong></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_prem_3">Smart matchmaking (filter by interests & level)</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_prem_4">Fluency radar & deep progress analytics</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_prem_5">Unlimited arena duels, XP & excellence badges</span></li>
             </ul>
-            <a href="pages/pricing.html" class="btn btn-primary" style="width: 100%;">Choose Premium</a>
+            <a href="pages/pricing.html" class="btn btn-primary" style="width: 100%;" data-i18n="pricing_btn_premium">Choose Premium</a>
           </div>
 
           <!-- PRO -->
           <div class="glass-card pricing-card reveal-init reveal-delay-2">
             <div class="pricing-header">
-              <h3 class="pricing-tier">PRO</h3>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 class="pricing-tier" data-i18n="pricing_pro_title">PRO</h3>
+                <span class="pricing-audience-tag" data-i18n="pricing_pro_audience">For executives, job seekers & exam candidates</span>
+              </div>
               <div class="pricing-cost">
-                <span class="pricing-number">$9.99</span>
-                <span class="pricing-period">/ month</span>
+                <span class="pricing-number" data-i18n="pricing_pro_cost">$9.99</span>
+                <span class="pricing-period" data-i18n="pricing_per_month">/ month</span>
               </div>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Tailored for careers, interviews & exams.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="pricing_pro_desc">Engineered for career advancement, international interviews & TOEFL/IELTS preparation.</p>
             <ul class="pricing-features-list">
-              <li class="pricing-feature-item"><span>✓</span> Everything in Premium</li>
-              <li class="pricing-feature-item"><span>✓</span> Business English simulations</li>
-              <li class="pricing-feature-item"><span>✓</span> Job interview prep modules</li>
-              <li class="pricing-feature-item"><span>✓</span> Professional corporate vocabulary</li>
-              <li class="pricing-feature-item"><span>✓</span> Personalized learning plan</li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_pro_1">Everything included in Premium</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <strong><span data-i18n="pricing_feat_pro_2">Job Interview AI Simulator (Tech, Business, HR)</span></strong></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_pro_3">Business English modules (Pitch, negotiation, meetings)</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_pro_4">Exam preparation (TOEFL, IELTS, Cambridge, TOEIC)</span></li>
+              <li class="pricing-feature-item"><span>✓</span> <span data-i18n="pricing_feat_pro_5">Certified CEFR skill evaluation & certificate</span></li>
             </ul>
-            <a href="pages/pricing.html" class="btn btn-purple" style="width: 100%;">Choose Pro</a>
+            <a href="pages/pricing.html" class="btn btn-purple" style="width: 100%;" data-i18n="pricing_btn_pro">Choose Pro</a>
           </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 36px;">
+          <a href="pages/pricing.html" class="btn btn-secondary" style="gap: 8px;">
+            <span>📊</span> <span data-i18n="pricing_compare_title">Detailed Plan Comparison</span> &amp; <span data-i18n="about_faq_tag">FAQ</span> →
+          </a>
         </div>
       </div>
     </section>

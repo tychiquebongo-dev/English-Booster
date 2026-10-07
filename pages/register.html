@@ -96,7 +96,10 @@
         <div class="form-row">
           <!-- Password -->
           <div class="form-group">
-            <label class="form-label" for="reg-password">Password *</label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="form-label" for="reg-password" style="margin-bottom: 0;">Password *</label>
+              <button type="button" id="btn-toggle-register-pass" style="background: transparent; border: none; color: var(--cyan-primary); font-size: 0.82rem; cursor: pointer; padding: 0;">👁️ Show</button>
+            </div>
             <input type="password" id="reg-password" class="form-control" placeholder="Min. 8 characters" required autocomplete="new-password">
             <div class="password-strength-bar">
               <div id="password-strength-fill" class="strength-indicator"></div>
@@ -105,13 +108,24 @@
             <div class="invalid-feedback"></div>
           </div>
 
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="form-label" for="reg-confirm-password" style="margin-bottom: 0;">Confirm Password *</label>
+              <span id="register-pass-match-msg" style="font-size: 0.78rem; font-weight: 700; display: none;"></span>
+            </div>
+            <input type="password" id="reg-confirm-password" class="form-control" placeholder="Repeat your password" required autocomplete="new-password">
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
           <!-- Phone Number -->
           <div class="form-group">
             <label class="form-label" for="reg-phone">Phone Number</label>
             <input type="tel" id="reg-phone" class="form-control" placeholder="+225 07 05 88 46 87" autocomplete="tel">
             <div class="invalid-feedback"></div>
           </div>
-        </div>
 
         <div class="form-row">
           <!-- Country -->
