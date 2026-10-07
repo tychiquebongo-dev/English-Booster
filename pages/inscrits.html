@@ -119,10 +119,10 @@
     <div class="glass-card registration-hero-card reveal-init">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 10px;">
         <div>
-          <span class="crystal-badge" style="font-size: 0.75rem; margin-bottom: 6px;">Inscription Instantanée</span>
-          <h2 style="font-size: 1.6rem;" class="text-gradient-cyan">Vos Informations d'Inscription</h2>
+          <span class="crystal-badge" style="font-size: 0.75rem; margin-bottom: 6px;" data-i18n="inscrits_form_badge">Inscription Instantanée</span>
+          <h2 style="font-size: 1.6rem;" class="text-gradient-cyan" data-i18n="inscrits_form_title">Vos Informations d'Inscription</h2>
         </div>
-        <span style="font-size: 0.85rem; color: var(--green-400); font-weight: 700; background: rgba(74, 222, 128, 0.12); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid rgba(74, 222, 128, 0.3);">
+        <span style="font-size: 0.85rem; color: var(--green-400); font-weight: 700; background: rgba(74, 222, 128, 0.12); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid rgba(74, 222, 128, 0.3);" data-i18n="inscrits_form_subtag">
           ⚡ Inscription directe en 10 secondes · 100% Gratuit
         </span>
       </div>
@@ -133,9 +133,9 @@
           <div style="font-size: 2.2rem;">🎉</div>
           <div>
             <h4 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 4px;">
-              Félicitations <span id="reg-confirm-name" style="color: var(--green-400);"></span> !
+              <span id="reg-confirm-greeting">Félicitations</span> <span id="reg-confirm-name" style="color: var(--green-400);"></span> !
             </h4>
-            <p style="color: #e2e8f0; font-size: 0.92rem; margin: 0;">
+            <p id="reg-confirm-text" style="color: #e2e8f0; font-size: 0.92rem; margin: 0;">
               Vous êtes désormais <strong>officiellement inscrit dans English Booster</strong> avec l'adresse <strong id="reg-confirm-email" style="color: var(--blue-400);"></strong>. Votre profil apparaît en tête de liste des membres ci-dessous !
             </p>
           </div>
@@ -147,17 +147,17 @@
           <!-- NOM -->
           <div>
             <label class="form-label" for="reg-nom" style="font-size: 0.92rem; margin-bottom: 8px;">
-              <span><strong>NOM :</strong> <span style="color: var(--coral-accent);">*</span></span>
+              <span><strong data-i18n="inscrits_label_nom">NOM :</strong> <span style="color: var(--coral-accent);">*</span></span>
             </label>
-            <input type="text" id="reg-nom" class="form-control" placeholder="Entrez votre nom..." required autocomplete="family-name" style="font-size: 1rem; padding: 14px 18px;" />
+            <input type="text" id="reg-nom" class="form-control" placeholder="Entrez votre nom..." data-i18n-placeholder="inscrits_placeholder_nom" required autocomplete="family-name" style="font-size: 1rem; padding: 14px 18px;" />
           </div>
 
           <!-- Prénom -->
           <div>
             <label class="form-label" for="reg-prenom" style="font-size: 0.92rem; margin-bottom: 8px;">
-              <span><strong>Prénom :</strong> <span style="color: var(--coral-accent);">*</span></span>
+              <span><strong data-i18n="inscrits_label_prenom">Prénom :</strong> <span style="color: var(--coral-accent);">*</span></span>
             </label>
-            <input type="text" id="reg-prenom" class="form-control" placeholder="Entrez votre prénom..." required autocomplete="given-name" style="font-size: 1rem; padding: 14px 18px;" />
+            <input type="text" id="reg-prenom" class="form-control" placeholder="Entrez votre prénom..." data-i18n-placeholder="inscrits_placeholder_prenom" required autocomplete="given-name" style="font-size: 1rem; padding: 14px 18px;" />
           </div>
         </div>
 
@@ -165,15 +165,15 @@
           <!-- Adresse email -->
           <div>
             <label class="form-label" for="reg-email" style="font-size: 0.92rem; margin-bottom: 8px;">
-              <span><strong>Adresse email :</strong> <span style="color: var(--coral-accent);">*</span></span>
+              <span><strong data-i18n="inscrits_label_email">Adresse email :</strong> <span style="color: var(--coral-accent);">*</span></span>
             </label>
-            <input type="email" id="reg-email" class="form-control" placeholder="votre.email@exemple.com" required autocomplete="email" style="font-size: 1rem; padding: 14px 18px;" />
+            <input type="email" id="reg-email" class="form-control" placeholder="votre.email@exemple.com" data-i18n-placeholder="inscrits_placeholder_email" required autocomplete="email" style="font-size: 1rem; padding: 14px 18px;" />
           </div>
 
           <!-- Nationalité -->
           <div>
             <label class="form-label" for="reg-nationalite" style="font-size: 0.92rem; margin-bottom: 8px;">
-              <span><strong>Nationalité :</strong></span>
+              <span><strong data-i18n="inscrits_label_country">Nationalité :</strong></span>
             </label>
             <select id="reg-nationalite" class="form-control" style="font-size: 1rem; padding: 14px 18px;">
               <option value="Côte d'Ivoire|🇨🇮" selected>🇨🇮 Côte d'Ivoire</option>
@@ -248,7 +248,7 @@
 
         <!-- Bouton Valider pour être inscrit dans English Booster -->
         <div style="margin-top: 14px;">
-          <button type="submit" id="btn-valider-inscription" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; font-size: 1.15rem; font-weight: 800; padding: 16px 32px; letter-spacing: -0.01em;">
+          <button type="submit" id="btn-valider-inscription" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; font-size: 1.15rem; font-weight: 800; padding: 16px 32px; letter-spacing: -0.01em;" data-i18n="inscrits_btn_submit">
             ✅ Valider pour être inscrit dans English Booster
           </button>
         </div>
@@ -258,31 +258,31 @@
     <!-- STATISTIQUES DES MEMBRES ACTIFS -->
     <div class="directory-stats-grid reveal-init">
       <div class="glass-card" style="padding: 20px;">
-        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Total Inscrits</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" data-i18n="inscrits_stat_total">Total Inscrits</div>
         <div id="stat-total-inscrits" style="font-size: 2rem; font-weight: 900; font-family: var(--font-heading); color: var(--green-400); margin-top: 4px;">
           1,420
         </div>
-        <div style="font-size: 0.75rem; color: var(--text-subtle);">Membres enregistrés</div>
+        <div style="font-size: 0.75rem; color: var(--text-subtle);" data-i18n="inscrits_stat_total_sub">Membres enregistrés</div>
       </div>
 
       <div class="glass-card" style="padding: 20px;">
-        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Nationalités</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" data-i18n="inscrits_stat_countries">Nationalités</div>
         <div id="stat-total-countries" style="font-size: 2rem; font-weight: 900; font-family: var(--font-heading); color: var(--blue-400); margin-top: 4px;">
           42
         </div>
-        <div style="font-size: 0.75rem; color: var(--text-subtle);">Pays d'origine</div>
+        <div style="font-size: 0.75rem; color: var(--text-subtle);" data-i18n="inscrits_stat_countries_sub">Pays d'origine</div>
       </div>
 
       <div class="glass-card" style="padding: 20px;">
-        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Membres En Ligne</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" data-i18n="inscrits_stat_online">Membres En Ligne</div>
         <div id="stat-total-online" style="font-size: 2rem; font-weight: 900; font-family: var(--font-heading); color: var(--emerald-accent); margin-top: 4px;">
           348
         </div>
-        <div style="font-size: 0.75rem; color: var(--text-subtle);">Prêts pour un duel vocal</div>
+        <div style="font-size: 0.75rem; color: var(--text-subtle);" data-i18n="inscrits_stat_online_sub">Prêts pour un duel vocal</div>
       </div>
 
       <div class="glass-card" style="padding: 20px;">
-        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Fondateur & Mentor</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;" data-i18n="inscrits_stat_founder">Fondateur & Mentor</div>
         <div style="font-size: 1.2rem; font-weight: 800; font-family: var(--font-heading); color: #ffffff; margin-top: 8px;">
           Tychique Bongo 🇨🇮
         </div>
@@ -292,22 +292,22 @@
 
     <!-- ANNUAIRE : MEMBRES DÉJÀ INSCRITS -->
     <div style="margin: 40px 0 20px;">
-      <h3 style="font-size: 1.4rem; margin-bottom: 6px;">Membres Déjà Inscrits dans English Booster</h3>
-      <p style="color: var(--text-muted); font-size: 0.92rem; margin: 0;">Consultez les inscrits, copiez leur email ou lancez directement un appel, un chat ou un duel.</p>
+      <h3 style="font-size: 1.4rem; margin-bottom: 6px;" data-i18n="inscrits_list_title">Membres Déjà Inscrits dans English Booster</h3>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin: 0;" data-i18n="inscrits_list_subtitle">Consultez les inscrits, copiez leur email ou lancez directement un appel, un chat ou un duel.</p>
     </div>
 
     <!-- Search & Filter Controls Bar -->
     <div class="glass-card directory-controls-bar reveal-init" style="padding: 20px;">
       <!-- Search Input -->
       <div style="flex: 1; min-width: 260px;">
-        <input type="text" id="search-inscrits" class="form-control" placeholder="🔍 Rechercher par NOM, Prénom, Email, Nationalité..." />
+        <input type="text" id="search-inscrits" class="form-control" placeholder="🔍 Rechercher par NOM, Prénom, Email, Nationalité..." data-i18n-placeholder="inscrits_search_placeholder" />
       </div>
 
       <!-- Filters -->
       <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
         <!-- Country Filter -->
         <select id="filter-country" class="form-control" style="width: auto; min-width: 170px;">
-          <option value="all">🌍 Toutes les Nationalités</option>
+          <option value="all" data-i18n="inscrits_filter_all_countries">🌍 Toutes les Nationalités</option>
           <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
           <option value="France">🇫🇷 France</option>
           <option value="Espagne">🇪🇸 Espagne</option>
@@ -323,7 +323,7 @@
 
         <!-- Level Filter -->
         <select id="filter-level" class="form-control" style="width: auto; min-width: 130px;">
-          <option value="all">📊 Tous Niveaux</option>
+          <option value="all" data-i18n="inscrits_filter_all_levels">📊 Tous Niveaux</option>
           <option value="A1">A1 Débutant</option>
           <option value="A2">A2 Élémentaire</option>
           <option value="B1">B1 Intermédiaire</option>
@@ -364,13 +364,13 @@
       <table class="inscrits-table">
         <thead>
           <tr>
-            <th>Profil & Statut</th>
-            <th>NOM</th>
-            <th>Prénom</th>
-            <th>Adresse email</th>
-            <th>Nationalité</th>
-            <th>Niveau CECRL</th>
-            <th>Liens d'Action Directs</th>
+            <th data-i18n="inscrits_th_profile">Profil & Statut</th>
+            <th data-i18n="inscrits_th_nom">NOM</th>
+            <th data-i18n="inscrits_th_prenom">Prénom</th>
+            <th data-i18n="inscrits_th_email">Adresse email</th>
+            <th data-i18n="inscrits_th_country">Nationalité</th>
+            <th data-i18n="inscrits_th_level">Niveau CECRL</th>
+            <th data-i18n="inscrits_th_actions">Liens d'Action Directs</th>
           </tr>
         </thead>
         <tbody id="inscrits-table-body">

@@ -647,7 +647,9 @@
                 ${membersOptions}
               </select>
               <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
-                Pas encore inscrit ? <a href="${getAssetPath('pages/inscrits.html')}" style="color: var(--green-400); text-decoration: underline;">Inscrivez-vous ici (NOM, Prénom, Email)</a>
+                ${(window.EnglishBooster?.i18n?.currentLang || localStorage.getItem('eb_language') || 'en') === 'fr' 
+                  ? `Pas encore inscrit ? <a href="${getAssetPath('pages/inscrits.html')}" style="color: var(--green-400); text-decoration: underline;">Inscrivez-vous ici (NOM, Prénom, Email)</a>` 
+                  : `Not registered yet? <a href="${getAssetPath('pages/inscrits.html')}" style="color: var(--green-400); text-decoration: underline;">Register here (Name, Firstname, Email)</a>`}
               </div>
             </div>
 

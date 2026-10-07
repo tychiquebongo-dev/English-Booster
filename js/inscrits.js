@@ -214,6 +214,10 @@ class RegisteredMembersApp {
     this.currentView = 'table'; // 'table' or 'cards'
   }
 
+  isFrench() {
+    return (window.EnglishBooster?.i18n?.currentLang || localStorage.getItem('eb_language') || 'en') === 'fr';
+  }
+
   init() {
     this.loadMembers();
     this.renderStats();
@@ -222,6 +226,20 @@ class RegisteredMembersApp {
     this.bindViewSwitcher();
     this.bindAddMemberModal();
     this.bindDirectRegistrationForm();
+    this.bindLanguageChangeListener();
+  }
+
+  bindLanguageChangeListener() {
+    window.addEventListener('eb_language_changed', (e) => {
+      const isFr = (e.detail?.lang || 'en') === 'fr';
+      const searchInput = document.getElementById('search-inscrits');
+      if (searchInput) {
+        searchInput.placeholder = isFr 
+          ? '🔍 Rechercher par NOM, Prénom, Email, Nationalité...' 
+          : '🔍 Search by Name, Firstname, Email address, Country...';
+      }
+      this.renderMembers(this.members);
+    });
   }
 
   loadMembers() {
@@ -269,15 +287,18 @@ class RegisteredMembersApp {
   renderTable(list) {
     const tbody = document.getElementById('inscrits-table-body');
     const countBadge = document.getElementById('inscrits-count-badge');
-    if (countBadge) countBadge.textContent = `${list.length} membres inscrits`;
+    const isFr = this.isFrench();
+    if (countBadge) {
+      countBadge.textContent = isFr ? `${list.length} membres inscrits` : `${list.length} registered members`;
+    }
     if (!tbody) return;
 
     if (list.length === 0) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-muted);">
+          <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">
             <div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
-            <p>Aucun membre inscrit trouvé avec ces critères.</p>
+            <p>${isFr ? 'Aucun membre inscrit trouvé avec ces critères.' : 'No registered member found matching these criteria.'}</p>
           </td>
         </tr>
       `;
@@ -303,9 +324,9 @@ class RegisteredMembersApp {
               <div>
                 <span class="status-indicator">
                   <span class="status-dot ${m.online ? 'online' : 'offline'}"></span>
-                  <span style="font-size: 0.76rem; color: var(--text-subtle);">${m.online ? 'En ligne' : 'Hors-ligne'}</span>
+                  <span style="font-size: 0.76rem; color: var(--text-subtle);">${m.online ? (isFr ? 'En ligne' : 'Online') : (isFr ? 'Hors-ligne' : 'Offline')}</span>
                 </span>
-                ${isFounder ? '<span class="crystal-badge" style="font-size: 0.65rem; padding: 1px 6px; margin-left: 6px;">Fondateur</span>' : ''}
+                ${isFounder ? `<span class="crystal-badge" style="font-size: 0.65rem; padding: 1px 6px; margin-left: 6px;">${isFr ? 'Fondateur' : 'Founder'}</span>` : ''}
               </div>
             </div>
           </td>
@@ -323,10 +344,10 @@ class RegisteredMembersApp {
           <!-- Email -->
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <a href="mailto:${m.email}" class="email-badge-link" title="Envoyer un email à ${m.prenom}">
+              <a href="mailto:${m.email}" class="email-badge-link" title="${isFr ? `Envoyer un email à ${m.prenom}` : `Send email to ${m.prenom}`}">
                 ✉️ <span>${m.email}</span>
               </a>
-              <button type="button" class="btn-action-icon copy-btn" data-email="${m.email}" title="Copier l'adresse email">
+              <button type="button" class="btn-action-icon copy-btn" data-email="${m.email}" title="${isFr ? 'Copier l\'adresse email' : 'Copy email address'}">
                 📋
               </button>
             </div>
@@ -348,16 +369,16 @@ class RegisteredMembersApp {
           <!-- Liens d'action directs -->
           <td>
             <div style="display: flex; align-items: center; gap: 6px;">
-              <a href="${pathPrefix}call.html?partner=${m.id}" class="btn-action-icon call" title="Lancer un appel avec ${m.prenom}">
+              <a href="${pathPrefix}call.html?partner=${m.id}" class="btn-action-icon call" title="${isFr ? `Lancer un appel avec ${m.prenom}` : `Start call with ${m.prenom}`}">
                 📞
               </a>
-              <a href="${pathPrefix}chat.html?partner=${m.id}" class="btn-action-icon chat" title="Ouvrir le chat avec ${m.prenom}">
+              <a href="${pathPrefix}chat.html?partner=${m.id}" class="btn-action-icon chat" title="${isFr ? `Ouvrir le chat avec ${m.prenom}` : `Open chat with ${m.prenom}`}">
                 💬
               </a>
-              <a href="${pathPrefix}challenges.html?arena=speed_duel&partner=${m.id}" class="btn-action-icon duel" title="Défier ${m.prenom} en duel vocal">
+              <a href="${pathPrefix}challenges.html?arena=speed_duel&partner=${m.id}" class="btn-action-icon duel" title="${isFr ? `Défier ${m.prenom} en duel vocal` : `Challenge ${m.prenom} to voice duel`}">
                 ⚔️
               </a>
-              <a href="mailto:${m.email}" class="btn-action-icon" title="Email direct">
+              <a href="mailto:${m.email}" class="btn-action-icon" title="${isFr ? 'Email direct' : 'Direct email'}">
                 ✉️
               </a>
             </div>
@@ -372,12 +393,13 @@ class RegisteredMembersApp {
   renderCards(list) {
     const container = document.getElementById('inscrits-cards-container');
     if (!container) return;
+    const isFr = this.isFrench();
 
     if (list.length === 0) {
       container.innerHTML = `
         <div class="glass-card" style="padding: 40px; text-align: center; grid-column: 1 / -1; color: var(--text-muted);">
           <div style="font-size: 2.2rem; margin-bottom: 10px;">🔍</div>
-          <p>Aucun membre inscrit trouvé avec ces critères.</p>
+          <p>${isFr ? 'Aucun membre inscrit trouvé avec ces critères.' : 'No registered member found matching these criteria.'}</p>
         </div>
       `;
       return;
@@ -401,7 +423,7 @@ class RegisteredMembersApp {
               <span class="badge-level level-${m.level.toLowerCase()}">Level ${m.level}</span>
               <span class="status-indicator">
                 <span class="status-dot ${m.online ? 'online' : 'offline'}"></span>
-                <span style="font-size: 0.72rem; color: var(--text-subtle);">${m.online ? 'En ligne' : 'Hors-ligne'}</span>
+                <span style="font-size: 0.72rem; color: var(--text-subtle);">${m.online ? (isFr ? 'En ligne' : 'Online') : (isFr ? 'Hors-ligne' : 'Offline')}</span>
               </span>
             </div>
           </div>
@@ -419,7 +441,7 @@ class RegisteredMembersApp {
             <div style="margin: 8px 0;">
               <a href="mailto:${m.email}" class="email-badge-link" style="width: 100%; justify-content: space-between;">
                 <span>✉️ ${m.email}</span>
-                <button type="button" class="copy-btn" data-email="${m.email}" style="border:none;background:transparent;cursor:pointer;color:inherit;" title="Copier">📋</button>
+                <button type="button" class="copy-btn" data-email="${m.email}" style="border:none;background:transparent;cursor:pointer;color:inherit;" title="${isFr ? 'Copier' : 'Copy'}">📋</button>
               </a>
             </div>
           </div>
@@ -427,12 +449,12 @@ class RegisteredMembersApp {
           <!-- Barre de liens directs de l'inscrit -->
           <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px;">
             <a href="${pathPrefix}call.html?partner=${m.id}" class="btn btn-primary btn-sm" style="flex: 1; justify-content: center; font-size: 0.8rem; padding: 6px 10px;">
-              📞 Appeler
+              📞 ${isFr ? 'Appeler' : 'Call'}
             </a>
             <a href="${pathPrefix}chat.html?partner=${m.id}" class="btn btn-secondary btn-sm" style="flex: 1; justify-content: center; font-size: 0.8rem; padding: 6px 10px;">
               💬 Chat
             </a>
-            <a href="${pathPrefix}challenges.html?arena=speed_duel&partner=${m.id}" class="btn btn-secondary btn-sm" style="padding: 6px 10px;" title="Défier">
+            <a href="${pathPrefix}challenges.html?arena=speed_duel&partner=${m.id}" class="btn btn-secondary btn-sm" style="padding: 6px 10px;" title="${isFr ? 'Défier' : 'Challenge'}">
               ⚔️
             </a>
           </div>
@@ -689,21 +711,31 @@ class RegisteredMembersApp {
       const confirmPass = confirmPassInput?.value || '';
       const paysData = (paysSelect?.value || "Côte d'Ivoire|🇨🇮").split('|');
 
+      const isFr = this.isFrench();
+
       if (!nom || !prenom || !email) {
-        window.EnglishBooster.showToast('Champs requis', 'Veuillez renseigner votre NOM, Prénom et Adresse email.', 'error');
+        window.EnglishBooster.showToast(
+          isFr ? 'Champs requis' : 'Required fields', 
+          isFr ? 'Veuillez renseigner votre NOM, Prénom et Adresse email.' : 'Please enter your Name, Firstname and Email address.', 
+          'error'
+        );
         return;
       }
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        window.EnglishBooster.showToast('Email invalide', 'Veuillez saisir une adresse email valide (ex: nom@domaine.com).', 'error');
+        window.EnglishBooster.showToast(
+          isFr ? 'Email invalide' : 'Invalid email', 
+          isFr ? 'Veuillez saisir une adresse email valide (ex: nom@domaine.com).' : 'Please enter a valid email address (e.g. name@domain.com).', 
+          'error'
+        );
         return;
       }
 
       if (!password || password.length < 6) {
         window.EnglishBooster.showToast(
-          'Mot de passe requis', 
-          'Veuillez créer un mot de passe sécurisé d\'au moins 6 caractères.', 
+          isFr ? 'Mot de passe requis' : 'Password required', 
+          isFr ? 'Veuillez créer un mot de passe sécurisé d\'au moins 6 caractères.' : 'Please create a secure password of at least 6 characters.', 
           'error'
         );
         passInput?.focus();
@@ -712,8 +744,8 @@ class RegisteredMembersApp {
 
       if (password !== confirmPass) {
         window.EnglishBooster.showToast(
-          'Mots de passe non identiques', 
-          'La confirmation du mot de passe ne correspond pas au mot de passe saisi.', 
+          isFr ? 'Mots de passe non identiques' : 'Passwords do not match', 
+          isFr ? 'La confirmation du mot de passe ne correspond pas au mot de passe saisi.' : 'Password confirmation does not match the entered password.', 
           'error'
         );
         confirmPassInput?.focus();
@@ -774,13 +806,23 @@ class RegisteredMembersApp {
         confirmBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         const nameConfirm = document.getElementById('reg-confirm-name');
         const emailConfirm = document.getElementById('reg-confirm-email');
+        const greetingConfirm = document.getElementById('reg-confirm-greeting');
+        const textConfirm = document.getElementById('reg-confirm-text');
+        if (greetingConfirm) greetingConfirm.textContent = isFr ? 'Félicitations' : 'Congratulations';
         if (nameConfirm) nameConfirm.textContent = `${prenom} ${nom}`;
         if (emailConfirm) emailConfirm.textContent = email;
+        if (textConfirm) {
+          textConfirm.innerHTML = isFr 
+            ? `Vous êtes désormais <strong>officiellement inscrit dans English Booster</strong> avec l'adresse <strong style="color: var(--blue-400);">${email}</strong>. Votre profil apparaît en tête de liste des membres ci-dessous !`
+            : `You are now <strong>officially registered in English Booster</strong> with the email <strong style="color: var(--blue-400);">${email}</strong>. Your profile appears at the top of the member directory below!`;
+        }
       }
 
       window.EnglishBooster.showToast(
-        'Inscription Validée ! 🎉',
-        `Félicitations ${prenom} ${nom} ! Votre compte et votre mot de passe sont enregistrés avec succès.`,
+        isFr ? 'Inscription Validée ! 🎉' : 'Registration Successful! 🎉',
+        isFr 
+          ? `Félicitations ${prenom} ${nom} ! Votre compte et votre mot de passe sont enregistrés avec succès.`
+          : `Congratulations ${prenom} ${nom}! Your account and password are saved successfully.`,
         'success',
         4500
       );
