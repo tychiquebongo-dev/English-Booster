@@ -599,8 +599,8 @@
 
       short.userReaction = type;
       if (type === 'like') {
-        short.likes += 1;
-        if (window.showToast) window.showToast('❤️ Vous avez liké ce Short !', 'Watch Videos', 'success');
+        const isFr = (window.EnglishBooster?.i18n?.currentLang || localStorage.getItem('eb_language') || 'en') === 'fr';
+        if (window.showToast) window.showToast('❤️ Vous avez liké ce Short !', isFr ? 'Regardez les vidéos' : 'Watch Videos', 'success');
       } else {
         short.dislikes += 1;
       }
@@ -785,7 +785,13 @@
         window.SoundFX.playSuccess();
       }
       if (window.showToast) {
-        window.showToast('🎉 Félicitations ! Votre vidéo Short est en ligne.', 'Watch Videos & Shorts', 'success', 3000);
+        const isFr = (window.EnglishBooster?.i18n?.currentLang || localStorage.getItem('eb_language') || 'en') === 'fr';
+        window.showToast(
+          isFr ? '🎉 Félicitations ! Votre vidéo Short est en ligne.' : '🎉 Congratulations! Your Short video is live.',
+          isFr ? 'Regardez les vidéos & Shorts' : 'Watch Videos & Shorts',
+          'success',
+          3000
+        );
       }
 
       closePublish();

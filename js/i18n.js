@@ -448,7 +448,7 @@
       nav_inscrits: 'Inscrivez-vous',
       nav_how_it_works: 'Comment ça marche',
       nav_partners: 'Trouver des partenaires',
-      nav_watch: 'Watch Videos',
+      nav_watch: 'Regardez les vidéos',
       nav_community: 'Communauté',
       nav_challenges: 'Défis',
       nav_pricing: 'Tarifs',
@@ -558,9 +558,9 @@
       conv_card_3_desc: 'Des sessions ciblées avec corrections phonétiques immédiates, explications grammaticales claires et préparation aux examens TOEFL & IELTS.',
 
       // Watch Videos & Shorts
-      shorts_badge_reels: '🎬 Watch Videos & Reels',
+      shorts_badge_reels: '🎬 Regardez les vidéos & Reels',
       shorts_badge_format: 'Format 9:16 Vertical',
-      shorts_section_title: 'Watch Videos : ',
+      shorts_section_title: 'Regardez les vidéos : ',
       shorts_section_title_accent: 'Shorts des Membres Inscrits',
       shorts_section_desc: 'Visionnez les capsules d\'expression orale en anglais publiées par les membres inscrits. Entraînez votre prononciation, vos elevator pitches et publiez vos propres Shorts !',
       shorts_btn_publish: '+ Publier une Vidéo Short',
@@ -983,7 +983,13 @@
         'Get Started': isFr ? 'Commencer' : 'Get Started',
         'Commencer': isFr ? 'Commencer' : 'Get Started',
         'Dashboard': isFr ? 'Tableau de bord' : 'Dashboard',
-        'Tableau de bord': isFr ? 'Tableau de bord' : 'Dashboard'
+        'Tableau de bord': isFr ? 'Tableau de bord' : 'Dashboard',
+        'Watch Videos': isFr ? 'Regardez les vidéos' : 'Watch Videos',
+        'Watch Videos (Shorts)': isFr ? 'Regardez les vidéos (Shorts)' : 'Watch Videos (Shorts)',
+        'Regardez les vidéos': isFr ? 'Regardez les vidéos' : 'Watch Videos',
+        'Regardez les vidéos (Shorts)': isFr ? 'Regardez les vidéos (Shorts)' : 'Watch Videos (Shorts)',
+        'Watch': isFr ? 'Vidéos' : 'Watch',
+        'Vidéos': isFr ? 'Vidéos' : 'Watch'
       };
 
       document.querySelectorAll('.nav-link, .dock-item span:last-child').forEach(link => {
@@ -1064,6 +1070,14 @@
         ['Find your partner', 'Trouvez votre partenaire'],
         ['Methodology', 'Méthodologie'],
         ['How English Booster Works', 'Comment fonctionne English Booster'],
+        ['Regardez les vidéos', 'Watch Videos'],
+        ['regardez les vidéos', 'watch videos'],
+        ['Regardez les Vidéos', 'Watch Videos'],
+        ['Regardez les vidéos : ', 'Watch Videos : '],
+        ['Regardez les vidéos :', 'Watch Videos :'],
+        ['Regardez les vidéos & Reels', 'Watch Videos & Reels'],
+        ['🎬 Regardez les vidéos & Reels', '🎬 Watch Videos & Reels'],
+        ['Regardez les vidéos (Shorts)', 'Watch Videos (Shorts)'],
         ['NOM :', 'Name :'],
         ['NOM', 'Name'],
         ['Nom :', 'Name :'],
@@ -1092,7 +1106,7 @@
       ];
 
       // Scan and translate matching elements
-      const targetSelectors = 'h1, h2, h3, h4, th, .section-tag, .section-title, .btn, .crystal-badge, .short-metric-lbl, .form-label strong, .form-label span, select option';
+      const targetSelectors = 'h1, h2, h3, h4, th, .section-tag, .section-title, .btn, .crystal-badge, .short-metric-lbl, .form-label strong, .form-label span, select option, .nav-link, .mobile-nav-link, .shorts-page-title';
       document.querySelectorAll(targetSelectors).forEach(el => {
         // If element already has explicit data-i18n, skip manual matching
         if (el.hasAttribute('data-i18n')) return;
@@ -1105,6 +1119,26 @@
           } else if (!isFr && currentText === frText) {
             el.textContent = enText;
             break;
+          }
+        }
+      });
+
+      // Partial text replacement for 'Watch Videos' / 'Regardez les vidéos' across any matching links & badges
+      document.querySelectorAll('.nav-link, .mobile-nav-link, .dock-item span, .crystal-badge, .shorts-page-title').forEach(el => {
+        if (el.hasAttribute('data-i18n')) return;
+        if (isFr) {
+          if (el.innerHTML.includes('Watch Videos')) {
+            el.innerHTML = el.innerHTML.replace(/Watch Videos/g, 'Regardez les vidéos');
+          }
+          if (el.innerHTML.includes('watch videos')) {
+            el.innerHTML = el.innerHTML.replace(/watch videos/g, 'regardez les vidéos');
+          }
+        } else {
+          if (el.innerHTML.includes('Regardez les vidéos')) {
+            el.innerHTML = el.innerHTML.replace(/Regardez les vidéos/g, 'Watch Videos');
+          }
+          if (el.innerHTML.includes('regardez les vidéos')) {
+            el.innerHTML = el.innerHTML.replace(/regardez les vidéos/g, 'watch videos');
           }
         }
       });
