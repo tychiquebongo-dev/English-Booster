@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <!-- PWA & MULTI-DEVICE SUPPORT (MOBILE, TABLETTE, ORDINATEUR) -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#030712">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="English Booster">
+  <link rel="apple-touch-icon" href="../assets/images/logo.svg">
 </head>
 <body>
 
@@ -23,12 +31,13 @@
     <nav class="site-nav scrolled" id="main-nav">
       <div class="container nav-container">
         <a href="../index.html" class="nav-brand">
-          <div class="brand-globe">🌎</div>
+          <img src="../assets/images/logo.svg" alt="English Booster Logo" class="brand-logo-img" />
           <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
         </a>
 
         <ul class="nav-links">
           <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="inscrits.html" class="nav-link">Inscrivez-vous</a></li>
           <li><a href="partners.html" class="nav-link">Find Partners</a></li>
           <li><a href="chat.html" class="nav-link">Chat</a></li>
           <li><a href="call.html" class="nav-link">Live Call</a></li>
@@ -38,9 +47,18 @@
         </ul>
 
         <div class="nav-actions">
+          <!-- Language Switcher Pill (Multi-Langue Anglais & Français) -->
+          <div class="lang-switcher-pill" role="group" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" title="English">
+              <span>🇬🇧</span> EN
+            </button>
+            <button type="button" class="lang-btn" data-lang="fr" title="Français">
+              <span>🇫🇷</span> FR
+            </button>
+          </div>
           <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
-          <a href="profile.html" class="partner-avatar active" style="width: 40px; height: 40px; font-size: 1rem; border-color: var(--cyan-primary);">
-            AR
+          <a href="profile.html" class="partner-avatar active" style="width: 40px; height: 40px; border-color: var(--cyan-primary);">
+            <img src="../assets/avatars/alex.jpg" alt="Alex" class="avatar-img" />
             <span class="avatar-badge-flag">🇪🇸</span>
           </a>
           <button class="mobile-menu-toggle" aria-label="Menu">
@@ -53,8 +71,23 @@
 
   <!-- MOBILE SLIDE DRAWER -->
   <div class="mobile-drawer" id="mobile-drawer">
-    <ul class="mobile-nav-links">
+        <!-- Language Selector Mobile Drawer -->
+    <div class="lang-drawer-wrap" style="padding: 12px 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); margin-bottom: 14px;">
+      <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+        <span>🌐</span> Langue / Language
+      </span>
+      <div class="lang-switcher-pill" role="group">
+        <button type="button" class="lang-btn active" data-lang="en">
+          <span>🇬🇧</span> EN
+        </button>
+        <button type="button" class="lang-btn" data-lang="fr">
+          <span>🇫🇷</span> FR
+        </button>
+      </div>
+    </div>
+<ul class="mobile-nav-links">
       <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="inscrits.html" class="mobile-nav-link"><span>✍️</span> Inscrivez-vous</a></li>
       <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
       <li><a href="chat.html" class="mobile-nav-link"><span>💬</span> Live Chat</a></li>
       <li><a href="call.html" class="mobile-nav-link"><span>🎙️</span> Live Call</a></li>
@@ -70,24 +103,33 @@
       <!-- PROFILE HERO CARD -->
       <div class="glass-card reveal-init" style="padding: 36px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
         <div style="display: flex; align-items: center; gap: 20px;">
-          <div class="partner-avatar" style="width: 84px; height: 84px; font-size: 2.2rem; border: 3px solid var(--cyan-primary); box-shadow: 0 0 25px rgba(0,242,254,0.3);">
-            AR
-            <span class="avatar-badge-flag" style="font-size: 1.6rem;">🇪🇸</span>
+          <!-- AVATAR MODIFIABLE AVEC BOUTON CAMERA FLOTTANT -->
+          <div class="avatar-edit-container btn-open-avatar-modal" title="Cliquez pour changer votre photo de profil / Click to change profile photo">
+            <div class="partner-avatar user-profile-avatar" style="width: 92px; height: 92px; border: 3.5px solid var(--green-400); box-shadow: 0 0 30px rgba(74, 222, 128, 0.45); cursor: pointer;">
+              <img src="../assets/avatars/alex.jpg" alt="Alex Rivera" class="current-user-avatar-img avatar-img" id="prof-avatar-img" />
+              <span class="avatar-badge-flag" id="prof-avatar-flag" style="font-size: 1.6rem;">🇪🇸</span>
+            </div>
+            <button type="button" class="btn-change-avatar-badge" aria-label="Changer de photo" title="Changer ma photo de profil">
+              📷
+            </button>
           </div>
 
           <div>
             <h1 id="prof-name" style="font-size: 1.8rem; margin-bottom: 4px;">Alex Rivera</h1>
             <div style="color: var(--text-muted); font-size: 0.95rem;">
-              <span>Spain 🇪🇸</span> · Native Language: <strong>Spanish</strong>
+              <span id="prof-country">Spain 🇪🇸</span> · Native Language: <strong id="prof-lang">Spanish</strong>
             </div>
-            <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
               <span class="badge-level level-b1" id="prof-level-badge">B1 Intermediate</span>
               <span class="crystal-badge" style="font-size: 0.72rem;">🔥 7 Day Streak</span>
             </div>
           </div>
         </div>
 
-        <div style="display: flex; gap: 12px;">
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary btn-sm btn-open-avatar-modal" style="font-weight: 700; box-shadow: 0 4px 16px rgba(74, 222, 128, 0.35);">
+            <span>📷</span> Changer ma photo
+          </button>
           <button id="btn-record-intro" class="btn btn-secondary btn-sm">
             🎙️ Audio Intro (0:20)
           </button>
@@ -222,7 +264,9 @@
     </a>
   </nav>
 
+  <script src="../js/i18n.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/avatarManager.js"></script>
   <script>
     // Load and update profile state
     document.addEventListener('DOMContentLoaded', () => {
@@ -230,6 +274,19 @@
       if (user.fullName) {
         document.getElementById('prof-name').textContent = user.fullName;
         document.getElementById('edit-fullname').value = user.fullName;
+      }
+      if (user.avatar) {
+        const cleanAvatar = user.avatar.startsWith('data:') ? user.avatar : '../' + user.avatar.replace(/^(\.\.\/)+/, '');
+        const profAvatarImg = document.getElementById('prof-avatar-img');
+        if (profAvatarImg) profAvatarImg.src = cleanAvatar;
+      }
+      if (user.country) {
+        const countryEl = document.getElementById('prof-country');
+        if (countryEl) countryEl.textContent = user.country;
+      }
+      if (user.nativeLanguage) {
+        const langEl = document.getElementById('prof-lang');
+        if (langEl) langEl.textContent = user.nativeLanguage;
       }
       if (user.englishLevel) {
         document.getElementById('edit-level').value = user.englishLevel;
@@ -263,5 +320,6 @@
       });
     });
   </script>
+  <script src="../js/pwa.js"></script>
 </body>
 </html>

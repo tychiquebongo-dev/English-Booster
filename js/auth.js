@@ -128,10 +128,12 @@ function initRegisterForm() {
     const selectedInterests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
     const selectedLevel = document.querySelector('input[name="englishLevel"]:checked')?.value || 'B1';
     const selectedGoal = document.getElementById('reg-goal')?.value || 'Improve Speaking';
+    const selectedAvatar = document.getElementById('register-avatar-picker-wrap-selected-val')?.value || 'assets/avatars/alex.jpg';
 
     const newUser = {
       fullName: fullNameInput.value.trim(),
       email: emailInput.value.trim(),
+      avatar: selectedAvatar,
       country: countryInput ? countryInput.value : 'Global 🌐',
       phone: phoneInput ? phoneInput.value.trim() : '',
       nativeLanguage: nativeLangInput ? nativeLangInput.value : 'French',
@@ -147,6 +149,12 @@ function initRegisterForm() {
     };
 
     window.EnglishBooster.updateUserState(newUser);
+    if (window.EnglishBooster?.avatarManager) {
+      window.EnglishBooster.avatarManager.setAvatar(selectedAvatar, false);
+    }
+    if (window.EnglishBoosterRegisterMember) {
+      window.EnglishBoosterRegisterMember(newUser);
+    }
     window.EnglishBooster.showToast('Account Created!', `Welcome to English Booster, ${newUser.fullName}!`, 'success');
     window.EnglishBooster.launchConfetti(2500);
 
@@ -269,7 +277,7 @@ function initDemoLogins() {
       } else if (demoType === 'tychique') {
         demoUser = {
           fullName: 'Tychique Bongo',
-          email: 'tychiquebongo@englishbooster.io',
+          email: 'tychiquebongo@gmail.com',
           country: 'Ivory Coast 🇨🇮',
           nativeLanguage: 'French',
           englishLevel: 'C2',

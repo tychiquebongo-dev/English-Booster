@@ -1,7 +1,14 @@
-/**
+﻿/**
  * ENGLISH BOOSTER — INTERNATIONAL MATCHING ENGINE (js/matching.js)
  * Curated Global Conversation Partners, AI Match Score & Compatibility Matrix
  */
+
+function resolveAvatar(imgPath) {
+  if (!imgPath) return '';
+  const inPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
+  const clean = imgPath.replace(/^(\.\.\/)+/, '');
+  return inPages ? '../' + clean : clean;
+}
 
 const PARTNERS_DATABASE = [
   {
@@ -10,6 +17,7 @@ const PARTNERS_DATABASE = [
     country: 'Spain',
     flag: '🇪🇸',
     avatarText: 'SM',
+    avatarImg: 'assets/avatars/sofia.jpg',
     level: 'B1',
     levelTitle: 'Intermediate',
     nativeLang: 'Spanish',
@@ -35,6 +43,7 @@ const PARTNERS_DATABASE = [
     country: 'Japan',
     flag: '🇯🇵',
     avatarText: 'KS',
+    avatarImg: 'assets/avatars/kenji.jpg',
     level: 'B2',
     levelTitle: 'Upper Intermediate',
     nativeLang: 'Japanese',
@@ -60,6 +69,7 @@ const PARTNERS_DATABASE = [
     country: 'Nigeria',
     flag: '🇳🇬',
     avatarText: 'AO',
+    avatarImg: 'assets/avatars/amara.jpg',
     level: 'C1',
     levelTitle: 'Advanced',
     nativeLang: 'Igbo & English',
@@ -85,6 +95,7 @@ const PARTNERS_DATABASE = [
     country: 'Argentina',
     flag: '🇦🇷',
     avatarText: 'MR',
+    avatarImg: 'assets/avatars/alex.jpg',
     level: 'A2',
     levelTitle: 'Elementary',
     nativeLang: 'Spanish',
@@ -109,6 +120,7 @@ const PARTNERS_DATABASE = [
     country: 'Germany',
     flag: '🇩🇪',
     avatarText: 'LW',
+    avatarImg: 'assets/avatars/lucas.jpg',
     level: 'B2',
     levelTitle: 'Upper Intermediate',
     nativeLang: 'German',
@@ -133,6 +145,7 @@ const PARTNERS_DATABASE = [
     country: 'France',
     flag: '🇫🇷',
     avatarText: 'CL',
+    avatarImg: 'assets/avatars/chloe.jpg',
     level: 'B1',
     levelTitle: 'Intermediate',
     nativeLang: 'French',
@@ -157,6 +170,7 @@ const PARTNERS_DATABASE = [
     country: 'Italy',
     flag: '🇮🇹',
     avatarText: 'EC',
+    avatarImg: 'assets/avatars/sofia.jpg',
     level: 'B2',
     levelTitle: 'Upper Intermediate',
     nativeLang: 'Italian',
@@ -181,6 +195,7 @@ const PARTNERS_DATABASE = [
     country: 'Singapore',
     flag: '🇸🇬',
     avatarText: 'CW',
+    avatarImg: 'assets/avatars/kenji.jpg',
     level: 'C2',
     levelTitle: 'Proficient',
     nativeLang: 'English & Mandarin',
@@ -235,14 +250,14 @@ window.EnglishBoosterMatching = {
         
         <div class="partner-card-header">
           <div class="partner-avatar">
-            ${p.avatarText}
+            ${p.avatarImg ? `<img src="${resolveAvatar(p.avatarImg)}" alt="${p.name}" class="avatar-img" />` : p.avatarText}
             <span class="avatar-badge-flag">${p.flag}</span>
           </div>
           <div class="partner-info">
             <h4 class="partner-name">
               ${p.name}
             </h4>
-            <div class="partner-country">${p.country}</div>
+            <div class="partner-country">${p.flag} ${p.country}</div>
           </div>
         </div>
 
@@ -377,17 +392,17 @@ window.EnglishBoosterMatching = {
 
     body.innerHTML = `
       <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-        <div class="partner-avatar" style="width: 64px; height: 64px; font-size: 1.6rem;">
-          ${partner.avatarText}
-          <span class="avatar-badge-flag">${partner.flag}</span>
+        <div class="partner-avatar" style="width: 72px; height: 72px;">
+          ${partner.avatarImg ? `<img src="${resolveAvatar(partner.avatarImg)}" alt="${partner.name}" class="avatar-img" />` : partner.avatarText}
+          <span class="avatar-badge-flag" style="font-size: 1.4rem;">${partner.flag}</span>
         </div>
         <div>
           <h3 style="font-size: 1.4rem;">${partner.name}</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">${partner.country} · Native: <strong>${partner.nativeLang}</strong></p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">${partner.flag} ${partner.country} · Native: <strong>${partner.nativeLang}</strong></p>
         </div>
       </div>
 
-      <div style="background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+      <div style="background: rgba(74, 222, 128, 0.08); border: 1px solid rgba(74, 222, 128, 0.25); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
           <strong style="color: var(--cyan-primary);">✨ AI Match Score: ${partner.matchScore}%</strong>
           <span class="badge-level level-${partner.level.toLowerCase()}">${partner.level}</span>

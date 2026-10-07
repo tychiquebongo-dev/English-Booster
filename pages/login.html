@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <!-- PWA & MULTI-DEVICE SUPPORT (MOBILE, TABLETTE, ORDINATEUR) -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#030712">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="English Booster">
+  <link rel="apple-touch-icon" href="../assets/images/logo.svg">
 </head>
 <body>
 
@@ -23,10 +31,19 @@
     <nav class="site-nav scrolled" style="position: relative;">
       <div class="container nav-container">
         <a href="../index.html" class="nav-brand">
-          <div class="brand-globe">🌎</div>
+          <img src="../assets/images/logo.svg" alt="English Booster Logo" class="brand-logo-img" />
           <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
         </a>
         <div class="nav-actions">
+          <!-- Language Switcher Pill (Multi-Langue Anglais & Français) -->
+          <div class="lang-switcher-pill" role="group" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" title="English">
+              <span>🇬🇧</span> EN
+            </button>
+            <button type="button" class="lang-btn" data-lang="fr" title="Français">
+              <span>🇫🇷</span> FR
+            </button>
+          </div>
           <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
           <span style="font-size: 0.9rem; color: var(--text-muted);">New here?</span>
           <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
@@ -46,7 +63,7 @@
       </div>
 
       <!-- Quick 1-Click Demo Logins for Fast Review -->
-      <div style="background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: var(--radius-md); padding: 14px; margin-bottom: 24px;">
+      <div style="background: rgba(74, 222, 128, 0.08); border: 1px solid rgba(74, 222, 128, 0.25); border-radius: var(--radius-md); padding: 14px; margin-bottom: 24px;">
         <div style="font-size: 0.8rem; font-weight: 700; color: var(--cyan-primary); text-transform: uppercase; margin-bottom: 8px;">
           ⚡ 1-Click Demo Profiles (Instant Access)
         </div>
@@ -104,7 +121,10 @@
     </div>
   </main>
 
+  <script src="../js/i18n.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/avatarManager.js"></script>
   <script src="../js/auth.js"></script>
+  <script src="../js/pwa.js"></script>
 </body>
 </html>

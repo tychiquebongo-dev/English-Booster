@@ -113,7 +113,7 @@ function launchConfetti(duration = 2500) {
   canvas.height = window.innerHeight;
 
   const pieces = [];
-  const colors = ['#00f2fe', '#4facfe', '#8b5cf6', '#ec4899', '#10b981', '#f59e0b', '#ffffff'];
+  const colors = ['#4ade80', '#60a5fa', '#86efac', '#93c5fd', '#22c55e', '#3b82f6', '#ffffff'];
 
   for (let i = 0; i < 90; i++) {
     pieces.push({
@@ -216,6 +216,7 @@ function showToast(title, message, type = 'info', duration = 4000) {
 const DEFAULT_USER = {
   fullName: 'Alex Rivera',
   email: 'alex.rivera@example.com',
+  avatar: 'assets/avatars/alex.jpg',
   nativeLanguage: 'Spanish',
   country: 'Spain 🇪🇸',
   englishLevel: 'B1',

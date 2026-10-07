@@ -20,6 +20,14 @@ function initDashboard() {
     greetingEl.textContent = `${timeGreeting}, ${user.fullName ? user.fullName.split(' ')[0] : 'Learner'} 👋`;
   }
 
+  const fullnameEl = document.getElementById('dash-user-fullname');
+  if (fullnameEl && user.fullName) fullnameEl.textContent = user.fullName;
+  const avatarImgEl = document.getElementById('dash-avatar-img');
+  if (avatarImgEl && user.avatar) {
+    const cleanAvatar = user.avatar.startsWith('data:') ? user.avatar : (window.location.pathname.includes('/pages/') ? '../' : '') + user.avatar.replace(/^(\.\.\/)+/, '');
+    avatarImgEl.src = cleanAvatar;
+  }
+
   // Update Core Metrics Cards
   const levelEl = document.getElementById('dash-level-text');
   const levelProgressEl = document.getElementById('dash-level-progress-bar');
@@ -63,6 +71,7 @@ function renderDashboardPartners() {
       country: 'Spain',
       flag: '🇪🇸',
       avatarText: 'SM',
+      avatarImg: '../assets/avatars/sofia.jpg',
       level: 'B1',
       interests: ['Travel', 'Music', 'Movies'],
       isOnline: true,
@@ -74,6 +83,7 @@ function renderDashboardPartners() {
       country: 'Japan',
       flag: '🇯🇵',
       avatarText: 'KS',
+      avatarImg: '../assets/avatars/kenji.jpg',
       level: 'B2',
       interests: ['Tech', 'Coding', 'Anime'],
       isOnline: true,
@@ -85,6 +95,7 @@ function renderDashboardPartners() {
       country: 'Nigeria',
       flag: '🇳🇬',
       avatarText: 'AO',
+      avatarImg: '../assets/avatars/amara.jpg',
       level: 'C1',
       interests: ['Startups', 'Literature', 'Debate'],
       isOnline: true,
@@ -96,7 +107,7 @@ function renderDashboardPartners() {
     <div class="glass-card partner-card">
       <div class="partner-card-header">
         <div class="partner-avatar">
-          ${p.avatarText}
+          <img src="${p.avatarImg}" alt="${p.name}" class="avatar-img" />
           <span class="avatar-badge-flag">${p.flag}</span>
         </div>
         <div class="partner-info">

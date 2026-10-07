@@ -80,8 +80,8 @@ class EnglishBoosterChat {
 
     list.innerHTML = partners.map(p => `
       <div class="chat-partner-item ${p.id === this.currentPartner.id ? 'active' : ''}" data-id="${p.id}">
-        <div class="partner-avatar" style="width: 44px; height: 44px; font-size: 1.1rem;">
-          ${p.avatarText}
+        <div class="partner-avatar" style="width: 44px; height: 44px;">
+          ${p.avatarImg ? `<img src="../${p.avatarImg.replace(/^(\.\.\/)+/, '')}" alt="${p.name}" class="avatar-img" />` : p.avatarText}
           <span class="avatar-badge-flag" style="font-size: 0.9rem;">${p.flag}</span>
         </div>
         <div style="flex: 1; min-width: 0;">
@@ -112,8 +112,8 @@ class EnglishBoosterChat {
 
     header.innerHTML = `
       <div style="display: flex; align-items: center; gap: 14px;">
-        <div class="partner-avatar" style="width: 46px; height: 46px;">
-          ${this.currentPartner.avatarText}
+        <div class="partner-avatar" style="width: 48px; height: 48px;">
+          ${this.currentPartner.avatarImg ? `<img src="../${this.currentPartner.avatarImg.replace(/^(\.\.\/)+/, '')}" alt="${this.currentPartner.name}" class="avatar-img" />` : this.currentPartner.avatarText}
           <span class="avatar-badge-flag">${this.currentPartner.flag}</span>
         </div>
         <div>

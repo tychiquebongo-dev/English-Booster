@@ -11,7 +11,7 @@ English Booster is an EdTech web platform designed to solve a common global chal
 
 1. **Crystal Glassmorphism Design System**
    - High-performance vanilla HTML5, CSS3, and ES6+ JavaScript.
-   - Deep Navy Blue (`#060a14`) base with Electric Cyan (`#00f2fe`) and Royal Purple (`#8b5cf6`) luminescence.
+   - Deep Navy Blue (`#060a14`) base with Purple-400 (`#c084fc`) and Pure White (`#ffffff`) crystal luminescence.
    - Custom crystallized background engine with floating prisms, radial mesh glow, and frosted backdrop filters (`backdrop-filter: blur(20px)`).
    - Seamless **Dark Mode / Light Mode** toggle persisted in `localStorage`.
    - Web Audio API sound effects synthesizer (gentle clicks, XP celebration chimes, call ringing) without any external audio file dependencies.
@@ -53,7 +53,7 @@ English Booster is an EdTech web platform designed to solve a common global chal
    - Dedicated spotlight for **Tychique Bongo**:
      - Phone: `+225 07 05 88 46 87`
      - WhatsApp: `+242 905 37 12`
-     - Email: `tychiquebongo@englishbooster.io`
+     - Email: `tychiquebongo@gmail.com`
 
 ---
 

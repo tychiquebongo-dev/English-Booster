@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <!-- PWA & MULTI-DEVICE SUPPORT (MOBILE, TABLETTE, ORDINATEUR) -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#030712">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="English Booster">
+  <link rel="apple-touch-icon" href="../assets/images/logo.svg">
 </head>
 <body>
 
@@ -24,10 +32,19 @@
     <nav class="site-nav scrolled" style="position: relative;">
       <div class="container nav-container">
         <a href="../index.html" class="nav-brand">
-          <div class="brand-globe">🌎</div>
+          <img src="../assets/images/logo.svg" alt="English Booster Logo" class="brand-logo-img" />
           <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
         </a>
         <div class="nav-actions">
+          <!-- Language Switcher Pill (Multi-Langue Anglais & Français) -->
+          <div class="lang-switcher-pill" role="group" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" title="English">
+              <span>🇬🇧</span> EN
+            </button>
+            <button type="button" class="lang-btn" data-lang="fr" title="Français">
+              <span>🇫🇷</span> FR
+            </button>
+          </div>
           <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
           <span style="font-size: 0.9rem; color: var(--text-muted);">Already a member?</span>
           <a href="login.html" class="btn btn-secondary btn-sm">Log in</a>
@@ -218,6 +235,9 @@
           </div>
         </div>
 
+        <!-- SÉLECTION ET UPLOAD DE LA PHOTO DE PROFIL -->
+        <div id="register-avatar-picker-wrap" style="margin-top: 18px;"></div>
+
         <!-- Terms Agreement -->
         <div class="form-group" style="margin-top: 24px;">
           <label class="custom-checkbox-label" for="reg-terms">
@@ -230,6 +250,23 @@
           Create Account
         </button>
       </form>
+
+      <!-- LIVE CONVERSATION WARM-UP (GET STARTED SECTION) -->
+      <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--glass-border);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <span class="crystal-badge" style="font-size: 0.72rem; margin-bottom: 4px;">Échauffement Vocal Immédiat</span>
+            <h3 style="font-size: 1.35rem; margin: 0;" class="text-gradient-cyan">Partie de Conversation en Direct</h3>
+          </div>
+          <span style="font-size: 0.8rem; color: var(--green-400); font-weight: 700; background: rgba(74, 222, 128, 0.1); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid rgba(74, 222, 128, 0.3);">
+            ⚡ Voix & Micro Actifs
+          </span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">
+          Testez votre anglais en direct dès maintenant ! Choisissez un interlocuteur ci-dessous, parlez au micro ou écrivez, écoutez ses réponses vocales et gagnez vos premiers points d'XP :
+        </p>
+        <div id="getstarted-conversation-container"></div>
+      </div>
     </div>
   </main>
 
@@ -260,13 +297,17 @@
       display: none;
     }
     .interest-checkbox-label:has(input:checked) {
-      background: rgba(0, 242, 254, 0.15);
+      background: rgba(74, 222, 128, 0.15);
       border-color: var(--cyan-primary);
       color: var(--cyan-primary);
     }
   </style>
 
+  <script src="../js/i18n.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/avatarManager.js"></script>
   <script src="../js/auth.js"></script>
+  <script src="../js/getStartedConversation.js"></script>
+  <script src="../js/pwa.js"></script>
 </body>
 </html>

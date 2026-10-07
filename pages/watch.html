@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch Videos & Shorts — English Booster</title>
+  <meta name="description" content="Regardez et publiez des vidéos en format Short (9:16) en anglais : perfectionnez votre prononciation, vos elevator pitches et vos idiomes avec la communauté." />
+  
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg" />
+
+  <!-- PWA & MULTI-DEVICE SUPPORT (MOBILE, TABLETTE, ORDINATEUR) -->
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#030712" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="English Booster" />
+  <link rel="apple-touch-icon" href="../assets/images/logo.svg" />
+</head>
+<body>
+
+  <!-- CRYSTAL BACKGROUND ENGINE -->
+  <div class="crystal-bg-wrapper" aria-hidden="true">
+    <div class="crystal-orb crystal-orb-1"></div>
+    <div class="crystal-orb crystal-orb-2"></div>
+    <div class="crystal-orb crystal-orb-3"></div>
+    <div class="crystal-grid-overlay"></div>
+  </div>
+
+  <!-- FIXED APP NAVBAR -->
+  <header>
+    <nav class="site-nav scrolled" id="main-nav" aria-label="Main Navigation">
+      <div class="container nav-container">
+        <a href="../index.html" class="nav-brand" aria-label="English Booster Home">
+          <img src="../assets/images/logo.svg" alt="English Booster Logo" class="brand-logo-img" />
+          <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="inscrits.html" class="nav-link">Inscrivez-vous</a></li>
+          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
+          <li><a href="watch.html" class="nav-link active">Watch Videos</a></li>
+          <li><a href="chat.html" class="nav-link">Chat</a></li>
+          <li><a href="call.html" class="nav-link">Live Call</a></li>
+          <li><a href="challenges.html" class="nav-link">Challenges</a></li>
+          <li><a href="community.html" class="nav-link">Community</a></li>
+        </ul>
+
+        <!-- Right Side Controls -->
+        <div class="nav-actions">
+          <!-- Language Switcher Pill (Multi-Langue Anglais & Français) -->
+          <div class="lang-switcher-pill" role="group" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" title="English">
+              <span>🇬🇧</span> EN
+            </button>
+            <button type="button" class="lang-btn" data-lang="fr" title="Français">
+              <span>🇫🇷</span> FR
+            </button>
+          </div>
+          <button type="button" class="theme-toggle-btn" aria-label="Changer de thème">☀️</button>
+          <a href="profile.html" class="partner-avatar" style="width: 40px; height: 40px;" title="Mon Profil">
+            <img src="../assets/avatars/alex.jpg" alt="Alex" class="avatar-img" />
+            <span class="avatar-badge-flag">🇪🇸</span>
+          </a>
+          <button type="button" class="mobile-menu-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+        <!-- Language Selector Mobile Drawer -->
+    <div class="lang-drawer-wrap" style="padding: 12px 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); margin-bottom: 14px;">
+      <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+        <span>🌐</span> Langue / Language
+      </span>
+      <div class="lang-switcher-pill" role="group">
+        <button type="button" class="lang-btn active" data-lang="en">
+          <span>🇬🇧</span> EN
+        </button>
+        <button type="button" class="lang-btn" data-lang="fr">
+          <span>🇫🇷</span> FR
+        </button>
+      </div>
+    </div>
+<ul class="mobile-nav-links">
+      <li><a href="../index.html" class="mobile-nav-link"><span>🏠</span> Home</a></li>
+      <li><a href="inscrits.html" class="mobile-nav-link"><span>✍️</span> Inscrivez-vous</a></li>
+      <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
+      <li><a href="watch.html" class="mobile-nav-link active"><span>🎬</span> Watch Videos</a></li>
+      <li><a href="chat.html" class="mobile-nav-link"><span>💬</span> Live Chat</a></li>
+      <li><a href="call.html" class="mobile-nav-link"><span>🎙️</span> Live Call</a></li>
+      <li><a href="challenges.html" class="mobile-nav-link"><span>🎯</span> Daily Challenges</a></li>
+      <li><a href="community.html" class="mobile-nav-link"><span>👥</span> Community</a></li>
+      <li><a href="profile.html" class="mobile-nav-link"><span>👤</span> Profile</a></li>
+    </ul>
+  </div>
+
+  <main class="container" style="padding-top: calc(var(--nav-height) + 36px); padding-bottom: 90px;">
+    <!-- SECTION HEADER -->
+    <div class="shorts-hero-banner reveal-init">
+      <div class="shorts-hero-content">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
+          <span class="crystal-badge">🎬 English Booster Watch & Reels</span>
+          <span class="live-pulse-dot"></span>
+          <span class="crystal-badge crystal-badge-cyan">Format 9:16 Vertical</span>
+        </div>
+
+        <h1 class="shorts-page-title">
+          Watch Videos : <span class="text-gradient-cyan">Shorts des Membres Inscrits</span>
+        </h1>
+
+        <p class="shorts-page-subtitle">
+          Regardez des capsules vidéo courtes (30 à 60s), écoutez les transcriptions orales, entraînez votre oreille et publiez votre propre Short pour booster votre expression anglaise !
+        </p>
+
+        <!-- CTA & Stats Row -->
+        <div class="shorts-hero-actions-bar">
+          <button type="button" class="btn btn-primary btn-open-publish-short" style="padding: 12px 24px; font-weight: 800; box-shadow: 0 4px 20px rgba(74, 222, 128, 0.35);">
+            <span>+</span> Publier une Vidéo Short
+          </button>
+          <a href="inscrits.html" class="btn btn-secondary" style="border-color: var(--blue-400); font-weight: 700;">
+            <span>✍️</span> Rejoindre les Inscrits
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Counters -->
+      <div class="shorts-metrics-cards-wrap">
+        <div class="glass-card short-metric-card">
+          <div class="short-metric-num text-gradient-cyan" id="shorts-total-count">4</div>
+          <div class="short-metric-lbl">Shorts Actifs</div>
+        </div>
+        <div class="glass-card short-metric-card">
+          <div class="short-metric-num text-gradient-purple">53.9K</div>
+          <div class="short-metric-lbl">Vues Cumulées</div>
+        </div>
+        <div class="glass-card short-metric-card">
+          <div class="short-metric-num" style="color: var(--green-400);">100%</div>
+          <div class="short-metric-lbl">Pratique Orale</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY FILTER PILLS -->
+    <div class="shorts-filter-bar reveal-init" style="margin-bottom: 32px;">
+      <button type="button" class="short-filter-chip active" data-filter="all">
+        <span>🌟</span> Tous les Shorts
+      </button>
+      <button type="button" class="short-filter-chip" data-filter="pronunciation">
+        <span>🎙️</span> Prononciation & Phonétique
+      </button>
+      <button type="button" class="short-filter-chip" data-filter="pitch">
+        <span>💼</span> Elevator Pitch & Tech
+      </button>
+      <button type="button" class="short-filter-chip" data-filter="idioms">
+        <span>🗣️</span> Idiomes & Expressions
+      </button>
+      <button type="button" class="short-filter-chip" data-filter="fluency">
+        <span>⚡</span> Fluency & Automatismes
+      </button>
+    </div>
+
+    <!-- SHORTS VIDEO GRID (9:16 VERTICAL CARDS) -->
+    <div id="shorts-grid-container" class="shorts-grid reveal-init">
+      <!-- Rendu dynamique par js/watchShorts.js -->
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM DOCK -->
+  <nav class="mobile-bottom-dock">
+    <a href="../index.html" class="dock-item">
+      <span class="dock-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="inscrits.html" class="dock-item">
+      <span class="dock-icon">✍️</span>
+      <span>Inscrits</span>
+    </a>
+    <a href="partners.html" class="dock-item">
+      <span class="dock-icon">🔎</span>
+      <span>Partners</span>
+    </a>
+    <a href="watch.html" class="dock-item active">
+      <span class="dock-icon">🎬</span>
+      <span>Watch</span>
+    </a>
+    <a href="chat.html" class="dock-item">
+      <span class="dock-icon">💬</span>
+      <span>Chat</span>
+    </a>
+    <a href="profile.html" class="dock-item">
+      <span class="dock-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- SCRIPTS -->
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/avatarManager.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/watchShorts.js"></script>
+  <script src="../js/pwa.js"></script>
+</body>
+</html>

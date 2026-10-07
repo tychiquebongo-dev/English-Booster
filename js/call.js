@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ENGLISH BOOSTER — LIVE AUDIO/VIDEO CALL ROOM ENGINE (js/call.js)
  * Real-time Media Stream Management, Audio Waveforms, AI Prompts & Call Summary
  */
@@ -196,7 +196,7 @@ class EnglishBoosterCallRoom {
             </div>
           </div>
 
-          <div style="text-align: left; background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px; font-size: 0.9rem;">
+          <div style="text-align: left; background: rgba(74, 222, 128, 0.08); border: 1px solid rgba(74, 222, 128, 0.25); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px; font-size: 0.9rem;">
             <strong style="color: var(--cyan-primary); display: block; margin-bottom: 4px;">AI Coach Session Notes:</strong>
             <p style="color: var(--text-muted); line-height: 1.5;">You spoke with natural rhythm and good listening responsiveness. Try using more transition words like "Furthermore" and "On the other hand" next time!</p>
           </div>

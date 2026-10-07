@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ENGLISH BOOSTER — COMMUNITY FORUM & SOCIAL FEED (js/community.js)
  * Posts, Comments, Likes, Idiom Shares, Tag Filters & Founder Highlights
  */
@@ -9,6 +9,7 @@ const INITIAL_POSTS = [
     author: 'Tychique Bongo',
     flag: '🇨🇮',
     avatarText: 'TB',
+    avatarImg: '../assets/images/tychique-bongo.jpg',
     isFounder: true,
     time: '2 hours ago',
     tag: '#IdiomOfTheDay',
@@ -26,6 +27,7 @@ const INITIAL_POSTS = [
     author: 'Elena Conti',
     flag: '🇮🇹',
     avatarText: 'EC',
+    avatarImg: '../assets/avatars/chloe.jpg',
     isFounder: false,
     time: '4 hours ago',
     tag: '#Pronunciation',
@@ -41,6 +43,7 @@ const INITIAL_POSTS = [
     author: 'Kenji Sato',
     flag: '🇯🇵',
     avatarText: 'KS',
+    avatarImg: '../assets/avatars/kenji.jpg',
     isFounder: false,
     time: 'Yesterday',
     tag: '#Milestone',
@@ -73,8 +76,8 @@ class EnglishBoosterCommunity {
       <div class="glass-card post-card" data-post-id="${post.id}">
         <div class="post-header">
           <div class="post-author">
-            <div class="partner-avatar" style="width: 44px; height: 44px; font-size: 1.1rem;">
-              ${post.avatarText}
+            <div class="partner-avatar" style="width: 46px; height: 46px;">
+              ${post.avatarImg ? `<img src="${post.avatarImg}" alt="${post.author}" class="avatar-img" />` : post.avatarText}
               <span class="avatar-badge-flag">${post.flag}</span>
             </div>
             <div>
@@ -85,7 +88,7 @@ class EnglishBoosterCommunity {
               <div class="post-time">${post.time}</div>
             </div>
           </div>
-          <span class="interest-tag" style="background: rgba(0,242,254,0.1); color: var(--cyan-primary); border-color: rgba(0,242,254,0.3);">
+          <span class="interest-tag" style="background: rgba(74, 222, 128, 0.12); color: var(--cyan-primary); border-color: rgba(74, 222, 128, 0.3);">
             ${post.tag}
           </span>
         </div>
@@ -192,8 +195,9 @@ class EnglishBoosterCommunity {
       const newPost = {
         id: Date.now(),
         author: user.fullName || 'Alex Rivera',
-        flag: user.country ? user.country.split(' ').pop() : '🇨🇮',
+        flag: user.country ? user.country.split(' ').pop() : '🇪🇸',
         avatarText: (user.fullName || 'AR').split(' ').map(n => n[0]).join(''),
+        avatarImg: '../assets/avatars/alex.jpg',
         isFounder: false,
         time: 'Just now',
         tag: tag,

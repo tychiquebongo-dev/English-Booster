@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <!-- PWA & MULTI-DEVICE SUPPORT (MOBILE, TABLETTE, ORDINATEUR) -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#030712">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="English Booster">
+  <link rel="apple-touch-icon" href="../assets/images/logo.svg">
 </head>
 <body>
 
@@ -23,12 +31,13 @@
     <nav class="site-nav scrolled" id="main-nav">
       <div class="container nav-container">
         <a href="../index.html" class="nav-brand">
-          <div class="brand-globe">🌎</div>
+          <img src="../assets/images/logo.svg" alt="English Booster Logo" class="brand-logo-img" />
           <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
         </a>
 
         <ul class="nav-links">
           <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="inscrits.html" class="nav-link">Inscrivez-vous</a></li>
           <li><a href="partners.html" class="nav-link">Find Partners</a></li>
           <li><a href="community.html" class="nav-link">Community</a></li>
           <li><a href="challenges.html" class="nav-link">Challenges</a></li>
@@ -37,6 +46,15 @@
         </ul>
 
         <div class="nav-actions">
+          <!-- Language Switcher Pill (Multi-Langue Anglais & Français) -->
+          <div class="lang-switcher-pill" role="group" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" title="English">
+              <span>🇬🇧</span> EN
+            </button>
+            <button type="button" class="lang-btn" data-lang="fr" title="Français">
+              <span>🇫🇷</span> FR
+            </button>
+          </div>
           <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
           <a href="login.html" class="btn btn-secondary btn-sm">Log in</a>
           <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
@@ -50,8 +68,23 @@
 
   <!-- MOBILE SLIDE DRAWER -->
   <div class="mobile-drawer" id="mobile-drawer">
-    <ul class="mobile-nav-links">
+        <!-- Language Selector Mobile Drawer -->
+    <div class="lang-drawer-wrap" style="padding: 12px 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); margin-bottom: 14px;">
+      <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+        <span>🌐</span> Langue / Language
+      </span>
+      <div class="lang-switcher-pill" role="group">
+        <button type="button" class="lang-btn active" data-lang="en">
+          <span>🇬🇧</span> EN
+        </button>
+        <button type="button" class="lang-btn" data-lang="fr">
+          <span>🇫🇷</span> FR
+        </button>
+      </div>
+    </div>
+<ul class="mobile-nav-links">
       <li><a href="../index.html" class="mobile-nav-link"><span>🏠</span> Home</a></li>
+      <li><a href="inscrits.html" class="mobile-nav-link"><span>✍️</span> Inscrivez-vous</a></li>
       <li><a href="partners.html" class="mobile-nav-link"><span>🔎</span> Find Partners</a></li>
       <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
       <li><a href="pricing.html" class="mobile-nav-link active"><span>💎</span> Pricing</a></li>
@@ -173,14 +206,16 @@
       border-radius: 50%;
     }
     input:checked + .slider {
-      background-color: rgba(0, 242, 254, 0.2);
+      background-color: rgba(74, 222, 128, 0.25);
     }
     input:checked + .slider:before {
       transform: translateX(20px);
     }
   </style>
 
+  <script src="../js/i18n.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/avatarManager.js"></script>
   <script>
     // Annual toggle logic
     const toggle = document.getElementById('pricing-toggle');
@@ -215,5 +250,32 @@
       });
     });
   </script>
+
+  <!-- MOBILE BOTTOM DOCK (MOBILE DEVICES) -->
+  <nav class="mobile-bottom-dock" aria-label="Mobile Bottom Navigation">
+    <a href="../index.html" class="dock-item">
+      <span class="dock-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="partners.html" class="dock-item">
+      <span class="dock-icon">🔎</span>
+      <span>Discover</span>
+    </a>
+    <a href="watch.html" class="dock-item">
+      <span class="dock-icon">🎬</span>
+      <span>Videos</span>
+    </a>
+    <a href="pricing.html" class="dock-item active">
+      <span class="dock-icon">💎</span>
+      <span>Pricing</span>
+    </a>
+    <a href="about.html" class="dock-item">
+      <span class="dock-icon">ℹ️</span>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/pwa.js"></script>
 </body>
 </html>

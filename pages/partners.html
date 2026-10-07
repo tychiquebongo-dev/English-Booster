@@ -8,7 +8,16 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+
+  <!-- PWA & MULTI-DEVICE SUPPORT (MOBILE, TABLETTE, ORDINATEUR) -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#030712">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="English Booster">
+  <link rel="apple-touch-icon" href="../assets/images/logo.svg">
 </head>
 <body>
 
@@ -24,13 +33,15 @@
     <nav class="site-nav scrolled" id="main-nav">
       <div class="container nav-container">
         <a href="../index.html" class="nav-brand">
-          <div class="brand-globe">🌎</div>
+          <img src="../assets/images/logo.svg" alt="English Booster Logo" class="brand-logo-img" />
           <span>ENGLISH <span class="brand-title-accent">BOOSTER</span></span>
         </a>
 
         <ul class="nav-links">
           <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="inscrits.html" class="nav-link">Inscrivez-vous</a></li>
           <li><a href="partners.html" class="nav-link active">Find Partners</a></li>
+          <li><a href="watch.html" class="nav-link">Watch Videos</a></li>
           <li><a href="chat.html" class="nav-link">Chat</a></li>
           <li><a href="call.html" class="nav-link">Live Call</a></li>
           <li><a href="challenges.html" class="nav-link">Challenges</a></li>
@@ -39,9 +50,18 @@
         </ul>
 
         <div class="nav-actions">
+          <!-- Language Switcher Pill (Multi-Langue Anglais & Français) -->
+          <div class="lang-switcher-pill" role="group" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" title="English">
+              <span>🇬🇧</span> EN
+            </button>
+            <button type="button" class="lang-btn" data-lang="fr" title="Français">
+              <span>🇫🇷</span> FR
+            </button>
+          </div>
           <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
-          <a href="profile.html" class="partner-avatar" style="width: 40px; height: 40px; font-size: 1rem;">
-            AR
+          <a href="profile.html" class="partner-avatar" style="width: 40px; height: 40px;" title="My Profile">
+            <img src="../assets/avatars/alex.jpg" alt="Alex" class="avatar-img" />
             <span class="avatar-badge-flag">🇪🇸</span>
           </a>
           <button class="mobile-menu-toggle" aria-label="Menu">
@@ -54,9 +74,25 @@
 
   <!-- MOBILE SLIDE DRAWER -->
   <div class="mobile-drawer" id="mobile-drawer">
-    <ul class="mobile-nav-links">
+        <!-- Language Selector Mobile Drawer -->
+    <div class="lang-drawer-wrap" style="padding: 12px 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); margin-bottom: 14px;">
+      <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+        <span>🌐</span> Langue / Language
+      </span>
+      <div class="lang-switcher-pill" role="group">
+        <button type="button" class="lang-btn active" data-lang="en">
+          <span>🇬🇧</span> EN
+        </button>
+        <button type="button" class="lang-btn" data-lang="fr">
+          <span>🇫🇷</span> FR
+        </button>
+      </div>
+    </div>
+<ul class="mobile-nav-links">
       <li><a href="dashboard.html" class="mobile-nav-link"><span>📊</span> Dashboard</a></li>
+      <li><a href="inscrits.html" class="mobile-nav-link"><span>✍️</span> Inscrivez-vous</a></li>
       <li><a href="partners.html" class="mobile-nav-link active"><span>🔎</span> Find Partners</a></li>
+      <li><a href="watch.html" class="mobile-nav-link"><span>🎬</span> Watch Videos (Shorts)</a></li>
       <li><a href="chat.html" class="mobile-nav-link"><span>💬</span> Live Chat</a></li>
       <li><a href="call.html" class="mobile-nav-link"><span>🎙️</span> Live Call</a></li>
       <li><a href="challenges.html" class="mobile-nav-link"><span>🎯</span> Daily Challenges</a></li>
@@ -68,12 +104,49 @@
 
   <main class="container" style="padding-top: calc(var(--nav-height) + 30px); padding-bottom: 60px;">
     <!-- HEADER TITLE & INTRO -->
-    <div style="margin-bottom: 28px;" class="reveal-init">
-      <span class="crystal-badge" style="margin-bottom: 10px;">International Matching Engine</span>
-      <h1 style="font-size: 2.5rem; letter-spacing: -0.02em;">Find Your English Partner</h1>
-      <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px; max-width: 680px;">
-        Connect with friendly speakers worldwide. Filter by CEFR proficiency, shared passions, and real-time availability.
-      </p>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 28px;" class="reveal-init">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <span class="crystal-badge">International Matching Engine</span>
+          <span class="crystal-badge" style="background: rgba(74, 222, 128, 0.12); color: var(--green-400); border-color: rgba(74, 222, 128, 0.35);">
+            🟢 <strong class="live-online-counter">145 connectés</strong> en direct
+          </span>
+        </div>
+        <h1 style="font-size: 2.5rem; letter-spacing: -0.02em; margin: 0;">Find Your English Partner</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px; max-width: 680px;">
+          Connect with friendly speakers worldwide. Filter by CEFR proficiency, shared passions, and real-time availability.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <button type="button" class="btn btn-primary btn-direct-call-guided" style="box-shadow: 0 0 25px rgba(74, 222, 128, 0.4); font-weight: 800;">
+          <span>🎙️</span> Appel Direct 1-to-1 (3s)
+        </button>
+        <button type="button" class="btn btn-secondary btn-trigger-fast-matchmaking" style="border-color: var(--blue-400); font-weight: 700;">
+          <span>⚡</span> Matchmaking Rapide
+        </button>
+      </div>
+    </div>
+
+    <!-- REAL CONVERSATION SPOTLIGHT BANNER -->
+    <div class="glass-card reveal-init" style="margin-bottom: 28px; padding: 24px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center; border-color: rgba(74, 222, 128, 0.35);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span class="crystal-badge">🤝 Communauté Active</span>
+          <span class="badge-level level-b2">Sessions Ouvertes</span>
+        </div>
+        <h2 style="font-size: 1.55rem; margin-bottom: 8px;">Pratiquez l'Anglais en Immersion Quotidienne</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+          Discutez avec des personnes motivées du monde entier. Filtrez ci-dessous par centres d'intérêt, niveau CEFR ou disponibilité immédiate.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary btn-sm btn-direct-call-guided">🎙️ Parler maintenant (1-to-1)</button>
+          <button type="button" class="btn btn-secondary btn-sm btn-trigger-fast-matchmaking">⚡ Matchmaking Instantané</button>
+        </div>
+      </div>
+      <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.25); aspect-ratio: 16/10;">
+        <img src="../assets/images/conversation-business.jpg" alt="Vraie conversation en anglais" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
     </div>
 
     <!-- FILTER BAR -->
@@ -133,6 +206,60 @@
     <div id="partners-container" class="partners-grid">
       <!-- Generated dynamically by js/matching.js -->
     </div>
+
+    <!-- SECTION DES STATUS (ÉCRIT, VIDÉO, IMAGE, AUDIO, LIKES, DISLIKES, COMMENTAIRES) -->
+    <section id="community-statuses-section" class="community-statuses-section reveal-init">
+      <div class="statuses-section-header">
+        <div class="header-left">
+          <div class="status-section-badge-wrap">
+            <span class="crystal-badge">📢 Community Stories & Feeds</span>
+            <span class="live-pulse-dot"></span>
+          </div>
+          <h2 class="status-section-title">
+            Statuts d'Expression des Membres
+            <span class="status-counter-pill" id="count-all-status">5</span>
+          </h2>
+          <p class="status-section-desc">
+            Écoutez les notes vocales phonétiques, regardez les pitchs vidéo express, explorez les fiches mémo et participez avec vos Likes, Dislikes et Commentaires !
+          </p>
+        </div>
+
+        <div class="header-actions">
+          <button type="button" class="btn btn-primary btn-publish-status-trigger" id="btn-open-create-status">
+            <span>✍️</span> Publier un Statut
+          </button>
+        </div>
+      </div>
+
+      <!-- FORMAT FILTER CHIPS BAR -->
+      <div class="status-filters-bar">
+        <button type="button" class="status-filter-chip active" data-type="all">
+          <span>🌟</span> Tous les Statuts
+        </button>
+        <button type="button" class="status-filter-chip" data-type="audio">
+          <span>🎙️</span> Audio / Voix
+        </button>
+        <button type="button" class="status-filter-chip" data-type="video">
+          <span>📹</span> Vidéos Express
+        </button>
+        <button type="button" class="status-filter-chip" data-type="image">
+          <span>🖼️</span> Images & Fiches
+        </button>
+        <button type="button" class="status-filter-chip" data-type="text">
+          <span>✍️</span> Écrit / Débats
+        </button>
+      </div>
+
+      <!-- CREATE STATUS CARD (COMPOSER) -->
+      <div id="create-status-card" class="glass-card create-status-card" style="display: none; margin-bottom: 28px;">
+        <!-- Populated dynamically by statuses.js -->
+      </div>
+
+      <!-- STATUS CARDS FEED CONTAINER -->
+      <div id="status-feed-container" class="status-feed-grid">
+        <!-- Rendered dynamically by statuses.js -->
+      </div>
+    </section>
   </main>
 
   <!-- MOBILE BOTTOM DOCK -->
@@ -160,7 +287,13 @@
     </a>
   </nav>
 
+  <script src="../js/i18n.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/avatarManager.js"></script>
   <script src="../js/matching.js"></script>
+  <script src="../js/webrtcCall.js"></script>
+  <script src="../js/statuses.js"></script>
+  <script src="../js/pwa.js"></script>
 </body>
 </html>
+

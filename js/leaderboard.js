@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ENGLISH BOOSTER — LEADERBOARD & GLOBAL CHAMPIONS (js/leaderboard.js)
  * Global, Weekly, Country, Friends Tabs, Podium Highlights & XP Rankings
  */
@@ -71,27 +71,39 @@ class EnglishBoosterLeaderboard {
 
       podiumEl.innerHTML = `
         <!-- 2nd Place -->
-        <div class="glass-card" style="padding: 24px 16px; text-align: center; border-color: rgba(148, 163, 184, 0.4); flex: 1; max-width: 200px;">
-          <div style="font-size: 2rem;">🥈</div>
-          <div style="font-weight: 800; font-size: 1.05rem; margin-top: 6px;">${second.name}</div>
-          <div style="font-size: 0.82rem; color: var(--text-muted);">${second.flag} · <span class="badge-level level-${second.level.toLowerCase()}">${second.level}</span></div>
+        <div class="glass-card" style="padding: 24px 16px; text-align: center; border-color: rgba(148, 163, 184, 0.4); flex: 1; max-width: 210px;">
+          <div style="font-size: 1.8rem; margin-bottom: 6px;">🥈</div>
+          <div class="partner-avatar" style="width: 64px; height: 64px; margin: 0 auto 10px; border-color: #94a3b8;">
+            <img src="../assets/avatars/sofia.jpg" alt="${second.name}" class="avatar-img" />
+            <span class="avatar-badge-flag">${second.flag}</span>
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem;">${second.name}</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;"><span class="badge-level level-${second.level.toLowerCase()}">${second.level}</span></div>
           <div style="margin-top: 10px; font-weight: 800; color: var(--cyan-primary); font-size: 1.1rem;">${second.xp.toLocaleString()} XP</div>
         </div>
 
         <!-- 1st Place (Crown Champion) -->
-        <div class="glass-card" style="padding: 32px 18px; text-align: center; border-color: var(--cyan-primary); box-shadow: 0 0 35px rgba(0,242,254,0.3); flex: 1.15; max-width: 220px; transform: translateY(-16px);">
-          <div style="font-size: 2.8rem;">🥇</div>
-          <div style="font-weight: 800; font-size: 1.2rem; margin-top: 6px;">${first.name}</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted);">${first.flag} · <span class="badge-level level-${first.level.toLowerCase()}">${first.level}</span></div>
+        <div class="glass-card" style="padding: 32px 18px; text-align: center; border-color: var(--cyan-primary); box-shadow: 0 0 35px rgba(74, 222, 128, 0.35); flex: 1.15; max-width: 230px; transform: translateY(-16px);">
+          <div style="font-size: 2.2rem; margin-bottom: 6px;">👑 🥇</div>
+          <div class="partner-avatar" style="width: 76px; height: 76px; margin: 0 auto 10px; border-color: var(--cyan-primary); box-shadow: 0 0 25px rgba(74, 222, 128, 0.45);">
+            <img src="../assets/avatars/alex.jpg" alt="${first.name}" class="avatar-img" />
+            <span class="avatar-badge-flag">${first.flag}</span>
+          </div>
+          <div style="font-weight: 800; font-size: 1.2rem;">${first.name}</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;"><span class="badge-level level-${first.level.toLowerCase()}">${first.level}</span></div>
           <div style="margin-top: 12px; font-weight: 900; color: var(--cyan-primary); font-size: 1.35rem;">${first.xp.toLocaleString()} XP</div>
           <span class="crystal-badge" style="margin-top: 8px; font-size: 0.72rem;">🔥 ${first.streak} Day Streak</span>
         </div>
 
         <!-- 3rd Place -->
-        <div class="glass-card" style="padding: 24px 16px; text-align: center; border-color: rgba(245, 158, 11, 0.4); flex: 1; max-width: 200px;">
-          <div style="font-size: 2rem;">🥉</div>
-          <div style="font-weight: 800; font-size: 1.05rem; margin-top: 6px;">${third.name}</div>
-          <div style="font-size: 0.82rem; color: var(--text-muted);">${third.flag} · <span class="badge-level level-${third.level.toLowerCase()}">${third.level}</span></div>
+        <div class="glass-card" style="padding: 24px 16px; text-align: center; border-color: rgba(245, 158, 11, 0.4); flex: 1; max-width: 210px;">
+          <div style="font-size: 1.8rem; margin-bottom: 6px;">🥉</div>
+          <div class="partner-avatar" style="width: 64px; height: 64px; margin: 0 auto 10px; border-color: #f59e0b;">
+            <img src="../assets/avatars/lucas.jpg" alt="${third.name}" class="avatar-img" />
+            <span class="avatar-badge-flag">${third.flag}</span>
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem;">${third.name}</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;"><span class="badge-level level-${third.level.toLowerCase()}">${third.level}</span></div>
           <div style="margin-top: 10px; font-weight: 800; color: var(--amber-accent); font-size: 1.1rem;">${third.xp.toLocaleString()} XP</div>
         </div>
       `;
@@ -102,7 +114,7 @@ class EnglishBoosterLeaderboard {
       tableBody.innerHTML = list.map((item, index) => {
         const isUser = item.name.includes('(You)');
         return `
-          <tr style="border-bottom: 1px solid rgba(255,255,255,0.06); ${isUser ? 'background: rgba(0,242,254,0.08); font-weight: 700;' : ''}">
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.06); ${isUser ? 'background: rgba(74, 222, 128, 0.1); font-weight: 700;' : ''}">
             <td style="padding: 16px; font-weight: 800; font-size: 1.05rem;">
               ${item.medal || `#${index + 1}`}
             </td>
