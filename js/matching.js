@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ENGLISH BOOSTER — INTERNATIONAL MATCHING ENGINE (js/matching.js)
  * Curated Global Conversation Partners, AI Match Score & Compatibility Matrix
  */
@@ -219,24 +219,42 @@ const PARTNERS_DATABASE = [
 // Partner Matching Module
 window.EnglishBoosterMatching = {
   partners: PARTNERS_DATABASE,
+  currentFiltered: null,
+
+  isFrench() {
+    if (window.EnglishBooster && window.EnglishBooster.i18n) {
+      return window.EnglishBooster.i18n.getLang() === 'fr';
+    }
+    const saved = localStorage.getItem('eb_lang');
+    if (saved) return saved === 'fr';
+    return (navigator.language || '').toLowerCase().startsWith('fr');
+  },
 
   init() {
+    this.currentFiltered = this.partners;
     this.renderPartners(this.partners);
     this.initFilters();
     this.initPartnerModal();
+
+    // Reactive re-render on language change
+    window.addEventListener('eb_language_changed', () => {
+      this.renderPartners(this.currentFiltered || this.partners);
+    });
   },
 
   renderPartners(list) {
     const container = document.getElementById('partners-container');
     if (!container) return;
 
+    const isFr = this.isFrench();
+
     if (!list.length) {
       container.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;" class="glass-card">
           <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
-          <h3>No partners found</h3>
-          <p style="color: var(--text-muted); margin-top: 6px;">Try adjusting your filters or search criteria to see more conversation partners.</p>
-          <button class="btn btn-primary btn-sm" style="margin-top: 18px;" onclick="window.EnglishBoosterMatching.resetFilters()">Reset All Filters</button>
+          <h3>${isFr ? 'Aucun partenaire trouvé' : 'No partners found'}</h3>
+          <p style="color: var(--text-muted); margin-top: 6px;">${isFr ? 'Ajustez vos filtres ou vos critères de recherche pour afficher plus de partenaires.' : 'Try adjusting your filters or search criteria to see more conversation partners.'}</p>
+          <button class="btn btn-primary btn-sm" style="margin-top: 18px;" onclick="window.EnglishBoosterMatching.resetFilters()">${isFr ? 'Réinitialiser les filtres' : 'Reset All Filters'}</button>
         </div>
       `;
       return;
@@ -245,7 +263,7 @@ window.EnglishBoosterMatching = {
     container.innerHTML = list.map(p => `
       <div class="glass-card partner-card" data-partner-id="${p.id}">
         <div class="match-score-badge">
-          ✨ ${p.matchScore}% Match
+          ✨ ${p.matchScore}% ${isFr ? 'Affinité' : 'Match'}
         </div>
         
         <div class="partner-card-header">
@@ -263,19 +281,19 @@ window.EnglishBoosterMatching = {
 
         <div class="partner-meta-row">
           <div class="meta-item">
-            <span class="meta-label">English Level</span>
+            <span class="meta-label">${isFr ? 'Niveau d\'Anglais' : 'English Level'}</span>
             <span class="meta-val"><span class="badge-level level-${p.level.toLowerCase()}">${p.level}</span></span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Native</span>
+            <span class="meta-label">${isFr ? 'Langue maternelle' : 'Native'}</span>
             <span class="meta-val">${p.nativeLang}</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Status</span>
+            <span class="meta-label">${isFr ? 'Statut' : 'Status'}</span>
             <span class="meta-val">
               <span class="status-indicator">
                 <span class="status-dot ${p.isOnline ? 'online' : 'offline'}"></span>
-                ${p.isOnline ? 'Online' : 'Offline'}
+                ${p.isOnline ? (isFr ? 'En ligne' : 'Online') : (isFr ? 'Hors ligne' : 'Offline')}
               </span>
             </span>
           </div>
@@ -291,12 +309,12 @@ window.EnglishBoosterMatching = {
 
         <div class="partner-card-footer">
           <a href="chat.html?partner=${p.id}" class="btn btn-primary btn-sm" style="flex: 1;">
-            💬 Start Conversation
+            ${isFr ? '💬 Lancer la Conversation' : '💬 Start Conversation'}
           </a>
-          <button class="btn btn-secondary btn-sm btn-icon-only view-profile-btn" data-id="${p.id}" title="View Full Profile">
+          <button class="btn btn-secondary btn-sm btn-icon-only view-profile-btn" data-id="${p.id}" title="${isFr ? 'Voir le profil complet' : 'View Full Profile'}">
             👁️
           </button>
-          <a href="call.html?partner=${p.id}" class="btn btn-secondary btn-sm btn-icon-only" title="Voice / Video Call">
+          <a href="call.html?partner=${p.id}" class="btn btn-secondary btn-sm btn-icon-only" title="${isFr ? 'Appel Vocal / Vidéo' : 'Voice / Video Call'}">
             🎙️
           </a>
         </div>
@@ -337,6 +355,7 @@ window.EnglishBoosterMatching = {
         return true;
       });
 
+      this.currentFiltered = filtered;
       this.renderPartners(filtered);
     };
 
@@ -353,6 +372,7 @@ window.EnglishBoosterMatching = {
     document.querySelectorAll('#filter-country, #filter-search').forEach(el => el.value = '');
     const online = document.getElementById('filter-online');
     if (online) online.checked = false;
+    this.currentFiltered = this.partners;
     this.renderPartners(this.partners);
   },
 
@@ -387,6 +407,7 @@ window.EnglishBoosterMatching = {
     const partner = this.partners.find(p => p.id === id);
     if (!partner) return;
 
+    const isFr = this.isFrench();
     const modal = document.getElementById('partner-modal');
     const body = document.getElementById('partner-modal-body');
 
@@ -398,13 +419,13 @@ window.EnglishBoosterMatching = {
         </div>
         <div>
           <h3 style="font-size: 1.4rem;">${partner.name}</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">${partner.flag} ${partner.country} · Native: <strong>${partner.nativeLang}</strong></p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">${partner.flag} ${partner.country} · ${isFr ? 'Langue maternelle' : 'Native'}: <strong>${partner.nativeLang}</strong></p>
         </div>
       </div>
 
       <div style="background: rgba(74, 222, 128, 0.08); border: 1px solid rgba(74, 222, 128, 0.25); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-          <strong style="color: var(--cyan-primary);">✨ AI Match Score: ${partner.matchScore}%</strong>
+          <strong style="color: var(--cyan-primary);">✨ ${isFr ? 'Score d\'Affinité IA' : 'AI Match Score'}: ${partner.matchScore}%</strong>
           <span class="badge-level level-${partner.level.toLowerCase()}">${partner.level}</span>
         </div>
         <ul style="padding-left: 20px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
@@ -413,12 +434,12 @@ window.EnglishBoosterMatching = {
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h5 style="margin-bottom: 6px; font-size: 0.95rem;">About</h5>
+        <h5 style="margin-bottom: 6px; font-size: 0.95rem;">${isFr ? 'À propos' : 'About'}</h5>
         <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">${partner.bio}</p>
       </div>
 
       <div style="margin-bottom: 24px;">
-        <h5 style="margin-bottom: 8px; font-size: 0.95rem;">Interests & Conversation Topics</h5>
+        <h5 style="margin-bottom: 8px; font-size: 0.95rem;">${isFr ? 'Centres d\'intérêt & Sujets de discussion' : 'Interests & Conversation Topics'}</h5>
         <div class="interests-tags">
           ${partner.interests.map(i => `<span class="interest-tag">${i}</span>`).join('')}
         </div>
@@ -426,10 +447,10 @@ window.EnglishBoosterMatching = {
 
       <div style="display: flex; gap: 12px;">
         <a href="chat.html?partner=${partner.id}" class="btn btn-primary" style="flex: 1;">
-          💬 Chat with ${partner.name.split(' ')[0]}
+          💬 ${isFr ? 'Discuter avec' : 'Chat with'} ${partner.name.split(' ')[0]}
         </a>
         <a href="call.html?partner=${partner.id}" class="btn btn-secondary">
-          🎙️ Live Call
+          🎙️ ${isFr ? 'Appel en Direct' : 'Live Call'}
         </a>
       </div>
     `;

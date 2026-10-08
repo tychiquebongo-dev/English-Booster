@@ -56,6 +56,11 @@ class EnglishBoosterRealtime {
     this.renderCleanUserProfile();
     this.renderConversationDashboard();
     this.initCallPageIfPresent();
+
+    // Reactive re-render on language change
+    window.addEventListener('eb_language_changed', () => {
+      this.renderConversationDashboard();
+    });
   }
 
   // =========================================================================
@@ -995,6 +1000,10 @@ class EnglishBoosterRealtime {
       localStorage.setItem('eb_conversation_history', JSON.stringify(history));
     }
 
+    const isFr = (window.EnglishBooster && window.EnglishBooster.i18n)
+      ? window.EnglishBooster.i18n.getLang() === 'fr'
+      : (localStorage.getItem('eb_lang') === 'fr');
+
     dashContainer.innerHTML = history.map(item => `
       <div class="glass-card conversation-dash-row">
         <div class="dash-row-partner">
@@ -1014,8 +1023,8 @@ class EnglishBoosterRealtime {
 
         <div class="dash-row-gauge">
           <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-subtle); margin-bottom: 3px;">
-            <span>Vous: <strong>${item.userSpeakingPct}%</strong></span>
-            <span>Partenaire: <strong>${item.partnerSpeakingPct}%</strong></span>
+            <span>${isFr ? 'Vous :' : 'You:'} <strong>${item.userSpeakingPct}%</strong></span>
+            <span>${isFr ? 'Partenaire :' : 'Partner:'} <strong>${item.partnerSpeakingPct}%</strong></span>
           </div>
           <div class="progress-track" style="height: 6px;">
             <div class="progress-fill" style="width: ${item.userSpeakingPct}%;"></div>
@@ -1024,8 +1033,8 @@ class EnglishBoosterRealtime {
 
         <div class="dash-row-actions">
           <span style="color: var(--green-400); font-weight: 800; font-size: 0.9rem;">+${item.xpEarned} XP</span>
-          <a href="call.html?partner=${item.id}&action=recall" class="btn btn-secondary btn-sm" title="Rappeler ce partenaire">
-            📞 Rappeler
+          <a href="call.html?partner=${item.id}&action=recall" class="btn btn-secondary btn-sm" title="${isFr ? 'Rappeler ce partenaire' : 'Call back this partner'}">
+            ${isFr ? '📞 Rappeler' : '📞 Call back'}
           </a>
         </div>
       </div>

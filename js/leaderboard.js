@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ENGLISH BOOSTER — LEADERBOARD & GLOBAL CHAMPIONS (js/leaderboard.js)
  * Global, Weekly, Country, Friends Tabs, Podium Highlights & XP Rankings
  */
@@ -41,9 +41,23 @@ class EnglishBoosterLeaderboard {
     this.currentTab = 'global';
   }
 
+  isFrench() {
+    if (window.EnglishBooster && window.EnglishBooster.i18n) {
+      return window.EnglishBooster.i18n.getLang() === 'fr';
+    }
+    const saved = localStorage.getItem('eb_lang');
+    if (saved) return saved === 'fr';
+    return (navigator.language || '').toLowerCase().startsWith('fr');
+  }
+
   init() {
     this.renderLeaderboard('global');
     this.bindTabs();
+
+    // Reactive re-render on language change
+    window.addEventListener('eb_language_changed', () => {
+      this.renderLeaderboard(this.currentTab);
+    });
   }
 
   bindTabs() {
@@ -62,6 +76,7 @@ class EnglishBoosterLeaderboard {
     const list = LEADERBOARD_DATA[tabKey] || LEADERBOARD_DATA.global;
     const tableBody = document.getElementById('leaderboard-tbody');
     const podiumEl = document.getElementById('leaderboard-podium');
+    const isFr = this.isFrench();
 
     // Render Podium (top 3)
     if (podiumEl && list.length >= 3) {
@@ -69,15 +84,19 @@ class EnglishBoosterLeaderboard {
       const second = list[1];
       const third = list[2];
 
+      const firstName = first.name.replace('(You)', isFr ? '(Vous)' : '(You)');
+      const secondName = second.name.replace('(You)', isFr ? '(Vous)' : '(You)');
+      const thirdName = third.name.replace('(You)', isFr ? '(Vous)' : '(You)');
+
       podiumEl.innerHTML = `
         <!-- 2nd Place -->
         <div class="glass-card" style="padding: 24px 16px; text-align: center; border-color: rgba(148, 163, 184, 0.4); flex: 1; max-width: 210px;">
           <div style="font-size: 1.8rem; margin-bottom: 6px;">🥈</div>
           <div class="partner-avatar" style="width: 64px; height: 64px; margin: 0 auto 10px; border-color: #94a3b8;">
-            <img src="../assets/avatars/sofia.jpg" alt="${second.name}" class="avatar-img" />
+            <img src="../assets/avatars/sofia.jpg" alt="${secondName}" class="avatar-img" />
             <span class="avatar-badge-flag">${second.flag}</span>
           </div>
-          <div style="font-weight: 800; font-size: 1.05rem;">${second.name}</div>
+          <div style="font-weight: 800; font-size: 1.05rem;">${secondName}</div>
           <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;"><span class="badge-level level-${second.level.toLowerCase()}">${second.level}</span></div>
           <div style="margin-top: 10px; font-weight: 800; color: var(--cyan-primary); font-size: 1.1rem;">${second.xp.toLocaleString()} XP</div>
         </div>
@@ -86,23 +105,23 @@ class EnglishBoosterLeaderboard {
         <div class="glass-card" style="padding: 32px 18px; text-align: center; border-color: var(--cyan-primary); box-shadow: 0 0 35px rgba(74, 222, 128, 0.35); flex: 1.15; max-width: 230px; transform: translateY(-16px);">
           <div style="font-size: 2.2rem; margin-bottom: 6px;">👑 🥇</div>
           <div class="partner-avatar" style="width: 76px; height: 76px; margin: 0 auto 10px; border-color: var(--cyan-primary); box-shadow: 0 0 25px rgba(74, 222, 128, 0.45);">
-            <img src="../assets/avatars/alex.jpg" alt="${first.name}" class="avatar-img" />
+            <img src="../assets/avatars/alex.jpg" alt="${firstName}" class="avatar-img" />
             <span class="avatar-badge-flag">${first.flag}</span>
           </div>
-          <div style="font-weight: 800; font-size: 1.2rem;">${first.name}</div>
+          <div style="font-weight: 800; font-size: 1.2rem;">${firstName}</div>
           <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;"><span class="badge-level level-${first.level.toLowerCase()}">${first.level}</span></div>
           <div style="margin-top: 12px; font-weight: 900; color: var(--cyan-primary); font-size: 1.35rem;">${first.xp.toLocaleString()} XP</div>
-          <span class="crystal-badge" style="margin-top: 8px; font-size: 0.72rem;">🔥 ${first.streak} Day Streak</span>
+          <span class="crystal-badge" style="margin-top: 8px; font-size: 0.72rem;">🔥 ${first.streak} ${isFr ? 'Jours de Série' : 'Day Streak'}</span>
         </div>
 
         <!-- 3rd Place -->
         <div class="glass-card" style="padding: 24px 16px; text-align: center; border-color: rgba(245, 158, 11, 0.4); flex: 1; max-width: 210px;">
           <div style="font-size: 1.8rem; margin-bottom: 6px;">🥉</div>
           <div class="partner-avatar" style="width: 64px; height: 64px; margin: 0 auto 10px; border-color: #f59e0b;">
-            <img src="../assets/avatars/lucas.jpg" alt="${third.name}" class="avatar-img" />
+            <img src="../assets/avatars/lucas.jpg" alt="${thirdName}" class="avatar-img" />
             <span class="avatar-badge-flag">${third.flag}</span>
           </div>
-          <div style="font-weight: 800; font-size: 1.05rem;">${third.name}</div>
+          <div style="font-weight: 800; font-size: 1.05rem;">${thirdName}</div>
           <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;"><span class="badge-level level-${third.level.toLowerCase()}">${third.level}</span></div>
           <div style="margin-top: 10px; font-weight: 800; color: var(--amber-accent); font-size: 1.1rem;">${third.xp.toLocaleString()} XP</div>
         </div>
@@ -113,6 +132,7 @@ class EnglishBoosterLeaderboard {
     if (tableBody) {
       tableBody.innerHTML = list.map((item, index) => {
         const isUser = item.name.includes('(You)');
+        const displayName = item.name.replace('(You)', isFr ? '(Vous)' : '(You)');
         return `
           <tr style="border-bottom: 1px solid rgba(255,255,255,0.06); ${isUser ? 'background: rgba(74, 222, 128, 0.1); font-weight: 700;' : ''}">
             <td style="padding: 16px; font-weight: 800; font-size: 1.05rem;">
@@ -120,13 +140,13 @@ class EnglishBoosterLeaderboard {
             </td>
             <td style="padding: 16px; display: flex; align-items: center; gap: 10px;">
               <span style="font-size: 1.2rem;">${item.flag}</span>
-              <span>${item.name}</span>
+              <span>${displayName}</span>
             </td>
             <td style="padding: 16px;">
               <span class="badge-level level-${item.level.toLowerCase()}">${item.level}</span>
             </td>
             <td style="padding: 16px; color: var(--amber-accent);">
-              🔥 ${item.streak} days
+              🔥 ${item.streak} ${isFr ? 'jours' : 'days'}
             </td>
             <td style="padding: 16px; text-align: right; font-weight: 800; color: var(--cyan-primary);">
               ⭐ ${item.xp.toLocaleString()} XP

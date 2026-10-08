@@ -128,9 +128,9 @@
     <div style="max-width: 900px; margin: 0 auto;">
       <!-- HEADER -->
       <div style="text-align: center; margin-bottom: 36px;" class="reveal-init">
-        <span class="crystal-badge" style="margin-bottom: 10px;">XP Hall of Fame</span>
-        <h1 style="font-size: 2.75rem; letter-spacing: -0.02em;">Global English Champions</h1>
-        <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px;">
+        <span class="crystal-badge" style="margin-bottom: 10px;" data-i18n="leaderboard_badge">XP Hall of Fame</span>
+        <h1 style="font-size: 2.75rem; letter-spacing: -0.02em;" data-i18n="leaderboard_title">Global English Champions</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 6px;" data-i18n="leaderboard_subtitle">
           Celebrate the most dedicated learners practicing daily spoken English.
         </p>
       </div>
@@ -142,10 +142,10 @@
 
       <!-- TABS SELECTOR -->
       <div class="leaderboard-tabs-bar">
-        <button class="leaderboard-tab-btn active" data-tab="global">🌍 Global</button>
-        <button class="leaderboard-tab-btn" data-tab="weekly">📅 Weekly</button>
-        <button class="leaderboard-tab-btn" data-tab="country">🇪🇸 My Country</button>
-        <button class="leaderboard-tab-btn" data-tab="friends">👥 Friends</button>
+        <button class="leaderboard-tab-btn active" data-tab="global" data-i18n="leaderboard_tab_global">🌍 Global</button>
+        <button class="leaderboard-tab-btn" data-tab="weekly" data-i18n="leaderboard_tab_weekly">📅 Weekly</button>
+        <button class="leaderboard-tab-btn" data-tab="country" data-i18n="leaderboard_tab_country">🇪🇸 My Country</button>
+        <button class="leaderboard-tab-btn" data-tab="friends" data-i18n="leaderboard_tab_friends">👥 Friends</button>
       </div>
 
       <!-- TABLE RANKINGS -->
@@ -153,11 +153,11 @@
         <table style="width: 100%; border-collapse: collapse; text-align: left;">
           <thead>
             <tr style="border-bottom: 1px solid var(--glass-border); color: var(--text-subtle); font-size: 0.82rem; text-transform: uppercase;">
-              <th style="padding: 16px;">Rank</th>
-              <th style="padding: 16px;">Learner</th>
-              <th style="padding: 16px;">Level</th>
-              <th style="padding: 16px;">Streak</th>
-              <th style="padding: 16px; text-align: right;">Total XP</th>
+              <th style="padding: 16px;" data-i18n="leaderboard_th_rank">Rank</th>
+              <th style="padding: 16px;" data-i18n="leaderboard_th_learner">Learner</th>
+              <th style="padding: 16px;" data-i18n="leaderboard_th_level">Level</th>
+              <th style="padding: 16px;" data-i18n="leaderboard_th_streak">Streak</th>
+              <th style="padding: 16px; text-align: right;" data-i18n="leaderboard_th_xp">Total XP</th>
             </tr>
           </thead>
           <tbody id="leaderboard-tbody">

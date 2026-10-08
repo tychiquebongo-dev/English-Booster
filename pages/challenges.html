@@ -406,6 +406,11 @@
             </div>
           </div>
 
+          <!-- DYNAMIC 5-MODE HUD BANNER -->
+          <div id="battle-mode-hud" class="battle-mode-hud-wrap">
+            <!-- Rendered dynamically by challenges.js -->
+          </div>
+
           <!-- 6 LIVE CALL SCREENS GRID (MINIMUM 5 ÉCRANS EN DIRECT) -->
           <div id="quick-random-multi-screens" class="multi-call-grid">
             <!-- SCREEN 1: YOU (ALEX RIVERA) -->
@@ -434,6 +439,7 @@
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
                   <button class="btn btn-primary btn-sm btn-multi-mic" id="btn-multi-mic" style="flex: 1; font-size: 0.74rem; padding: 4px 8px; justify-content: center;">🎙️ Speak (Mic)</button>
                   <button class="btn btn-secondary btn-sm" id="btn-multi-pass-turn" style="font-size: 0.74rem; padding: 4px 8px;">🔄 Pass Turn</button>
+                  <button class="btn btn-secondary btn-sm" id="btn-multi-next-round" style="font-size: 0.74rem; padding: 4px 8px; color: var(--green-400);">➡️ Next</button>
                 </div>
               </div>
             </div>
@@ -615,6 +621,12 @@
                 "Tap microphone to speak or click an argument below..."
               </div>
 
+              <!-- Custom Spoken Argument Input -->
+              <div class="battle-custom-input-wrap">
+                <input type="text" id="battle-custom-arg-input" placeholder="Type your spoken English argument..." />
+                <button type="button" id="btn-send-custom-arg" class="btn btn-primary btn-sm" style="white-space: nowrap;">💬 Send</button>
+              </div>
+
               <!-- Microphone Action Button -->
               <button id="btn-battle-mic" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center; margin-bottom: 10px;">
                 🎙️ Speak with Microphone
@@ -672,9 +684,12 @@
               <button class="btn btn-secondary btn-sm btn-battle-reaction" data-emoji="❤️">❤️ Respect</button>
             </div>
 
-            <div style="display: flex; gap: 10px;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
               <button id="btn-toggle-battle-turn" class="btn btn-secondary btn-sm">
                 🔄 Pass Turn to Partner
+              </button>
+              <button id="btn-next-battle-round" class="btn btn-secondary btn-sm" style="border-color: rgba(74, 222, 128, 0.4); color: var(--green-400);">
+                ➡️ Next Round
               </button>
               <button id="btn-submit-battle-eval" class="btn btn-primary btn-sm">
                 ⚖️ Submit Duel for AI Level Evaluation
@@ -766,6 +781,9 @@
             <p id="result-ai-feedback" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
               Both speakers demonstrated great conversational rhythm. Alex exhibited stronger spontaneity and idiomatic transitions, qualifying for B2+ level. Kenji maintained high grammatical discipline with solid sentence structures.
             </p>
+
+            <!-- Mode-Specific Custom Evaluation Box (e.g. Official CEFR Certificate for cefr_grand, WPM gauge for speed_duel, etc.) -->
+            <div id="result-mode-custom-box"></div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08);">
               <div>

@@ -551,12 +551,18 @@
     const avatarSrc = getAssetPath(short.author.avatar);
     const mediaSrc = getAssetPath(short.mediaUrl);
     const isVideo = short.mediaType === 'video' || (short.videoUrl && short.videoUrl.length > 0);
+    const edits = short.creativeEdits || {};
+    const hasFx = edits.effect && edits.effect !== 'none';
+    const hasText = edits.text && edits.text.content && edits.text.content.trim().length > 0;
+    const hasStickers = edits.stickers && edits.stickers.length > 0;
 
     modal.innerHTML = `
       <div class="shorts-modal-backdrop"></div>
       <div class="shorts-modal-dialog">
-        <!-- Close button -->
-        <button type="button" class="btn-close-shorts-modal" id="btn-close-viewer" aria-label="Fermer la vidéo">&times;</button>
+        <!-- Close button avec symbole '✕' -->
+        <button type="button" class="btn-close-shorts-modal" id="btn-close-viewer" title="Fermer (Échap) / Close (Esc)" aria-label="Fermer la vidéo">
+          <span class="close-icon-symbol">✕</span>
+        </button>
 
         <div class="shorts-player-layout">
           <!-- Video Vertical Player (9:16) -->
@@ -566,6 +572,12 @@
                 ? `<video src="${mediaSrc}" class="shorts-screen-bg" id="viewer-video-player" autoplay loop playsinline controls></video>` 
                 : `<img src="${mediaSrc}" alt="${escapeHTML(short.title)}" class="shorts-screen-bg" />`}
               <div class="shorts-screen-gradient"></div>
+
+              <!-- Overlays créatifs personnalisés -->
+              ${hasFx ? `<div class="short-fx-layer fx-${edits.effect}"></div>` : ''}
+              ${hasText ? `<div class="short-text-layer typo-${edits.text.style || 'impact'} pos-${edits.text.position || 'top'}"><span class="short-text-content" style="color:${edits.text.color || '#ffffff'}">${escapeHTML(edits.text.content)}</span></div>` : ''}
+              ${hasStickers ? `<div class="short-stickers-layer" style="pointer-events:none;">${edits.stickers.map(s => `<span class="placed-sticker-badge">${s}</span>`).join('')}</div>` : ''}
+              ${edits.voiceover && edits.voiceover.active ? `<div class="short-voiceover-indicator"><span>🎙️ Voix off</span></div>` : ''}
 
               <!-- Top Screen Bar -->
               <div class="shorts-screen-top">
@@ -680,6 +692,21 @@
       }, 50);
     }
 
+    // Appliquer le filtre de montage créatif s'il existe
+    const viewerFilterCssMap = {
+      none: 'none',
+      teal_orange: 'contrast(1.25) saturate(1.4) hue-rotate(-10deg) sepia(0.15)',
+      vintage: 'sepia(0.55) contrast(1.15) brightness(0.95) saturate(1.2)',
+      noir: 'grayscale(1) contrast(1.4) brightness(0.95)',
+      warm: 'sepia(0.35) saturate(1.45) brightness(1.05)',
+      cyberpunk: 'contrast(1.35) saturate(1.8) hue-rotate(180deg) brightness(0.92)',
+      pastel: 'brightness(1.1) contrast(0.92) saturate(1.2) hue-rotate(30deg)'
+    };
+    const viewerMediaEl = modal.querySelector('#viewer-video-player') || modal.querySelector('.shorts-screen-bg');
+    if (viewerMediaEl && edits.filter && viewerFilterCssMap[edits.filter]) {
+      viewerMediaEl.style.filter = viewerFilterCssMap[edits.filter];
+    }
+
     // Événements du modal
     const closeBtn = modal.querySelector('#btn-close-viewer');
     const backdrop = modal.querySelector('.shorts-modal-backdrop');
@@ -687,10 +714,17 @@
       stopSpeechCaptions();
       const videoEl = modal.querySelector('#viewer-video-player');
       if (videoEl) videoEl.pause();
+      window.removeEventListener('keydown', handleEscViewerKey);
       modal.style.display = 'none';
       document.body.style.overflow = '';
       currentActiveShort = null;
     }
+    const handleEscViewerKey = (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleEscViewerKey);
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
 
@@ -896,8 +930,12 @@
 
     modal.innerHTML = `
       <div class="shorts-modal-backdrop"></div>
-      <div class="shorts-modal-dialog" style="max-width: 740px; max-height: 94vh; overflow-y: auto;">
-        <button type="button" class="btn-close-shorts-modal" id="btn-close-publish">&times;</button>
+      <div class="shorts-modal-dialog" style="max-width: 840px; max-height: 94vh; overflow-y: auto;">
+        <!-- BOUTON FERMER AVEC SYMBOLE CLAIR '✕' -->
+        <button type="button" class="btn-close-shorts-modal" id="btn-close-publish" title="Fermer (Échap) / Close (Esc)" aria-label="Fermer">
+          <span class="close-icon-symbol">✕</span>
+        </button>
+
         <div class="publish-short-card">
           <div style="margin-bottom: 18px;">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
@@ -906,7 +944,7 @@
             </div>
             <h2 style="font-size: 1.6rem; margin: 4px 0;">🎬 Publier votre Vidéo Short</h2>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
-              Choisissez votre vidéo et partagez votre prononciation ou votre pitch avec toute la communauté internationale.
+              Choisissez votre vidéo, appliquez vos retouches créatives (Texte, Effets, Filtres, Voix) et partagez-la avec la communauté mondiale.
             </p>
           </div>
 
@@ -967,9 +1005,17 @@
                   </p>
                 </div>
 
-                <!-- Aperçu vidéo après sélection de fichier -->
+                <!-- Aperçu vidéo après sélection de fichier avec Stage d'effets superposés -->
                 <div class="video-preview-wrapper" id="file-video-preview-wrap" style="display: none;">
-                  <video id="file-video-preview-player" class="video-preview-player" controls playsinline loop></video>
+                  <div class="short-stage-overlay-container" id="file-stage-container">
+                    <video id="file-video-preview-player" class="video-preview-player" controls playsinline loop></video>
+                    <!-- Overlays synchronisés -->
+                    <div class="short-fx-layer" id="file-fx-layer"></div>
+                    <div class="short-text-layer" id="file-text-layer" style="display:none;"><span class="short-text-content"></span></div>
+                    <div class="short-stickers-layer" id="file-stickers-layer"></div>
+                    <div class="short-subtitles-layer" id="file-subtitles-layer" style="display:none;"><div class="short-subtitles-bubble style-tiktok"><span></span></div></div>
+                    <div class="short-voiceover-indicator" id="file-voiceover-indicator" style="display:none;"><span>🎙️ Voix off active</span></div>
+                  </div>
                   <div class="video-info-strip">
                     <span id="file-video-info-text">Vidéo sélectionnée</span>
                     <button type="button" id="btn-change-video-file" class="btn btn-sm btn-secondary" style="padding: 3px 8px; font-size: 0.75rem;">
@@ -982,7 +1028,15 @@
               <!-- CONTENU ONGLET 2 : ENREGISTREMENT CAMÉRA DIRECT -->
               <div class="tab-content-panel" id="panel-tab-camera" style="display: none;">
                 <div class="camera-recording-box">
-                  <video id="short-camera-preview" class="camera-preview-feed" autoplay playsinline muted></video>
+                  <div class="short-stage-overlay-container" id="camera-stage-container" style="width:100%;">
+                    <video id="short-camera-preview" class="camera-preview-feed" autoplay playsinline muted></video>
+                    <!-- Overlays synchronisés -->
+                    <div class="short-fx-layer" id="camera-fx-layer"></div>
+                    <div class="short-text-layer" id="camera-text-layer" style="display:none;"><span class="short-text-content"></span></div>
+                    <div class="short-stickers-layer" id="camera-stickers-layer"></div>
+                    <div class="short-subtitles-layer" id="camera-subtitles-layer" style="display:none;"><div class="short-subtitles-bubble style-tiktok"><span></span></div></div>
+                    <div class="short-voiceover-indicator" id="camera-voiceover-indicator" style="display:none;"><span>🎙️ Voix off active</span></div>
+                  </div>
                   <div class="camera-recording-controls">
                     <button type="button" id="btn-start-record" class="btn btn-sm btn-danger" style="font-weight: 700;">
                       <span>🔴</span> Démarrer l'enregistrement (60s)
@@ -1019,6 +1073,357 @@
                     <span>Masterclass</span>
                   </label>
                 </div>
+
+                <!-- Aperçu interactif du studio virtuel avec overlay -->
+                <div class="studio-preview-frame" style="margin-top: 14px; text-align: center;">
+                  <div class="video-preview-wrapper" style="max-width: 380px; margin: 0 auto;">
+                    <div class="short-stage-overlay-container" id="studio-stage-container">
+                      <img id="studio-video-preview-img" src="${getAssetPath('assets/images/short-pronunciation-coach.jpg')}" alt="Studio Preview" class="video-preview-player" style="object-fit: cover; height: 380px;" />
+                      <!-- Overlays synchronisés -->
+                      <div class="short-fx-layer" id="studio-fx-layer"></div>
+                      <div class="short-text-layer" id="studio-text-layer" style="display:none;"><span class="short-text-content"></span></div>
+                      <div class="short-stickers-layer" id="studio-stickers-layer"></div>
+                      <div class="short-subtitles-layer" id="studio-subtitles-layer" style="display:none;"><div class="short-subtitles-bubble style-tiktok"><span></span></div></div>
+                      <div class="short-voiceover-indicator" id="studio-voiceover-indicator" style="display:none;"><span>🎙️ Voix off active</span></div>
+                    </div>
+                    <div class="video-info-strip">
+                      <span>🎨 Thème Studio Virtuel HD actif</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- SUITE DE RETOUCHE CRÉATIVE : TEXTE Aa, EFFET, FILTRES, AUTOCOLLANTS, SOUS-TITRE, VOIX OFF, ENREGISTRER (GALERIE) -->
+            <!-- ================================================================= -->
+            <div class="video-editing-suite" id="video-editing-suite" style="margin-bottom: 22px;">
+              <div class="editing-suite-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="editing-suite-badge">✨ Creative Studio</span>
+                  <span style="font-weight: 800; font-size: 0.95rem; color: #fff;">Outils de Retouche & Effets Vidéo</span>
+                </div>
+                <span style="font-size: 0.8rem; color: var(--cyan-400);">Personnalisez votre Short en direct</span>
+              </div>
+
+              <!-- BARRE DES 7 OUTILS PRINCIPAUX -->
+              <div class="creative-tools-nav" role="tablist">
+                <button type="button" class="creative-tool-btn active" data-tool="text" id="tool-btn-text">
+                  <span class="tool-icon">🔤</span>
+                  <span class="tool-name">Texte Aa</span>
+                </button>
+                <button type="button" class="creative-tool-btn" data-tool="effects" id="tool-btn-effects">
+                  <span class="tool-icon">✨</span>
+                  <span class="tool-name">Effet</span>
+                </button>
+                <button type="button" class="creative-tool-btn" data-tool="filters" id="tool-btn-filters">
+                  <span class="tool-icon">🎨</span>
+                  <span class="tool-name">Filtres</span>
+                </button>
+                <button type="button" class="creative-tool-btn" data-tool="stickers" id="tool-btn-stickers">
+                  <span class="tool-icon">🎭</span>
+                  <span class="tool-name">Autocollants</span>
+                </button>
+                <button type="button" class="creative-tool-btn" data-tool="subtitles" id="tool-btn-subtitles">
+                  <span class="tool-icon">📝</span>
+                  <span class="tool-name">Sous-titre</span>
+                </button>
+                <button type="button" class="creative-tool-btn" data-tool="voiceover" id="tool-btn-voiceover">
+                  <span class="tool-icon">🎙️</span>
+                  <span class="tool-name">Voix off</span>
+                </button>
+                <button type="button" class="creative-tool-btn tool-save-gallery" data-tool="save_gallery" id="tool-btn-save-gallery" title="Enregistrer et aller vers la galerie">
+                  <span class="tool-icon">💾</span>
+                  <span class="tool-name">Enregistrer (Galerie)</span>
+                </button>
+              </div>
+
+              <!-- PANNEAUX DE CONFIGURATION DES 7 OUTILS -->
+              <div class="creative-panels-container">
+
+                <!-- 1. PANNEAU TEXTE Aa -->
+                <div class="creative-panel" id="panel-tool-text" style="display: block;">
+                  <div style="margin-bottom: 12px;">
+                    <label class="form-label" style="font-size: 0.85rem; font-weight: 700; color: #fff;">Texte à afficher sur la vidéo :</label>
+                    <div style="display: flex; gap: 8px;">
+                      <input type="text" id="studio-text-input" class="form-control" placeholder="ex: English Speaking Breakthrough! 🚀" style="flex: 1;" />
+                      <button type="button" id="btn-clear-text" class="btn btn-sm btn-secondary" title="Effacer le texte">✕</button>
+                    </div>
+                  </div>
+
+                  <div style="margin-bottom: 12px;">
+                    <label class="form-label" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">Style de typographie :</label>
+                    <div class="studio-chip-row">
+                      <button type="button" class="studio-chip style-chip active" data-style="impact">Impact Bold</button>
+                      <button type="button" class="studio-chip style-chip" data-style="neon">Néon Cyan</button>
+                      <button type="button" class="studio-chip style-chip" data-style="highlight">Surligné Jaune</button>
+                      <button type="button" class="studio-chip style-chip" data-style="typewriter">Typewriter</button>
+                      <button type="button" class="studio-chip style-chip" data-style="sunset">Sunset Glow</button>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                      <label class="form-label" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Couleur :</label>
+                      <div class="studio-color-palette">
+                        <button type="button" class="color-dot active" data-color="#ffffff" style="background:#ffffff;" title="Blanc"></button>
+                        <button type="button" class="color-dot" data-color="#facc15" style="background:#facc15;" title="Jaune Fluo"></button>
+                        <button type="button" class="color-dot" data-color="#06b6d4" style="background:#06b6d4;" title="Cyan"></button>
+                        <button type="button" class="color-dot" data-color="#10b981" style="background:#10b981;" title="Vert Émeraude"></button>
+                        <button type="button" class="color-dot" data-color="#ef4444" style="background:#ef4444;" title="Rouge"></button>
+                        <button type="button" class="color-dot" data-color="#a855f7" style="background:#a855f7;" title="Violet Néon"></button>
+                        <button type="button" class="color-dot" data-color="#000000" style="background:#000000; border:1px solid #475569;" title="Noir"></button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="form-label" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Position :</label>
+                      <div class="studio-chip-row">
+                        <button type="button" class="studio-chip pos-chip active" data-pos="top">⬆️ Haut</button>
+                        <button type="button" class="studio-chip pos-chip" data-pos="center">⏸️ Centre</button>
+                        <button type="button" class="studio-chip pos-chip" data-pos="bottom">⬇️ Bas</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. PANNEAU EFFET -->
+                <div class="creative-panel" id="panel-tool-effects" style="display: none;">
+                  <label class="form-label" style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 8px;">
+                    Effets visuels dynamiques en direct :
+                  </label>
+                  <div class="fx-cards-grid">
+                    <button type="button" class="fx-option-card active" data-fx="none">
+                      <span class="fx-icon">🚫</span>
+                      <strong class="fx-title">Naturel</strong>
+                      <span class="fx-desc">Sans effet</span>
+                    </button>
+                    <button type="button" class="fx-option-card" data-fx="sparkles">
+                      <span class="fx-icon">✨</span>
+                      <strong class="fx-title">Sparkles</strong>
+                      <span class="fx-desc">Étincelles dorées</span>
+                    </button>
+                    <button type="button" class="fx-option-card" data-fx="glitch">
+                      <span class="fx-icon">⚡</span>
+                      <strong class="fx-title">Glitch</strong>
+                      <span class="fx-desc">Distorsion cyber</span>
+                    </button>
+                    <button type="button" class="fx-option-card" data-fx="zoom_pulse">
+                      <span class="fx-icon">🔍</span>
+                      <strong class="fx-title">Zoom Pulse</strong>
+                      <span class="fx-desc">Battement rythmé</span>
+                    </button>
+                    <button type="button" class="fx-option-card" data-fx="vhs">
+                      <span class="fx-icon">📼</span>
+                      <strong class="fx-title">Rétro VHS</strong>
+                      <span class="fx-desc">Scanlines 1985</span>
+                    </button>
+                    <button type="button" class="fx-option-card" data-fx="soft_glow">
+                      <span class="fx-icon">🌟</span>
+                      <strong class="fx-title">Lueur Douce</strong>
+                      <span class="fx-desc">Bloom féerique</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 3. PANNEAU FILTRES -->
+                <div class="creative-panel" id="panel-tool-filters" style="display: none;">
+                  <label class="form-label" style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 8px;">
+                    Filtres colorimétriques de la vidéo :
+                  </label>
+                  <div class="filters-cards-grid">
+                    <button type="button" class="filter-option-card active" data-filter="none">
+                      <div class="filter-swatch swatch-none"></div>
+                      <span class="filter-lbl">Normal</span>
+                    </button>
+                    <button type="button" class="filter-option-card" data-filter="teal_orange">
+                      <div class="filter-swatch swatch-teal"></div>
+                      <span class="filter-lbl">Teal & Orange</span>
+                    </button>
+                    <button type="button" class="filter-option-card" data-filter="vintage">
+                      <div class="filter-swatch swatch-vintage"></div>
+                      <span class="filter-lbl">Vintage 70s</span>
+                    </button>
+                    <button type="button" class="filter-option-card" data-filter="noir">
+                      <div class="filter-swatch swatch-noir"></div>
+                      <span class="filter-lbl">Noir & Blanc</span>
+                    </button>
+                    <button type="button" class="filter-option-card" data-filter="warm">
+                      <div class="filter-swatch swatch-warm"></div>
+                      <span class="filter-lbl">Solaire Chaud</span>
+                    </button>
+                    <button type="button" class="filter-option-card" data-filter="cyberpunk">
+                      <div class="filter-swatch swatch-cyber"></div>
+                      <span class="filter-lbl">Cyberpunk</span>
+                    </button>
+                    <button type="button" class="filter-option-card" data-filter="pastel">
+                      <div class="filter-swatch swatch-pastel"></div>
+                      <span class="filter-lbl">Pastel Cool</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 4. PANNEAU AUTOCOLLANTS -->
+                <div class="creative-panel" id="panel-tool-stickers" style="display: none;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <label class="form-label" style="font-size: 0.85rem; font-weight: 700; color: #fff; margin: 0;">
+                      Cliquez pour ajouter des autocollants sur la vidéo :
+                    </label>
+                    <button type="button" id="btn-clear-stickers" class="btn btn-sm btn-secondary" style="font-size: 0.75rem; padding: 3px 8px;">
+                      🧹 Tout retirer (<span id="stickers-count">0</span>)
+                    </button>
+                  </div>
+                  <div class="stickers-palette-grid">
+                    <button type="button" class="sticker-chip-btn" data-sticker="🇬🇧">🇬🇧</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🇺🇸">🇺🇸</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🇨🇦">🇨🇦</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🇦🇺">🇦🇺</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🔥">🔥</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🎯">🎯</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🚀">🚀</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="💯">💯</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="👑">👑</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🎙️">🎙️</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="⭐">⭐</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="👏">👏</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🧠">🧠</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="💡">💡</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🏆">🏆</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="⚡">⚡</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🎬">🎬</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="💬">💬</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🌍">🌍</button>
+                    <button type="button" class="sticker-chip-btn" data-sticker="🤩">🤩</button>
+                  </div>
+                  <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 6px;">
+                    💡 Astuce : Cliquez directement sur un autocollant sur l'aperçu vidéo pour le retirer.
+                  </span>
+                </div>
+
+                <!-- 5. PANNEAU SOUS-TITRE -->
+                <div class="creative-panel" id="panel-tool-subtitles" style="display: none;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 700; color: #fff; cursor: pointer;">
+                      <input type="checkbox" id="check-enable-subtitles" checked style="accent-color: var(--green-400);" />
+                      Afficher les sous-titres dynamiques sur la vidéo
+                    </label>
+                    <span class="crystal-badge" style="font-size: 0.72rem;">Synchronisation active</span>
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <label class="form-label" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">Style graphique des sous-titres :</label>
+                    <div class="studio-chip-row">
+                      <button type="button" class="studio-chip sub-style-chip active" data-sub-style="style-tiktok">
+                        🟡 TikTok Viral (Jaune & Noir)
+                      </button>
+                      <button type="button" class="studio-chip sub-style-chip" data-sub-style="style-boxed">
+                        ⬛ Boîte Noire Contraste
+                      </button>
+                      <button type="button" class="studio-chip sub-style-chip" data-sub-style="style-neon">
+                        💎 Néon Cyan
+                      </button>
+                      <button type="button" class="studio-chip sub-style-chip" data-sub-style="style-emerald">
+                        🟢 Émeraude Punch
+                      </button>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">
+                    Le texte est synchronisé en temps réel avec le champ "Transcription du discours en anglais" ci-dessous.
+                  </p>
+                </div>
+
+                <!-- 6. PANNEAU VOIX OFF -->
+                <div class="creative-panel" id="panel-tool-voiceover" style="display: none;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-size: 1.4rem;">🎙️</span>
+                      <div>
+                        <strong style="color: #fff; font-size: 0.9rem; display: block;">Studio Voix off & Doublage</strong>
+                        <span id="voiceover-status-text" style="font-size: 0.78rem; color: var(--text-muted);">Micro prêt pour l'enregistrement</span>
+                      </div>
+                    </div>
+                    <span id="voiceover-timer" style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--green-400); font-weight: 700; display: none;">00:00</span>
+                  </div>
+
+                  <!-- Waveform Animé pendant enregistrement -->
+                  <div class="voiceover-waveform-box" id="voiceover-waveform-box" style="display: none;">
+                    <div class="waveform-anim-bars">
+                      <span class="wb"></span><span class="wb"></span><span class="wb"></span>
+                      <span class="wb"></span><span class="wb"></span><span class="wb"></span>
+                      <span class="wb"></span><span class="wb"></span><span class="wb"></span>
+                      <span class="wb"></span><span class="wb"></span><span class="wb"></span>
+                    </div>
+                    <span style="font-size: 0.8rem; color: #ef4444; font-weight: 700; margin-left: 10px;">ENREGISTREMENT MICRO EN COURS...</span>
+                  </div>
+
+                  <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px;">
+                    <button type="button" id="btn-start-voiceover" class="btn btn-sm btn-primary" style="font-weight: 700;">
+                      <span>🎙️</span> Démarrer la Voix off (30s)
+                    </button>
+                    <button type="button" id="btn-stop-voiceover" class="btn btn-sm btn-danger" style="font-weight: 700; display: none;">
+                      <span>⏹️</span> Arrêter & Sauvegarder
+                    </button>
+                    <button type="button" id="btn-play-voiceover" class="btn btn-sm btn-secondary" style="font-weight: 700; display: none;">
+                      <span>▶️</span> Écouter la Voix off
+                    </button>
+                    <button type="button" id="btn-delete-voiceover" class="btn btn-sm btn-secondary" style="color: #ef4444; display: none;">
+                      <span>🗑️</span> Supprimer
+                    </button>
+                  </div>
+
+                  <div style="margin-top: 14px; display: flex; align-items: center; gap: 12px;">
+                    <label for="voiceover-volume" style="font-size: 0.8rem; color: var(--text-muted); white-space: nowrap;">Volume :</label>
+                    <input type="range" id="voiceover-volume" min="0" max="100" value="100" style="flex: 1; accent-color: var(--green-400);" />
+                    <span id="voiceover-volume-val" style="font-size: 0.8rem; color: #fff; min-width: 38px;">100%</span>
+                  </div>
+                </div>
+
+                <!-- 7. PANNEAU ENREGISTRER (ALLER VERS LA GALERIE) -->
+                <div class="creative-panel" id="panel-tool-save_gallery" style="display: none;">
+                  <div class="save-gallery-card">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                      <div class="save-icon-circle">💾</div>
+                      <div>
+                        <strong style="font-size: 1.05rem; color: #fff; display: block;">Enregistrer dans la Galerie des Shorts</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary);">
+                          Sauvegarde avec vos effets vidéo, export et ouverture immédiate
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="save-summary-box">
+                      <div class="summary-line">
+                        <span>🎨 Filtre appliqué :</span>
+                        <strong id="summary-filter-val" style="color: var(--cyan-400);">Normal</strong>
+                      </div>
+                      <div class="summary-line">
+                        <span>✨ Effet appliqué :</span>
+                        <strong id="summary-effect-val" style="color: var(--cyan-400);">Aucun</strong>
+                      </div>
+                      <div class="summary-line">
+                        <span>🔤 Texte superposé :</span>
+                        <strong id="summary-text-val" style="color: var(--cyan-400);">Aucun</strong>
+                      </div>
+                      <div class="summary-line">
+                        <span>🎭 Autocollants :</span>
+                        <strong id="summary-stickers-val" style="color: var(--cyan-400);">0</strong>
+                      </div>
+                      <div class="summary-line">
+                        <span>📝 Sous-titres :</span>
+                        <strong id="summary-subtitles-val" style="color: var(--green-400);">Activés (TikTok)</strong>
+                      </div>
+                      <div class="summary-line">
+                        <span>🎙️ Voix off :</span>
+                        <strong id="summary-voiceover-val" style="color: var(--text-muted);">Non enregistrée</strong>
+                      </div>
+                    </div>
+
+                    <button type="button" id="btn-save-to-gallery-action" class="btn btn-primary" style="width: 100%; margin-top: 14px; padding: 12px 20px; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                      <span>💾</span> Enregistrer et Aller vers la Galerie des Shorts
+                    </button>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -1070,7 +1475,7 @@
             <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 14px;">
               <button type="button" class="btn btn-secondary" id="btn-cancel-publish">Annuler</button>
               <button type="submit" class="btn btn-primary" id="btn-submit-short" style="padding: 12px 26px; font-weight: 800;">
-                <span>🚀</span> Publier mon Short (+50 XP)
+                <span>💾</span> Enregistrer (Aller vers la galerie) (+50 XP)
               </button>
             </div>
           </form>
@@ -1089,24 +1494,467 @@
     let cameraStream = null;
     let recordTimerInterval = null;
 
-    // Fermeture du modal
+    // État du Studio Créatif
+    let appliedText = {
+      content: '',
+      style: 'impact',
+      color: '#ffffff',
+      position: 'top'
+    };
+    let appliedEffect = 'none'; // 'none', 'sparkles', 'glitch', 'zoom_pulse', 'vhs', 'soft_glow'
+    let appliedFilter = 'none'; // 'none', 'teal_orange', 'vintage', 'noir', 'warm', 'cyberpunk', 'pastel'
+    let appliedStickers = [];
+    let subtitlesConfig = {
+      enabled: true,
+      style: 'style-tiktok',
+      position: 'bottom'
+    };
+    let voiceoverConfig = {
+      active: false,
+      duration: 0,
+      audioBlobUrl: null,
+      volume: 1.0
+    };
+    let voiceoverRecorder = null;
+    let voiceoverChunks = [];
+    let voiceoverTimerInterval = null;
+    let voiceoverAudio = null;
+
+    // Fermeture du modal (avec support de la touche Échap)
     const closeBtn = modal.querySelector('#btn-close-publish');
     const cancelBtn = modal.querySelector('#btn-cancel-publish');
     const backdrop = modal.querySelector('.shorts-modal-backdrop');
+
     function closePublish() {
       if (cameraStream) {
         cameraStream.getTracks().forEach(t => t.stop());
         cameraStream = null;
       }
       if (recordTimerInterval) clearInterval(recordTimerInterval);
+      if (voiceoverTimerInterval) clearInterval(voiceoverTimerInterval);
+      if (voiceoverRecorder && voiceoverRecorder.state !== 'inactive') {
+        try { voiceoverRecorder.stop(); } catch(e){}
+      }
+      if (voiceoverAudio) {
+        voiceoverAudio.pause();
+        voiceoverAudio = null;
+      }
+      window.removeEventListener('keydown', handleEscKey);
       modal.style.display = 'none';
       document.body.style.overflow = '';
     }
+
+    const handleEscKey = (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closePublish();
+      }
+    };
+    window.addEventListener('keydown', handleEscKey);
+
     closeBtn.addEventListener('click', closePublish);
     cancelBtn.addEventListener('click', closePublish);
     backdrop.addEventListener('click', closePublish);
 
-    // Gestion des onglets de choix vidéo
+    // =========================================================================
+    // SYNCHRONISATION EN DIRECT DES OVERLAYS ET DES EFFETS SUR LES LECTEURS
+    // =========================================================================
+    const filterCssMap = {
+      none: 'none',
+      teal_orange: 'contrast(1.25) saturate(1.4) hue-rotate(-10deg) sepia(0.15)',
+      vintage: 'sepia(0.55) contrast(1.15) brightness(0.95) saturate(1.2)',
+      noir: 'grayscale(1) contrast(1.4) brightness(0.95)',
+      warm: 'sepia(0.35) saturate(1.45) brightness(1.05)',
+      cyberpunk: 'contrast(1.35) saturate(1.8) hue-rotate(180deg) brightness(0.92)',
+      pastel: 'brightness(1.1) contrast(0.92) saturate(1.2) hue-rotate(30deg)'
+    };
+
+    const filterNameMap = {
+      none: 'Normal',
+      teal_orange: 'Teal & Orange',
+      vintage: 'Vintage 70s',
+      noir: 'Noir & Blanc',
+      warm: 'Solaire Chaud',
+      cyberpunk: 'Cyberpunk',
+      pastel: 'Pastel Cool'
+    };
+
+    const fxNameMap = {
+      none: 'Aucun',
+      sparkles: '✨ Sparkles',
+      glitch: '⚡ Glitch VHS',
+      zoom_pulse: '🔍 Zoom Pulse',
+      vhs: '📼 Rétro VHS 1985',
+      soft_glow: '🌟 Lueur Douce'
+    };
+
+    const captionsInput = modal.querySelector('#short-captions-input');
+
+    function updateLiveOverlays() {
+      const activeFilterCss = filterCssMap[appliedFilter] || 'none';
+
+      // 1. Appliquer les filtres CSS sur les éléments vidéo
+      const videoEls = [
+        modal.querySelector('#file-video-preview-player'),
+        modal.querySelector('#short-camera-preview'),
+        modal.querySelector('#studio-video-preview-img')
+      ];
+      videoEls.forEach(el => {
+        if (el) el.style.filter = activeFilterCss;
+      });
+
+      // 2. Mettre à jour la couche d'effets visuels (FX)
+      ['#file-fx-layer', '#camera-fx-layer', '#studio-fx-layer'].forEach(selector => {
+        const layer = modal.querySelector(selector);
+        if (!layer) return;
+        layer.className = 'short-fx-layer';
+        if (appliedEffect !== 'none') {
+          layer.classList.add('fx-' + appliedEffect);
+        }
+      });
+
+      // 3. Mettre à jour le texte superposé (Texte Aa)
+      ['#file-text-layer', '#camera-text-layer', '#studio-text-layer'].forEach(selector => {
+        const layer = modal.querySelector(selector);
+        if (!layer) return;
+        const textSpan = layer.querySelector('.short-text-content');
+        if (appliedText.content.trim().length > 0) {
+          layer.style.display = 'block';
+          layer.className = `short-text-layer typo-${appliedText.style} pos-${appliedText.position}`;
+          if (textSpan) {
+            textSpan.textContent = appliedText.content;
+            textSpan.style.color = appliedText.color;
+          }
+        } else {
+          layer.style.display = 'none';
+        }
+      });
+
+      // 4. Mettre à jour les autocollants
+      ['#file-stickers-layer', '#camera-stickers-layer', '#studio-stickers-layer'].forEach(selector => {
+        const layer = modal.querySelector(selector);
+        if (!layer) return;
+        layer.innerHTML = appliedStickers.map((item, idx) => `
+          <button type="button" class="placed-sticker-badge" data-sticker-index="${idx}" title="Cliquer pour retirer">
+            <span>${item}</span>
+          </button>
+        `).join('');
+
+        // Attacher écouteur de suppression de sticker au clic
+        layer.querySelectorAll('.placed-sticker-badge').forEach(badge => {
+          badge.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(badge.getAttribute('data-sticker-index'), 10);
+            appliedStickers.splice(idx, 1);
+            updateLiveOverlays();
+          });
+        });
+      });
+
+      const stickersCountEl = modal.querySelector('#stickers-count');
+      if (stickersCountEl) stickersCountEl.textContent = appliedStickers.length;
+
+      // 5. Mettre à jour les sous-titres
+      const rawCaptions = captionsInput ? captionsInput.value.trim() : '';
+      const displayCaptions = rawCaptions.length > 0 
+        ? rawCaptions 
+        : "Spoken English subtitles preview in real-time 🇬🇧";
+
+      ['#file-subtitles-layer', '#camera-subtitles-layer', '#studio-subtitles-layer'].forEach(selector => {
+        const layer = modal.querySelector(selector);
+        if (!layer) return;
+        if (subtitlesConfig.enabled) {
+          layer.style.display = 'flex';
+          const bubble = layer.querySelector('.short-subtitles-bubble');
+          if (bubble) {
+            bubble.className = `short-subtitles-bubble ${subtitlesConfig.style}`;
+            const textEl = bubble.querySelector('span');
+            if (textEl) textEl.textContent = displayCaptions;
+          }
+        } else {
+          layer.style.display = 'none';
+        }
+      });
+
+      // 6. Mettre à jour l'indicateur de voix off
+      ['#file-voiceover-indicator', '#camera-voiceover-indicator', '#studio-voiceover-indicator'].forEach(selector => {
+        const indicator = modal.querySelector(selector);
+        if (indicator) {
+          indicator.style.display = voiceoverConfig.active ? 'inline-flex' : 'none';
+        }
+      });
+
+      // 7. Mettre à jour le récapitulatif de la galerie
+      const sumFilter = modal.querySelector('#summary-filter-val');
+      const sumEffect = modal.querySelector('#summary-effect-val');
+      const sumText = modal.querySelector('#summary-text-val');
+      const sumStickers = modal.querySelector('#summary-stickers-val');
+      const sumSubtitles = modal.querySelector('#summary-subtitles-val');
+      const sumVoiceover = modal.querySelector('#summary-voiceover-val');
+
+      if (sumFilter) sumFilter.textContent = filterNameMap[appliedFilter] || 'Normal';
+      if (sumEffect) sumEffect.textContent = fxNameMap[appliedEffect] || 'Aucun';
+      if (sumText) sumText.textContent = appliedText.content.trim() ? `"${appliedText.content.trim().slice(0, 20)}..."` : 'Aucun';
+      if (sumStickers) sumStickers.textContent = appliedStickers.length > 0 ? `${appliedStickers.length} autocollant(s)` : '0';
+      if (sumSubtitles) sumSubtitles.textContent = subtitlesConfig.enabled ? `Activés (${subtitlesConfig.style})` : 'Désactivés';
+      if (sumVoiceover) sumVoiceover.textContent = voiceoverConfig.active ? 'Enregistrée & Prête ✅' : 'Non enregistrée';
+    }
+
+    // =========================================================================
+    // GESTION DES ONGLETS DU STUDIO CRÉATIF (NAV 7 OUTILS)
+    // =========================================================================
+    const toolButtons = modal.querySelectorAll('.creative-tool-btn');
+    const toolPanels = {
+      text: modal.querySelector('#panel-tool-text'),
+      effects: modal.querySelector('#panel-tool-effects'),
+      filters: modal.querySelector('#panel-tool-filters'),
+      stickers: modal.querySelector('#panel-tool-stickers'),
+      subtitles: modal.querySelector('#panel-tool-subtitles'),
+      voiceover: modal.querySelector('#panel-tool-voiceover'),
+      save_gallery: modal.querySelector('#panel-tool-save_gallery')
+    };
+
+    toolButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toolButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tool = btn.getAttribute('data-tool');
+
+        Object.keys(toolPanels).forEach(k => {
+          if (toolPanels[k]) toolPanels[k].style.display = (k === tool) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // 1. Outil Texte Aa
+    const textInput = modal.querySelector('#studio-text-input');
+    const clearTextBtn = modal.querySelector('#btn-clear-text');
+
+    textInput.addEventListener('input', () => {
+      appliedText.content = textInput.value;
+      updateLiveOverlays();
+    });
+
+    clearTextBtn.addEventListener('click', () => {
+      textInput.value = '';
+      appliedText.content = '';
+      updateLiveOverlays();
+    });
+
+    modal.querySelectorAll('.style-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        modal.querySelectorAll('.style-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        appliedText.style = chip.getAttribute('data-style');
+        updateLiveOverlays();
+      });
+    });
+
+    modal.querySelectorAll('.color-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        modal.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        appliedText.color = dot.getAttribute('data-color');
+        updateLiveOverlays();
+      });
+    });
+
+    modal.querySelectorAll('.pos-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        modal.querySelectorAll('.pos-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        appliedText.position = chip.getAttribute('data-pos');
+        updateLiveOverlays();
+      });
+    });
+
+    // 2. Outil Effet
+    modal.querySelectorAll('.fx-option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modal.querySelectorAll('.fx-option-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        appliedEffect = card.getAttribute('data-fx');
+        updateLiveOverlays();
+      });
+    });
+
+    // 3. Outil Filtres
+    modal.querySelectorAll('.filter-option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modal.querySelectorAll('.filter-option-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        appliedFilter = card.getAttribute('data-filter');
+        updateLiveOverlays();
+      });
+    });
+
+    // 4. Outil Autocollants
+    modal.querySelectorAll('.sticker-chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const emoji = btn.getAttribute('data-sticker');
+        if (appliedStickers.length >= 10) {
+          alert('Vous avez atteint la limite de 10 autocollants sur ce Short.');
+          return;
+        }
+        appliedStickers.push(emoji);
+        updateLiveOverlays();
+        if (window.SoundFX && typeof window.SoundFX.playClick === 'function') {
+          window.SoundFX.playClick();
+        }
+      });
+    });
+
+    modal.querySelector('#btn-clear-stickers').addEventListener('click', () => {
+      appliedStickers = [];
+      updateLiveOverlays();
+    });
+
+    // 5. Outil Sous-titre
+    const subCheckbox = modal.querySelector('#check-enable-subtitles');
+    subCheckbox.addEventListener('change', () => {
+      subtitlesConfig.enabled = subCheckbox.checked;
+      updateLiveOverlays();
+    });
+
+    modal.querySelectorAll('.sub-style-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        modal.querySelectorAll('.sub-style-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        subtitlesConfig.style = chip.getAttribute('data-sub-style');
+        updateLiveOverlays();
+      });
+    });
+
+    // 6. Outil Voix off
+    const startVoiceBtn = modal.querySelector('#btn-start-voiceover');
+    const stopVoiceBtn = modal.querySelector('#btn-stop-voiceover');
+    const playVoiceBtn = modal.querySelector('#btn-play-voiceover');
+    const delVoiceBtn = modal.querySelector('#btn-delete-voiceover');
+    const voiceStatusText = modal.querySelector('#voiceover-status-text');
+    const voiceTimerText = modal.querySelector('#voiceover-timer');
+    const voiceWaveform = modal.querySelector('#voiceover-waveform-box');
+    const voiceVolumeSlider = modal.querySelector('#voiceover-volume');
+    const voiceVolumeVal = modal.querySelector('#voiceover-volume-val');
+
+    voiceVolumeSlider.addEventListener('input', () => {
+      voiceoverConfig.volume = voiceVolumeSlider.value / 100;
+      voiceVolumeVal.textContent = voiceVolumeSlider.value + '%';
+      if (voiceoverAudio) voiceoverAudio.volume = voiceoverConfig.volume;
+    });
+
+    startVoiceBtn.addEventListener('click', async () => {
+      try {
+        let stream = null;
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          try {
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          } catch(e) {
+            console.warn('Microphone permission not granted, using simulated studio audio track', e);
+          }
+        }
+
+        voiceoverChunks = [];
+        if (stream) {
+          voiceoverRecorder = new MediaRecorder(stream);
+          voiceoverRecorder.ondataavailable = e => {
+            if (e.data.size > 0) voiceoverChunks.push(e.data);
+          };
+          voiceoverRecorder.onstop = () => {
+            const blob = new Blob(voiceoverChunks, { type: 'audio/webm' });
+            voiceoverConfig.audioBlobUrl = URL.createObjectURL(blob);
+            stream.getTracks().forEach(t => t.stop());
+          };
+          voiceoverRecorder.start();
+        }
+
+        startVoiceBtn.style.display = 'none';
+        stopVoiceBtn.style.display = 'inline-flex';
+        voiceWaveform.style.display = 'flex';
+        voiceTimerText.style.display = 'inline-block';
+        voiceStatusText.textContent = 'Enregistrement de la voix off en cours...';
+
+        let seconds = 0;
+        if (voiceoverTimerInterval) clearInterval(voiceoverTimerInterval);
+        voiceoverTimerInterval = setInterval(() => {
+          seconds++;
+          voiceoverConfig.duration = seconds;
+          const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+          const secs = String(seconds % 60).padStart(2, '0');
+          voiceTimerText.textContent = `${mins}:${secs}`;
+          if (seconds >= 30) {
+            stopVoiceBtn.click();
+          }
+        }, 1000);
+      } catch (err) {
+        console.error('Voiceover record error', err);
+        alert('Impossible d\'accéder au microphone.');
+      }
+    });
+
+    stopVoiceBtn.addEventListener('click', () => {
+      if (voiceoverRecorder && voiceoverRecorder.state !== 'inactive') {
+        voiceoverRecorder.stop();
+      }
+      if (voiceoverTimerInterval) clearInterval(voiceoverTimerInterval);
+
+      voiceoverConfig.active = true;
+      stopVoiceBtn.style.display = 'none';
+      startVoiceBtn.style.display = 'inline-flex';
+      startVoiceBtn.innerHTML = '<span>🔄</span> Réenregistrer';
+      playVoiceBtn.style.display = 'inline-flex';
+      delVoiceBtn.style.display = 'inline-flex';
+      voiceWaveform.style.display = 'none';
+      voiceStatusText.textContent = 'Voix off enregistrée et synchronisée ✅';
+      voiceTimerText.textContent = 'Validé ✅';
+
+      updateLiveOverlays();
+      if (window.SoundFX && typeof window.SoundFX.playSuccess === 'function') {
+        window.SoundFX.playSuccess();
+      }
+    });
+
+    playVoiceBtn.addEventListener('click', () => {
+      if (voiceoverAudio) {
+        voiceoverAudio.pause();
+        voiceoverAudio = null;
+        playVoiceBtn.innerHTML = '<span>▶️</span> Écouter la Voix off';
+        return;
+      }
+
+      if (voiceoverConfig.audioBlobUrl) {
+        voiceoverAudio = new Audio(voiceoverConfig.audioBlobUrl);
+        voiceoverAudio.volume = voiceoverConfig.volume;
+        voiceoverAudio.onended = () => {
+          voiceoverAudio = null;
+          playVoiceBtn.innerHTML = '<span>▶️</span> Écouter la Voix off';
+        };
+        voiceoverAudio.play();
+        playVoiceBtn.innerHTML = '<span>⏸️</span> Pause Voix off';
+      } else {
+        // Fallback vocal synthèse pour démonstration
+        const speechText = captionsInput ? captionsInput.value.trim() : 'English Booster Studio Voiceover Track';
+        playSpeechCaptions(speechText || 'English Booster Voice Track');
+      }
+    });
+
+    delVoiceBtn.addEventListener('click', () => {
+      if (voiceoverAudio) {
+        voiceoverAudio.pause();
+        voiceoverAudio = null;
+      }
+      voiceoverConfig.active = false;
+      voiceoverConfig.audioBlobUrl = null;
+      voiceoverConfig.duration = 0;
+      playVoiceBtn.style.display = 'none';
+      delVoiceBtn.style.display = 'none';
+      voiceTimerText.style.display = 'none';
+      startVoiceBtn.innerHTML = '<span>🎙️</span> Démarrer la Voix off';
+      voiceStatusText.textContent = 'Piste vocale supprimée';
+      updateLiveOverlays();
+    });
+
+    // =========================================================================
+    // GESTION DES ONGLETS DE SÉLECTION VIDÉO (FILE / CAMERA / STUDIO)
+    // =========================================================================
     const tabButtons = modal.querySelectorAll('.upload-tab-btn');
     const tabPanels = {
       file: modal.querySelector('#panel-tab-file'),
@@ -1125,13 +1973,14 @@
           if (tabPanels[k]) tabPanels[k].style.display = (k === tab) ? 'block' : 'none';
         });
 
-        // Activer la caméra si on bascule sur l'onglet caméra
         if (tab === 'camera' && !cameraStream) {
           initCameraPreview();
         } else if (tab !== 'camera' && cameraStream) {
           cameraStream.getTracks().forEach(t => t.stop());
           cameraStream = null;
         }
+
+        updateLiveOverlays();
       });
     });
 
@@ -1178,10 +2027,11 @@
 
       previewPlayer.src = url;
       const sizeMb = (file.size / (1024 * 1024)).toFixed(1);
-      videoInfoText.textContent = `🎬 ${file.name} (${sizeMb} Mo) • Prêt pour publication`;
+      videoInfoText.textContent = `🎬 ${file.name} (${sizeMb} Mo) • Prêt avec retouches`;
       dropzone.style.display = 'none';
       previewWrap.style.display = 'flex';
       previewPlayer.play().catch(() => {});
+      updateLiveOverlays();
     }
 
     // 2. Gestion de l'enregistrement Caméra
@@ -1208,7 +2058,7 @@
 
     startRecordBtn.addEventListener('click', () => {
       if (!cameraStream) {
-        alert('Caméra non accessible. Veuillez utiliser l\'import de fichier ou le studio virtuel.');
+        alert('Caméra non accessible. Utilisez l\'import de fichier ou le studio virtuel.');
         return;
       }
       try {
@@ -1226,6 +2076,7 @@
           cameraFeed.src = selectedVideoBlobUrl;
           cameraFeed.controls = true;
           cameraFeed.play().catch(() => {});
+          updateLiveOverlays();
         };
 
         mediaRecorder.start();
@@ -1260,18 +2111,23 @@
     });
 
     // 3. Studio Thématique Radio
+    const studioPreviewImg = modal.querySelector('#studio-video-preview-img');
     modal.querySelectorAll('.thumb-radio-card').forEach(card => {
       card.addEventListener('click', () => {
         modal.querySelectorAll('.thumb-radio-card').forEach(c => c.classList.remove('active'));
         card.classList.add('active');
         const r = card.querySelector('input');
-        if (r) r.checked = true;
+        if (r) {
+          r.checked = true;
+          if (studioPreviewImg) {
+            studioPreviewImg.src = getAssetPath(r.value);
+          }
+        }
       });
     });
 
     // Vérificateur de conformité linguistique en temps réel
     const titleInput = modal.querySelector('#short-title-input');
-    const captionsInput = modal.querySelector('#short-captions-input');
     const complianceBox = modal.querySelector('#english-compliance-box');
     const complianceText = modal.querySelector('#english-compliance-text');
 
@@ -1279,16 +2135,19 @@
       const result = checkEnglishCompliance(titleInput.value, captionsInput.value);
       complianceBox.className = 'english-compliance-status ' + result.status;
       complianceText.textContent = result.msg;
+      updateLiveOverlays();
     }
 
     titleInput.addEventListener('input', updateCompliance);
     captionsInput.addEventListener('input', updateCompliance);
 
-    // Soumission du formulaire
-    const form = modal.querySelector('#form-create-new-short');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
+    // Initialiser les overlays
+    updateLiveOverlays();
 
+    // =========================================================================
+    // ENREGISTRER DANS LA GALERIE & PUBLIER LE SHORT
+    // =========================================================================
+    function executeSaveAndPublishShort() {
       const authorSelect = modal.querySelector('#short-author-select');
       const selectedOption = authorSelect.options[authorSelect.selectedIndex];
       const title = titleInput.value.trim();
@@ -1306,6 +2165,7 @@
 
       if (!certifyCheck.checked) {
         alert('Vous devez certifier que votre vidéo est 100% en anglais.');
+        certifyCheck.focus();
         return;
       }
 
@@ -1349,19 +2209,39 @@
         isEnglishOnly: true,
         tags: ['#EnglishOnly', '#EnglishBooster', '#' + category],
         date: 'À l\'instant',
-        comments: []
+        comments: [],
+        creativeEdits: {
+          filter: appliedFilter,
+          effect: appliedEffect,
+          text: { ...appliedText },
+          stickers: [...appliedStickers],
+          subtitles: { ...subtitlesConfig },
+          voiceover: { ...voiceoverConfig }
+        }
       };
 
+      // Sauvegarde dans la collection
       shortsData.unshift(newShort);
       saveShorts();
+
+      // Déclencher le téléchargement local si fichier vidéo
+      try {
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.style.display = 'none';
+        downloadAnchor.href = mediaUrl;
+        downloadAnchor.download = `EnglishBooster_${newShort.id}.webm`;
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        setTimeout(() => downloadAnchor.remove(), 1000);
+      } catch(e){}
 
       if (window.SoundFX && typeof window.SoundFX.playSuccess === 'function') {
         window.SoundFX.playSuccess();
       }
       if (window.showToast) {
         window.showToast(
-          '🎉 Félicitations ! Votre vidéo Short 100% en anglais est en ligne (+50 XP).',
-          'Vidéos & Shorts',
+          '🎉 Félicitations ! Votre vidéo Short a été enregistrée dans votre galerie (+50 XP).',
+          'Galerie des Vidéos & Shorts',
           'success',
           3500
         );
@@ -1370,11 +2250,31 @@
       closePublish();
       renderShortsGrid();
 
-      // Ouvrir immédiatement le lecteur sur le nouveau Short
+      // Navigation directe vers la Galerie des Shorts
+      const gridContainer = document.getElementById('shorts-grid-container');
+      if (gridContainer) {
+        gridContainer.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Ouvrir immédiatement le lecteur immersif sur le nouveau Short dans la galerie
       setTimeout(() => {
         openShortModal(newShort.id);
-      }, 350);
+      }, 400);
+    }
+
+    // Déclencheurs de sauvegarde
+    const form = modal.querySelector('#form-create-new-short');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      executeSaveAndPublishShort();
     });
+
+    const saveGalleryBtn = modal.querySelector('#btn-save-to-gallery-action');
+    if (saveGalleryBtn) {
+      saveGalleryBtn.addEventListener('click', () => {
+        executeSaveAndPublishShort();
+      });
+    }
   }
 
   // ==========================================================================
