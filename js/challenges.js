@@ -8,14 +8,17 @@ const ARENAS_DATABASE = {
   speed_duel: {
     id: 'speed_duel',
     name: 'Speed Fluency Duel',
+    nameFr: 'Duel de Fluidité & Vitesse',
     icon: '⚡',
     timeSecs: 180,
     roundCount: 3,
     xpReward: 80,
     instruction: '⚡ 30s Rapid Turn: Zero hesitations or filler words allowed!',
+    instructionFr: '⚡ Tour rapide de 30s : Zéro hésitation ni tic de langage autorisé !',
     rounds: [
       {
         topic: "What is the single most defining adventure of your life so far?",
+        topicFr: "Quelle a été la plus grande aventure de votre vie jusqu'ici ?",
         partnerScript: "For me, it was backpacking across Hokkaido during winter. I had to navigate remote train stations purely in basic Japanese, which pushed my adaptability to the absolute limit!",
         userSuggestions: [
           "My defining adventure was presenting our university robotics research to international judges in Singapore with zero preparation.",
@@ -25,6 +28,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "If you could master any complex skill overnight, what would it be and why?",
+        topicFr: "Si vous pouviez maîtriser n'importe quelle compétence complexe du jour au lendemain, laquelle choisiriez-vous et pourquoi ?",
         partnerScript: "I would immediately master simultaneous interpretation between English, Mandarin, and Japanese so I could facilitate international diplomatic dialogues.",
         userSuggestions: [
           "I would choose executive public speaking so I can inspire international crowds and pitch bold ideas effortlessly.",
@@ -33,6 +37,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Sell an ordinary cold black coffee as if it were a $500 luxury elixir in 25 seconds!",
+        topicFr: "Vendez un simple café noir froid comme s'il s'agissait d'un élixir de luxe à 500 $ en 25 secondes !",
         partnerScript: "Harvested from volcanic slopes at dawn, this chilled obsidian nectar sharpens your cognitive frequency and awakens primal genius with zero compromise!",
         userSuggestions: [
           "Behold liquid focus: brewed with glacial Alpine water and rare Ethiopian cherries to supercharge your mental bandwidth for 12 hours.",
@@ -42,7 +47,12 @@ const ARENAS_DATABASE = {
     ],
     evalMetric: "Words Per Minute (WPM) & Hesitation Reflex",
     evalCriteria: ["Fluency (118 WPM)", "Zero Filler Words", "Immediate Reflex", "Natural Pauses"],
-    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner) => `
+    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner, isFr = false) => isFr ? `
+      <strong>Diagnostic de l'Arbitre IA pour le Duel de Fluidité & Vitesse :</strong><br>
+      • <strong>Alex (Vous)</strong> : Niveau attribué <strong>${yourCEFR}</strong>. Latence de réponse remarquable (${Math.round(youScore * 1.25)} WPM). Hésitations contenues sous 0.8s avec une belle spontanéité.<br>
+      • <strong>${partner.name}</strong> : Niveau attribué <strong>${partner.level}</strong>. Cadence soutenue (${Math.round(partner.baseScore * 1.15)} WPM) avec des structures complètes.<br>
+      • <strong>Conseil Pédagogique</strong> : Excellent rythme oral ! Continuez à enchaîner vos idées sans interruption pour consolider votre fluidité native.
+    ` : `
       <strong>AI Referee Assessment for Speed Fluency Duel:</strong><br>
       • <strong>Alex (You)</strong>: Awarded <strong>${yourCEFR}</strong>. Exceptional response latency (${Math.round(youScore * 1.25)} WPM). Kept hesitations under 0.8s with natural transitional momentum.<br>
       • <strong>${partner.name}</strong>: Awarded <strong>${partner.level}</strong>. High cadence (${Math.round(partner.baseScore * 1.15)} WPM) with solid sentence completeness.<br>
@@ -52,14 +62,17 @@ const ARENAS_DATABASE = {
   debate: {
     id: 'debate',
     name: 'The Great Debate Arena',
+    nameFr: 'La Grande Arène de Débat',
     icon: '⚖️',
     timeSecs: 300,
     roundCount: 3,
     xpReward: 150,
     instruction: '⚖️ Stance: You are PRO (Affirmative) · Partner is CON (Negative) · Defend with structured logic!',
+    instructionFr: '⚖️ Position : Vous êtes POUR · Le partenaire est CONTRE · Argumentez avec une logique structurée !',
     rounds: [
       {
         topic: "Resolved: AI language coaches will fundamentally accelerate human fluency faster than traditional classroom curricula.",
+        topicFr: "Thèse : Les coachs linguistiques IA accéléreront fondamentalement l'aisance orale plus vite que les cours traditionnels.",
         partnerScript: "I stand on the CON side: human emotional nuance, spontaneous social empathy, and genuine peer camaraderie cannot be replicated by synthetic algorithms!",
         userSuggestions: [
           "I argue PRO: AI eliminates psychological embarrassment, provides infinite repetitions, and pinpoints micro-phonetic errors instantly.",
@@ -69,6 +82,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Resolved: Global remote work culture builds greater cross-cultural understanding than physical office relocation.",
+        topicFr: "Thèse : Le télétravail mondial favorise une meilleure compréhension interculturelle que l'expatriation physique.",
         partnerScript: "CON rebuttal: Virtual video calls are transactional. Real cross-cultural understanding requires sharing lunch, reading body language, and living in local communities!",
         userSuggestions: [
           "PRO stance: Remote work democratizes access for talent across Africa, Latin America, and Asia without expensive visas or displacement.",
@@ -77,6 +91,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Final Rebuttal & Synthesis: Balancing automated feedback with authentic human conversation.",
+        topicFr: "Réfutation Finale & Synthèse : Équilibrer les retours automatisés et la conversation humaine authentique.",
         partnerScript: "I concede that hybrid learning is potent, but human connection must remain the primary anchor of language mastery!",
         userSuggestions: [
           "In conclusion, AI provides the training simulator, but live peer duels like this platform provide the authentic conversational arena.",
@@ -86,7 +101,12 @@ const ARENAS_DATABASE = {
     ],
     evalMetric: "Logical Connectors & Persuasive Nuance",
     evalCriteria: ["Logical Connectors (Furthermore, However)", "Argument Structure", "Persuasive Tone", "Rebuttal Precision"],
-    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner) => `
+    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner, isFr = false) => isFr ? `
+      <strong>Diagnostic de l'Arbitre IA pour l'Arène de Débat :</strong><br>
+      • <strong>Alex (Vous)</strong> : Niveau attribué <strong>${yourCEFR}</strong>. Maîtrise exemplaire des connecteurs de discours formels (<em>"furthermore", "empirical data shows", "in conclusion"</em>). Forte présence rhétorique.<br>
+      • <strong>${partner.name}</strong> : Niveau attribué <strong>${partner.level}</strong>. Réfutations précises avec un argumentaire percutant.<br>
+      • <strong>Conseil Pédagogique</strong> : Remarquable profondeur argumentative ! Continuez à challenger des débatteurs C1/C2 pour parfaire l'art de la concession.
+    ` : `
       <strong>AI Referee Assessment for The Great Debate Arena:</strong><br>
       • <strong>Alex (You)</strong>: Awarded <strong>${yourCEFR}</strong>. Demonstrated mastery of formal discourse markers (<em>"furthermore", "empirical data shows", "in conclusion"</em>). Strong rhetorical poise.<br>
       • <strong>${partner.name}</strong>: Awarded <strong>${partner.level}</strong>. Countered effectively with pragmatic emotional appeals and crisp rebuttals.<br>
@@ -96,14 +116,17 @@ const ARENAS_DATABASE = {
   roleplay: {
     id: 'roleplay',
     name: 'Roleplay & Impromptu Scenario',
+    nameFr: 'Jeu de Rôle & Scénario Improvvisé',
     icon: '🎭',
     timeSecs: 240,
     roundCount: 3,
     xpReward: 120,
     instruction: '🎭 Scenario: Silicon Valley Tech Interview · You are Candidate · Partner is Lead Architect!',
+    instructionFr: '🎭 Scénario : Entretien Tech Silicon Valley · Vous êtes le Candidat · Le partenaire est l\'Architecte Principal !',
     rounds: [
       {
         topic: "Scenario: Tell me about a critical technical breakdown in your previous project and how you regained user trust.",
+        topicFr: "Scénario : Décrivez une panne technique critique sur votre projet précédent et comment vous avez regagné la confiance des utilisateurs.",
         partnerScript: "Welcome to the interview Alex! Let's dive straight in: describe a high-stakes incident where your system failed and how you communicated with stakeholders.",
         userSuggestions: [
           "During our peak user launch, our audio streaming pipeline dropped 15% of packets. I immediately published a transparent status report and deployed an edge-caching fix within 20 minutes.",
@@ -113,6 +136,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Scenario: Handling divergent opinions between engineering priorities and aggressive product deadlines.",
+        topicFr: "Scénario : Gérer des divergences entre priorités d'ingénierie et délais produit serrés.",
         partnerScript: "Good incident response. Now, how do you handle a scenario where product managers demand a launch tomorrow, but engineering flags technical debt?",
         userSuggestions: [
           "I align both sides around measurable risk: we define non-negotiable security guardrails, launch an invite-only beta, and schedule dedicated debt sprints.",
@@ -121,6 +145,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Scenario: Pitch your visionary 5-year outlook for AI-augmented human communication.",
+        topicFr: "Scénario : Présentez votre vision à 5 ans pour la communication humaine assistée par IA.",
         partnerScript: "Final question: What is your 5-year thesis on how human language learning will interface with ambient intelligence?",
         userSuggestions: [
           "We will see ambient coaching whisper contextual vocabulary during live conversations, turning everyday life into an immersive language lab.",
@@ -130,7 +155,12 @@ const ARENAS_DATABASE = {
     ],
     evalMetric: "Speech Register, Idioms & Pragmatics",
     evalCriteria: ["Appropriate Politeness Register", "Idiomatic Fluency", "Context Adaptability", "Active Empathy"],
-    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner) => `
+    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner, isFr = false) => isFr ? `
+      <strong>Diagnostic de l'Arbitre IA pour le Jeu de Rôle :</strong><br>
+      • <strong>Alex (Vous)</strong> : Niveau attribué <strong>${yourCEFR}</strong>. Registre professionnel impeccable (<em>"cross-functional alignment", "empirical risk", "guardrails"</em>). Forte empathie conversationnelle.<br>
+      • <strong>${partner.name}</strong> : Niveau attribué <strong>${partner.level}</strong>. Posture managériale authentique avec des relances ciblées.<br>
+      • <strong>Conseil Pédagogique</strong> : Excellente réactivité professionnelle ! Votre niveau d'anglais est parfaitement adapté à un environnement de direction en entreprise.
+    ` : `
       <strong>AI Referee Assessment for Roleplay Scenario:</strong><br>
       • <strong>Alex (You)</strong>: Awarded <strong>${yourCEFR}</strong>. Impeccable professional register (<em>"cross-functional alignment", "empirical risk", "guardrails"</em>). High conversational empathy.<br>
       • <strong>${partner.name}</strong>: Awarded <strong>${partner.level}</strong>. Maintained an authentic executive demeanor with targeted situational follow-ups.<br>
@@ -140,14 +170,17 @@ const ARENAS_DATABASE = {
   phonetics: {
     id: 'phonetics',
     name: 'Pronunciation & Phonetics Clash',
+    nameFr: 'Duel de Prononciation & Phonétique',
     icon: '🎯',
     timeSecs: 180,
     roundCount: 3,
     xpReward: 100,
     instruction: '🎯 Phonetics Clash: Articulate dental fricatives /θ/ vs /ð/ & rhythmic syllable stress!',
+    instructionFr: '🎯 Duel Phonétique : Articulez les fricatives dentales /θ/ vs /ð/ et le rythme accentuel !',
     rounds: [
       {
         topic: "Phonetic Target: /θ/ (unvoiced) vs /ð/ (voiced) dental fricatives",
+        topicFr: "Cible Phonétique : Fricatives dentales /θ/ (sourde) vs /ð/ (sonore)",
         partnerScript: "My turn: 'Thirty-three thoughtful brothers breathe thoroughly through the freezing northern weather.' Notice the vocal cord vibration on 'breathe' versus 'thoughtful'!",
         userSuggestions: [
           "Thirty-three thoughtful brothers breathe thoroughly through the freezing northern weather.",
@@ -157,6 +190,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Phonetic Target: Rapid tongue agility & rhythmic stress cadence",
+        topicFr: "Cible Phonétique : Agilité linguale rapide et cadence rythmique accentuée",
         partnerScript: "Listen to my cadence: 'Through three cheese trees three free fleas flew. While these fleas flew, freezy breeze blew.' Your turn to match the tempo!",
         userSuggestions: [
           "Through three cheese trees three free fleas flew. While these fleas flew, freezy breeze blew. Freezy breeze made these three trees freeze!",
@@ -165,6 +199,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Phonetic Target: Emphatic contrastive stress shift in spoken English",
+        topicFr: "Cible Phonétique : Déplacement de l'accent contrastif emphatique en anglais oral",
         partnerScript: "Shift the emphatic focus across the sentence: 'I never said she stole my money.' Emphasize 'never' first, then emphasize 'stole'!",
         userSuggestions: [
           "I NEVER said she stole my money... and I never said SHE stole my money!",
@@ -174,7 +209,12 @@ const ARENAS_DATABASE = {
     ],
     evalMetric: "Phonological Precision, Intonation & Syllable Stress",
     evalCriteria: ["Acoustic Clarity (96%)", "Minimal Pair Precision", "Rhythm & Stress", "Reduction of Accent Bias"],
-    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner) => `
+    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner, isFr = false) => isFr ? `
+      <strong>Diagnostic de l'Arbitre IA pour le Duel de Prononciation & Phonétique :</strong><br>
+      • <strong>Alex (Vous)</strong> : Niveau attribué <strong>${yourCEFR}</strong>. Clarté acoustique mesurée à <strong>96%</strong>. Articulation nette des fricatives dentales (/θ/ et /ð/) et contours d'intonation expressifs.<br>
+      • <strong>${partner.name}</strong> : Niveau attribué <strong>${partner.level}</strong>. Haute précision phonologique avec régularité syllabique.<br>
+      • <strong>Conseil Pédagogique</strong> : Phonétique remarquable ! Votre placement d'accent rend vos virelangues limpides et parfaitement compréhensibles.
+    ` : `
       <strong>AI Referee Assessment for Pronunciation & Phonetics Clash:</strong><br>
       • <strong>Alex (You)</strong>: Awarded <strong>${yourCEFR}</strong>. Acoustic clarity scored at <strong>96%</strong>. Crisp dental fricative articulation (/θ/ and /ð/) and expressive intonation contours.<br>
       • <strong>${partner.name}</strong>: Awarded <strong>${partner.level}</strong>. High phonological precision with consistent syllable timing.<br>
@@ -184,14 +224,17 @@ const ARENAS_DATABASE = {
   cefr_grand: {
     id: 'cefr_grand',
     name: 'CEFR Grand Live Diagnostic',
+    nameFr: 'Grand Diagnostic Live CECRL',
     icon: '🏆',
     timeSecs: 480,
     roundCount: 3,
     xpReward: 250,
     instruction: '🏆 Comprehensive CEFR Matrix Audit: Fluency, Lexical Resource, Grammar, Phonology & Cohesion!',
+    instructionFr: '🏆 Audit Global Matrice CECRL : Fluidité, Lexique, Grammaire, Phonologie & Cohésion !',
     rounds: [
       {
         topic: "Benchmark 1 — Complex Socio-Economic Analysis: Propose an actionable reform for structural educational inequality.",
+        topicFr: "Repère 1 — Analyse Socio-Économique : Proposez une réforme concrète face aux inégalités éducatives structurelles.",
         partnerScript: "For our initial benchmark, let us analyze systemic equity. In your view, what multilateral framework best mitigates the digital divide in developing economies?",
         userSuggestions: [
           "To bridge educational disparities, governments should subsidize open-source satellite connectivity and incentivize micro-accreditation hubs in underserved regions.",
@@ -201,6 +244,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Benchmark 2 — Nuanced Counter-Factual Reasoning: Analyze unintended consequences of rapid algorithmic centralization.",
+        topicFr: "Repère 2 — Raisonnement Contrefactuel : Analysez les conséquences inattendues de la centralisation algorithmique.",
         partnerScript: "A compelling structural synthesis. Now, consider the trade-offs: what subtle socio-cultural distortions emerge when communication algorithms optimize purely for engagement?",
         userSuggestions: [
           "Algorithmic polarization tends to flatten rhetorical nuance, encouraging hyperbolic soundbites over substantive, dialectical discourse.",
@@ -210,6 +254,7 @@ const ARENAS_DATABASE = {
       },
       {
         topic: "Benchmark 3 — Abstract Vision & Rhetorical Synthesis: The future of human consciousness in a multilingual global civilization.",
+        topicFr: "Repère 3 — Vision Abstraite & Synthèse Rhétorique : L'avenir de la conscience humaine dans une civilisation multilingue.",
         partnerScript: "Outstanding lexical precision. In your final synthesis, articulate how linguistic versatility expands an individual's cognitive architecture.",
         userSuggestions: [
           "Speaking multiple languages expands conceptual horizons; it offers alternative syntactic prisms through which we interpret empathy, time, and shared destiny.",
@@ -219,7 +264,12 @@ const ARENAS_DATABASE = {
     ],
     evalMetric: "Official 5-Criteria CEFR Level Diagnostic (A1-C2)",
     evalCriteria: ["Lexical Resource (C1)", "Grammatical Accuracy", "Coherence & Cohesion", "Interactive Fluency", "Phonological Control"],
-    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner) => `
+    feedbackGenerator: (youScore, partnerScore, yourCEFR, partner, isFr = false) => isFr ? `
+      <strong>Diagnostic de l'Arbitre IA pour le Grand Diagnostic Live CECRL :</strong><br>
+      • <strong>Alex (Vous)</strong> : Niveau Officiel Attribué <strong>${yourCEFR}</strong>. Cohésion structurelle sans faille, forte densité lexicale C1/C2 (<em>"multilateral framework", "dialectical discourse", "syntactic prisms"</em>), et autonomie communicative naturelle.<br>
+      • <strong>${partner.name}</strong> : Niveau attribué <strong>${partner.level}</strong>. Rigueur syntaxique constante et formulation conceptuelle claire.<br>
+      • <strong>Conclusion Officielle</strong> : Félicitations ! Votre évaluation diagnostique vous qualifie pour l'attestation officielle <strong>CECRL ${yourCEFR} Avancé</strong> sur English Booster.
+    ` : `
       <strong>AI Referee Assessment for CEFR Grand Live Diagnostic:</strong><br>
       • <strong>Alex (You)</strong>: Awarded <strong>${yourCEFR} Verified Level</strong>. Flawless structural cohesion, high-density C1/C2 lexicon (<em>"multilateral framework", "dialectical discourse", "syntactic prisms"</em>), and effortless communicative autonomy.<br>
       • <strong>${partner.name}</strong>: Awarded <strong>${partner.level}</strong>. Consistent syntactic discipline and articulate conceptual delivery.<br>
@@ -283,8 +333,9 @@ class EnglishBoosterChallenges {
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const arenaParam = urlParams.get('arena');
+      const partnerParam = urlParams.get('partner');
       if (arenaParam && ARENAS_DATABASE[arenaParam]) {
-        setTimeout(() => this.openArena(arenaParam), 350);
+        setTimeout(() => this.openArena(arenaParam, partnerParam), 350);
       } else if (urlParams.get('quick') === 'true') {
         setTimeout(() => {
           const quickBattleBtn = document.getElementById('btn-quick-random-battle');
@@ -890,7 +941,7 @@ class EnglishBoosterChallenges {
     }
   }
 
-  openArena(modeId) {
+  openArena(modeId, partnerId = null) {
     this.currentMode = ARENAS_DATABASE[modeId] || ARENAS_DATABASE.speed_duel;
     this.currentRound = 1;
     this.userSpokenWords = 0;
@@ -903,7 +954,7 @@ class EnglishBoosterChallenges {
     if (window.EnglishBooster?.SoundFX) {
       window.EnglishBooster.SoundFX.playClick();
     }
-    this.startMatchmaking();
+    this.startMatchmaking(partnerId);
   }
 
   closeArena() {
@@ -945,7 +996,7 @@ class EnglishBoosterChallenges {
     }, 700);
   }
 
-  startMatchmaking() {
+  startMatchmaking(partnerId = null) {
     // Reset Stages
     document.getElementById('arena-stage-matching').style.display = 'block';
     document.getElementById('arena-stage-battle').style.display = 'none';
@@ -956,10 +1007,11 @@ class EnglishBoosterChallenges {
     const radarIcon = document.getElementById('arena-radar-icon');
 
     const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+    const modeName = isFr && this.currentMode.nameFr ? this.currentMode.nameFr : this.currentMode.name;
     if (radarIcon) radarIcon.textContent = this.currentMode.icon;
     if (title) {
       title.textContent = isFr
-        ? `Recherche d'un adversaire pour ${this.currentMode.name}...`
+        ? `Recherche d'un adversaire pour ${modeName}...`
         : `Finding Opponent for ${this.currentMode.name}...`;
     }
     if (desc) {
@@ -968,9 +1020,12 @@ class EnglishBoosterChallenges {
         : `Matching with active online learners testing ${this.currentMode.evalMetric}...`;
     }
 
-    // Select random partner from community
-    const randomPartner = CHALLENGER_PEERS[Math.floor(Math.random() * CHALLENGER_PEERS.length)];
-    this.currentPartner = randomPartner;
+    // Select partner from peer list or use specific partner if requested
+    let partner = null;
+    if (partnerId) {
+      partner = CHALLENGER_PEERS.find(p => p.id === partnerId || p.id.startsWith(partnerId.split('_')[0]));
+    }
+    this.currentPartner = partner || CHALLENGER_PEERS[Math.floor(Math.random() * CHALLENGER_PEERS.length)];
     this.userSpokenWords = 0;
 
     // Simulate online discovery (1.4s)
@@ -990,12 +1045,26 @@ class EnglishBoosterChallenges {
     document.getElementById('arena-stage-battle').style.display = 'block';
     document.getElementById('arena-stage-results').style.display = 'none';
 
+    // Set Duo Focus View by default for duels (clean 1-on-1 sparring interface)
+    const btnMultiScreens = document.getElementById('btn-view-multi-screens');
+    const btnDuoFocus = document.getElementById('btn-view-duo-focus');
+    const multiGrid = document.getElementById('quick-random-multi-screens');
+    const duoGrid = document.getElementById('battle-stage-duo-grid');
+
+    if (multiGrid && duoGrid && btnDuoFocus && btnMultiScreens) {
+      duoGrid.style.display = 'grid';
+      multiGrid.style.display = 'none';
+      btnDuoFocus.classList.add('active');
+      btnMultiScreens.classList.remove('active');
+    }
+
     if (window.EnglishBooster?.SoundFX) {
       window.EnglishBooster.SoundFX.playSuccess();
     }
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
     window.EnglishBooster.showToast(
-      'Opponent Found!',
-      `Challenger: ${this.currentPartner.name} (${this.currentPartner.country}) · Level ${this.currentPartner.level}`,
+      isFr ? 'Adversaire Connecté !' : 'Opponent Found!',
+      `${this.currentPartner.name} (${this.currentPartner.country}) · Level ${this.currentPartner.level}`,
       'success'
     );
 
@@ -1011,8 +1080,11 @@ class EnglishBoosterChallenges {
     const partnerImg = document.getElementById('battle-partner-img');
     const partnerFlag = document.getElementById('battle-partner-flag');
 
-    if (modeBadge) modeBadge.textContent = `${this.currentMode.icon} ${this.currentMode.name}`;
-    if (modeInstruction) modeInstruction.textContent = this.currentMode.instruction;
+    const modeName = isFr && this.currentMode.nameFr ? this.currentMode.nameFr : this.currentMode.name;
+    const modeInstructionText = isFr && this.currentMode.instructionFr ? this.currentMode.instructionFr : this.currentMode.instruction;
+
+    if (modeBadge) modeBadge.textContent = `${this.currentMode.icon} ${modeName}`;
+    if (modeInstruction) modeInstruction.textContent = modeInstructionText;
 
     if (partnerName) partnerName.textContent = this.currentPartner.name;
     if (partnerLevel) partnerLevel.textContent = `Level ${this.currentPartner.level} · ${this.currentPartner.country}`;
@@ -1021,9 +1093,19 @@ class EnglishBoosterChallenges {
 
     // Reset transcripts
     const youTranscript = document.getElementById('battle-you-transcript');
-    if (youTranscript) youTranscript.textContent = '"Tap microphone to speak, select an argument or type below..."';
+    if (youTranscript) {
+      youTranscript.textContent = isFr
+        ? '"Appuyez sur le micro, choisissez un argument ou tapez votre phrase ci-dessous..."'
+        : '"Tap microphone to speak, select an argument or type below..."';
+      youTranscript.style.color = '#ffffff';
+    }
     const multiTranscript = document.getElementById('multi-transcript-you');
-    if (multiTranscript) multiTranscript.textContent = '"Tap microphone or argue below to speak..."';
+    if (multiTranscript) {
+      multiTranscript.textContent = isFr
+        ? '"Appuyez sur le micro ou tapez ci-dessous..."'
+        : '"Tap microphone or argue below to speak..."';
+      multiTranscript.style.color = '#ffffff';
+    }
 
     this.updateRoundView();
     this.updateTurnVisuals();
@@ -1034,12 +1116,17 @@ class EnglishBoosterChallenges {
     const roundBadge = document.getElementById('battle-round-badge');
     const topicText = document.getElementById('battle-topic-text');
     const roundData = this.getCurrentRoundData();
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
 
     if (roundBadge) {
       roundBadge.textContent = `Round ${this.currentRound} / ${this.currentMode.roundCount}`;
     }
     if (topicText && roundData) {
-      topicText.textContent = `"${roundData.topic}"`;
+      if (isFr && roundData.topicFr) {
+        topicText.innerHTML = `"${roundData.topic}"<div style="font-size: 0.88rem; color: #94a3b8; font-weight: 400; margin-top: 6px;"><em>(« ${roundData.topicFr} »)</em></div>`;
+      } else {
+        topicText.textContent = `"${roundData.topic}"`;
+      }
     }
 
     this.renderQuickSuggestions();
@@ -1052,6 +1139,7 @@ class EnglishBoosterChallenges {
 
     const modeId = this.currentMode.id;
     const roundData = this.getCurrentRoundData();
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
     let hudHtml = '';
 
     if (modeId === 'speed_duel') {
@@ -1059,25 +1147,33 @@ class EnglishBoosterChallenges {
       hudHtml = `
         <div class="hud-items-row">
           <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-            <span class="hud-metric-pill speed-pill">⚡ Live Cadence: ${calculatedWPM} WPM</span>
-            <span class="hud-metric-pill">⏱️ Turn Limit: 30s Rapid Sprint</span>
-            <span class="hud-metric-pill" style="color: var(--green-400);">🚫 0 Hesitations / 0 Fillers</span>
+            <span class="hud-metric-pill speed-pill">⚡ ${isFr ? 'Cadence en direct :' : 'Live Cadence:'} ${calculatedWPM} WPM</span>
+            <span class="hud-metric-pill">⏱️ ${isFr ? 'Limite par tour : 30s' : 'Turn Limit: 30s Rapid Sprint'}</span>
+            <span class="hud-metric-pill" style="color: var(--green-400);">🚫 ${isFr ? '0 Hésitation / 0 Remplissage' : '0 Hesitations / 0 Fillers'}</span>
           </div>
-          <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 700;">Reflex Target: &lt; 0.8s</span>
+          <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 700;">${isFr ? 'Cible réflexe : < 0.8s' : 'Reflex Target: < 0.8s'}</span>
         </div>
       `;
     } else if (modeId === 'debate') {
-      const stageName = this.currentRound === 1 
-        ? 'Stage 1: Opening Thesis Construction' 
-        : (this.currentRound === 2 ? 'Stage 2: Cross-Examination Rebuttal' : 'Stage 3: Final Synthesis & Verdict');
+      const stageName = isFr
+        ? (this.currentRound === 1 ? 'Phase 1 : Thèse & Construction' : (this.currentRound === 2 ? 'Phase 2 : Contre-Interrogatoire' : 'Phase 3 : Synthèse & Verdict'))
+        : (this.currentRound === 1 ? 'Stage 1: Opening Thesis' : (this.currentRound === 2 ? 'Stage 2: Cross-Examination' : 'Stage 3: Final Synthesis'));
+      
       hudHtml = `
         <div class="hud-items-row">
           <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-            <span class="hud-metric-pill debate-pill-pro">🟢 Alex (You): PRO Stance</span>
-            <span class="hud-metric-pill debate-pill-con">🟣 ${this.currentPartner.name}: CON Stance</span>
+            <span class="hud-metric-pill debate-pill-pro">🟢 Alex (You): PRO</span>
+            <span class="hud-metric-pill debate-pill-con">🟣 ${this.currentPartner.name}: CON</span>
             <span class="hud-metric-pill">${stageName}</span>
           </div>
-          <span style="font-size: 0.78rem; color: var(--text-muted);">💡 Key markers: <em>Furthermore</em>, <em>Conversely</em>, <em>In light of this</em></span>
+          <div style="font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+            <span>💡 ${isFr ? 'Connecteurs :' : 'Rhetorical markers:'}</span>
+            <button type="button" class="btn btn-secondary btn-sm btn-connector-insert" data-text="Furthermore, " style="padding: 2px 7px; font-size: 0.72rem;">Furthermore</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-connector-insert" data-text="Conversely, " style="padding: 2px 7px; font-size: 0.72rem;">Conversely</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-connector-insert" data-text="Empirical data shows " style="padding: 2px 7px; font-size: 0.72rem;">Empirical data</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-connector-insert" data-text="In light of this, " style="padding: 2px 7px; font-size: 0.72rem;">In light of this</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-connector-insert" data-text="In conclusion, " style="padding: 2px 7px; font-size: 0.72rem;">In conclusion</button>
+          </div>
         </div>
       `;
     } else if (modeId === 'roleplay') {
@@ -1087,10 +1183,10 @@ class EnglishBoosterChallenges {
             <span class="hud-metric-pill" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border-color: rgba(236, 72, 153, 0.4);">
               🎭 Silicon Valley Tech Interview
             </span>
-            <span class="hud-metric-pill">Role: Senior Candidate</span>
-            <span class="hud-metric-pill">Partner: Lead Architect</span>
+            <span class="hud-metric-pill">${isFr ? 'Rôle : Candidat Senior' : 'Role: Senior Candidate'}</span>
+            <span class="hud-metric-pill">${isFr ? 'Partenaire : Architecte Principal' : 'Partner: Lead Architect'}</span>
           </div>
-          <span style="font-size: 0.78rem; color: #34d399; font-weight: 600;">☑️ Executive Register Target: Active</span>
+          <span style="font-size: 0.78rem; color: #34d399; font-weight: 600;">☑️ ${isFr ? 'Registre Professionnel : Actif' : 'Executive Register Target: Active'}</span>
         </div>
       `;
     } else if (modeId === 'phonetics') {
@@ -1100,10 +1196,10 @@ class EnglishBoosterChallenges {
             <span class="hud-metric-pill phonetics-pill">
               🎯 ${roundData?.topic?.split(':')[0] || 'Phonetic Articulation Target'}
             </span>
-            <span class="hud-metric-pill" style="color: var(--green-400);">📊 Acoustic Clarity: 97%</span>
+            <span class="hud-metric-pill" style="color: var(--green-400);">📊 ${isFr ? 'Clarté Acoustique : 97%' : 'Acoustic Clarity: 97%'}</span>
           </div>
           <button type="button" id="btn-listen-phonetic-model" class="btn btn-secondary btn-sm" style="font-size: 0.74rem; padding: 4px 10px; border-color: rgba(6, 182, 212, 0.5); color: #22d3ee;">
-            🔊 Hear Native Model Audio
+            🔊 ${isFr ? 'Écouter le Modèle Audio Natif' : 'Hear Native Model Audio'}
           </button>
         </div>
       `;
@@ -1112,11 +1208,11 @@ class EnglishBoosterChallenges {
         <div class="hud-items-row">
           <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
             <span class="hud-metric-pill cefr-pill">
-              🏆 Diagnostic Benchmark ${this.currentRound}/3: Comprehensive Matrix
+              🏆 ${isFr ? `Benchmark Diagnostique ${this.currentRound}/3 : Matrice Complète` : `Diagnostic Benchmark ${this.currentRound}/3: Comprehensive Matrix`}
             </span>
-            <span class="hud-metric-pill" style="color: #93c5fd;">Criteria: Fluency · Lexis · Syntax · Cohesion · Phonology</span>
+            <span class="hud-metric-pill" style="color: #93c5fd;">${isFr ? 'Critères : Fluidité · Lexique · Syntaxe · Cohésion · Phonologie' : 'Criteria: Fluency · Lexis · Syntax · Cohesion · Phonology'}</span>
           </div>
-          <span style="font-size: 0.78rem; color: var(--green-400); font-weight: 700;">Diagnostic Level: Evaluating C1</span>
+          <span style="font-size: 0.78rem; color: var(--green-400); font-weight: 700;">${isFr ? 'Niveau Visé : C1 Avancé' : 'Diagnostic Level: Evaluating C1'}</span>
         </div>
       `;
     }
@@ -1128,6 +1224,21 @@ class EnglishBoosterChallenges {
     if (listenModelBtn) {
       listenModelBtn.addEventListener('click', () => this.playPhoneticModelAudio());
     }
+
+    // Bind Clickable Rhetorical Connectors for Debate Arena
+    hudContainer.querySelectorAll('.btn-connector-insert').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const insertText = btn.getAttribute('data-text') || '';
+        const input = document.getElementById('battle-custom-arg-input');
+        if (input) {
+          input.value = input.value ? `${input.value} ${insertText}` : insertText;
+          input.focus();
+        }
+        if (window.EnglishBooster?.SoundFX) {
+          window.EnglishBooster.SoundFX.playClick();
+        }
+      });
+    });
   }
 
   renderQuickSuggestions() {
@@ -1524,9 +1635,11 @@ class EnglishBoosterChallenges {
     const xpEl = document.getElementById('result-xp-reward');
     if (xpEl) xpEl.textContent = `+${mode.xpReward} XP`;
 
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+
     const feedbackEl = document.getElementById('result-ai-feedback');
     if (feedbackEl && mode.feedbackGenerator) {
-      feedbackEl.innerHTML = mode.feedbackGenerator(yourFluency, partner.baseScore, yourCEFR, partner);
+      feedbackEl.innerHTML = mode.feedbackGenerator(yourFluency, partner.baseScore, yourCEFR, partner, isFr);
     }
 
     // Populate Mode-Specific Custom Box (Official CEFR Certificate for cefr_grand, metrics for others)
@@ -1534,90 +1647,97 @@ class EnglishBoosterChallenges {
     if (customBox) {
       if (mode.id === 'cefr_grand') {
         const certId = `EB-CEFR-${Math.floor(100000 + Math.random() * 900000)}`;
-        const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const dateStr = new Date().toLocaleDateString(isFr ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         customBox.innerHTML = `
           <div class="cefr-certificate-card">
             <div class="cefr-cert-seal">🏆</div>
             <span class="crystal-badge crystal-badge-emerald" style="font-size: 0.76rem; margin-bottom: 8px;">
-              ✓ OFFICIAL VERIFIED ASSESSMENT CERTIFICATE
+              ${isFr ? '✓ CERTIFICAT D\'ÉVALUATION OFFICIEL VÉRIFIÉ' : '✓ OFFICIAL VERIFIED ASSESSMENT CERTIFICATE'}
             </span>
-            <h3 style="font-size: 1.4rem; margin: 6px 0; color: #ffffff;">Certificate of Spoken English Proficiency</h3>
+            <h3 style="font-size: 1.4rem; margin: 6px 0; color: #ffffff;">${isFr ? 'Certificat de Maîtrise de l\'Anglais Oral' : 'Certificate of Spoken English Proficiency'}</h3>
             <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
-              This certifies that <strong>Alex Rivera</strong> has successfully passed the <strong>CEFR Grand Live Diagnostic</strong> on English Booster.
+              ${isFr 
+                ? `Atteste que <strong>Alex Rivera</strong> a complété avec succès le <strong>Grand Diagnostic Live CECRL</strong> sur English Booster.`
+                : `This certifies that <strong>Alex Rivera</strong> has successfully passed the <strong>CEFR Grand Live Diagnostic</strong> on English Booster.`}
             </p>
             <div style="font-size: 2.2rem; font-weight: 900; color: #34d399; font-family: var(--font-heading); text-shadow: 0 0 20px rgba(52, 211, 153, 0.5);">
-              CEFR ${yourCEFR} ADVANCED
+              CEFR ${yourCEFR} ${isFr ? 'AVANCÉ' : 'ADVANCED'}
             </div>
             <div class="cefr-cert-grid">
               <div class="cefr-cert-item">
-                <span style="font-size: 0.72rem; color: var(--text-muted);">Fluency</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">${isFr ? 'Aisance & Fluidité' : 'Fluency'}</span>
                 <strong style="display: block; font-size: 0.9rem; color: #ffffff;">${yourFluency}%</strong>
               </div>
               <div class="cefr-cert-item">
-                <span style="font-size: 0.72rem; color: var(--text-muted);">Lexical Resource</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">${isFr ? 'Ressource Lexicale' : 'Lexical Resource'}</span>
                 <strong style="display: block; font-size: 0.9rem; color: #ffffff;">${yourVocab}%</strong>
               </div>
               <div class="cefr-cert-item">
-                <span style="font-size: 0.72rem; color: var(--text-muted);">Grammar Accuracy</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">${isFr ? 'Précision Grammaticale' : 'Grammar Accuracy'}</span>
                 <strong style="display: block; font-size: 0.9rem; color: #ffffff;">${yourGrammar}%</strong>
               </div>
               <div class="cefr-cert-item">
-                <span style="font-size: 0.72rem; color: var(--text-muted);">Phonological Control</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">${isFr ? 'Contrôle Phonologique' : 'Phonological Control'}</span>
                 <strong style="display: block; font-size: 0.9rem; color: #ffffff;">${yourPron}%</strong>
               </div>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--text-subtle); margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.76rem; color: var(--text-subtle); margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
               <span>Credential ID: <code>${certId}</code></span>
-              <span>Issue Date: ${dateStr}</span>
-              <span>Auditor: Tychique Bongo & AI Referee</span>
+              <span>${isFr ? 'Délivré le :' : 'Issue Date:'} ${dateStr}</span>
+              <span>${isFr ? 'Auditeur : Tychique Bongo & Arbitre IA' : 'Auditor: Tychique Bongo & AI Referee'}</span>
+            </div>
+            <div style="margin-top: 14px; text-align: center;">
+              <button onclick="window.print()" class="btn btn-secondary btn-sm" style="border-radius: 999px; padding: 6px 16px; font-size: 0.8rem;">
+                🖨️ ${isFr ? 'Imprimer / Exporter le Certificat' : 'Print / Export Certificate'}
+              </button>
             </div>
           </div>
         `;
       } else if (mode.id === 'speed_duel') {
         customBox.innerHTML = `
           <div class="glass-card" style="padding: 18px; margin: 16px 0; border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.05); text-align: left;">
-            <h4 style="font-size: 0.98rem; color: #fbbf24; margin-bottom: 8px;">⚡ Speed Reflex Performance Breakdown</h4>
+            <h4 style="font-size: 0.98rem; color: #fbbf24; margin-bottom: 8px;">${isFr ? '⚡ Analyse de Performance Réflexe & Vitesse' : '⚡ Speed Reflex Performance Breakdown'}</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; font-size: 0.82rem;">
-              <div>• <strong>Response Latency:</strong> 0.4s (Immediate)</div>
-              <div>• <strong>Measured Cadence:</strong> 128 WPM (Native tier)</div>
-              <div>• <strong>Filler Words:</strong> 0 detected</div>
-              <div>• <strong>Turn Discipline:</strong> 100% adherence</div>
+              <div>• <strong>${isFr ? 'Latence de Réponse :' : 'Response Latency:'}</strong> 0.4s (${isFr ? 'Immédiat' : 'Immediate'})</div>
+              <div>• <strong>${isFr ? 'Cadence Mesurée :' : 'Measured Cadence:'}</strong> 128 WPM (${isFr ? 'Niveau Natif' : 'Native tier'})</div>
+              <div>• <strong>${isFr ? 'Tics d\'Hésitation :' : 'Filler Words:'}</strong> 0 (${isFr ? 'Aucun détecté' : '0 detected'})</div>
+              <div>• <strong>${isFr ? 'Discipline de Tour :' : 'Turn Discipline:'}</strong> 100% (${isFr ? 'Respect strict' : 'adherence'})</div>
             </div>
           </div>
         `;
       } else if (mode.id === 'debate') {
         customBox.innerHTML = `
           <div class="glass-card" style="padding: 18px; margin: 16px 0; border-color: rgba(139, 92, 246, 0.4); background: rgba(139, 92, 246, 0.05); text-align: left;">
-            <h4 style="font-size: 0.98rem; color: #c4b5fd; margin-bottom: 8px;">⚖️ Rhetorical Structure & Debate Poise Breakdown</h4>
+            <h4 style="font-size: 0.98rem; color: #c4b5fd; margin-bottom: 8px;">${isFr ? '⚖️ Structure Rhétorique & Éloquence du Débat' : '⚖️ Rhetorical Structure & Debate Poise Breakdown'}</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; font-size: 0.82rem;">
-              <div>• <strong>Discourse Connectors:</strong> 94% (C1 Formal)</div>
-              <div>• <strong>Rebuttal Precision:</strong> 92% (High impact)</div>
-              <div>• <strong>Thesis Poise:</strong> Affirmative (PRO)</div>
-              <div>• <strong>Logical Coherence:</strong> Exemplary</div>
+              <div>• <strong>${isFr ? 'Connecteurs de Discours :' : 'Discourse Connectors:'}</strong> 94% (C1 Formal)</div>
+              <div>• <strong>${isFr ? 'Précision de Réfutation :' : 'Rebuttal Precision:'}</strong> 92% (${isFr ? 'Fort impact' : 'High impact'})</div>
+              <div>• <strong>${isFr ? 'Position de Thèse :' : 'Thesis Poise:'}</strong> ${isFr ? 'Affirmative (POUR)' : 'Affirmative (PRO)'}</div>
+              <div>• <strong>${isFr ? 'Cohérence Logique :' : 'Logical Coherence:'}</strong> ${isFr ? 'Exemplaire' : 'Exemplary'}</div>
             </div>
           </div>
         `;
       } else if (mode.id === 'phonetics') {
         customBox.innerHTML = `
           <div class="glass-card" style="padding: 18px; margin: 16px 0; border-color: rgba(6, 182, 212, 0.4); background: rgba(6, 182, 212, 0.05); text-align: left;">
-            <h4 style="font-size: 0.98rem; color: #22d3ee; margin-bottom: 8px;">🎯 Phonological Clarity & Articulation Breakdown</h4>
+            <h4 style="font-size: 0.98rem; color: #22d3ee; margin-bottom: 8px;">${isFr ? '🎯 Clarté Phonologique & Articulation' : '🎯 Phonological Clarity & Articulation Breakdown'}</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; font-size: 0.82rem;">
-              <div>• <strong>Acoustic Clarity:</strong> 98% (Crisp enunciation)</div>
-              <div>• <strong>Minimal Pair Articulation:</strong> /θ/ vs /ð/ 96%</div>
-              <div>• <strong>Rhythm Cadence:</strong> Isochronous syllable timing</div>
-              <div>• <strong>Accent Intelligibility:</strong> High Global Standard</div>
+              <div>• <strong>${isFr ? 'Clarté Acoustique :' : 'Acoustic Clarity:'}</strong> 98% (${isFr ? 'Énonciation nette' : 'Crisp enunciation'})</div>
+              <div>• <strong>${isFr ? 'Paires Minimales :' : 'Minimal Pair Articulation:'}</strong> /θ/ vs /ð/ 96%</div>
+              <div>• <strong>${isFr ? 'Cadence Rythmique :' : 'Rhythm Cadence:'}</strong> ${isFr ? 'Isochrone régulier' : 'Isochronous syllable timing'}</div>
+              <div>• <strong>${isFr ? 'Intelligibilité d\'Accent :' : 'Accent Intelligibility:'}</strong> ${isFr ? 'Standard International Élevé' : 'High Global Standard'}</div>
             </div>
           </div>
         `;
       } else if (mode.id === 'roleplay') {
         customBox.innerHTML = `
           <div class="glass-card" style="padding: 18px; margin: 16px 0; border-color: rgba(236, 72, 153, 0.4); background: rgba(236, 72, 153, 0.05); text-align: left;">
-            <h4 style="font-size: 0.98rem; color: #f472b6; margin-bottom: 8px;">🎭 Executive Workplace Register & Pragmatics Breakdown</h4>
+            <h4 style="font-size: 0.98rem; color: #f472b6; margin-bottom: 8px;">${isFr ? '🎭 Registre Professionnel & Pragmatique en Entreprise' : '🎭 Executive Workplace Register & Pragmatics Breakdown'}</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; font-size: 0.82rem;">
-              <div>• <strong>Workplace Politeness:</strong> 95% (Executive tier)</div>
-              <div>• <strong>Idiomatic Naturalness:</strong> 93% (Silicon Valley)</div>
-              <div>• <strong>Situational Adaptability:</strong> 94%</div>
-              <div>• <strong>Active Empathy:</strong> 96%</div>
+              <div>• <strong>${isFr ? 'Politesse en Entreprise :' : 'Workplace Politeness:'}</strong> 95% (${isFr ? 'Niveau Exécutif' : 'Executive tier'})</div>
+              <div>• <strong>${isFr ? 'Aisance Idiomatique :' : 'Idiomatic Naturalness:'}</strong> 93% (Silicon Valley)</div>
+              <div>• <strong>${isFr ? 'Adaptabilité de Contexte :' : 'Situational Adaptability:'}</strong> 94%</div>
+              <div>• <strong>${isFr ? 'Empathie Active :' : 'Active Empathy:'}</strong> 96%</div>
             </div>
           </div>
         `;
@@ -1638,21 +1758,35 @@ class EnglishBoosterChallenges {
     const copyBtn = document.getElementById('btn-copy-scorecard');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
+        const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
         const youCEFR = document.getElementById('result-cefr-you')?.textContent || 'B2+';
         const partnerName = document.getElementById('result-partner-name')?.textContent || 'Challenger';
         const partnerCEFR = document.getElementById('result-cefr-partner')?.textContent || 'B2';
-        const modeName = this.currentMode ? this.currentMode.name : 'Live English Battle';
+        const modeName = this.currentMode 
+          ? (isFr && this.currentMode.nameFr ? this.currentMode.nameFr : this.currentMode.name)
+          : 'Live English Battle';
 
-        const summary = `🏆 English Booster Live Duel Scorecard\n` +
-          `• Battle Arena: ${modeName}\n` +
-          `• Alex Rivera: Verified CEFR ${youCEFR}\n` +
-          `• Challenger (${partnerName}): CEFR ${partnerCEFR}\n` +
-          `• Audited via AI Referee: Fluency, Grammar, Vocabulary & Pronunciation\n` +
-          `Practice live at: http://localhost:3000/pages/challenges.html`;
+        const summary = isFr 
+          ? `🏆 Attestation de Duel en Direct English Booster\n` +
+            `• Arène de Duel : ${modeName}\n` +
+            `• Alex Rivera : Niveau Officiel Vérifié CECRL ${youCEFR}\n` +
+            `• Adversaire (${partnerName}) : Niveau CECRL ${partnerCEFR}\n` +
+            `• Évaluation par Arbitre IA : Fluidité, Grammaire, Vocabulaire & Prononciation\n` +
+            `Pratiquez en direct sur : http://localhost:3000/pages/challenges.html`
+          : `🏆 English Booster Live Duel Scorecard\n` +
+            `• Battle Arena: ${modeName}\n` +
+            `• Alex Rivera: Verified CEFR ${youCEFR}\n` +
+            `• Challenger (${partnerName}): CEFR ${partnerCEFR}\n` +
+            `• Audited via AI Referee: Fluency, Grammar, Vocabulary & Pronunciation\n` +
+            `Practice live at: http://localhost:3000/pages/challenges.html`;
 
         if (navigator.clipboard) {
           navigator.clipboard.writeText(summary).then(() => {
-            window.EnglishBooster.showToast('Copied to Clipboard!', 'Your CEFR Assessment Scorecard is ready to share!', 'success');
+            window.EnglishBooster.showToast(
+              isFr ? 'Attestation Copiée !' : 'Copied to Clipboard!',
+              isFr ? 'Votre bilan de compétences CECRL est prêt à être partagé !' : 'Your CEFR Assessment Scorecard is ready to share!',
+              'success'
+            );
           });
         } else {
           window.EnglishBooster.showToast('Scorecard Ready', `Your verified score is ${youCEFR}!`, 'success');

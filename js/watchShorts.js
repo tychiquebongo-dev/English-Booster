@@ -21,28 +21,44 @@
   }
 
   // Liste initiale des vidéos Shorts publiées par des membres inscrits
+  // Liste initiale des vidéos de Masterclasses Exécutives publiées par des membres inscrits (Format Pro & Fiches de Synthèse)
   const DEFAULT_SHORTS = [
     {
       id: 'short_1',
       author: {
-        id: 'tychique_bongo',
-        name: 'Tychique Bongo',
-        flag: '🇨🇮',
-        avatar: 'assets/images/tychique-bongo.jpg',
+        id: 'sarah_uk',
+        name: 'Sarah Jenkins',
+        flag: '🇬🇧',
+        avatar: 'assets/images/executive-boardroom-briefing.jpg',
         level: 'C2',
-        role: 'Fondateur & Lead Coach'
+        role: 'Senior VP Global Tech Strategy'
       },
-      title: '5 Daily Habits to Speak English Fluently Without Fear 🚀',
-      category: 'fluency',
-      duration: '0:48',
-      views: '14.2K',
-      mediaUrl: 'assets/images/short-tychique-coach.jpg',
+      title: 'Handling Tough Boardroom Pushback with Executive Poise 🏛️',
+      category: 'leadership',
+      duration: '0:52',
+      views: '38.4K',
+      mediaUrl: 'assets/images/executive-boardroom-briefing.jpg',
       mediaType: 'image',
-      likes: 1240,
-      dislikes: 12,
+      likes: 2410,
+      dislikes: 14,
       userReaction: null,
-      captions: "If you want to become truly fluent, stop translating word for word in your head. Start shadowing native speakers for 10 minutes every single morning!",
-      tags: ['#FluencyHabits', '#SpeakingConfidence', '#EnglishBooster'],
+      captions: "When board directors challenge your roadmap, never become defensive. Acknowledge the fiduciary concern: 'That is a critical downside risk. Here is how our operational hedging strategy insulates the enterprise.'",
+      executiveDossier: {
+        framework: '3-Step Boardroom Pivot (Acknowledge, Anchor, Re-frame)',
+        levelBadge: 'CEFR C2 · Boardroom Executive',
+        takeaways: [
+          "Never counter emotionally: begin with 'That is a critical fiduciary consideration.'",
+          "Re-anchor to empirical runway, risk mitigation models, and stakeholder consensus.",
+          "Close with forward-looking alignment: 'Does this strategic mitigation provide the committee sufficient comfort?'"
+        ],
+        lexicon: [
+          { phrase: "fiduciary consideration", note: "Formal boardroom term for executive and financial stewardship" },
+          { phrase: "operational hedging strategy", note: "Proactive measures mitigating downside operational risk" },
+          { phrase: "insulate the enterprise", note: "Shielding company revenue and reputation against external shocks" }
+        ],
+        practiceSentence: "That is a critical downside risk. Here is how our operational hedging strategy insulates the enterprise."
+      },
+      tags: ['#BoardroomLeadership', '#ExecutivePresence', '#C2English', '#CorporateStrategy'],
       date: 'Aujourd\'hui',
       isEnglishOnly: true,
       comments: [
@@ -51,74 +67,104 @@
           name: 'Alex Rivera',
           flag: '🇪🇸',
           avatar: 'assets/avatars/alex.jpg',
-          text: 'This shadowing advice completely changed my speaking pace, thank you Coach Tychique!',
+          text: 'Using "insulate the enterprise" completely elevated my tone during our quarterly steering committee!',
           time: 'Il y a 1h'
         },
         {
           id: 'sc1_2',
-          name: 'Sofia Martínez',
-          flag: '🇪🇸',
-          avatar: 'assets/avatars/sofia.jpg',
-          text: 'Consistency over perfection. Very inspiring short video!',
-          time: 'Il y a 30m'
+          name: 'David Müller',
+          flag: '🇩🇪',
+          avatar: 'assets/avatars/lucas.jpg',
+          text: 'Essential advice for technical leads speaking to non-technical executive boards.',
+          time: 'Il y a 45m'
         }
       ]
     },
     {
       id: 'short_2',
       author: {
-        id: 'sofia_es',
-        name: 'Sofia Martínez',
-        flag: '🇪🇸',
-        avatar: 'assets/avatars/sofia.jpg',
-        level: 'B1',
-        role: 'Apprenante Passionnée'
+        id: 'kenji_jp',
+        name: 'Kenji Sato',
+        flag: '🇯🇵',
+        avatar: 'assets/avatars/kenji.jpg',
+        level: 'C1',
+        role: 'AI Co-Founder & Systems Lead'
       },
-      title: 'Pronunciation Secret: The /θ/ vs /ð/ Sound Masterclass 👄',
-      category: 'pronunciation',
-      duration: '0:35',
-      views: '9.8K',
-      mediaUrl: 'assets/images/short-pronunciation-coach.jpg',
+      title: 'The 45s VC Elevator Pitch: Framing ARR & Net Retention to Investors ⚡',
+      category: 'pitch',
+      duration: '0:45',
+      views: '34.1K',
+      mediaUrl: 'assets/images/short-tech-pitch.jpg',
       mediaType: 'image',
-      likes: 876,
-      dislikes: 8,
+      likes: 1954,
+      dislikes: 11,
       userReaction: null,
-      captions: "Notice the difference: 'Think', 'Thorough', 'Thought' use the voiceless TH. But 'This', 'That', 'These' use the voiced TH with your vocal cords vibrating!",
-      tags: ['#Pronunciation', '#Phonetics', '#LearnEnglish'],
+      captions: "Investors don't want buzzwords; they want defensible unit economics. Open with your inflection point: 'Our enterprise AI pipeline reached 140% Net Revenue Retention, generating a $3.2M ARR expansion with zero customer churn.'",
+      executiveDossier: {
+        framework: 'Tier-1 VC 3-Part Hook (Inflection, Economics, Syndicate)',
+        levelBadge: 'CEFR C1 · Silicon Valley Tech',
+        takeaways: [
+          "State market inflection point and technological catalyst in the first 8 seconds.",
+          "Quantify defensible unit economics: Net Revenue Retention (NRR) and ARR trajectory.",
+          "State round syndication terms with confident brevity without apologetic tone."
+        ],
+        lexicon: [
+          { phrase: "defensible unit economics", note: "Sustainable financial metrics that competitors cannot easily copy" },
+          { phrase: "Net Revenue Retention (NRR)", note: "Core SaaS metric demonstrating revenue growth from existing clients" },
+          { phrase: "inflection point", note: "Moment of undeniable market acceleration creating venture opportunity" }
+        ],
+        practiceSentence: "Our enterprise AI pipeline reached 140% Net Revenue Retention, generating a $3.2M ARR expansion with zero customer churn."
+      },
+      tags: ['#ElevatorPitch', '#VentureCapital', '#TechLeadership', '#SiliconValleyPrep'],
       date: 'Hier',
       isEnglishOnly: true,
       comments: [
         {
           id: 'sc2_1',
-          name: 'Lucas Weber',
-          flag: '🇩🇪',
-          avatar: 'assets/avatars/lucas.jpg',
-          text: 'I used to confuse both all the time, your whiteboard demonstration is so clear!',
-          time: 'Il y a 3h'
+          name: 'Sarah Jenkins',
+          flag: '🇬🇧',
+          avatar: 'assets/images/executive-boardroom-briefing.jpg',
+          text: 'Clear, crisp, zero fluff. This is the exact cadence London and Valley investors look for.',
+          time: 'Il y a 2h'
         }
       ]
     },
     {
       id: 'short_3',
       author: {
-        id: 'kenji_jp',
-        name: 'Kenji Sato',
-        flag: '🇯🇵',
-        avatar: 'assets/avatars/kenji.jpg',
-        level: 'B2',
-        role: 'Tech & Startups'
+        id: 'tychique_bongo',
+        name: 'Tychique Bongo',
+        flag: '🇨🇮',
+        avatar: 'assets/images/tychique-bongo.jpg',
+        level: 'C2',
+        role: 'Fondateur & Global Executive Coach'
       },
-      title: 'Tech Elevator Pitch Rehearsal: Revolutionizing AI Workflows ⚡',
-      category: 'pitch',
-      duration: '0:42',
-      views: '11.5K',
-      mediaUrl: 'assets/images/short-tech-pitch.jpg',
+      title: 'Cross-Border Contract Negotiations: The Art of Reciprocal Concessions 📈',
+      category: 'negotiation',
+      duration: '0:58',
+      views: '42.6K',
+      mediaUrl: 'assets/images/executive-negotiation-deal.jpg',
       mediaType: 'image',
-      likes: 954,
-      dislikes: 15,
+      likes: 3120,
+      dislikes: 18,
       userReaction: null,
-      captions: "Hi everyone, I'm Kenji from Tokyo. Our AI platform optimizes distributed cloud microservices. Here is how I structure my 45-second pitch without any filler words!",
-      tags: ['#ElevatorPitch', '#TechEnglish', '#SiliconValleyPrep'],
+      captions: "Never concede unilaterally in international deal-making. Always attach a reciprocal condition: 'We can accommodate your accelerated rollout milestone, provided payment milestones shift to Net-15 terms.'",
+      executiveDossier: {
+        framework: 'Reciprocal Deal Covenant (Give & Gain Principle)',
+        levelBadge: 'CEFR C2 · Strategic Deal-Making',
+        takeaways: [
+          "Never make unilateral concessions: always bridge with 'provided that' or 'on the condition that'.",
+          "Maintain cordial executive poise and comfortable silence during price tension.",
+          "Use calibrated questions: 'How does this structure facilitate your procurement cycle?'"
+        ],
+        lexicon: [
+          { phrase: "reciprocal concession", note: "Yielding ground only when opposing side grants an equivalent commercial advantage" },
+          { phrase: "Net-15 terms", note: "Contractual payment schedule due within 15 calendar days" },
+          { phrase: "calibrated question", note: "Strategic open-ended inquiry guiding stakeholders toward collaborative solutions" }
+        ],
+        practiceSentence: "We can accommodate your accelerated rollout milestone, provided payment milestones shift to Net-15 terms."
+      },
+      tags: ['#ContractNegotiation', '#ExecutiveEnglish', '#DealMaking', '#EnglishBooster'],
       date: 'Il y a 2 jours',
       isEnglishOnly: true,
       comments: [
@@ -127,7 +173,7 @@
           name: 'Amara Okafor',
           flag: '🇳🇬',
           avatar: 'assets/avatars/amara.jpg',
-          text: 'Fantastic body language and eye contact with the lens Kenji!',
+          text: 'The "provided that" bridge saved our enterprise contract negotiations last month. Masterclass!',
           time: 'Il y a 1 jour'
         }
       ]
@@ -140,19 +186,34 @@
         flag: '🇳🇬',
         avatar: 'assets/avatars/amara.jpg',
         level: 'C1',
-        role: 'Fluency Leader'
+        role: 'Global VP Human Capital & Culture'
       },
-      title: 'Stop Saying "I\'m Fine": 4 Real Business English Idioms! 🎯',
-      category: 'idioms',
-      duration: '0:38',
-      views: '18.4K',
-      mediaUrl: 'assets/images/short-idiom-debate.jpg',
+      title: 'Mastering the Anglo-American "Soft No" in Cross-Functional Teams 🤝',
+      category: 'pragmatics',
+      duration: '0:42',
+      views: '31.9K',
+      mediaUrl: 'assets/images/conversation-business.jpg',
       mediaType: 'image',
-      likes: 1890,
-      dislikes: 19,
+      likes: 2180,
+      dislikes: 12,
       userReaction: null,
-      captions: "Today's top idiom: 'Bite the bullet' means facing a difficult situation with courage. Instead of 'I will just do it', say 'Let's bite the bullet and pitch the board today!'",
-      tags: ['#BusinessIdioms', '#AdvancedEnglish', '#VocabularyBoost'],
+      captions: "In UK and US corporate circles, a blunt 'No' sounds antagonistic. Frame your boundary constructively: 'I would love to champion this initiative in Q3, but our current engineering bandwidth is fully committed to the security audit.'",
+      executiveDossier: {
+        framework: 'Diplomatic Boundary Matrix (Validate, Pivot, Defer)',
+        levelBadge: 'CEFR C1 · Corporate Pragmatics',
+        takeaways: [
+          "Replace 'We cannot do this' with 'Our current bandwidth is committed to our core deliverables.'",
+          "Validate the strategic merit of the request before outlining bandwidth boundaries.",
+          "Provide actionable timelines and roadmap deferrals instead of conversational dead-ends."
+        ],
+        lexicon: [
+          { phrase: "bandwidth constraint", note: "Corporate euphemism for lack of team capacity, time, or head-count" },
+          { phrase: "champion the initiative", note: "To actively advocate, sponsor, and lead a project across the company" },
+          { phrase: "constructive boundary", note: "Diplomatically safeguarding team workload while preserving stakeholder trust" }
+        ],
+        practiceSentence: "I would love to champion this initiative in Q3, but our current engineering bandwidth is fully committed to the security audit."
+      },
+      tags: ['#CorporatePragmatics', '#BusinessEtiquette', '#ExecutiveEnglish', '#Leadership'],
       date: 'Il y a 3 jours',
       isEnglishOnly: true,
       comments: [
@@ -161,14 +222,210 @@
           name: 'Chloé Dubois',
           flag: '🇫🇷',
           avatar: 'assets/avatars/chloe.jpg',
-          text: 'I used "bite the bullet" in my London meeting yesterday, my manager loved it!',
+          text: 'This subtle cultural distinction between French directness and Anglo diplomacy is so critical!',
           time: 'Il y a 2 jours'
+        }
+      ]
+    },
+    {
+      id: 'short_5',
+      author: {
+        id: 'liam_ie',
+        name: "Liam O'Connor",
+        flag: '🇮🇪',
+        avatar: 'assets/images/conversation-mentor.jpg',
+        level: 'C2',
+        role: 'Keynote Speaker & Communication Coach'
+      },
+      title: 'The 3-Second Executive Hook: Opening Global Keynotes with Authority 🎤',
+      category: 'keynote',
+      duration: '0:48',
+      views: '25.7K',
+      mediaUrl: 'assets/images/short-idiom-debate.jpg',
+      mediaType: 'image',
+      likes: 1890,
+      dislikes: 10,
+      userReaction: null,
+      captions: "Stop starting your speeches with 'Good morning everyone, I am thrilled to be here.' Command the room instantly: hold silence for 2 seconds, look at the back row, and open with a bold contrarian premise.",
+      executiveDossier: {
+        framework: 'The 3-Second Contrarian Opener (Silence, Eye Anchor, Hook)',
+        levelBadge: 'CEFR C2 · Global Keynotes',
+        takeaways: [
+          "Eliminate generic pleasantries that waste the most valuable 10 seconds of audience attention.",
+          "Breathe diaphragmatically into the lower ribs to project natural vocal resonance and calm gravitas.",
+          "Open with a sharp counter-intuitive premise: 'Conventional wisdom suggests X, but data proves Y.'"
+        ],
+        lexicon: [
+          { phrase: "command the room", note: "Establishing instant authority and stage presence without aggressive volume" },
+          { phrase: "contrarian premise", note: "A provocative, data-backed viewpoint that challenges industry consensus" },
+          { phrase: "grounded authority", note: "Unhurried posture and resonant vocal cadence that projects natural credibility" }
+        ],
+        practiceSentence: "Conventional wisdom suggests cost reduction drives efficiency, but empirical data reveals that agility accelerates margins."
+      },
+      tags: ['#PublicSpeaking', '#KeynoteStrategy', '#ExecutivePresence', '#C2English'],
+      date: 'Il y a 4 jours',
+      isEnglishOnly: true,
+      comments: [
+        {
+          id: 'sc5_1',
+          name: 'Kenji Sato',
+          flag: '🇯🇵',
+          avatar: 'assets/avatars/kenji.jpg',
+          text: 'The 2-second silence technique felt uncomfortable at first, but the audience went pin-drop quiet. Huge tip!',
+          time: 'Il y a 3 jours'
+        }
+      ]
+    },
+    {
+      id: 'short_6',
+      author: {
+        id: 'david_de',
+        name: 'David Müller',
+        flag: '🇩🇪',
+        avatar: 'assets/avatars/lucas.jpg',
+        level: 'C1',
+        role: 'Principal Systems Architect & Cloud Lead'
+      },
+      title: 'Incident Post-Mortems: Communicating Outages to Enterprise Clients 🛠️',
+      category: 'leadership',
+      duration: '0:50',
+      views: '21.2K',
+      mediaUrl: 'assets/images/short-tychique-coach.jpg',
+      mediaType: 'image',
+      likes: 1540,
+      dislikes: 8,
+      userReaction: null,
+      captions: "When enterprise systems experience downtime, technical transparency restores trust. State the facts: 'We identified a cascading failover latency at 09:14 UTC. Redundancy protocols engaged within 3 minutes to restore 100% throughput.'",
+      executiveDossier: {
+        framework: 'Blameless Post-Mortem Cadence (Detect, Remediate, Safeguard)',
+        levelBadge: 'CEFR C1 · Tech Leadership',
+        takeaways: [
+          "Never assign individual blame; frame failures around architectural failure domains and system limits.",
+          "State Mean Time to Recovery (MTTR) with timestamped empirical milestones.",
+          "Conclude with explicit, forward-looking architectural safeguards to prevent recurrence."
+        ],
+        lexicon: [
+          { phrase: "cascading failover latency", note: "System delay occurring during automated server switchover" },
+          { phrase: "redundancy protocols", note: "Backup infrastructure engineered to maintain uptime during failures" },
+          { phrase: "preventive guardrails", note: "Architectural rules that permanently eliminate recurring points of failure" }
+        ],
+        practiceSentence: "We identified a cascading failover latency at 09:14 UTC. Redundancy protocols engaged within 3 minutes to restore 100% throughput."
+      },
+      tags: ['#TechLeadership', '#IncidentResponse', '#EnterpriseArchitecture', '#C1English'],
+      date: 'Il y a 5 jours',
+      isEnglishOnly: true,
+      comments: [
+        {
+          id: 'sc6_1',
+          name: 'Sarah Jenkins',
+          flag: '🇬🇧',
+          avatar: 'assets/images/executive-boardroom-briefing.jpg',
+          text: 'Enterprise CTOs appreciate nothing more than crisp, timestamped engineering candor.',
+          time: 'Il y a 4 jours'
+        }
+      ]
+    },
+    {
+      id: 'short_7',
+      author: {
+        id: 'sofia_es',
+        name: 'Sofia Martínez',
+        flag: '🇪🇸',
+        avatar: 'assets/avatars/sofia.jpg',
+        level: 'B2+',
+        role: 'Corporate Communications & Voice Specialist'
+      },
+      title: 'Executive Vocal Cadence: Eliminating Upspeak & Rushing in High-Stakes Calls 🎯',
+      category: 'phonetics',
+      duration: '0:39',
+      views: '29.8K',
+      mediaUrl: 'assets/images/short-pronunciation-coach.jpg',
+      mediaType: 'image',
+      likes: 2210,
+      dislikes: 11,
+      userReaction: null,
+      captions: "Upspeak makes executives sound uncertain. When pitching a proposal, drop your pitch at the end of the sentence: not 'We believe this is feasible?', but 'We have confirmed this is feasible.' Finish with downward authority!",
+      executiveDossier: {
+        framework: 'Downward Pitch Cadence & Strategic Pausing',
+        levelBadge: 'CEFR B2+ · Vocal Presence',
+        takeaways: [
+          "Eliminate rising question inflections (upspeak) on declarative business proposals.",
+          "Drop pitch on the final syllable of key strategic decisions to project executive conviction.",
+          "Insert deliberate 1-second micro-pauses between clauses to avoid the appearance of rushed anxiety."
+        ],
+        lexicon: [
+          { phrase: "downward pitch cadence", note: "Dropping vocal frequency at the end of statements to project certainty" },
+          { phrase: "declarative authority", note: "Speaking with conviction rather than seeking implicit permission" },
+          { phrase: "unhurried cadence", note: "Pacing speech deliberately to convey emotional regulation and executive poise" }
+        ],
+        practiceSentence: "We have confirmed this roadmap is feasible, and we are prepared to initiate phase one."
+      },
+      tags: ['#ExecutiveVoice', '#Phonetics', '#PronunciationAuthority', '#SpeakingConfidence'],
+      date: 'Il y a 6 jours',
+      isEnglishOnly: true,
+      comments: [
+        {
+          id: 'sc7_1',
+          name: 'Alex Rivera',
+          flag: '🇪🇸',
+          avatar: 'assets/avatars/alex.jpg',
+          text: 'Dropping the pitch at the end of sentences made my presentations sound 10x more confident!',
+          time: 'Il y a 5 jours'
+        }
+      ]
+    },
+    {
+      id: 'short_8',
+      author: {
+        id: 'chloe_fr',
+        name: 'Chloé Dubois',
+        flag: '🇫🇷',
+        avatar: 'assets/avatars/chloe.jpg',
+        level: 'C1',
+        role: 'Executive Talent & Compensation Partner'
+      },
+      title: 'Executive Salary Negotiation: Anchoring Leverage Around Business Impact 💼',
+      category: 'negotiation',
+      duration: '0:47',
+      views: '36.5K',
+      mediaUrl: 'assets/images/conversation-live-duo.jpg',
+      mediaType: 'image',
+      likes: 2740,
+      dislikes: 15,
+      userReaction: null,
+      captions: "Never negotiate compensation around personal living expenses. Anchor around business leverage: 'Based on the $5M ARR expansion portfolio I will direct, the market benchmark for this role ranges from $180K to $210K base with equity participation.'",
+      executiveDossier: {
+        framework: 'The Executive Value Anchor (Portfolio, Benchmark, Equity)',
+        levelBadge: 'CEFR C1 · Compensation Strategy',
+        takeaways: [
+          "Anchor to the top of the market benchmark before the compensation committee proposes an offer.",
+          "Tie compensation directly to the scope of revenue under management and team headcount.",
+          "Embrace comfortable silence after stating your compensation expectations."
+        ],
+        lexicon: [
+          { phrase: "market benchmark", note: "Standard compensation data across peer companies in your sector" },
+          { phrase: "equity participation", note: "Stock options, RSUs, or profit-sharing stakes aligned with corporate performance" },
+          { phrase: "anchoring leverage", note: "Establishing the initial reference point in a high-stakes negotiation" }
+        ],
+        practiceSentence: "Based on the $5M expansion portfolio I will direct, the market benchmark for this role ranges from $180K to $210K base with equity participation."
+      },
+      tags: ['#SalaryNegotiation', '#ExecutiveCareers', '#CompensationStrategy', '#C1Business'],
+      date: 'Il y a 1 semaine',
+      isEnglishOnly: true,
+      comments: [
+        {
+          id: 'sc8_1',
+          name: 'Amara Okafor',
+          flag: '🇳🇬',
+          avatar: 'assets/avatars/amara.jpg',
+          text: 'Framing salary as an investment portfolio rather than an expense is the exact mindset shift needed.',
+          time: 'Il y a 6 jours'
         }
       ]
     }
   ];
 
-  // Liste initiale des vidéos en direct (Live Streams) actives
+  // Liste initiale des vidéos en direct (Live Streams) actives orientées Masterclasses Professionnelles
   const DEFAULT_LIVES = [
     {
       id: 'live_tychique_lead',
@@ -178,39 +435,39 @@
         flag: '🇨🇮',
         avatar: 'assets/images/tychique-bongo.jpg',
         level: 'C2',
-        role: 'Fondateur & Lead Coach'
+        role: 'Fondateur & Lead Executive Coach'
       },
-      title: 'Live Fluency Masterclass: Stop Translating & Think in English 🚀',
-      category: 'fluency',
-      topic: 'Oral Spoken Confidence & Real-Time Corrections',
-      viewers: 52,
+      title: 'Live Executive Workshop: C-Suite Meeting Simulation & Live Corrections 🏛️',
+      category: 'leadership',
+      topic: 'Executive Boardroom Simulation · C1/C2 Workplace Register & Tact',
+      viewers: 68,
       duration: '22:15',
       thumb: 'assets/images/tychique-bongo.jpg',
       comments: [
-        { name: 'Sofia Martínez', flag: '🇪🇸', text: 'How do you overcome the hesitation before speaking?' },
-        { name: 'Kenji Sato', flag: '🇯🇵', text: 'Shadowing 10 minutes a day changed everything for me!' },
-        { name: 'Lucas Weber', flag: '🇩🇪', text: 'Great pronunciation drill coach!' }
+        { name: 'Sarah Jenkins', flag: '🇬🇧', text: 'Terrific simulation. The diplomatic pushback drills are essential!' },
+        { name: 'Kenji Sato', flag: '🇯🇵', text: 'Shadowing this executive cadence live is so valuable.' },
+        { name: 'David Müller', flag: '🇩🇪', text: 'Great breakdown on handling tough steering committee questions.' }
       ]
     },
     {
-      id: 'live_sofia_practice',
+      id: 'live_kenji_pitch',
       host: {
-        id: 'sofia_es',
-        name: 'Sofia Martínez',
-        flag: '🇪🇸',
-        avatar: 'assets/avatars/sofia.jpg',
-        level: 'B1',
-        role: 'Apprenante Passionnée'
+        id: 'kenji_jp',
+        name: 'Kenji Sato',
+        flag: '🇯🇵',
+        avatar: 'assets/avatars/kenji.jpg',
+        level: 'C1',
+        role: 'AI Co-Founder & Tech Lead'
       },
-      title: 'Live Speaking Rehearsal: Daily Conversation & Overcoming Fear 💬',
-      category: 'pronunciation',
-      topic: 'Everyday Fluency & Interactive English Q&A',
-      viewers: 34,
-      duration: '11:40',
-      thumb: 'assets/avatars/sofia.jpg',
+      title: 'Live Venture Pitching Arena: 60-Second Drills for US Tech Funds ⚡',
+      category: 'pitch',
+      topic: 'Series A Investor Pitch Practice · Unit Economics & Rebuttal Drills',
+      viewers: 45,
+      duration: '14:20',
+      thumb: 'assets/images/short-tech-pitch.jpg',
       comments: [
-        { name: 'Amara Okafor', flag: '🇳🇬', text: 'Your accent improved so much Sofia, keep it up!' },
-        { name: 'Chloé Dubois', flag: '🇫🇷', text: 'Loving this live English discussion!' }
+        { name: 'Amara Okafor', flag: '🇳🇬', text: 'Spot-on guidance on framing NRR metrics!' },
+        { name: 'Chloé Dubois', flag: '🇫🇷', text: 'Loved the fast-paced elevator pitch drill!' }
       ]
     }
   ];
@@ -220,6 +477,7 @@
   let currentActiveShort = null;
   let isSpeechPlaying = false;
   let currentFilter = 'all';
+  let currentPlaybackRate = 1.0;
 
   // Live Studio State
   let activeLiveStreamSession = null;
@@ -233,7 +491,7 @@
   // Initialisation et chargement
   function loadShorts() {
     try {
-      const stored = localStorage.getItem('eb_shorts_videos');
+      const stored = localStorage.getItem('eb_shorts_videos_v3');
       if (stored) {
         shortsData = JSON.parse(stored);
       } else {
@@ -245,11 +503,12 @@
     }
 
     try {
-      const storedLives = localStorage.getItem('eb_live_streams');
+      const storedLives = localStorage.getItem('eb_live_streams_v3');
       if (storedLives) {
         liveStreamsData = JSON.parse(storedLives);
       } else {
         liveStreamsData = [...DEFAULT_LIVES];
+        saveLives();
       }
     } catch (e) {
       liveStreamsData = [...DEFAULT_LIVES];
@@ -258,9 +517,17 @@
 
   function saveShorts() {
     try {
-      localStorage.setItem('eb_shorts_videos', JSON.stringify(shortsData));
+      localStorage.setItem('eb_shorts_videos_v3', JSON.stringify(shortsData));
     } catch (e) {
       console.warn('Could not save shorts', e);
+    }
+  }
+
+  function saveLives() {
+    try {
+      localStorage.setItem('eb_live_streams_v3', JSON.stringify(liveStreamsData));
+    } catch (e) {
+      console.warn('Could not save lives', e);
     }
   }
 
@@ -424,7 +691,7 @@
     if (liveCountBadge) liveCountBadge.textContent = liveStreamsData.length;
   }
 
-  // Rendu de la grille des shorts
+  // Rendu de la grille des briefings courts (Format Pro 9:16)
   function renderShortsGrid() {
     const containers = [
       document.getElementById('shorts-grid-container'),
@@ -443,11 +710,11 @@
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="glass-card" style="padding: 40px; text-align: center; grid-column: 1 / -1; width: 100%;">
-            <div style="font-size: 2.5rem; margin-bottom: 12px;">🎬</div>
-            <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Aucune vidéo Short dans cette catégorie</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">Soyez le premier membre inscrit à publier un Short ici !</p>
+            <div style="font-size: 2.5rem; margin-bottom: 12px;">💼</div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Aucun briefing exécutif dans cette catégorie</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">Soyez le premier leader inscrit à publier un briefing professionnel !</p>
             <button type="button" class="btn btn-primary btn-sm btn-open-publish-short">
-              <span>+</span> Publier une Vidéo Short (English Only)
+              <span>+</span> Publier un Briefing Exécutif (English Only)
             </button>
           </div>
         `;
@@ -459,6 +726,7 @@
         const avatarSrc = getAssetPath(short.author.avatar);
         const mediaSrc = getAssetPath(short.mediaUrl);
         const isVideo = short.mediaType === 'video' || (short.videoUrl && short.videoUrl.length > 0);
+        const dossier = short.executiveDossier || {};
 
         return `
           <article class="short-card" data-short-id="${short.id}">
@@ -471,11 +739,11 @@
               <!-- Top badges -->
               <div class="short-top-bar">
                 <span class="short-duration-tag">⏱️ ${short.duration}</span>
-                <span class="short-badge-live" style="background: linear-gradient(135deg, #10b981, #06b6d4);">🇬🇧 EN 100%</span>
+                <span class="executive-card-badge">💼 ${escapeHTML(short.author.level)} · Pro</span>
               </div>
 
               <!-- Central Play Button -->
-              <button type="button" class="btn-play-short-hero" data-short-id="${short.id}" aria-label="Lire la vidéo short ${escapeHTML(short.title)}">
+              <button type="button" class="btn-play-short-hero" data-short-id="${short.id}" aria-label="Consulter le briefing ${escapeHTML(short.title)}">
                 <span class="play-icon-triangle">▶</span>
               </button>
 
@@ -488,16 +756,22 @@
                   </div>
                   <div class="short-author-details">
                     <span class="short-author-name">${escapeHTML(short.author.name)}</span>
-                    <span class="short-badge-level">${short.author.level}</span>
+                    <span class="short-badge-level" style="font-size:0.7rem; font-weight:700;">${escapeHTML(short.author.role ? short.author.role.split('·')[0].trim() : short.author.level)}</span>
                   </div>
                 </div>
 
                 <h3 class="short-card-title">${escapeHTML(short.title)}</h3>
 
-                <div class="short-meta-row">
+                ${dossier.framework ? `
+                  <div class="executive-framework-pill">
+                    <span>${escapeHTML(dossier.framework.split('(')[0].trim())}</span>
+                  </div>
+                ` : ''}
+
+                <div class="short-meta-row" style="margin-top: 8px;">
                   <div class="short-stat-chip">👁️ ${short.views} vues</div>
                   <div class="short-stat-chip ${isLiked ? 'liked' : ''}">👍 ${short.likes}</div>
-                  <div class="short-stat-chip">💬 ${short.comments.length}</div>
+                  <div class="short-stat-chip">📁 Fiche C1-C2</div>
                 </div>
               </div>
             </div>
@@ -532,7 +806,7 @@
     renderLiveStreams();
   }
 
-  // Ouvrir le lecteur modal immersif d'un Short
+  // Ouvrir le lecteur modal immersif d'un Briefing Exécutif
   function openShortModal(shortId) {
     const short = shortsData.find(s => s.id === shortId);
     if (!short) return;
@@ -555,6 +829,19 @@
     const hasFx = edits.effect && edits.effect !== 'none';
     const hasText = edits.text && edits.text.content && edits.text.content.trim().length > 0;
     const hasStickers = edits.stickers && edits.stickers.length > 0;
+
+    const dossier = short.executiveDossier || {
+      framework: 'Executive Communication Matrix',
+      takeaways: [
+        'Anchor the strategic problem statement within the first 10 seconds.',
+        'Deploy calm vocal cadence with downward inflection.',
+        'Transition smoothly to actionable next steps and measurable metrics.'
+      ],
+      lexicon: [
+        { term: 'Strategic Alignment', phonetic: '/strəˈtiːdʒɪk əˈlaɪnmənt/', meaning: 'Harmonizing cross-functional priorities', collocation: 'Ensure strategic alignment across all stakeholders.' }
+      ],
+      practiceSentence: short.captions || 'Let us anchor our approach on measurable fundamentals.'
+    };
 
     modal.innerHTML = `
       <div class="shorts-modal-backdrop"></div>
@@ -579,21 +866,31 @@
               ${hasStickers ? `<div class="short-stickers-layer" style="pointer-events:none;">${edits.stickers.map(s => `<span class="placed-sticker-badge">${s}</span>`).join('')}</div>` : ''}
               ${edits.voiceover && edits.voiceover.active ? `<div class="short-voiceover-indicator"><span>🎙️ Voix off</span></div>` : ''}
 
-              <!-- Top Screen Bar -->
+              <!-- Top Screen Bar with Speed Controller -->
               <div class="shorts-screen-top">
                 <div class="shorts-channel-chip">
                   <img src="${avatarSrc}" alt="${escapeHTML(short.author.name)}" class="channel-pic" />
                   <span class="channel-name">${escapeHTML(short.author.name)} ${short.author.flag}</span>
                   <span class="badge-level-pill">${short.author.level}</span>
                 </div>
-                <div class="shorts-sound-toggle" id="btn-toggle-sound" title="Activer / Désactiver la voix">
-                  <span class="sound-icon">🔊</span>
+                
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <!-- Contrôleur de vitesse pro -->
+                  <div class="executive-speed-bar" id="executive-speed-selector">
+                    <button type="button" class="executive-speed-btn ${currentPlaybackRate === 0.75 ? 'active' : ''}" data-speed="0.75" title="Analyse Détaillée (0.75x)">0.75x</button>
+                    <button type="button" class="executive-speed-btn ${currentPlaybackRate === 1.0 ? 'active' : ''}" data-speed="1.0" title="Standard Pro (1.0x)">1.0x</button>
+                    <button type="button" class="executive-speed-btn ${currentPlaybackRate === 1.25 ? 'active' : ''}" data-speed="1.25" title="Cadence Rapide (1.25x)">1.25x</button>
+                  </div>
+
+                  <div class="shorts-sound-toggle" id="btn-toggle-sound" title="Activer / Désactiver la voix">
+                    <span class="sound-icon">🔊</span>
+                  </div>
                 </div>
               </div>
 
               <!-- Live Captions Subtitle Box -->
               <div class="shorts-captions-box">
-                <div class="captions-badge">🎙️ Transcription Audio en Direct (English)</div>
+                <div class="captions-badge">🎙️ Transcription Exécutive (English)</div>
                 <p class="captions-text">"${escapeHTML(short.captions)}"</p>
               </div>
 
@@ -611,63 +908,178 @@
 
           <!-- Interaction Side Panel -->
           <div class="shorts-side-column">
+            <!-- Header Section with Expert Identity -->
             <div class="shorts-side-header">
               <div style="display:flex; align-items:center; gap:8px; margin-bottom: 8px;">
-                <span class="crystal-badge">Short Vidéo · Membres Inscrits</span>
+                <span class="crystal-badge">Briefing Exécutif C-Suite</span>
                 <span class="crystal-badge crystal-badge-cyan">🇬🇧 100% English</span>
               </div>
+
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom: 10px;">
+                <img src="${avatarSrc}" alt="${escapeHTML(short.author.name)}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #34d399;" />
+                <div style="flex:1;">
+                  <div style="font-weight:700; color:#fff; font-size:0.92rem; display:flex; align-items:center; gap:6px;">
+                    ${escapeHTML(short.author.name)} ${short.author.flag}
+                    <span class="short-badge-level">${short.author.level}</span>
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">${escapeHTML(short.author.role || 'Executive Leader')}</div>
+                </div>
+              </div>
+
               <h2 class="viewer-short-title">${escapeHTML(short.title)}</h2>
               <div class="viewer-tags-row">
                 ${(short.tags || []).map(t => `<span class="tag-pill">${escapeHTML(t)}</span>`).join(' ')}
               </div>
             </div>
 
-            <!-- Social Action Buttons (Like, Dislike, Share) -->
-            <div class="shorts-interaction-row">
-              <button type="button" class="btn-short-action btn-short-like ${isLiked ? 'active' : ''}" id="viewer-btn-like">
-                <span class="action-icon">👍</span>
-                <span class="action-count" id="viewer-like-count">${short.likes}</span>
-                <span class="action-label">J'aime</span>
+            <!-- Professional Navigation Tabs -->
+            <div class="executive-tabs-bar">
+              <button type="button" class="executive-tab-btn active" id="tab-btn-dossier" data-tab="dossier">
+                <span>💼</span> Dossier Exécutif & Drill
               </button>
-
-              <button type="button" class="btn-short-action btn-short-dislike ${isDisliked ? 'active' : ''}" id="viewer-btn-dislike">
-                <span class="action-icon">👎</span>
-                <span class="action-count" id="viewer-dislike-count">${short.dislikes}</span>
-                <span class="action-label">Dislike</span>
-              </button>
-
-              <button type="button" class="btn-short-action" id="viewer-btn-share">
-                <span class="action-icon">🔗</span>
-                <span class="action-label">Partager</span>
+              <button type="button" class="executive-tab-btn" id="tab-btn-comments" data-tab="comments">
+                <span>💬</span> Retours de Pairs (<span id="viewer-comments-count-pill">${short.comments.length}</span>)
               </button>
             </div>
 
-            <!-- Comments Section -->
-            <div class="shorts-comments-block">
-              <div class="comments-block-header">
-                <h3>Commentaires (<span id="viewer-comments-count">${short.comments.length}</span>)</h3>
+            <!-- Tab 1: Executive Dossier & Shadowing Drill -->
+            <div id="tab-pane-dossier" class="executive-dossier-wrap">
+              <!-- Methodological Framework -->
+              <div class="executive-meta-card">
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800; color: #34d399;">Cadre Méthodologique</span>
+                  <span class="executive-card-badge">Niveau ${escapeHTML(short.author.level)}</span>
+                </div>
+                <div style="font-weight: 700; color: #ffffff; font-size: 0.94rem;">${escapeHTML(dossier.framework)}</div>
               </div>
 
-              <div class="shorts-comments-scroll" id="viewer-comments-list">
-                ${short.comments.map(c => `
-                  <div class="short-comment-item">
-                    <img src="${getAssetPath(c.avatar)}" alt="${escapeHTML(c.name)}" class="comment-author-avatar" />
-                    <div class="comment-bubble">
-                      <div class="comment-top">
-                        <strong>${escapeHTML(c.name)} ${c.flag || ''}</strong>
-                        <span class="comment-time">${c.time}</span>
-                      </div>
-                      <p class="comment-message">${escapeHTML(c.text)}</p>
+              <!-- 3 Strategic Pillars -->
+              <div class="executive-takeaways-block">
+                <h4 style="font-size: 0.8rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 8px 0; display: flex; align-items: center; gap: 6px;">
+                  <span>🎯</span> 3 Piliers Stratégiques Décryptés
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  ${(dossier.takeaways || []).map((t, idx) => `
+                    <div class="executive-takeaway-item">
+                      <span class="executive-takeaway-num">0${idx + 1}</span>
+                      <div style="flex: 1;">${escapeHTML(t)}</div>
                     </div>
-                  </div>
-                `).join('')}
+                  `).join('')}
+                </div>
               </div>
 
-              <!-- Add Comment Input -->
-              <form class="shorts-add-comment-form" id="viewer-comment-form">
-                <input type="text" id="viewer-comment-input" class="form-control" placeholder="Ajouter un commentaire ou conseil en anglais..." required />
-                <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
-              </form>
+              <!-- C-Suite Lexicon & Collocations -->
+              <div class="executive-lexicon-block">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <h4 style="font-size: 0.8rem; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.05em; margin: 0; display: flex; align-items: center; gap: 6px;">
+                    <span>💎</span> Collocations & Lexique C-Suite
+                  </h4>
+                  <span style="font-size: 0.72rem; color: var(--text-muted);">Cliquez 📋 pour copier</span>
+                </div>
+                <div class="executive-lexicon-grid">
+                  ${(dossier.lexicon || []).map(item => {
+                    const term = item.term || item.phrase || 'Executive Collocation';
+                    const note = item.meaning || item.note || '';
+                    const phonetic = item.phonetic ? `[${item.phonetic}]` : '';
+                    const collocation = item.collocation ? `« ${item.collocation} »` : '';
+                    const copyText = item.collocation ? `${term} — ${item.collocation}` : `${term} (${note})`;
+                    return `
+                    <div class="executive-lexicon-card">
+                      <div style="flex: 1;">
+                        <div class="executive-lexicon-phrase">${escapeHTML(term)} ${phonetic ? `<span style="font-size: 0.74rem; color: #94a3b8; font-weight: normal;">${escapeHTML(phonetic)}</span>` : ''}</div>
+                        <div class="executive-lexicon-note"><strong>${escapeHTML(note)}</strong> ${collocation ? `· <em style="color: #e2e8f0;">${escapeHTML(collocation)}</em>` : ''}</div>
+                      </div>
+                      <button type="button" class="btn-copy-lexicon" data-phrase="${escapeHTML(copyText)}" title="Copier la collocation" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #38bdf8; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; transition: all 0.2s ease;">
+                        📋
+                      </button>
+                    </div>
+                  `;}).join('')}
+                </div>
+              </div>
+
+              <!-- Interactive Vocal Shadowing Card -->
+              <div class="executive-shadowing-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <strong style="color: #c4b5fd; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
+                    <span>🎙️</span> Entraînement au Shadowing Vocal
+                  </strong>
+                  <span class="hud-metric-pill" style="background: rgba(139, 92, 246, 0.25); color: #c4b5fd; border-color: rgba(139, 92, 246, 0.4); font-size: 0.7rem; padding: 2px 8px;">+20 XP</span>
+                </div>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.4;">
+                  Prononcez cette phrase d'impact avec cadence descendante et autorité exécutive :
+                </p>
+                <blockquote style="margin: 0 0 10px 0; padding: 8px 12px; background: rgba(0,0,0,0.35); border-left: 3px solid #8b5cf6; border-radius: 4px; font-style: italic; font-size: 0.86rem; color: #f8fafc; line-height: 1.45;">
+                  "${escapeHTML(dossier.practiceSentence || short.captions)}"
+                </blockquote>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-sm btn-outline-cyan" id="btn-listen-sentence" style="padding: 6px 12px; font-size: 0.78rem;">
+                    <span>🔊</span> Écouter le Modèle
+                  </button>
+                  <button type="button" class="btn btn-sm btn-primary" id="btn-practice-mic" style="padding: 6px 14px; font-size: 0.78rem; background: linear-gradient(135deg, #8b5cf6, #6366f1); border-color: #8b5cf6;">
+                    <span id="mic-icon-state">🎤</span> <span id="mic-label-state">Parler au Micro</span>
+                  </button>
+                </div>
+                <div id="shadowing-feedback-box" style="display: none; margin-top: 10px;">
+                  <div id="shadowing-score-badge" class="executive-speech-score-badge"></div>
+                  <p id="shadowing-transcript-line" style="font-size: 0.78rem; margin: 6px 0 0 0; color: var(--text-secondary);"></p>
+                </div>
+              </div>
+
+              <!-- Export Full Briefing Sheet -->
+              <button type="button" class="btn btn-sm btn-outline-primary" id="btn-export-dossier" style="width: 100%; padding: 10px; font-weight: 700; border-radius: 8px; margin-top: 4px;">
+                <span>📋</span> Copier la Fiche Synthèse Complète (Format Fiche Pro)
+              </button>
+            </div>
+
+            <!-- Tab 2: Comments & Peer Exchange -->
+            <div id="tab-pane-comments" style="display: none; flex-direction: column; gap: 14px;">
+              <!-- Social Action Buttons (Like, Dislike, Share) -->
+              <div class="shorts-interaction-row" style="margin-bottom: 0;">
+                <button type="button" class="btn-short-action btn-short-like ${isLiked ? 'active' : ''}" id="viewer-btn-like">
+                  <span class="action-icon">👍</span>
+                  <span class="action-count" id="viewer-like-count">${short.likes}</span>
+                  <span class="action-label">J'aime</span>
+                </button>
+
+                <button type="button" class="btn-short-action btn-short-dislike ${isDisliked ? 'active' : ''}" id="viewer-btn-dislike">
+                  <span class="action-icon">👎</span>
+                  <span class="action-count" id="viewer-dislike-count">${short.dislikes}</span>
+                  <span class="action-label">Dislike</span>
+                </button>
+
+                <button type="button" class="btn-short-action" id="viewer-btn-share">
+                  <span class="action-icon">🔗</span>
+                  <span class="action-label">Partager</span>
+                </button>
+              </div>
+
+              <!-- Comments Section -->
+              <div class="shorts-comments-block">
+                <div class="comments-block-header">
+                  <h3>Retours et Analyses de Pairs (<span id="viewer-comments-count">${short.comments.length}</span>)</h3>
+                </div>
+
+                <div class="shorts-comments-scroll" id="viewer-comments-list" style="max-height: 280px;">
+                  ${short.comments.map(c => `
+                    <div class="short-comment-item">
+                      <img src="${getAssetPath(c.avatar)}" alt="${escapeHTML(c.name)}" class="comment-author-avatar" />
+                      <div class="comment-bubble">
+                        <div class="comment-top">
+                          <strong>${escapeHTML(c.name)} ${c.flag || ''}</strong>
+                          <span class="comment-time">${c.time}</span>
+                        </div>
+                        <p class="comment-message">${escapeHTML(c.text)}</p>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <!-- Add Comment Input -->
+                <form class="shorts-add-comment-form" id="viewer-comment-form">
+                  <input type="text" id="viewer-comment-input" class="form-control" placeholder="Ajouter un retour professionnel en anglais..." required />
+                  <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -679,7 +1091,7 @@
 
     // Lancer la lecture audio TTS uniquement si ce n'est pas déjà un fichier vidéo avec sa propre piste audio
     if (!isVideo) {
-      playSpeechCaptions(short.captions);
+      playSpeechCaptions(short.captions, currentPlaybackRate);
     }
 
     // Timeline animation
@@ -707,13 +1119,222 @@
       viewerMediaEl.style.filter = viewerFilterCssMap[edits.filter];
     }
 
-    // Événements du modal
+    // Appliquer le taux de vitesse actuel sur le lecteur vidéo
+    const videoEl = modal.querySelector('#viewer-video-player');
+    if (videoEl) {
+      videoEl.playbackRate = currentPlaybackRate;
+    }
+
+    // Gestion du basculement d'onglets (Dossier vs Retours)
+    const tabBtnDossier = modal.querySelector('#tab-btn-dossier');
+    const tabBtnComments = modal.querySelector('#tab-btn-comments');
+    const paneDossier = modal.querySelector('#tab-pane-dossier');
+    const paneComments = modal.querySelector('#tab-pane-comments');
+
+    if (tabBtnDossier && tabBtnComments && paneDossier && paneComments) {
+      tabBtnDossier.addEventListener('click', () => {
+        tabBtnDossier.classList.add('active');
+        tabBtnComments.classList.remove('active');
+        paneDossier.style.display = 'flex';
+        paneComments.style.display = 'none';
+      });
+
+      tabBtnComments.addEventListener('click', () => {
+        tabBtnComments.classList.add('active');
+        tabBtnDossier.classList.remove('active');
+        paneComments.style.display = 'flex';
+        paneDossier.style.display = 'none';
+      });
+    }
+
+    // Gestion du sélecteur de vitesse de lecture (0.75x, 1.0x, 1.25x)
+    const speedButtons = modal.querySelectorAll('.executive-speed-btn');
+    speedButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rate = parseFloat(btn.getAttribute('data-speed')) || 1.0;
+        currentPlaybackRate = rate;
+
+        speedButtons.forEach(b => b.classList.toggle('active', b === btn));
+
+        const activeVid = modal.querySelector('#viewer-video-player');
+        if (activeVid) {
+          activeVid.playbackRate = currentPlaybackRate;
+        }
+
+        if (isSpeechPlaying) {
+          playSpeechCaptions(short.captions, currentPlaybackRate);
+        }
+
+        if (window.showToast) {
+          window.showToast(`⚡ Cadence de lecture réglée à ${rate}x`, 'Vitesse d\'Analyse', 'info');
+        }
+      });
+    });
+
+    // Copie de collocation individuelle en 1 clic
+    modal.querySelectorAll('.btn-copy-lexicon').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const phrase = btn.getAttribute('data-phrase');
+        if (phrase && navigator.clipboard) {
+          navigator.clipboard.writeText(phrase);
+          if (window.showToast) {
+            window.showToast(`📋 Collocation copiée : "${phrase}"`, 'Lexique Exécutif', 'success');
+          }
+        }
+      });
+    });
+
+    // Copie de la fiche synthèse complète du Briefing
+    const exportBtn = modal.querySelector('#btn-export-dossier');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        const sheet = `=== ENGLISH BOOSTER · FICHE DE BRIEFING EXÉCUTIF ===
+Sujet : ${short.title}
+Niveau : ${short.author.level} | Expert : ${short.author.name} (${short.author.role || 'Executive Leader'})
+Cadre Méthodologique : ${dossier.framework}
+
+🎯 PILIERS STRATÉGIQUES :
+${(dossier.takeaways || []).map((t, i) => `${i + 1}. ${t}`).join('\n')}
+
+💎 LEXIQUE & COLLOCATIONS C-SUITE :
+${(dossier.lexicon || []).map(l => `• ${l.term || l.phrase}${l.phonetic ? ` [${l.phonetic}]` : ''} : ${l.meaning || l.note}${l.collocation ? `\n  Exemple : « ${l.collocation} »` : ''}`).join('\n')}
+
+🎙️ PHRASE D'IMPACT (SHADOWING) :
+"${dossier.practiceSentence || short.captions}"
+=====================================================`;
+
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(sheet);
+        }
+        if (window.showToast) {
+          window.showToast('📋 Fiche de synthèse exécutive copiée dans le presse-papier !', 'Dossier Exécutif', 'success');
+        }
+      });
+    }
+
+    // Écoute du modèle vocal (TTS)
+    const listenSentenceBtn = modal.querySelector('#btn-listen-sentence');
+    if (listenSentenceBtn) {
+      listenSentenceBtn.addEventListener('click', () => {
+        playSpeechCaptions(dossier.practiceSentence || short.captions, currentPlaybackRate);
+      });
+    }
+
+    // Entraînement vocal interactif au Shadowing (Speech Recognition)
+    const practiceMicBtn = modal.querySelector('#btn-practice-mic');
+    const micIconState = modal.querySelector('#mic-icon-state');
+    const micLabelState = modal.querySelector('#mic-label-state');
+    const feedbackBox = modal.querySelector('#shadowing-feedback-box');
+    const scoreBadge = modal.querySelector('#shadowing-score-badge');
+    const transcriptLine = modal.querySelector('#shadowing-transcript-line');
+
+    if (practiceMicBtn) {
+      practiceMicBtn.addEventListener('click', () => {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+          if (feedbackBox && scoreBadge) {
+            feedbackBox.style.display = 'block';
+            scoreBadge.style.background = 'rgba(59, 130, 246, 0.2)';
+            scoreBadge.style.color = '#93c5fd';
+            scoreBadge.style.border = '1px solid rgba(59, 130, 246, 0.4)';
+            scoreBadge.innerHTML = '<span>ℹ️</span> Reconnaissance vocale non disponible sur ce navigateur. Répétez à voix haute ! (+10 XP)';
+          }
+          if (window.EnglishBooster && typeof window.EnglishBooster.addXP === 'function') {
+            window.EnglishBooster.addXP(10);
+          }
+          return;
+        }
+
+        try {
+          const recognizer = new SpeechRec();
+          recognizer.lang = 'en-US';
+          recognizer.interimResults = false;
+          recognizer.maxAlternatives = 1;
+
+          if (micIconState) micIconState.textContent = '🔴';
+          if (micLabelState) micLabelState.textContent = 'Écoute en cours... Parlez !';
+          practiceMicBtn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+
+          recognizer.onresult = (event) => {
+            const spoken = (event.results[0][0].transcript || '').trim();
+            const target = (dossier.practiceSentence || short.captions || '').trim().toLowerCase();
+            const cleanSpoken = spoken.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+            const cleanTarget = target.replace(/[^a-z0-9\s]/g, '');
+
+            const spokenWords = cleanSpoken.split(/\s+/).filter(Boolean);
+            const targetWords = cleanTarget.split(/\s+/).filter(Boolean);
+
+            let matches = 0;
+            spokenWords.forEach(w => {
+              if (targetWords.includes(w)) matches++;
+            });
+
+            const accuracy = targetWords.length > 0 
+              ? Math.min(100, Math.round((matches / targetWords.length) * 100))
+              : 85;
+
+            if (feedbackBox && scoreBadge && transcriptLine) {
+              feedbackBox.style.display = 'block';
+              transcriptLine.innerHTML = `<strong>Vous avez dit :</strong> « ${escapeHTML(spoken)} »`;
+
+              if (accuracy >= 60) {
+                scoreBadge.style.background = 'rgba(16, 185, 129, 0.25)';
+                scoreBadge.style.color = '#34d399';
+                scoreBadge.style.border = '1px solid rgba(52, 211, 153, 0.5)';
+                scoreBadge.innerHTML = `<span>🎯</span> <strong>Score d'Élocution : ${accuracy}%</strong> — Cadence et clarté exécutive validées ! (+20 XP)`;
+                if (window.SoundFX && typeof window.SoundFX.playSuccess === 'function') {
+                  window.SoundFX.playSuccess();
+                }
+                if (window.EnglishBooster && typeof window.EnglishBooster.addXP === 'function') {
+                  window.EnglishBooster.addXP(20);
+                }
+              } else {
+                scoreBadge.style.background = 'rgba(245, 158, 11, 0.2)';
+                scoreBadge.style.color = '#fbbf24';
+                scoreBadge.style.border = '1px solid rgba(245, 158, 11, 0.4)';
+                scoreBadge.innerHTML = `<span>⚠️</span> <strong>Score d'Élocution : ${accuracy}%</strong> — Bonne tentative ! Réessayez avec une cadence plus appuyée (+10 XP)`;
+                if (window.EnglishBooster && typeof window.EnglishBooster.addXP === 'function') {
+                  window.EnglishBooster.addXP(10);
+                }
+              }
+            }
+          };
+
+          recognizer.onerror = () => {
+            if (feedbackBox && scoreBadge) {
+              feedbackBox.style.display = 'block';
+              scoreBadge.style.background = 'rgba(239, 68, 68, 0.2)';
+              scoreBadge.style.color = '#fca5a5';
+              scoreBadge.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+              scoreBadge.innerHTML = '<span>⚠️</span> Micro inactif ou non détecté. Répétez la phrase à voix haute (+10 XP) !';
+            }
+            if (window.EnglishBooster && typeof window.EnglishBooster.addXP === 'function') {
+              window.EnglishBooster.addXP(10);
+            }
+          };
+
+          recognizer.onend = () => {
+            if (micIconState) micIconState.textContent = '🎤';
+            if (micLabelState) micLabelState.textContent = 'Parler au Micro';
+            practiceMicBtn.style.background = 'linear-gradient(135deg, #8b5cf6, #6366f1)';
+          };
+
+          recognizer.start();
+        } catch (err) {
+          if (micIconState) micIconState.textContent = '🎤';
+          if (micLabelState) micLabelState.textContent = 'Parler au Micro';
+          practiceMicBtn.style.background = 'linear-gradient(135deg, #8b5cf6, #6366f1)';
+        }
+      });
+    }
+
+    // Événements du modal (Fermeture, Play/Pause, Son)
     const closeBtn = modal.querySelector('#btn-close-viewer');
     const backdrop = modal.querySelector('.shorts-modal-backdrop');
     function closeModal() {
       stopSpeechCaptions();
-      const videoEl = modal.querySelector('#viewer-video-player');
-      if (videoEl) videoEl.pause();
+      const currentVid = modal.querySelector('#viewer-video-player');
+      if (currentVid) currentVid.pause();
       window.removeEventListener('keydown', handleEscViewerKey);
       modal.style.display = 'none';
       document.body.style.overflow = '';
@@ -732,13 +1353,13 @@
     const playPauseBtn = modal.querySelector('#btn-screen-play-pause');
     const playStateSymbol = modal.querySelector('.play-state-symbol');
     playPauseBtn.addEventListener('click', () => {
-      const videoEl = modal.querySelector('#viewer-video-player');
-      if (videoEl) {
-        if (videoEl.paused) {
-          videoEl.play();
+      const currentVid = modal.querySelector('#viewer-video-player');
+      if (currentVid) {
+        if (currentVid.paused) {
+          currentVid.play();
           playStateSymbol.textContent = '⏸️';
         } else {
-          videoEl.pause();
+          currentVid.pause();
           playStateSymbol.textContent = '▶️';
         }
       } else {
@@ -746,7 +1367,7 @@
           stopSpeechCaptions();
           playStateSymbol.textContent = '▶️';
         } else {
-          playSpeechCaptions(short.captions);
+          playSpeechCaptions(short.captions, currentPlaybackRate);
           playStateSymbol.textContent = '⏸️';
         }
       }
@@ -755,16 +1376,16 @@
     // Sound toggle
     const soundToggle = modal.querySelector('#btn-toggle-sound');
     soundToggle.addEventListener('click', () => {
-      const videoEl = modal.querySelector('#viewer-video-player');
-      if (videoEl) {
-        videoEl.muted = !videoEl.muted;
-        soundToggle.querySelector('.sound-icon').textContent = videoEl.muted ? '🔇' : '🔊';
+      const currentVid = modal.querySelector('#viewer-video-player');
+      if (currentVid) {
+        currentVid.muted = !currentVid.muted;
+        soundToggle.querySelector('.sound-icon').textContent = currentVid.muted ? '🔇' : '🔊';
       } else {
         if (isSpeechPlaying) {
           stopSpeechCaptions();
           soundToggle.querySelector('.sound-icon').textContent = '🔇';
         } else {
-          playSpeechCaptions(short.captions);
+          playSpeechCaptions(short.captions, currentPlaybackRate);
           soundToggle.querySelector('.sound-icon').textContent = '🔊';
         }
       }
@@ -772,96 +1393,106 @@
 
     // Like
     const likeBtn = modal.querySelector('#viewer-btn-like');
-    likeBtn.addEventListener('click', () => {
-      handleShortReaction(short.id, 'like');
-      const updated = shortsData.find(s => s.id === short.id);
-      modal.querySelector('#viewer-like-count').textContent = updated.likes;
-      modal.querySelector('#viewer-dislike-count').textContent = updated.dislikes;
-      likeBtn.classList.toggle('active', updated.userReaction === 'like');
-      modal.querySelector('#viewer-btn-dislike').classList.toggle('active', updated.userReaction === 'dislike');
-      renderShortsGrid();
-    });
+    if (likeBtn) {
+      likeBtn.addEventListener('click', () => {
+        handleShortReaction(short.id, 'like');
+        const updated = shortsData.find(s => s.id === short.id);
+        modal.querySelector('#viewer-like-count').textContent = updated.likes;
+        modal.querySelector('#viewer-dislike-count').textContent = updated.dislikes;
+        likeBtn.classList.toggle('active', updated.userReaction === 'like');
+        modal.querySelector('#viewer-btn-dislike').classList.toggle('active', updated.userReaction === 'dislike');
+        renderShortsGrid();
+      });
+    }
 
     // Dislike
     const dislikeBtn = modal.querySelector('#viewer-btn-dislike');
-    dislikeBtn.addEventListener('click', () => {
-      handleShortReaction(short.id, 'dislike');
-      const updated = shortsData.find(s => s.id === short.id);
-      modal.querySelector('#viewer-like-count').textContent = updated.likes;
-      modal.querySelector('#viewer-dislike-count').textContent = updated.dislikes;
-      dislikeBtn.classList.toggle('active', updated.userReaction === 'dislike');
-      modal.querySelector('#viewer-btn-like').classList.toggle('active', updated.userReaction === 'like');
-      renderShortsGrid();
-    });
+    if (dislikeBtn) {
+      dislikeBtn.addEventListener('click', () => {
+        handleShortReaction(short.id, 'dislike');
+        const updated = shortsData.find(s => s.id === short.id);
+        modal.querySelector('#viewer-like-count').textContent = updated.likes;
+        modal.querySelector('#viewer-dislike-count').textContent = updated.dislikes;
+        dislikeBtn.classList.toggle('active', updated.userReaction === 'dislike');
+        modal.querySelector('#viewer-btn-like').classList.toggle('active', updated.userReaction === 'like');
+        renderShortsGrid();
+      });
+    }
 
     // Partager
     const shareBtn = modal.querySelector('#viewer-btn-share');
-    shareBtn.addEventListener('click', () => {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-      }
-      if (window.showToast) {
-        window.showToast('🔗 Lien du Short copié dans le presse-papier !', 'Partage English Booster', 'success');
-      } else {
-        alert('Lien copié !');
-      }
-    });
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(window.location.href);
+        }
+        if (window.showToast) {
+          window.showToast('🔗 Lien du Briefing Exécutif copié dans le presse-papier !', 'Partage Pro', 'success');
+        } else {
+          alert('Lien copié !');
+        }
+      });
+    }
 
-    // Nouveau commentaire
+    // Nouveau commentaire / retour de pair
     const commentForm = modal.querySelector('#viewer-comment-form');
-    commentForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const input = modal.querySelector('#viewer-comment-input');
-      const text = input.value.trim();
-      if (!text) return;
+    if (commentForm) {
+      commentForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const input = modal.querySelector('#viewer-comment-input');
+        const text = input.value.trim();
+        if (!text) return;
 
-      const currentUserName = localStorage.getItem('eb_user_name') || 'Alex Rivera';
-      const newComment = {
-        id: 'sc_' + Date.now(),
-        name: currentUserName,
-        flag: '🇪🇸',
-        avatar: 'assets/avatars/alex.jpg',
-        text: text,
-        time: 'À l\'instant'
-      };
+        const currentUserName = localStorage.getItem('eb_user_name') || 'Alex Rivera';
+        const newComment = {
+          id: 'sc_' + Date.now(),
+          name: currentUserName,
+          flag: '🇪🇸',
+          avatar: 'assets/avatars/alex.jpg',
+          text: text,
+          time: 'À l\'instant'
+        };
 
-      short.comments.unshift(newComment);
-      saveShorts();
+        short.comments.unshift(newComment);
+        saveShorts();
 
-      // Mettre à jour l'affichage
-      const list = modal.querySelector('#viewer-comments-list');
-      const countEl = modal.querySelector('#viewer-comments-count');
-      countEl.textContent = short.comments.length;
+        // Mettre à jour l'affichage
+        const list = modal.querySelector('#viewer-comments-list');
+        const countEl = modal.querySelector('#viewer-comments-count');
+        const countPill = modal.querySelector('#viewer-comments-count-pill');
+        if (countEl) countEl.textContent = short.comments.length;
+        if (countPill) countPill.textContent = short.comments.length;
 
-      const itemHtml = `
-        <div class="short-comment-item" style="animation: fadeIn 0.3s ease;">
-          <img src="${getAssetPath(newComment.avatar)}" alt="${escapeHTML(newComment.name)}" class="comment-author-avatar" />
-          <div class="comment-bubble">
-            <div class="comment-top">
-              <strong>${escapeHTML(newComment.name)} ${newComment.flag}</strong>
-              <span class="comment-time">${newComment.time}</span>
+        const itemHtml = `
+          <div class="short-comment-item" style="animation: fadeIn 0.3s ease;">
+            <img src="${getAssetPath(newComment.avatar)}" alt="${escapeHTML(newComment.name)}" class="comment-author-avatar" />
+            <div class="comment-bubble">
+              <div class="comment-top">
+                <strong>${escapeHTML(newComment.name)} ${newComment.flag}</strong>
+                <span class="comment-time">${newComment.time}</span>
+              </div>
+              <p class="comment-message">${escapeHTML(newComment.text)}</p>
             </div>
-            <p class="comment-message">${escapeHTML(newComment.text)}</p>
           </div>
-        </div>
-      `;
-      list.insertAdjacentHTML('afterbegin', itemHtml);
-      input.value = '';
+        `;
+        if (list) list.insertAdjacentHTML('afterbegin', itemHtml);
+        input.value = '';
 
-      if (window.SoundFX && typeof window.SoundFX.playSuccess === 'function') {
-        window.SoundFX.playSuccess();
-      }
-    });
+        if (window.SoundFX && typeof window.SoundFX.playSuccess === 'function') {
+          window.SoundFX.playSuccess();
+        }
+      });
+    }
   }
 
-  // Synthèse vocale de démonstration pour les sous-titres du Short
-  function playSpeechCaptions(text) {
+  // Synthèse vocale de démonstration avec cadence ajustable
+  function playSpeechCaptions(text, rate = currentPlaybackRate) {
     if (!('speechSynthesis' in window) || !text) return;
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
-    utterance.rate = 0.95;
+    utterance.rate = rate || 0.95;
     utterance.onend = () => {
       isSpeechPlaying = false;
       const playState = document.querySelector('.play-state-symbol');

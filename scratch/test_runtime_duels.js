@@ -187,3 +187,4 @@ modes.forEach(modeId => {
 });
 
 console.log('\n🎉 ALL 5 ACTIVE DUEL MODES FULLY TESTED AND OPERATIONAL!');
+process.exit(0);
