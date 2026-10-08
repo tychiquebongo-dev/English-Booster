@@ -896,7 +896,7 @@
 
     modal.innerHTML = `
       <div class="shorts-modal-backdrop"></div>
-      <div class="shorts-modal-dialog" style="max-width: 680px; max-height: 94vh; overflow-y: auto;">
+      <div class="shorts-modal-dialog" style="max-width: 740px; max-height: 94vh; overflow-y: auto;">
         <button type="button" class="btn-close-shorts-modal" id="btn-close-publish">&times;</button>
         <div class="publish-short-card">
           <div style="margin-bottom: 18px;">

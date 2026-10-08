@@ -6536,13 +6536,16 @@ select option {
 }
 
 .thumb-radio-card {
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   border: 2px solid var(--glass-border);
   cursor: pointer;
   text-align: center;
-  transition: all 0.2s ease;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.45);
+  transition-property: all;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, border-color, box-shadow;
 }
 
 .thumb-radio-card img {
@@ -6550,27 +6553,44 @@ select option {
   aspect-ratio: 9/16;
   object-fit: cover;
   display: block;
+  transition: transform 0.35s ease;
 }
 
 .thumb-radio-card span {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 4px 2px;
+  padding: 6px 4px;
   color: var(--text-secondary);
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 .thumb-radio-card:hover {
-  border-color: rgba(74, 222, 128, 0.5);
+  transform: translateY(-5px) scale(1.04);
+  border-color: var(--green-400);
+  background: rgba(74, 222, 128, 0.12);
+  box-shadow: 0 10px 25px rgba(74, 222, 128, 0.35);
+}
+
+.thumb-radio-card:hover img {
+  transform: scale(1.06);
+}
+
+.thumb-radio-card:hover span {
+  color: #ffffff !important;
+  font-weight: 800;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .thumb-radio-card.active {
   border-color: var(--green-400);
-  box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
+  box-shadow: 0 0 16px rgba(74, 222, 128, 0.5);
+  transform: translateY(-2px);
 }
 
 .thumb-radio-card.active span {
   color: var(--green-400);
+  font-weight: 800;
 }
 
 /* ==========================================================================
@@ -7366,65 +7386,126 @@ select option {
 /* 1. Video Upload & Live Camera Recording in Publish Short Modal */
 .upload-method-tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  background: rgba(255, 255, 255, 0.04);
-  padding: 4px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--glass-border);
+  gap: 10px;
+  margin-bottom: 18px;
+  background: rgba(10, 18, 36, 0.75);
+  padding: 6px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .upload-tab-btn {
   flex: 1;
-  padding: 8px 12px;
-  font-size: 0.82rem;
+  padding: 12px 14px;
+  font-size: 0.88rem;
   font-weight: 700;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--text-secondary);
-  border: none;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  border: 1.5px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  /* Transitions et duration lisses et fluides */
+  transition-property: all;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, background, color, border-color, box-shadow;
 }
 
+.upload-tab-btn span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover ultra-lisible, lumineux et contrasté */
 .upload-tab-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff !important;
+  font-weight: 800;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.22) 0%, rgba(6, 182, 212, 0.24) 100%);
+  border-color: rgba(74, 222, 128, 0.75);
+  box-shadow: 0 6px 20px rgba(74, 222, 128, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
+.upload-tab-btn:hover span {
+  transform: scale(1.18);
+}
+
+/* Hover spécifique pour "Importer un fichier vidéo" */
+.upload-tab-btn[data-tab="file"]:hover {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(16, 185, 129, 0.3) 100%);
+  border-color: #22c55e;
+  box-shadow: 0 6px 22px rgba(34, 197, 94, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Hover spécifique pour "Enregistrer avec ma caméra" */
+.upload-tab-btn[data-tab="camera"]:hover {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.28) 0%, rgba(244, 63, 94, 0.32) 100%);
+  border-color: #ef4444;
+  box-shadow: 0 6px 22px rgba(239, 68, 68, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Hover spécifique pour "Studio Virtuel HD" */
+.upload-tab-btn[data-tab="studio"]:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(6, 182, 212, 0.3) 100%);
+  border-color: #c084fc;
+  box-shadow: 0 6px 22px rgba(168, 85, 247, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* État actif des onglets */
 .upload-tab-btn.active {
-  background: var(--gradient-primary);
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(74, 222, 128, 0.3);
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  color: #030712 !important;
+  font-weight: 800;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 18px rgba(74, 222, 128, 0.45);
+  transform: translateY(-1px);
+}
+
+.upload-tab-btn.active span {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
 .video-dropzone {
   border: 2px dashed rgba(74, 222, 128, 0.45);
   border-radius: var(--radius-lg);
-  padding: 24px 18px;
+  padding: 32px 24px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  transition: all 0.25s ease;
   position: relative;
+  /* Transitions et duration lisses */
+  transition-property: all;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, border-color, background, box-shadow;
 }
 
 .video-dropzone:hover,
 .video-dropzone.dragover {
   border-color: var(--green-400);
-  background: rgba(74, 222, 128, 0.08);
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.25);
+  background: rgba(74, 222, 128, 0.12);
+  box-shadow: 0 10px 30px rgba(74, 222, 128, 0.32);
+  transform: translateY(-3px) scale(1.01);
 }
 
 .video-dropzone-icon {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
   display: inline-block;
   animation: bounceMini 2s infinite ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+.video-dropzone:hover .video-dropzone-icon {
+  transform: scale(1.15) translateY(-2px);
 }
 
 @keyframes bounceMini {
@@ -7434,24 +7515,28 @@ select option {
 
 .video-preview-wrapper {
   margin-top: 14px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: #000;
-  border: 1px solid rgba(74, 222, 128, 0.3);
+  border: 1.5px solid rgba(74, 222, 128, 0.4);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 .video-preview-player {
-  max-height: 260px;
-  width: auto;
+  width: 100%;
+  max-width: 440px;
+  height: 460px;
+  max-height: 480px;
   aspect-ratio: 9/16;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+  object-fit: cover;
 }
 
 .video-info-strip {
@@ -7459,40 +7544,58 @@ select option {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 8px 12px;
-  background: rgba(13, 22, 41, 0.9);
-  font-size: 0.78rem;
+  padding: 10px 14px;
+  background: rgba(13, 22, 41, 0.95);
+  font-size: 0.82rem;
   color: var(--text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Webcam Recording in Publish Modal */
+/* Webcam Recording in Publish Modal (Taille agrandie et spacieuse) */
 .camera-recording-box {
   background: #000;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   position: relative;
-  border: 1px solid var(--glass-border);
+  border: 2px solid rgba(239, 68, 68, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 30px rgba(239, 68, 68, 0.22);
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .camera-preview-feed {
   width: 100%;
-  max-height: 240px;
+  height: 480px;
+  min-height: 420px;
+  max-height: 520px;
   aspect-ratio: 9/16;
   object-fit: cover;
   background: #090d16;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .camera-preview-feed {
+    height: 380px;
+    min-height: 340px;
+  }
 }
 
 .camera-recording-controls {
-  padding: 10px 14px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 14px;
   width: 100%;
-  background: rgba(13, 22, 41, 0.9);
+  background: rgba(13, 22, 41, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 /* English Only Linguistic Compliance Engine */
@@ -7989,4 +8092,42 @@ select option {
 
 [data-theme="light"] .video-dropzone {
   background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .upload-method-tabs {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .upload-tab-btn {
+  background: #ffffff;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .upload-tab-btn:hover {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="light"] .upload-tab-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%) !important;
+  color: #ffffff !important;
+  border-color: #10b981;
+}
+
+[data-theme="light"] .thumb-radio-card {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .thumb-radio-card span {
+  color: #334155;
+}
+
+[data-theme="light"] .thumb-radio-card:hover span {
+  color: #0f172a !important;
 }
