@@ -125,7 +125,11 @@
         <!-- CTA & Stats Row -->
         <div class="shorts-hero-actions-bar">
           <button type="button" class="btn btn-primary btn-open-publish-short" style="padding: 12px 24px; font-weight: 800; box-shadow: 0 4px 20px rgba(74, 222, 128, 0.35);">
-            <span>+</span> Publier une Vidéo Short
+            <span>+</span> Publier une Vidéo Short (English Only)
+          </button>
+          <button type="button" class="btn btn-danger btn-open-live-studio" id="btn-hero-go-live" style="padding: 12px 24px; font-weight: 800; background: linear-gradient(135deg, #ef4444, #dc2626); border-color: #ef4444; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.45); display: inline-flex; align-items: center; gap: 8px;">
+            <span class="live-pulse-dot" style="background: #fff; width: 10px; height: 10px; box-shadow: 0 0 10px #fff;"></span>
+            <span>🔴 Faire une Vidéo en Direct</span>
           </button>
           <a href="inscrits.html" class="btn btn-secondary" style="border-color: var(--blue-400); font-weight: 700;">
             <span>✍️</span> Rejoindre les Inscrits
@@ -140,13 +144,36 @@
           <div class="short-metric-lbl">Shorts Actifs</div>
         </div>
         <div class="glass-card short-metric-card">
+          <div class="short-metric-num" style="color: #ef4444;" id="live-active-count">2</div>
+          <div class="short-metric-lbl">En Direct (Live)</div>
+        </div>
+        <div class="glass-card short-metric-card">
           <div class="short-metric-num text-gradient-purple">53.9K</div>
           <div class="short-metric-lbl">Vues Cumulées</div>
         </div>
         <div class="glass-card short-metric-card">
           <div class="short-metric-num" style="color: var(--green-400);">100%</div>
-          <div class="short-metric-lbl">Pratique Orale</div>
+          <div class="short-metric-lbl">Anglais Requis</div>
         </div>
+      </div>
+    </div>
+
+    <!-- LIVE BROADCASTS ACTIVE SHELF (DIRECTS EN COURS) -->
+    <div class="live-broadcasts-section reveal-init" id="live-broadcasts-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="live-pulse-dot" style="width: 12px; height: 12px; background: #ef4444; box-shadow: 0 0 12px #ef4444;"></span>
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0; color: #fff;">
+            Directs Vidéo en Cours <span class="crystal-badge" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #fca5a5; font-size: 0.72rem; margin-left: 8px;">🇬🇧 100% English Only</span>
+          </h2>
+        </div>
+        <button type="button" class="btn btn-sm btn-open-live-studio" style="font-size: 0.85rem; font-weight: 700; background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; border: none; padding: 8px 16px; border-radius: var(--radius-full); box-shadow: 0 2px 10px rgba(239, 68, 68, 0.4);">
+          <span>🎥</span> Lancer mon Studio en Direct
+        </button>
+      </div>
+
+      <div class="live-streams-grid" id="live-streams-grid">
+        <!-- Rendu dynamique par js/watchShorts.js -->
       </div>
     </div>
 
@@ -154,6 +181,9 @@
     <div class="shorts-filter-bar reveal-init" style="margin-bottom: 32px;">
       <button type="button" class="short-filter-chip active" data-filter="all">
         <span>🌟</span> Tous les Shorts
+      </button>
+      <button type="button" class="short-filter-chip" data-filter="live">
+        <span>🔴</span> En Direct (Live Streams)
       </button>
       <button type="button" class="short-filter-chip" data-filter="pronunciation">
         <span>🎙️</span> Prononciation & Phonétique
