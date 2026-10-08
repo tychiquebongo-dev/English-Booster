@@ -3,6 +3,62 @@
    Mobile, Tablet, Desktop & Wide Screens
    ========================================================================== */
 
+/* Laptops & Tablets Navbar Spacing (max-width: 1200px) */
+/* Laptops & Tablets Navbar Spacing (max-width: 1200px) */
+@media (max-width: 1200px) {
+  .nav-container {
+    gap: 10px;
+  }
+  .nav-links {
+    gap: clamp(4px, 0.8vw, 8px);
+  }
+  .nav-link {
+    font-size: 0.82rem;
+    padding: 4px 3px;
+  }
+  .nav-actions {
+    gap: 6px;
+  }
+  .nav-actions .btn-login {
+    display: inline-flex !important;
+    padding: 5px 8px;
+    font-size: 0.78rem;
+  }
+  .nav-actions .btn-primary {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Medium Tablets & Below (max-width: 992px) */
+@media (max-width: 992px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions .btn-login {
+    display: inline-flex !important;
+    padding: 5px 8px;
+    font-size: 0.78rem;
+  }
+
+  .nav-actions .btn-primary {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .nav-container {
+    gap: 10px;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+}
+
 /* Large Tablets & Small Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
   :root {
@@ -68,6 +124,46 @@
   .nav-actions .btn-login,
   .nav-actions .btn-primary {
     display: none;
+  }
+
+  .nav-container {
+    gap: 12px;
+  }
+
+  .nav-brand {
+    gap: 10px;
+    font-size: 1.2rem;
+  }
+
+  .brand-logo-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    padding-right: 6px;
+  }
+
+  .lang-switcher-pill {
+    padding: 2px 4px;
+    padding-right: 6px;
+    gap: 3px;
+  }
+
+  .lang-btn {
+    padding: 4px 8px;
+    font-size: 0.74rem;
+  }
+
+  .lang-btn[data-lang="en"] {
+    padding-right: 6px;
   }
 
   .mobile-menu-toggle {
@@ -211,6 +307,15 @@
 
   .eval-criteria-grid {
     grid-template-columns: 1fr;
+  }
+
+  #quick-duel-choice-modal div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .quick-duel-actions-group {
+    width: 100%;
+    margin-left: 0 !important;
   }
 }
 

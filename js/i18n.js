@@ -178,8 +178,8 @@
       inscrits_label_country: 'Country :',
       inscrits_password: 'Password :',
       inscrits_password_placeholder: 'Min. 6 characters...',
-      inscrits_confirm_password: 'Confirm Password :',
-      inscrits_confirm_password_placeholder: 'Repeat your password...',
+      inscrits_confirm_password: 'Repeat the pass word :',
+      inscrits_confirm_password_placeholder: 'repeat the pass word...',
       inscrits_password_strength_label: 'Password security:',
       inscrits_password_strength_weak: 'Weak',
       inscrits_password_strength_medium: 'Medium',
@@ -422,7 +422,47 @@
       about_vision_title: 'The Vision Behind English Booster',
       about_faq_tag: 'FAQ',
       about_faq_title: 'Common Questions',
-      about_legal_title: 'Legal & Community Guidelines'
+      about_legal_title: 'Legal & Community Guidelines',
+
+      // Challenges & Quick Random Duel & Live Call
+      challenges_header_badge_arenas: '⚡ Live Online Battle Arenas',
+      challenges_header_badge_live: '🟢 138 Learners Dueling Live',
+      challenges_title: 'Live English Challenge Arenas',
+      challenges_desc: "Challenge other speakers in real-time English conversations to test and evaluate each other's level. Pick your duel mode, jump into live matchmaking, and get an instant AI CEFR Level Evaluation (A1-C2) based on your performance.",
+      challenges_select_arena: 'Select Your Live Conversation Arena',
+      challenges_select_desc: 'Real-time 1-on-1 speaking showdowns with immediate feedback & CEFR level ranking.',
+      challenges_active_modes_badge: '⚡ 5 Active Battle Modes',
+      challenges_filter_all: '🌐 All 5 Battle Modes',
+      challenges_filter_speed: '⚡ Speed Duel',
+      challenges_filter_debate: '⚖️ Debate Arena',
+      challenges_filter_roleplay: '🎭 Roleplay',
+      challenges_filter_phonetics: '🎯 Phonetics',
+      challenges_filter_cefr: '🏆 CEFR Diagnostic',
+      challenges_btn_quick_duel: '⚡ Quick Random Duel & Live Call',
+      challenges_btn_quick_call: '🎙️ Live Call',
+      quick_duel_modal_title: '⚡ Quick Random Duel & Live Call',
+      quick_duel_modal_subtitle: 'Challenge an active English learner online right now with real-time audio & video!',
+      quick_duel_choice_arena_title: '⚔️ Spoken Arena Duel',
+      quick_duel_choice_arena_desc: 'Rapid-fire AI-evaluated spoken challenge with speech recognition, turn-taking, and CEFR rating.',
+      quick_duel_choice_arena_btn: '⚔️ Launch Spoken Arena Duel',
+      quick_duel_choice_call_title: '🎙️ 1-on-1 WebRTC Live Call',
+      quick_duel_choice_call_desc: 'Direct immersive audio & video call with a random peer worldwide. Real human practice.',
+      battle_btn_live_call: '🎙️ Switch to Live Call',
+      battle_btn_partner_call: '📞 Start Live Call with Opponent',
+      matching_live_call_chip: '🎙️ Live Call & Audio Duel Ready',
+      challenges_btn_toggle_grid: '🎥 6 Live Screens',
+      challenges_btn_toggle_duo: '⚔️ Duo Focus',
+      challenges_multi_room_subtitle: '⚡ Multi-Participant Live Call Room (6 Active Speakers Online)',
+      screen_hd_badge: '🔴 LIVE HD 1080p',
+      screen_turn_speaking: '🎤 Speaking',
+      screen_turn_listening: '👂 Listening',
+      screen_btn_listen: '🔊 Listen',
+      screen_btn_pin: '📌 Pin',
+      quick_banner_screens_badge: '🎥 6 Simultaneous Live Screens (5+ direct screens)',
+      quick_banner_title: 'Quick Random Duel & Live Call Room',
+      quick_banner_desc: 'Instantly join a multi-screen live room with 6 global learners (Tokyo 🇯🇵, Madrid 🇪🇸, Lagos 🇳🇬, Berlin 🇩🇪, Abidjan 🇨🇮), interactive audio listening and AI CEFR evaluation.',
+      quick_banner_btn_launch: '⚡ Launch Quick Random (6 Screens)',
+      quick_banner_btn_explore: 'Explore All 5 Arenas →'
     },
 
     fr: {
@@ -594,8 +634,8 @@
       inscrits_label_country: 'Nationalité :',
       inscrits_password: 'Mot de passe :',
       inscrits_password_placeholder: 'Minimum 6 caractères...',
-      inscrits_confirm_password: 'Confirmer le mot de passe :',
-      inscrits_confirm_password_placeholder: 'Répétez votre mot de passe...',
+      inscrits_confirm_password: 'Répétez le mot de passe :',
+      inscrits_confirm_password_placeholder: 'Répétez le mot de passe...',
       inscrits_password_strength_label: 'Sécurité du mot de passe :',
       inscrits_password_strength_weak: 'Faible',
       inscrits_password_strength_medium: 'Moyen',
@@ -838,7 +878,48 @@
       about_vision_title: 'La Vision Derrière English Booster',
       about_faq_tag: 'FAQ',
       about_faq_title: 'Questions Fréquentes',
-      about_legal_title: 'Directives Légales & Communauté'
+      about_legal_title: 'Directives Légales & Communauté',
+
+      // Challenges & Quick Random Duel & Live Call
+      challenges_header_badge_arenas: '⚡ Arènes de Duel en Ligne en Direct',
+      challenges_header_badge_live: '🟢 138 Apprenants en Duel en Direct',
+      challenges_title: 'Arènes de Défis en Anglais en Direct',
+      challenges_desc: "Défiez d'autres interlocuteurs dans des conversations en anglais en direct pour tester et évaluer mutuellement votre niveau. Choisissez votre mode de duel, lancez le matchmaking et obtenez une évaluation IA instantanée de votre niveau CECRL (A1-C2).",
+      challenges_select_arena: 'Sélectionnez Votre Arène de Conversation en Direct',
+      challenges_select_desc: 'Duels d\'élocution 1-to-1 en temps réel avec retours immédiats et classement CECRL.',
+      challenges_active_modes_badge: '⚡ 5 Modes de Duel Actifs',
+      challenges_filter_all: '🌐 Les 5 Modes de Duel',
+      challenges_filter_speed: '⚡ Duel Rapide',
+      challenges_filter_debate: '⚖️ Arène de Débat',
+      challenges_filter_roleplay: '🎭 Jeu de Rôle',
+      challenges_filter_phonetics: '🎯 Phonétique',
+      challenges_filter_cefr: '🏆 Diagnostic CECRL',
+      challenges_btn_quick_duel: '⚡ Duel Aléatoire Rapide & Appel en Direct',
+      challenges_btn_quick_call: '🎙️ Appel en Direct',
+      quick_duel_modal_title: '⚡ Duel Aléatoire Rapide & Appel en Direct',
+      quick_duel_modal_subtitle: 'Défiez un apprenant d\'anglais en ligne dès maintenant avec audio et vidéo en temps réel !',
+      quick_duel_choice_arena_title: '⚔️ Duel d\'Élocution en Arène',
+      quick_duel_choice_arena_desc: 'Défi minuté évalué par IA avec reconnaissance vocale, alternance de parole et score CECRL immédiat.',
+      quick_duel_choice_arena_btn: '⚔️ Lancer le Duel d\'Arène',
+      quick_duel_choice_call_title: '🎙️ Appel en Direct 1-to-1 WebRTC',
+      quick_duel_choice_call_desc: 'Appel audio et vidéo immersif direct avec un apprenant aléatoire du monde entier. Pratique humaine réelle.',
+      quick_duel_choice_call_btn: '📞 Lancer l\'Appel en Direct',
+      battle_btn_live_call: '🎙️ Passer en Appel en Direct',
+      battle_btn_partner_call: '📞 Lancer l\'Appel en Direct avec l\'adversaire',
+      matching_live_call_chip: '🎙️ Appel en Direct & Duel Audio Prêts',
+      challenges_btn_toggle_grid: '🎥 6 Écrans en Direct',
+      challenges_btn_toggle_duo: '⚔️ Vue Duo Focus',
+      challenges_multi_room_subtitle: '⚡ Salle d\'Appel en Direct Multi-Écrans (6 Interlocuteurs Actifs en Ligne)',
+      screen_hd_badge: '🔴 EN DIRECT HD 1080p',
+      screen_turn_speaking: '🎤 En train de parler',
+      screen_turn_listening: '👂 Écoute active',
+      screen_btn_listen: '🔊 Écouter',
+      screen_btn_pin: '📌 Épingler',
+      quick_banner_screens_badge: '🎥 6 Écrans Live Simultanés (5+ en direct)',
+      quick_banner_title: 'Salle de Duel Aléatoire Rapide & Appel en Direct',
+      quick_banner_desc: 'Rejoignez instantanément une salle d\'appel en direct multi-écrans avec 6 apprenants connectés (Tokyo 🇯🇵, Madrid 🇪🇸, Lagos 🇳🇬, Berlin 🇩🇪, Abidjan 🇨🇮), écoute audio interactive et évaluation CECRL par IA.',
+      quick_banner_btn_launch: '⚡ Lancer le Duel Aléatoire (6 Écrans)',
+      quick_banner_btn_explore: 'Voir les 5 Arènes →'
     }
   };
 
@@ -1093,7 +1174,17 @@
         ['Adresse Email :', 'Email address :'],
         ['Adresse Email', 'Email address'],
         ['Mot de passe :', 'Password :'],
-        ['Confirmer le mot de passe :', 'Confirm Password :'],
+        ['Confirmer le mot de passe :', 'Repeat the pass word :'],
+        ['Confirmer le mot de passe', 'Repeat the pass word'],
+        ['Répétez le mot de passe :', 'Repeat the pass word :'],
+        ['Répétez le mot de passe', 'Repeat the pass word'],
+        ['repetez le mot de passe', 'repeat the pass word'],
+        ['Répétez le mot de passe...', 'repeat the pass word...'],
+        ['Répétez votre mot de passe...', 'repeat the pass word...'],
+        ['Répétez votre mot de passe', 'repeat the pass word'],
+        ['Confirm Password :', 'Repeat the pass word :'],
+        ['Confirm Password', 'Repeat the pass word'],
+        ['Repeat your password', 'Repeat the pass word'],
         ['Total Inscrits', 'Total Registered'],
         ['Membres En Ligne', 'Members Online'],
         ['Membres Déjà Inscrits dans English Booster', 'Registered Members in English Booster'],
@@ -1102,7 +1193,52 @@
         ['Valider pour être inscrit dans English Booster', 'Register in English Booster'],
         ['Profil & Statut', 'Profile & Status'],
         ['Niveau CECRL', 'CEFR Level'],
-        ['Liens d\'Action Directs', 'Direct Action Links']
+        ['Liens d\'Action Directs', 'Direct Action Links'],
+        ['⚡ Duel Aléatoire Rapide & Appel en Direct', '⚡ Quick Random Duel & Live Call'],
+        ['Duel Aléatoire Rapide & Appel en Direct', 'Quick Random Duel & Live Call'],
+        ['⚡ Duel Rapide & Appel en Direct', '⚡ Quick Random Duel & Live Call'],
+        ['Duel Rapide & Appel en Direct', 'Quick Random Duel & Live Call'],
+        ['⚡ Duel Aléatoire Rapide', '⚡ Quick Random Duel'],
+        ['Duel Aléatoire Rapide', 'Quick Random Duel'],
+        ['⚡ Duel Rapide', '⚡ Speed Duel'],
+        ['Duel Rapide', 'Speed Duel'],
+        ['⚖️ Arène de Débat', '⚖️ Debate Arena'],
+        ['Arène de Débat', 'Debate Arena'],
+        ['🎭 Jeu de Rôle', '🎭 Roleplay'],
+        ['Jeu de Rôle', 'Roleplay'],
+        ['🎯 Phonétique', '🎯 Phonetics'],
+        ['Phonétique', 'Phonetics'],
+        ['🏆 Diagnostic CECRL', '🏆 CEFR Diagnostic'],
+        ['Diagnostic CECRL', 'CEFR Diagnostic'],
+        ['🌐 Les 5 Modes de Duel', '🌐 All 5 Battle Modes'],
+        ['Les 5 Modes de Duel', 'All 5 Battle Modes'],
+        ['🎙️ Appel en Direct', '🎙️ Live Call'],
+        ['Appel en Direct', 'Live Call'],
+        ['🎙️ Passer en Appel en Direct', '🎙️ Switch to Live Call'],
+        ['Passer en Appel en Direct', 'Switch to Live Call'],
+        ['📞 Lancer l\'Appel en Direct avec l\'adversaire', '📞 Start Live Call with Opponent'],
+        ['Lancer l\'Appel en Direct avec l\'adversaire', 'Start Live Call with Opponent'],
+        ['📞 Lancer l\'Appel en Direct', '📞 Start 1-on-1 Live Call Now'],
+        ['⚔️ Lancer le Duel d\'Arène', '⚔️ Launch Spoken Arena Duel'],
+        ['Duel d\'Élocution en Arène', 'Spoken Arena Duel'],
+        ['Appel en Direct 1-to-1 WebRTC', '1-on-1 WebRTC Live Call'],
+        ['Arènes de Défis en Anglais en Direct', 'Live English Challenge Arenas'],
+        ['Sélectionnez Votre Arène de Conversation en Direct', 'Select Your Live Conversation Arena'],
+        ['🎙️ Appel en Direct & Duel Audio Prêts', '🎙️ Live Call & Audio Duel Ready'],
+        ['🎥 6 Écrans en Direct', '🎥 6 Live Screens'],
+        ['6 Écrans en Direct', '6 Live Screens'],
+        ['⚔️ Vue Duo Focus', '⚔️ Duo Focus'],
+        ['Vue Duo Focus', 'Duo Focus'],
+        ['🔴 EN DIRECT HD 1080p', '🔴 LIVE HD 1080p'],
+        ['EN DIRECT HD 1080p', 'LIVE HD 1080p'],
+        ['👂 Écoute active', '👂 Listening'],
+        ['🎤 En train de parler', '🎤 Speaking'],
+        ['🔊 Écouter', '🔊 Listen'],
+        ['📌 Épingler', '📌 Pin'],
+        ['🎥 6 Écrans Live Simultanés (5+ en direct)', '🎥 6 Simultaneous Live Screens (5+ direct screens)'],
+        ['Salle de Duel Aléatoire Rapide & Appel en Direct', 'Quick Random Duel & Live Call Room'],
+        ['⚡ Lancer le Duel Aléatoire (6 Écrans)', '⚡ Launch Quick Random (6 Screens)'],
+        ['Voir les 5 Arènes →', 'Explore All 5 Arenas →']
       ];
 
       // Scan and translate matching elements
@@ -1141,6 +1277,37 @@
             el.innerHTML = el.innerHTML.replace(/regardez les vidéos/g, 'watch videos');
           }
         }
+      });
+
+      // Specific enforcement for Quick Duel and Live Call buttons
+      const quickDuelBtn = document.getElementById('btn-quick-random-battle');
+      if (quickDuelBtn) {
+        quickDuelBtn.textContent = isFr ? '⚡ Duel Aléatoire Rapide & Appel en Direct' : '⚡ Quick Random Duel & Live Call';
+      }
+      const quickCallBtn = document.getElementById('btn-quick-random-call');
+      if (quickCallBtn) {
+        quickCallBtn.textContent = isFr ? '🎙️ Appel en Direct' : '🎙️ Live Call';
+      }
+      const battleLiveCallBtn = document.getElementById('btn-battle-live-call');
+      if (battleLiveCallBtn) {
+        battleLiveCallBtn.textContent = isFr ? '🎙️ Passer en Appel en Direct' : '🎙️ Switch to Live Call';
+      }
+      const partnerLiveCallBtn = document.getElementById('btn-partner-live-call');
+      if (partnerLiveCallBtn) {
+        partnerLiveCallBtn.textContent = isFr ? '📞 Lancer l\'Appel en Direct avec l\'adversaire' : '📞 Start Live Call with Opponent';
+      }
+
+      // Specific enforcement for 'repeat the pass word' in English mode
+      document.querySelectorAll('label[for="reg-confirm-password"]').forEach(lbl => {
+        const strong = lbl.querySelector('strong');
+        if (strong) {
+          strong.textContent = isFr ? 'Répétez le mot de passe :' : 'Repeat the pass word :';
+        } else {
+          lbl.textContent = isFr ? 'Répétez le mot de passe *' : 'Repeat the pass word *';
+        }
+      });
+      document.querySelectorAll('input#reg-confirm-password').forEach(inp => {
+        inp.setAttribute('placeholder', isFr ? 'Répétez le mot de passe...' : 'repeat the pass word...');
       });
     }
 

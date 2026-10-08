@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ENGLISH BOOSTER — LIVE CHALLENGE ARENAS & GAMIFICATION (js/challenges.js)
  * 5 Live Online Conversation Battle Modes with Real-Time Peer Evaluation,
  * Level Diagnostic Engine (CEFR A1-C2), Waveforms, SoundFX, and Celebrations.
@@ -229,10 +229,11 @@ const ARENAS_DATABASE = {
 };
 
 const CHALLENGER_PEERS = [
-  { name: 'Kenji Sato', country: 'Japan 🇯🇵', flag: '🇯🇵', avatar: '../assets/avatars/kenji.jpg', level: 'B2', baseScore: 89 },
-  { name: 'Sofia Martínez', country: 'Spain 🇪🇸', flag: '🇪🇸', avatar: '../assets/avatars/sofia.jpg', level: 'B2+', baseScore: 92 },
-  { name: 'Amara Okafor', country: 'Nigeria 🇳🇬', flag: '🇳🇬', avatar: '../assets/avatars/amara.jpg', level: 'C1', baseScore: 95 },
-  { name: 'Lucas Weber', country: 'Germany 🇩🇪', flag: '🇩🇪', avatar: '../assets/avatars/lucas.jpg', level: 'B1+', baseScore: 86 }
+  { id: 'kenji_jp', name: 'Kenji Sato', country: 'Japan 🇯🇵', flag: '🇯🇵', avatar: '../assets/avatars/kenji.jpg', level: 'B2', baseScore: 89 },
+  { id: 'sofia_es', name: 'Sofia Martínez', country: 'Spain 🇪🇸', flag: '🇪🇸', avatar: '../assets/avatars/sofia.jpg', level: 'B2+', baseScore: 92 },
+  { id: 'amara_ng', name: 'Amara Okafor', country: 'Nigeria 🇳🇬', flag: '🇳🇬', avatar: '../assets/avatars/amara.jpg', level: 'C1', baseScore: 95 },
+  { id: 'lucas_de', name: 'Lucas Weber', country: 'Germany 🇩🇪', flag: '🇩🇪', avatar: '../assets/avatars/lucas.jpg', level: 'B1+', baseScore: 86 },
+  { id: 'tychique_ci', name: 'Tychique Bongo', country: 'Côte d’Ivoire 🇨🇮', flag: '🇨🇮', avatar: '../assets/images/tychique-bongo.jpg', level: 'Master C2', baseScore: 98 }
 ];
 
 const BADGES_DATABASE = [
@@ -284,6 +285,11 @@ class EnglishBoosterChallenges {
       const arenaParam = urlParams.get('arena');
       if (arenaParam && ARENAS_DATABASE[arenaParam]) {
         setTimeout(() => this.openArena(arenaParam), 350);
+      } else if (urlParams.get('quick') === 'true') {
+        setTimeout(() => {
+          const quickBattleBtn = document.getElementById('btn-quick-random-battle');
+          if (quickBattleBtn) quickBattleBtn.click();
+        }, 350);
       }
     } catch (err) {
       console.warn('URL arena param error:', err);
@@ -319,11 +325,66 @@ class EnglishBoosterChallenges {
       });
     });
 
+    const quickChoiceModal = document.getElementById('quick-duel-choice-modal');
+    const closeChoiceBtn = document.getElementById('btn-close-quick-choice');
+    const launchChoiceArenaBtn = document.getElementById('btn-launch-choice-arena');
+    const launchChoiceCallBtn = document.getElementById('btn-launch-choice-call');
+    const quickCallBtn = document.getElementById('btn-quick-random-call');
+
     if (quickBattleBtn) {
       quickBattleBtn.addEventListener('click', () => {
+        if (quickChoiceModal) {
+          quickChoiceModal.style.display = 'flex';
+          setTimeout(() => quickChoiceModal.classList.add('active'), 10);
+          if (window.EnglishBooster?.SoundFX) {
+            window.EnglishBooster.SoundFX.playClick();
+          }
+        } else {
+          const modes = Object.keys(ARENAS_DATABASE);
+          const randomMode = modes[Math.floor(Math.random() * modes.length)];
+          this.openArena(randomMode);
+        }
+      });
+    }
+
+    if (closeChoiceBtn && quickChoiceModal) {
+      closeChoiceBtn.addEventListener('click', () => {
+        quickChoiceModal.classList.remove('active');
+        setTimeout(() => { quickChoiceModal.style.display = 'none'; }, 250);
+      });
+      quickChoiceModal.addEventListener('click', (e) => {
+        if (e.target === quickChoiceModal) {
+          quickChoiceModal.classList.remove('active');
+          setTimeout(() => { quickChoiceModal.style.display = 'none'; }, 250);
+        }
+      });
+    }
+
+    if (launchChoiceArenaBtn) {
+      launchChoiceArenaBtn.addEventListener('click', () => {
+        if (quickChoiceModal) {
+          quickChoiceModal.classList.remove('active');
+          setTimeout(() => { quickChoiceModal.style.display = 'none'; }, 250);
+        }
         const modes = Object.keys(ARENAS_DATABASE);
         const randomMode = modes[Math.floor(Math.random() * modes.length)];
         this.openArena(randomMode);
+      });
+    }
+
+    if (launchChoiceCallBtn) {
+      launchChoiceCallBtn.addEventListener('click', () => {
+        if (quickChoiceModal) {
+          quickChoiceModal.classList.remove('active');
+          setTimeout(() => { quickChoiceModal.style.display = 'none'; }, 250);
+        }
+        this.startDirectRandomLiveCall();
+      });
+    }
+
+    if (quickCallBtn) {
+      quickCallBtn.addEventListener('click', () => {
+        this.startDirectRandomLiveCall();
       });
     }
   }
@@ -356,6 +417,11 @@ class EnglishBoosterChallenges {
             if (youTranscriptEl) {
               youTranscriptEl.textContent = `"${interimTranscript.trim()}"`;
               youTranscriptEl.style.color = '#ffffff';
+            }
+            const multiTranscriptEl = document.getElementById('multi-transcript-you');
+            if (multiTranscriptEl) {
+              multiTranscriptEl.textContent = `"${interimTranscript.trim()}"`;
+              multiTranscriptEl.style.color = '#ffffff';
             }
           }
         };
@@ -411,7 +477,24 @@ class EnglishBoosterChallenges {
 
   updateMicVisuals(isActive) {
     const micBtn = document.getElementById('btn-battle-mic');
+    const multiMicBtn = document.getElementById('btn-multi-mic');
     const indicator = document.getElementById('speech-indicator-you');
+    const waveScreenYou = document.getElementById('wave-screen-you');
+
+    if (multiMicBtn) {
+      if (isActive) {
+        multiMicBtn.classList.add('btn-battle-mic-recording');
+        multiMicBtn.innerHTML = '⏹️ Stop Mic';
+      } else {
+        multiMicBtn.classList.remove('btn-battle-mic-recording');
+        multiMicBtn.innerHTML = '🎙️ Speak (Mic)';
+      }
+    }
+
+    if (waveScreenYou) {
+      waveScreenYou.style.opacity = isActive ? '1' : (this.isMyTurn ? '0.85' : '0.35');
+    }
+
     if (!micBtn) return;
 
     if (isActive) {
@@ -562,6 +645,157 @@ class EnglishBoosterChallenges {
         this.triggerLiveReaction(emoji);
       });
     });
+
+    // In-Battle Live Call Handlers
+    const battleLiveCallBtn = document.getElementById('btn-battle-live-call');
+    const partnerLiveCallBtn = document.getElementById('btn-partner-live-call');
+
+    if (battleLiveCallBtn) {
+      battleLiveCallBtn.addEventListener('click', () => {
+        this.startDirectRandomLiveCall(this.currentPartner?.id);
+      });
+    }
+
+    if (partnerLiveCallBtn) {
+      partnerLiveCallBtn.addEventListener('click', () => {
+        this.startDirectRandomLiveCall(this.currentPartner?.id);
+      });
+    }
+
+    // Multi-Screen Grid vs Duo Focus Toggle
+    const btnMultiScreens = document.getElementById('btn-view-multi-screens');
+    const btnDuoFocus = document.getElementById('btn-view-duo-focus');
+    const multiGrid = document.getElementById('quick-random-multi-screens');
+    const duoGrid = document.getElementById('battle-stage-duo-grid');
+
+    if (btnMultiScreens && btnDuoFocus && multiGrid && duoGrid) {
+      btnMultiScreens.addEventListener('click', () => {
+        multiGrid.style.display = 'grid';
+        duoGrid.style.display = 'none';
+        btnMultiScreens.classList.add('active');
+        btnDuoFocus.classList.remove('active');
+        if (window.EnglishBooster?.SoundFX) window.EnglishBooster.SoundFX.playClick();
+      });
+
+      btnDuoFocus.addEventListener('click', () => {
+        multiGrid.style.display = 'none';
+        duoGrid.style.display = 'grid';
+        btnDuoFocus.classList.add('active');
+        btnMultiScreens.classList.remove('active');
+        if (window.EnglishBooster?.SoundFX) window.EnglishBooster.SoundFX.playClick();
+      });
+    }
+
+    // Multi-Screen Live Call Action Controls
+    const multiMicBtn = document.getElementById('btn-multi-mic');
+    if (multiMicBtn) {
+      multiMicBtn.addEventListener('click', () => {
+        this.toggleMicrophone();
+      });
+    }
+
+    const multiPassTurnBtn = document.getElementById('btn-multi-pass-turn');
+    if (multiPassTurnBtn) {
+      multiPassTurnBtn.addEventListener('click', () => {
+        this.toggleBattleTurn();
+      });
+    }
+
+    // Screen Listen Buttons (Play audio for any participant)
+    const screenListenButtons = document.querySelectorAll('.btn-screen-listen');
+    screenListenButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const speakerKey = btn.getAttribute('data-speaker') || 'kenji';
+        this.listenToScreenSpeaker(speakerKey);
+      });
+    });
+
+    // Screen Pin Buttons (Set that participant as primary duel opponent)
+    const screenPinButtons = document.querySelectorAll('.btn-screen-pin');
+    screenPinButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const speakerKey = btn.getAttribute('data-speaker') || 'kenji';
+        this.pinScreenSpeaker(speakerKey);
+      });
+    });
+  }
+
+  listenToScreenSpeaker(speakerKey) {
+    const transcriptEl = document.getElementById(`multi-transcript-${speakerKey}`);
+    const text = transcriptEl ? transcriptEl.textContent.replace(/^"|"$/g, '').trim() : '';
+    if (!text) return;
+
+    const waveEl = document.getElementById(`wave-screen-${speakerKey}`);
+    const screenCard = document.getElementById(`screen-call-${speakerKey}`);
+    const statusEl = document.getElementById(`status-screen-${speakerKey}`);
+
+    if (waveEl) waveEl.style.opacity = '1';
+    if (screenCard) screenCard.classList.add('active-speaker');
+    if (statusEl) {
+      const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+      statusEl.textContent = isFr ? '🎤 En train de parler...' : '🎤 Speaking...';
+      statusEl.style.color = 'var(--green-400)';
+    }
+
+    if (window.EnglishBooster?.SoundFX) window.EnglishBooster.SoundFX.playClick();
+    this.speakPartnerText(text);
+
+    setTimeout(() => {
+      if (waveEl && (!this.currentPartner || !this.currentPartner.id.includes(speakerKey) || this.isMyTurn)) {
+        waveEl.style.opacity = '0.35';
+      }
+      if (screenCard && speakerKey !== 'you' && this.isMyTurn) {
+        screenCard.classList.remove('active-speaker');
+      }
+      if (statusEl) {
+        const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+        statusEl.textContent = isFr ? '👂 Écoute active' : '👂 Listening';
+        statusEl.style.color = 'var(--text-muted)';
+      }
+    }, 4500);
+  }
+
+  pinScreenSpeaker(speakerKey) {
+    const peerMap = {
+      kenji: 'kenji_jp',
+      sofia: 'sofia_es',
+      amara: 'amara_ng',
+      lucas: 'lucas_de',
+      tychique: 'tychique_ci'
+    };
+    const targetPeerId = peerMap[speakerKey];
+    const peer = CHALLENGER_PEERS.find(p => p.id === targetPeerId) || CHALLENGER_PEERS[0];
+    this.currentPartner = peer;
+
+    // Update duo focus view elements
+    const partnerName = document.getElementById('battle-partner-name');
+    const partnerLevel = document.getElementById('battle-partner-level');
+    const partnerImg = document.getElementById('battle-partner-img');
+    const partnerFlag = document.getElementById('battle-partner-flag');
+
+    if (partnerName) partnerName.textContent = peer.name;
+    if (partnerLevel) partnerLevel.textContent = `Level ${peer.level} · ${peer.country}`;
+    if (partnerImg) partnerImg.src = peer.avatar;
+    if (partnerFlag) partnerFlag.textContent = peer.flag;
+
+    if (window.EnglishBooster?.SoundFX) window.EnglishBooster.SoundFX.playSuccess();
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+    const title = isFr ? 'Interlocuteur Épinglé' : 'Opponent Pinned';
+    const msg = isFr 
+      ? `${peer.name} (${peer.country}) est maintenant votre interlocuteur direct !`
+      : `${peer.name} (${peer.country}) is now your primary sparring partner!`;
+    window.EnglishBooster.showToast(title, msg, 'success', 2500);
+
+    // Visual pulse outline on pinned card
+    document.querySelectorAll('.live-call-screen').forEach(c => c.style.outline = 'none');
+    const targetCard = document.getElementById(`screen-call-${speakerKey}`);
+    if (targetCard) {
+      targetCard.style.outline = '2px solid var(--green-400)';
+      targetCard.style.outlineOffset = '2px';
+      setTimeout(() => { if (targetCard) targetCard.style.outline = 'none'; }, 2500);
+    }
   }
 
   openArena(modeId) {
@@ -594,6 +828,29 @@ class EnglishBoosterChallenges {
     }
   }
 
+  startDirectRandomLiveCall(partnerId = null) {
+    if (window.EnglishBooster?.SoundFX) {
+      window.EnglishBooster.SoundFX.playSuccess();
+    }
+    const partner = partnerId 
+      ? (CHALLENGER_PEERS.find(p => p.id === partnerId) || CHALLENGER_PEERS[0])
+      : CHALLENGER_PEERS[Math.floor(Math.random() * CHALLENGER_PEERS.length)];
+
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+    const toastTitle = isFr ? '🎙️ Appel en Direct Lancé' : '🎙️ Live Call Initiated';
+    const toastMsg = isFr 
+      ? `Connexion à l'appel en direct 1-to-1 avec ${partner.name} (${partner.country})...`
+      : `Connecting to 1-on-1 Live Call with ${partner.name} (${partner.country})...`;
+
+    if (window.EnglishBooster?.showToast) {
+      window.EnglishBooster.showToast(toastTitle, toastMsg, 'success', 2200);
+    }
+
+    setTimeout(() => {
+      window.location.href = `call.html?partner=${partner.id || 'kenji_jp'}&mode=quick_duel`;
+    }, 700);
+  }
+
   startMatchmaking() {
     // Reset Stages
     document.getElementById('arena-stage-matching').style.display = 'block';
@@ -604,9 +861,18 @@ class EnglishBoosterChallenges {
     const desc = document.getElementById('arena-matching-desc');
     const radarIcon = document.getElementById('arena-radar-icon');
 
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
     if (radarIcon) radarIcon.textContent = this.currentMode.icon;
-    if (title) title.textContent = `Finding Opponent for ${this.currentMode.name}...`;
-    if (desc) desc.textContent = `Matching with active online learners testing ${this.currentMode.evalMetric}...`;
+    if (title) {
+      title.textContent = isFr
+        ? `Recherche d'un adversaire pour ${this.currentMode.name}...`
+        : `Finding Opponent for ${this.currentMode.name}...`;
+    }
+    if (desc) {
+      desc.textContent = isFr
+        ? `Mise en relation avec des apprenants en ligne testant ${this.currentMode.evalMetric}...`
+        : `Matching with active online learners testing ${this.currentMode.evalMetric}...`;
+    }
 
     // Select random partner from community
     const randomPartner = CHALLENGER_PEERS[Math.floor(Math.random() * CHALLENGER_PEERS.length)];
@@ -674,6 +940,10 @@ class EnglishBoosterChallenges {
     if (youTranscript) {
       youTranscript.textContent = '"Tap microphone to speak or click an argument below..."';
     }
+    const multiTranscript = document.getElementById('multi-transcript-you');
+    if (multiTranscript) {
+      multiTranscript.textContent = '"Tap microphone or argue below to speak..."';
+    }
   }
 
   renderQuickSuggestions() {
@@ -707,6 +977,12 @@ class EnglishBoosterChallenges {
     if (youTranscript) {
       youTranscript.textContent = `"${text}"`;
       youTranscript.style.color = '#ffffff';
+    }
+
+    const multiTranscript = document.getElementById('multi-transcript-you');
+    if (multiTranscript) {
+      multiTranscript.textContent = `"${text}"`;
+      multiTranscript.style.color = '#ffffff';
     }
 
     this.userSpokenWords += text.split(/\s+/).length;
@@ -786,6 +1062,18 @@ class EnglishBoosterChallenges {
     const indicatorYou = document.getElementById('speech-indicator-you');
     const transcriptPartner = document.getElementById('battle-partner-transcript');
 
+    // Multi-Room 6 Live Screens Sync
+    const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (document.documentElement.getAttribute('lang') === 'fr');
+    const screenYou = document.getElementById('screen-call-you');
+    const waveScreenYou = document.getElementById('wave-screen-you');
+    const allScreens = document.querySelectorAll('.live-call-screen');
+
+    // Identify current partner screen key
+    const partnerKey = this.currentPartner?.id ? this.currentPartner.id.split('_')[0] : 'kenji';
+    const partnerScreen = document.getElementById(`screen-call-${partnerKey}`);
+    const wavePartnerScreen = document.getElementById(`wave-screen-${partnerKey}`);
+    const statusPartnerScreen = document.getElementById(`status-screen-${partnerKey}`);
+
     if (this.isMyTurn) {
       if (cardYou) cardYou.classList.add('active-turn');
       if (cardPartner) cardPartner.classList.remove('active-turn');
@@ -808,6 +1096,18 @@ class EnglishBoosterChallenges {
       if (transcriptPartner) {
         transcriptPartner.textContent = `(Listening carefully to Alex's argument...)`;
       }
+
+      // Sync 6 Live Screens
+      allScreens.forEach(s => s.classList.remove('active-speaker'));
+      if (screenYou) screenYou.classList.add('active-speaker');
+      if (waveScreenYou) waveScreenYou.style.opacity = '1';
+      document.querySelectorAll('.voice-wave-container[id^="wave-screen-"]').forEach(w => {
+        if (w.id !== 'wave-screen-you') w.style.opacity = '0.35';
+      });
+      document.querySelectorAll('.screen-status-text').forEach(st => {
+        st.textContent = isFr ? '👂 Écoute active' : '👂 Listening';
+        st.style.color = 'var(--text-muted)';
+      });
     } else {
       if (cardYou) cardYou.classList.remove('active-turn');
       if (cardPartner) cardPartner.classList.add('active-turn');
@@ -833,6 +1133,17 @@ class EnglishBoosterChallenges {
       const partnerText = roundData?.partnerScript || "I completely agree with that perspective!";
       if (transcriptPartner) {
         transcriptPartner.textContent = `"${partnerText}"`;
+      }
+
+      // Sync 6 Live Screens
+      allScreens.forEach(s => s.classList.remove('active-speaker'));
+      if (screenYou) screenYou.classList.remove('active-speaker');
+      if (waveScreenYou) waveScreenYou.style.opacity = '0.35';
+      if (partnerScreen) partnerScreen.classList.add('active-speaker');
+      if (wavePartnerScreen) wavePartnerScreen.style.opacity = '1';
+      if (statusPartnerScreen) {
+        statusPartnerScreen.textContent = isFr ? '🎤 En train de parler...' : '🎤 Speaking...';
+        statusPartnerScreen.style.color = 'var(--green-400)';
       }
 
       // Speak partner audio voice
