@@ -26,7 +26,8 @@ class HowItWorksWizard {
         nativeLang: 'Spanish',
         interests: ['Travel', 'Music', 'Movies'],
         matchScore: 98,
-        matchReason: 'Same target goal (Spoken Fluency) · Similar intermediate level · High availability'
+        matchReason: 'Same target goal (Spoken Fluency) · Similar intermediate level · High availability',
+        matchReasonFr: 'Même objectif ciblé (Aisance orale) · Niveau intermédiaire similaire · Haute disponibilité'
       },
       {
         id: 'kenji_jp',
@@ -38,7 +39,8 @@ class HowItWorksWizard {
         nativeLang: 'Japanese',
         interests: ['Tech', 'Coding', 'Anime'],
         matchScore: 95,
-        matchReason: 'Compatible B2 level · Shared interest in technology · Fast conversation response'
+        matchReason: 'Compatible B2 level · Shared interest in technology · Fast conversation response',
+        matchReasonFr: 'Niveau B2 compatible · Passion partagée pour la tech · Réponses rapides'
       },
       {
         id: 'maya_sg',
@@ -50,7 +52,8 @@ class HowItWorksWizard {
         nativeLang: 'Mandarin',
         interests: ['Art', 'Design', 'Books'],
         matchScore: 92,
-        matchReason: 'Compatible conversation tempo · Creative topics discussion · Online right now'
+        matchReason: 'Compatible conversation tempo · Creative topics discussion · Online right now',
+        matchReasonFr: 'Rythme de discussion compatible · Échanges créatifs stimulants · En ligne immédiatement'
       }
     ];
 
@@ -81,21 +84,21 @@ class HowItWorksWizard {
         
         <!-- Header -->
         <div style="margin-bottom: 20px;">
-          <span class="crystal-badge" style="font-size: 0.76rem; margin-bottom: 8px;">Interactive 3-Step Walkthrough</span>
-          <h2 style="font-size: 1.7rem; margin-bottom: 4px;" class="text-gradient-cyan">Mastering Spoken English in 3 Steps</h2>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">From zero speaking practice to confident international conversations.</p>
+          <span class="crystal-badge" data-i18n="wiz_badge" style="font-size: 0.76rem; margin-bottom: 8px;">Interactive 3-Step Walkthrough</span>
+          <h2 style="font-size: 1.7rem; margin-bottom: 4px;" class="text-gradient-cyan" data-i18n="wiz_title">Mastering Spoken English in 3 Steps</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="wiz_subtitle">From zero speaking practice to confident international conversations.</p>
         </div>
 
         <!-- Step Navigation Pills -->
         <div class="step-nav-pills">
           <button class="step-nav-pill active" data-step-tab="1">
-            <span>01</span> Create Profile
+            <span>01</span> <span data-i18n="wiz_tab_1">Create Profile</span>
           </button>
           <button class="step-nav-pill" data-step-tab="2">
-            <span>02</span> Find Partner
+            <span>02</span> <span data-i18n="wiz_tab_2">Find Partner</span>
           </button>
           <button class="step-nav-pill" data-step-tab="3">
-            <span>03</span> Start Speaking
+            <span>03</span> <span data-i18n="wiz_tab_3">Start Speaking</span>
           </button>
         </div>
 
@@ -105,12 +108,12 @@ class HowItWorksWizard {
             <!-- Form Inputs -->
             <div style="display: flex; flex-direction: column; gap: 16px;">
               <div>
-                <label class="form-label" style="margin-bottom: 6px;">Full Name or Nickname</label>
+                <label class="form-label" data-i18n="wiz_label_name" style="margin-bottom: 6px;">Full Name or Nickname</label>
                 <input type="text" id="wiz-name" class="form-control" value="Alex Rivera" placeholder="Your name" />
               </div>
 
               <div>
-                <label class="form-label" style="margin-bottom: 6px;">Your Native Language</label>
+                <label class="form-label" data-i18n="wiz_label_native_lang" style="margin-bottom: 6px;">Your Native Language</label>
                 <select id="wiz-native-lang" class="form-control">
                   <option value="French">French 🇫🇷</option>
                   <option value="Spanish" selected>Spanish 🇪🇸</option>
@@ -124,7 +127,7 @@ class HowItWorksWizard {
               </div>
 
               <div>
-                <label class="form-label" style="margin-bottom: 6px;">Select Your Current English Level (CEFR)</label>
+                <label class="form-label" data-i18n="wiz_label_level" style="margin-bottom: 6px;">Select Your Current English Level (CEFR)</label>
                 <div class="level-picker-grid">
                   <button type="button" class="level-pick-btn" data-level="A1">A1</button>
                   <button type="button" class="level-pick-btn" data-level="A2">A2</button>
@@ -136,7 +139,7 @@ class HowItWorksWizard {
               </div>
 
               <div>
-                <label class="form-label" style="margin-bottom: 6px;">Your Primary Speaking Goal</label>
+                <label class="form-label" data-i18n="wiz_label_goal" style="margin-bottom: 6px;">Your Primary Speaking Goal</label>
                 <select id="wiz-goal" class="form-control">
                   <option value="Improve Spoken Fluency" selected>Improve Spoken Fluency & Confidence</option>
                   <option value="Career & Job Interviews">Career & Professional Meetings</option>
@@ -146,7 +149,7 @@ class HowItWorksWizard {
               </div>
 
               <div>
-                <label class="form-label" style="margin-bottom: 8px;">Choose Avatar</label>
+                <label class="form-label" data-i18n="wiz_label_avatar" style="margin-bottom: 8px;">Choose Avatar</label>
                 <div class="avatar-picker-grid">
                   <div class="avatar-pick-item selected" data-avatar="alex">
                     <img src="assets/avatars/alex.jpg" alt="Alex" />
@@ -169,7 +172,7 @@ class HowItWorksWizard {
 
             <!-- Live Reactive Profile Badge Card -->
             <div class="glass-card" style="padding: 24px; text-align: center; border-color: rgba(74, 222, 128, 0.4); background: rgba(74, 222, 128, 0.06);">
-              <span class="crystal-badge" style="font-size: 0.72rem; margin-bottom: 14px;">Live Profile Preview</span>
+              <span class="crystal-badge" data-i18n="wiz_preview_badge" style="font-size: 0.72rem; margin-bottom: 14px;">Live Profile Preview</span>
               <div class="partner-avatar" style="width: 82px; height: 82px; margin: 0 auto 12px; border-color: var(--green-400); box-shadow: 0 0 25px rgba(74, 222, 128, 0.4);">
                 <img id="wiz-preview-avatar-img" src="assets/avatars/alex.jpg" alt="Avatar" class="avatar-img" />
               </div>
@@ -188,7 +191,7 @@ class HowItWorksWizard {
           </div>
 
           <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
-            <button id="wiz-step1-next-btn" class="btn btn-primary">
+            <button id="wiz-step1-next-btn" class="btn btn-primary" data-i18n="wiz_btn_save_find">
               Save Profile & Find Partner ➔
             </button>
           </div>
@@ -199,7 +202,7 @@ class HowItWorksWizard {
           <div style="text-align: center; margin-bottom: 16px;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.88rem; color: var(--cyan-primary); font-weight: 700;">
               <span class="status-dot online"></span>
-              <span>AI Engine matched 3 compatible partners available now</span>
+              <span data-i18n="wiz_matched_count">AI Engine matched 3 compatible partners available now</span>
             </div>
           </div>
 
@@ -214,17 +217,17 @@ class HowItWorksWizard {
                 <h4 style="font-size: 1.1rem; margin-bottom: 2px;">${p.name}</h4>
                 <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">${p.country} · Native: ${p.nativeLang}</div>
                 <span class="badge-level level-${p.level.toLowerCase()}" style="margin-bottom: 10px;">${p.level} Intermediate</span>
-                <p style="font-size: 0.78rem; color: var(--text-subtle); line-height: 1.4; margin-top: auto;">${p.matchReason}</p>
+                <p style="font-size: 0.78rem; color: var(--text-subtle); line-height: 1.4; margin-top: auto;">${(window.EnglishBooster?.isFrench && window.EnglishBooster.isFrench()) ? (p.matchReasonFr || p.matchReason) : p.matchReason}</p>
               </div>
             `).join('')}
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; flex-wrap: wrap; gap: 12px;">
-            <button id="wiz-step2-back-btn" class="btn btn-secondary btn-sm">
+            <button id="wiz-step2-back-btn" class="btn btn-secondary btn-sm" data-i18n="wiz_btn_back_profile">
               ⬅ Back to Profile
             </button>
             <div style="display: flex; gap: 10px;">
-              <a href="pages/partners.html" class="btn btn-secondary btn-sm">
+              <a href="pages/partners.html" class="btn btn-secondary btn-sm" data-i18n="wiz_btn_browse_all">
                 Browse All 50+ Partners 🌐
               </a>
               <button id="wiz-step2-next-btn" class="btn btn-primary">
@@ -246,7 +249,7 @@ class HowItWorksWizard {
               <div>
                 <h4 id="wiz-step3-name" style="font-size: 1.05rem; margin-bottom: 2px;">Sofia Martínez</h4>
                 <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--text-muted);">
-                  <span class="status-indicator"><span class="status-dot online"></span> In Call Session</span>
+                  <span class="status-indicator"><span class="status-dot online"></span> <span data-i18n="wiz_in_call_status">In Call Session</span></span>
                   <span>·</span>
                   <span id="wiz-step3-level" class="badge-level level-b1">B1 Intermediate</span>
                 </div>
@@ -335,6 +338,7 @@ class HowItWorksWizard {
     `;
 
     document.body.appendChild(modal);
+    if (window.EnglishBooster?.i18n) window.EnglishBooster.i18n.translateDOM();
 
     // Bind modal internal events
     this.bindModalEvents();
@@ -729,20 +733,10 @@ class HowItWorksWizard {
   }
 
   speakPartnerText(text) {
-    if (!this.voiceAudioEnabled) return;
-    if (!('speechSynthesis' in window)) return;
-
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = 1.0;
-    utterance.pitch = 1.05;
-
-    const voices = window.speechSynthesis.getVoices();
-    const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Jenny')));
-    if (enVoice) utterance.voice = enVoice;
-
-    window.speechSynthesis.speak(utterance);
+    // Voix de l'IA désactivée
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+    }
   }
 }
 

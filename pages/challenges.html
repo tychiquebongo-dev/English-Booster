@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Challenges & Gamification — English Booster</title>
+  <title data-i18n="title_challenges">Daily Challenges & Gamification — English Booster</title>
   <meta name="description" content="Complete daily English speaking challenges, earn XP, unlock achievements, and climb the global leaderboard.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
@@ -36,14 +36,14 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-          <li><a href="inscrits.html" class="nav-link">Inscrivez-vous</a></li>
-          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
-          <li><a href="chat.html" class="nav-link">Chat</a></li>
-          <li><a href="call.html" class="nav-link">Live Call</a></li>
-          <li><a href="challenges.html" class="nav-link active">Challenges</a></li>
-          <li><a href="community.html" class="nav-link">Community</a></li>
-          <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+          <li><a href="dashboard.html" class="nav-link" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="inscrits.html" class="nav-link" data-i18n="nav_inscrits">Inscrivez-vous</a></li>
+          <li><a href="partners.html" class="nav-link" data-i18n="nav_partners">Find Partners</a></li>
+          <li><a href="chat.html" class="nav-link" data-i18n="nav_chat">Chat</a></li>
+          <li><a href="call.html" class="nav-link" data-i18n="nav_call">Live Call</a></li>
+          <li><a href="challenges.html" class="nav-link active" data-i18n="nav_challenges">Challenges</a></li>
+          <li><a href="community.html" class="nav-link" data-i18n="nav_community">Community</a></li>
+          <li><a href="leaderboard.html" class="nav-link" data-i18n="nav_leaderboard">Leaderboard</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -149,7 +149,7 @@
         <div class="arena-card reveal-init" data-arena-id="speed_duel">
           <div class="arena-badge-live">
             <span class="status-dot online" style="width: 6px; height: 6px;"></span>
-            <span>42 Live</span>
+            <span data-i18n="challenges_live_count_42">42 Live</span>
           </div>
           <div>
             <div class="arena-icon">⚡</div>
@@ -177,7 +177,7 @@
         <div class="arena-card reveal-init reveal-delay-1" data-arena-id="debate">
           <div class="arena-badge-live">
             <span class="status-dot online" style="width: 6px; height: 6px;"></span>
-            <span>28 Live</span>
+            <span data-i18n="challenges_live_count_28">28 Live</span>
           </div>
           <div>
             <div class="arena-icon" style="background: rgba(139, 92, 246, 0.18);">⚖️</div>
@@ -205,7 +205,7 @@
         <div class="arena-card reveal-init reveal-delay-2" data-arena-id="roleplay">
           <div class="arena-badge-live">
             <span class="status-dot online" style="width: 6px; height: 6px;"></span>
-            <span>35 Live</span>
+            <span data-i18n="challenges_live_count_35">35 Live</span>
           </div>
           <div>
             <div class="arena-icon" style="background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.35);">🎭</div>
@@ -233,7 +233,7 @@
         <div class="arena-card reveal-init reveal-delay-3" data-arena-id="phonetics">
           <div class="arena-badge-live">
             <span class="status-dot online" style="width: 6px; height: 6px;"></span>
-            <span>19 Live</span>
+            <span data-i18n="challenges_live_count_19">19 Live</span>
           </div>
           <div>
             <div class="arena-icon" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35);">🎯</div>
@@ -347,8 +347,8 @@
           <div id="arena-matching-call-chip" class="crystal-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.4); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 6px;" data-i18n="matching_live_call_chip">
             🎙️ Live Call & Audio Duel Ready
           </div>
-          <h2 id="arena-matching-title" style="font-size: 1.8rem; margin-bottom: 8px;">Finding Live Speaking Challenger...</h2>
-          <p id="arena-matching-desc" style="color: var(--text-muted); font-size: 0.95rem; max-width: 460px; margin: 0 auto 24px;">
+          <h2 id="arena-matching-title" style="font-size: 1.8rem; margin-bottom: 8px;" data-i18n="matching_finding_title">Finding Live Speaking Challenger...</h2>
+          <p id="arena-matching-desc" style="color: var(--text-muted); font-size: 0.95rem; max-width: 460px; margin: 0 auto 24px;" data-i18n="matching_finding_desc">
             Scanning online English learners around the world matching your CEFR skill tier for this battle mode...
           </p>
           <div class="voice-wave-container" style="justify-content: center; height: 40px; margin-bottom: 20px;">
@@ -356,7 +356,7 @@
             <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
             <div class="wave-bar"></div><div class="wave-bar"></div>
           </div>
-          <button id="btn-cancel-matching" class="btn btn-secondary">
+          <button id="btn-cancel-matching" class="btn btn-secondary" data-i18n="matching_cancel_btn">
             Cancel Matchmaking
           </button>
         </div>
@@ -376,7 +376,7 @@
                   ⚔️ Duo Focus
                 </button>
               </div>
-              <button id="btn-toggle-voice-audio" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 0.75rem;" title="Mute or Unmute spoken challenger voice">
+              <button id="btn-toggle-voice-audio" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 0.75rem;" title="Mute or Unmute spoken challenger voice" data-i18n="challenges_btn_voice_on">
                 🔊 Voice: ON
               </button>
               <button id="btn-battle-live-call" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #10b981, #06b6d4); border: none; font-weight: 700; padding: 4px 12px; font-size: 0.78rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);" data-i18n="battle_btn_live_call" title="Switch directly to a 1-to-1 WebRTC Live Video/Audio Call">
@@ -387,7 +387,7 @@
               <div id="battle-timer" style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--green-400); background: rgba(0,0,0,0.3); padding: 4px 16px; border-radius: var(--radius-md); border: 1px solid rgba(74, 222, 128, 0.3);">
                 02:30
               </div>
-              <button id="btn-finish-battle-early" class="btn btn-secondary btn-sm" style="color: var(--coral-accent); border-color: rgba(244, 63, 94, 0.4);">
+              <button id="btn-finish-battle-early" class="btn btn-secondary btn-sm" style="color: var(--coral-accent); border-color: rgba(244, 63, 94, 0.4);" data-i18n="challenges_btn_end_early">
                 End Duel Early
               </button>
             </div>
@@ -396,12 +396,12 @@
           <!-- Prompt Box & Context Guidance -->
           <div style="background: rgba(74, 222, 128, 0.08); border-left: 4px solid var(--green-400); padding: 14px 18px; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-bottom: 20px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
-              <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--green-400); font-weight: 800;">🎯 Live Challenge Topic:</div>
-              <div id="battle-mode-instruction" style="font-size: 0.75rem; color: #ffffff; font-weight: 700; background: rgba(74, 222, 128, 0.2); border: 1px solid rgba(74, 222, 128, 0.4); padding: 2px 10px; border-radius: var(--radius-sm);">
+              <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--green-400); font-weight: 800;" data-i18n="challenges_topic_label">🎯 Live Challenge Topic:</div>
+              <div id="battle-mode-instruction" style="font-size: 0.75rem; color: #ffffff; font-weight: 700; background: rgba(74, 222, 128, 0.2); border: 1px solid rgba(74, 222, 128, 0.4); padding: 2px 10px; border-radius: var(--radius-sm);" data-i18n="challenges_mode_live_duel">
                 Mode: Live Speaking Duel
               </div>
             </div>
-            <div id="battle-topic-text" style="font-size: 1.15rem; font-weight: 600; color: #ffffff; line-height: 1.5;">
+            <div id="battle-topic-text" style="font-size: 1.15rem; font-weight: 600; color: #ffffff; line-height: 1.5;" data-i18n="challenges_default_topic">
               "If you could move to any country tomorrow for 5 years, which would it be and what is the biggest cultural adaptation you would face?"
             </div>
           </div>
@@ -421,25 +421,25 @@
                   <span class="status-dot online"></span>
                   <span data-i18n="screen_hd_badge">🔴 LIVE HD 1080p</span>
                 </div>
-                <span class="crystal-badge live-call-level-badge" style="background: rgba(74, 222, 128, 0.25); color: #34d399;">Level B2 (You)</span>
+                <span class="crystal-badge live-call-level-badge" style="background: rgba(74, 222, 128, 0.25); color: #34d399;" data-i18n="challenges_screen_you_level">Level B2 (You)</span>
                 <div class="live-screen-flag-pill">🇪🇸 Alex Rivera</div>
               </div>
               <div class="live-screen-meta">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="font-size: 0.88rem; color: #ffffff;">Alex Rivera 🇪🇸</strong>
-                  <span class="screen-turn-pill" style="font-size: 0.7rem; color: var(--green-400); font-weight: 700;">🎤 Your Turn</span>
+                  <span class="screen-turn-pill" style="font-size: 0.7rem; color: var(--green-400); font-weight: 700;" data-i18n="challenges_your_turn">🎤 Your Turn</span>
                 </div>
                 <div class="voice-wave-container" id="wave-screen-you" style="height: 22px; margin-bottom: 6px;">
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
-                <div class="screen-transcript-snippet" id="multi-transcript-you">
+                <div class="screen-transcript-snippet" id="multi-transcript-you" data-i18n="challenges_multi_tap_mic">
                   "Tap microphone or argue below to speak..."
                 </div>
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
-                  <button class="btn btn-primary btn-sm btn-multi-mic" id="btn-multi-mic" style="flex: 1; font-size: 0.74rem; padding: 4px 8px; justify-content: center;">🎙️ Speak (Mic)</button>
-                  <button class="btn btn-secondary btn-sm" id="btn-multi-pass-turn" style="font-size: 0.74rem; padding: 4px 8px;">🔄 Pass Turn</button>
-                  <button class="btn btn-secondary btn-sm" id="btn-multi-next-round" style="font-size: 0.74rem; padding: 4px 8px; color: var(--green-400);">➡️ Next</button>
+                  <button class="btn btn-primary btn-sm btn-multi-mic" id="btn-multi-mic" style="flex: 1; font-size: 0.74rem; padding: 4px 8px; justify-content: center;" data-i18n="challenges_btn_mic_speak">🎙️ Speak (Mic)</button>
+                  <button class="btn btn-secondary btn-sm" id="btn-multi-pass-turn" style="font-size: 0.74rem; padding: 4px 8px;" data-i18n="challenges_btn_pass_turn">🔄 Pass Turn</button>
+                  <button class="btn btn-secondary btn-sm" id="btn-multi-next-round" style="font-size: 0.74rem; padding: 4px 8px; color: var(--green-400);" data-i18n="challenges_btn_next_round">➡️ Next</button>
                 </div>
               </div>
             </div>
@@ -458,13 +458,13 @@
               <div class="live-screen-meta">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="font-size: 0.88rem; color: #ffffff;">Kenji Sato 🇯🇵</strong>
-                  <span class="screen-status-text" id="status-screen-kenji" style="font-size: 0.7rem; color: var(--text-muted);">👂 Listening</span>
+                  <span class="screen-status-text" id="status-screen-kenji" style="font-size: 0.7rem; color: var(--text-muted);" data-i18n="challenges_screen_listening">👂 Listening</span>
                 </div>
                 <div class="voice-wave-container" id="wave-screen-kenji" style="height: 22px; margin-bottom: 6px; opacity: 0.4;">
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
-                <div class="screen-transcript-snippet" id="multi-transcript-kenji">
+                <div class="screen-transcript-snippet" id="multi-transcript-kenji" data-i18n="challenges_screen_msg_kenji">
                   "In my view from Tokyo, spontaneous English dialogue is vital for career growth."
                 </div>
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
@@ -488,13 +488,13 @@
               <div class="live-screen-meta">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="font-size: 0.88rem; color: #ffffff;">Sofia Martínez 🇪🇸</strong>
-                  <span class="screen-status-text" id="status-screen-sofia" style="font-size: 0.7rem; color: var(--text-muted);">👂 Listening</span>
+                  <span class="screen-status-text" id="status-screen-sofia" style="font-size: 0.7rem; color: var(--text-muted);" data-i18n="challenges_screen_listening">👂 Listening</span>
                 </div>
                 <div class="voice-wave-container" id="wave-screen-sofia" style="height: 22px; margin-bottom: 6px; opacity: 0.4;">
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
-                <div class="screen-transcript-snippet" id="multi-transcript-sofia">
+                <div class="screen-transcript-snippet" id="multi-transcript-sofia" data-i18n="challenges_screen_msg_sofia">
                   "Daily live calls on English Booster completely removed my conversational anxiety."
                 </div>
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
@@ -518,13 +518,13 @@
               <div class="live-screen-meta">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="font-size: 0.88rem; color: #ffffff;">Amara Okafor 🇳🇬</strong>
-                  <span class="screen-status-text" id="status-screen-amara" style="font-size: 0.7rem; color: var(--text-muted);">👂 Listening</span>
+                  <span class="screen-status-text" id="status-screen-amara" style="font-size: 0.7rem; color: var(--text-muted);" data-i18n="challenges_screen_listening">👂 Listening</span>
                 </div>
                 <div class="voice-wave-container" id="wave-screen-amara" style="height: 22px; margin-bottom: 6px; opacity: 0.4;">
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
-                <div class="screen-transcript-snippet" id="multi-transcript-amara">
+                <div class="screen-transcript-snippet" id="multi-transcript-amara" data-i18n="challenges_screen_msg_amara">
                   "Practicing rhetorical precision with worldwide peers unlocks executive confidence."
                 </div>
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
@@ -548,13 +548,13 @@
               <div class="live-screen-meta">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="font-size: 0.88rem; color: #ffffff;">Lucas Weber 🇩🇪</strong>
-                  <span class="screen-status-text" id="status-screen-lucas" style="font-size: 0.7rem; color: var(--text-muted);">👂 Listening</span>
+                  <span class="screen-status-text" id="status-screen-lucas" style="font-size: 0.7rem; color: var(--text-muted);" data-i18n="challenges_screen_listening">👂 Listening</span>
                 </div>
                 <div class="voice-wave-container" id="wave-screen-lucas" style="height: 22px; margin-bottom: 6px; opacity: 0.4;">
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
-                <div class="screen-transcript-snippet" id="multi-transcript-lucas">
+                <div class="screen-transcript-snippet" id="multi-transcript-lucas" data-i18n="challenges_screen_msg_lucas">
                   "The spontaneous topics challenge us to formulate thoughts fast without pauses."
                 </div>
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
@@ -570,7 +570,7 @@
                 <img src="../assets/images/tychique-bongo.jpg" alt="Tychique Bongo" class="live-screen-img" />
                 <div class="live-call-chip-badge" style="background: rgba(16, 185, 129, 0.85);">
                   <span class="status-dot online"></span>
-                  <span>⭐ HOST & REFEREE</span>
+                  <span data-i18n="challenges_screen_host_badge">⭐ HOST & REFEREE</span>
                 </div>
                 <span class="crystal-badge live-call-level-badge" style="background: rgba(16, 185, 129, 0.35); color: #34d399;">Master C2 · Abidjan</span>
                 <div class="live-screen-flag-pill">🇨🇮 Tychique Bongo</div>
@@ -578,17 +578,17 @@
               <div class="live-screen-meta">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="font-size: 0.88rem; color: #ffffff;">Tychique Bongo 🇨🇮</strong>
-                  <span class="screen-status-text" id="status-screen-tychique" style="font-size: 0.7rem; color: var(--green-400); font-weight: 700;">🟢 Live Room Host</span>
+                  <span class="screen-status-text" id="status-screen-tychique" style="font-size: 0.7rem; color: var(--green-400); font-weight: 700;" data-i18n="challenges_screen_host_status">🟢 Live Room Host</span>
                 </div>
                 <div class="voice-wave-container" id="wave-screen-tychique" style="height: 22px; margin-bottom: 6px; opacity: 0.5;">
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                   <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
-                <div class="screen-transcript-snippet" id="multi-transcript-tychique">
+                <div class="screen-transcript-snippet" id="multi-transcript-tychique" data-i18n="challenges_screen_msg_tychique">
                   "Welcome everyone! Speak naturally and focus on clarity. AI scoring is analyzing live fluency."
                 </div>
                 <div style="display: flex; gap: 6px; margin-top: 6px;">
-                  <button class="btn btn-secondary btn-sm btn-screen-listen" data-speaker="tychique" style="flex: 1; font-size: 0.74rem; padding: 4px 8px; justify-content: center;">🔊 Host Voice</button>
+                  <button class="btn btn-secondary btn-sm btn-screen-listen" data-speaker="tychique" style="flex: 1; font-size: 0.74rem; padding: 4px 8px; justify-content: center;" data-i18n="challenges_screen_btn_host_voice">🔊 Host Voice</button>
                   <button class="btn btn-secondary btn-sm btn-screen-pin" data-speaker="tychique" style="font-size: 0.74rem; padding: 4px 8px;" data-i18n="screen_btn_pin">📌 Pin</button>
                 </div>
               </div>
@@ -599,11 +599,11 @@
           <div class="battle-stage-grid" id="battle-stage-duo-grid" style="display: none;">
             <!-- Player 1 (You) -->
             <div id="player-card-you" class="battle-player-card active-turn">
-              <div class="battle-turn-pill" id="turn-pill-you">🎤 Your Turn to Speak</div>
+              <div class="battle-turn-pill" id="turn-pill-you" data-i18n="challenges_your_turn">🎤 Your Turn to Speak</div>
               <div class="partner-avatar" style="width: 78px; height: 78px; margin: 18px 0 10px; border-color: var(--green-400); box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);">
                 <img src="../assets/avatars/alex.jpg" alt="You" class="avatar-img" />
               </div>
-              <h4 style="font-size: 1.1rem; margin-bottom: 2px;">You (Alex Rivera)</h4>
+              <h4 style="font-size: 1.1rem; margin-bottom: 2px;" data-i18n="challenges_duo_you_title">You (Alex Rivera)</h4>
               <span class="badge-level level-b2" style="font-size: 0.72rem; margin-bottom: 12px;">Level B2 (Evaluating...)</span>
               
               <div class="voice-wave-container" id="wave-you" style="height: 32px; margin-bottom: 10px;">
@@ -612,18 +612,18 @@
                 <div class="wave-bar"></div><div class="wave-bar"></div>
               </div>
 
-              <div id="speech-indicator-you" style="font-size: 0.85rem; color: #34d399; font-weight: 600; margin-bottom: 8px;">
+              <div id="speech-indicator-you" style="font-size: 0.85rem; color: #34d399; font-weight: 600; margin-bottom: 8px;" data-i18n="challenges_duo_mic_active">
                 🎙️ Microphone Active · Speak your answer
               </div>
 
               <!-- Live Transcript for You -->
-              <div id="battle-you-transcript" style="font-size: 0.84rem; color: #ffffff; background: rgba(74, 222, 128, 0.12); border: 1px solid rgba(74, 222, 128, 0.35); border-radius: var(--radius-sm); padding: 8px 12px; width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 10px; line-height: 1.4;">
+              <div id="battle-you-transcript" style="font-size: 0.84rem; color: #ffffff; background: rgba(74, 222, 128, 0.12); border: 1px solid rgba(74, 222, 128, 0.35); border-radius: var(--radius-sm); padding: 8px 12px; width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 10px; line-height: 1.4;" data-i18n="challenges_duo_tap_or_click">
                 "Tap microphone to speak or click an argument below..."
               </div>
 
               <!-- Custom Spoken Argument Input -->
               <div class="battle-custom-input-wrap">
-                <input type="text" id="battle-custom-arg-input" placeholder="Type your spoken English argument..." data-i18n-ph="challenges_custom_input_ph" />
+                <input type="text" id="battle-custom-arg-input" placeholder="Type your spoken English argument..." data-i18n-placeholder="challenges_custom_input_ph" />
                 <button type="button" id="btn-send-custom-arg" class="btn btn-primary btn-sm" style="white-space: nowrap;" data-i18n="challenges_send_arg_btn">💬 Send</button>
               </div>
 
@@ -645,7 +645,7 @@
 
             <!-- Player 2 (Opponent) -->
             <div id="player-card-partner" class="battle-player-card">
-              <div class="battle-turn-pill" id="turn-pill-partner" style="background: rgba(255,255,255,0.08); color: var(--text-muted); border-color: var(--glass-border);">👂 Listening to Partner</div>
+              <div class="battle-turn-pill" id="turn-pill-partner" style="background: rgba(255,255,255,0.08); color: var(--text-muted); border-color: var(--glass-border);" data-i18n="challenges_your_listening">👂 Listening to Partner</div>
               <div class="partner-avatar" id="battle-partner-avatar" style="width: 78px; height: 78px; margin: 18px 0 10px; border-color: var(--glass-border);">
                 <img id="battle-partner-img" src="../assets/avatars/kenji.jpg" alt="Partner" class="avatar-img" />
                 <span class="avatar-badge-flag" id="battle-partner-flag">🇯🇵</span>
@@ -660,7 +660,7 @@
               </div>
 
               <!-- Partner Live Transcript Box -->
-              <div id="battle-partner-transcript" style="font-size: 0.84rem; color: var(--text-muted); font-style: italic; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 12px; width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; line-height: 1.4;">
+              <div id="battle-partner-transcript" style="font-size: 0.84rem; color: var(--text-muted); font-style: italic; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 12px; width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; line-height: 1.4;" data-i18n="challenges_duo_partner_msg">
                 "I completely agree with the mobility perspective..."
               </div>
 
@@ -778,7 +778,7 @@
             <h4 style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
               <span>🤖</span> <span data-i18n="challenges_results_referee">AI Level Referee Diagnostic:</span>
             </h4>
-            <p id="result-ai-feedback" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+            <p id="result-ai-feedback" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;" data-i18n="challenges_eval_feedback_default">
               Both speakers demonstrated great conversational rhythm. Alex exhibited stronger spontaneity and idiomatic transitions, qualifying for B2+ level. Kenji maintained high grammatical discipline with solid sentence structures.
             </p>
 
@@ -812,31 +812,31 @@
     <!-- MAIN SOLO DAILY CHALLENGE CARD -->
     <div style="margin-bottom: 18px;" class="reveal-init">
       <h2 style="font-size: 1.6rem; display: flex; align-items: center; gap: 10px;">
-        <span>🎙️</span> Solo Daily Habit Practice
+        <span>🎙️</span> <span data-i18n="challenges_solo_section_title">Solo Daily Habit Practice</span>
       </h2>
-      <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 4px;">
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 4px;" data-i18n="challenges_solo_section_desc">
         Prefer practicing on your own today? Record your 10-minute speech monologue below.
       </p>
     </div>
 
     <div id="challenge-interactive-area" class="glass-card challenge-hero-card reveal-init" style="margin-bottom: 50px;">
       <div class="challenge-details">
-        <span class="crystal-badge crystal-badge-amber">🎯 Featured Solo Habit Prompt</span>
-        <h3 style="font-size: 1.8rem;">Daily Monologue Reflection: 10 Minutes Speaking.</h3>
+        <span class="crystal-badge crystal-badge-amber" data-i18n="challenges_solo_badge_prompt">🎯 Featured Solo Habit Prompt</span>
+        <h3 style="font-size: 1.8rem;" data-i18n="challenges_solo_card_title">Daily Monologue Reflection: 10 Minutes Speaking.</h3>
 
-        <div class="challenge-prompt-box">
+        <div class="challenge-prompt-box" data-i18n="challenges_solo_card_topic">
           Topic: "What is your dream destination?"
         </div>
 
-        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;" data-i18n="challenges_solo_card_desc">
           Talk about why you chose this place, what foods you want to try, what landmarks you would visit, and who you would travel with.
         </p>
 
         <div style="display: flex; align-items: center; gap: 16px;">
-          <span class="crystal-badge crystal-badge-emerald" style="font-size: 0.9rem; padding: 8px 16px;">
+          <span class="crystal-badge crystal-badge-emerald" style="font-size: 0.9rem; padding: 8px 16px;" data-i18n="challenges_solo_card_reward">
             ⭐ Reward: +100 XP
           </span>
-          <span style="color: var(--amber-accent); font-weight: 700; font-size: 0.9rem;">
+          <span style="color: var(--amber-accent); font-weight: 700; font-size: 0.9rem;" data-i18n="challenges_solo_card_streak">
             🔥 Extends 7-day streak
           </span>
         </div>
@@ -852,11 +852,11 @@
           00:00
         </div>
 
-        <div id="challenge-status-text" style="font-size: 0.88rem; color: var(--text-muted);">
+        <div id="challenge-status-text" style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="challenges_solo_status_initial">
           Tap the microphone to record your speech response.
         </div>
 
-        <button id="btn-submit-challenge" class="btn btn-secondary" style="width: 100%;" disabled>
+        <button id="btn-submit-challenge" class="btn btn-secondary" style="width: 100%;" disabled data-i18n="challenges_solo_btn_submit">
           Submit Answer & Claim +100 XP
         </button>
       </div>
@@ -864,13 +864,13 @@
 
     <!-- XP REWARD SYSTEM BREAKDOWN -->
     <div style="margin-bottom: 50px;" class="reveal-init">
-      <h3 style="font-size: 1.6rem; margin-bottom: 20px;">⚡ How to Earn XP</h3>
+      <h3 style="font-size: 1.6rem; margin-bottom: 20px;" data-i18n="challenges_xp_how_title">⚡ How to Earn XP</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
         <div class="glass-card" style="padding: 20px; display: flex; align-items: center; gap: 14px;">
           <div style="font-size: 1.8rem; color: var(--cyan-primary);">🎙️</div>
           <div>
             <div style="font-weight: 800; font-size: 1.2rem; color: var(--cyan-primary);">+10 XP</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">10 minutes speaking</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="challenges_xp_rule_1">10 minutes speaking</div>
           </div>
         </div>
 
@@ -878,7 +878,7 @@
           <div style="font-size: 1.8rem; color: var(--blue-400);">📚</div>
           <div>
             <div style="font-weight: 800; font-size: 1.2rem; color: var(--blue-400);">+20 XP</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">Learn 5 new expressions</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="challenges_xp_rule_2">Learn 5 new expressions</div>
           </div>
         </div>
 
@@ -886,7 +886,7 @@
           <div style="font-size: 1.8rem; color: var(--emerald-accent);">🤝</div>
           <div>
             <div style="font-weight: 800; font-size: 1.2rem; color: var(--emerald-accent);">+50 XP</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">Complete live conversation</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="challenges_xp_rule_3">Complete live conversation</div>
           </div>
         </div>
 
@@ -894,7 +894,7 @@
           <div style="font-size: 1.8rem; color: var(--amber-accent);">🎯</div>
           <div>
             <div style="font-weight: 800; font-size: 1.2rem; color: var(--amber-accent);">+100 XP</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">Complete daily challenge</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="challenges_xp_rule_4">Complete daily challenge</div>
           </div>
         </div>
       </div>
@@ -903,8 +903,8 @@
     <!-- BADGES REWARD GALLERY -->
     <div class="reveal-init">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="font-size: 1.6rem;">🏆 Achievement Badges</h3>
-        <span style="font-size: 0.9rem; color: var(--text-muted);">4 of 6 Unlocked</span>
+        <h3 style="font-size: 1.6rem;" data-i18n="challenges_badges_title">🏆 Achievement Badges</h3>
+        <span style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="challenges_badges_unlocked">4 of 6 Unlocked</span>
       </div>
 
       <div id="badges-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px;">
@@ -917,29 +917,30 @@
   <nav class="mobile-bottom-dock">
     <a href="dashboard.html" class="dock-item">
       <span class="dock-icon">🏠</span>
-      <span>Dashboard</span>
+      <span data-i18n="nav_dashboard">Dashboard</span>
     </a>
     <a href="partners.html" class="dock-item">
       <span class="dock-icon">🔎</span>
-      <span>Discover</span>
+      <span data-i18n="dock_discover">Discover</span>
     </a>
     <a href="chat.html" class="dock-item">
       <span class="dock-icon">💬</span>
       <span class="dock-badge">1</span>
-      <span>Chat</span>
+      <span data-i18n="dock_chat">Chat</span>
     </a>
     <a href="challenges.html" class="dock-item active">
       <span class="dock-icon">🎯</span>
-      <span>Challenges</span>
+      <span data-i18n="nav_challenges">Challenges</span>
     </a>
     <a href="profile.html" class="dock-item">
       <span class="dock-icon">👤</span>
-      <span>Profile</span>
+      <span data-i18n="dock_profile">Profile</span>
     </a>
   </nav>
 
   <script src="../js/i18n.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js"></script>\n  <script src="../js/animations.js"></script>
+  <script src="../js/aiVoiceEngine.js"></script>
   <script src="../js/avatarManager.js"></script>
   <script src="../js/challenges.js"></script>
   <script src="../js/pwa.js"></script>

@@ -633,20 +633,13 @@
     if (wave) wave.classList.add('active-wave');
 
     // Synthesize English voice note if browser supports it
-    if ('speechSynthesis' in window && status.audioData.speechText) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(status.audioData.speechText);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.95;
-
-      utterance.onend = () => {
-        stopAudioPlayback();
-      };
-      utterance.onerror = () => {
-        stopAudioPlayback();
-      };
-
-      window.speechSynthesis.speak(utterance);
+    if (window.AIVoiceEngine && status.audioData.speechText) {
+      window.AIVoiceEngine.speak(status.audioData.speechText, {
+        onEnd: () => stopAudioPlayback(),
+        onError: () => stopAudioPlayback()
+      });
+    } else if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
     }
 
     // Timer simulation
@@ -703,13 +696,9 @@
       window.showToast(`🎬 Lecture de la capsule vidéo de ${status.author.name} (1080p)`, 'Capsule d\'anglais en direct', 'info', 2500);
     }
 
-    // Trigger audio speech synthesis for the video
-    if ('speechSynthesis' in window && status.videoData.captions) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(status.videoData.captions);
-      utterance.lang = 'en-US';
-      utterance.rate = 1.0;
-      window.speechSynthesis.speak(utterance);
+    // Voix de l'IA désactivée
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
     }
   }
 

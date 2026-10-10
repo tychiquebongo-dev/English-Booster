@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Audio & Video Conversation — English Booster</title>
+  <title data-i18n="title_call">Live Audio & Video Conversation — English Booster</title>
   <meta name="description" content="Live English conversation room with international partners, audio visualizer, real-time AI prompts, and camera controls.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
@@ -110,7 +110,7 @@
         <div style="display: flex; align-items: center; gap: 14px;">
           <span class="status-indicator">
             <span class="status-dot online"></span>
-            <span style="font-weight: 700; color: var(--emerald-accent);">LIVE CALL IN PROGRESS</span>
+            <span style="font-weight: 700; color: var(--emerald-accent);" data-i18n="call_in_progress">LIVE CALL IN PROGRESS</span>
           </span>
           <span id="call-timer" class="crystal-badge" style="font-family: var(--font-mono); font-size: 1rem; padding: 6px 14px;">
             12:43
@@ -131,7 +131,7 @@
           <a href="challenges.html?quick=true" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #10b981, #06b6d4); border: none; font-weight: 700; padding: 6px 12px; font-size: 0.8rem; box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);" data-i18n="challenges_btn_toggle_grid">
             🎥 6 Live Screens
           </a>
-          <a href="dashboard.html" class="btn btn-secondary btn-sm">Exit Room</a>
+          <a href="dashboard.html" class="btn btn-secondary btn-sm" data-i18n="call_exit_room">Exit Room</a>
         </div>
       </div>
     </nav>
@@ -150,8 +150,8 @@
         <div style="position: absolute; bottom: 85px; left: 20px; display: flex; align-items: center; gap: 12px; background: rgba(6, 11, 23, 0.75); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: var(--radius-full); border: 1px solid var(--glass-border); z-index: 3;">
           <span style="font-size: 1.2rem;">🇪🇸</span>
           <div>
-            <div id="call-partner-name" style="font-size: 0.95rem; font-weight: 800; color: #ffffff;">Sofia Martínez (Tutor · B1)</div>
-            <div style="font-size: 0.72rem; color: var(--green-400); font-weight: 700;">🟢 Connexion HD 1080p · En direct</div>
+            <div id="call-partner-name" style="font-size: 0.95rem; font-weight: 800; color: #ffffff;">Sofia Martínez <span data-i18n="call_partner_tutor_role">(Tutor · B1)</span></div>
+            <div style="font-size: 0.72rem; color: var(--green-400); font-weight: 700;" data-i18n="call_partner_connected_status">🟢 Connexion HD 1080p · En direct</div>
           </div>
           <div class="voice-wave-container" style="height: 22px; margin-left: 6px;">
             <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
@@ -162,16 +162,16 @@
         <!-- Floating Overlay Badges -->
         <div style="position: absolute; top: 16px; left: 16px; display: flex; align-items: center; gap: 8px;">
           <span class="crystal-badge" style="background: rgba(0,0,0,0.6);">
-            Partner Level: <span id="call-partner-level" class="badge-level level-b1">B1</span>
+            <span data-i18n="call_partner_level_label">Partner Level:</span> <span id="call-partner-level" class="badge-level level-b1">B1</span>
           </span>
         </div>
 
         <!-- Live AI Conversation Helper Box -->
         <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; background: rgba(6, 10, 20, 0.75); backdrop-filter: blur(14px); border: 1px solid var(--cyan-primary); padding: 12px 18px; border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(96, 165, 250, 0.25);">
-          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--cyan-primary); font-weight: 800; margin-bottom: 2px;">
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--cyan-primary); font-weight: 800; margin-bottom: 2px;" data-i18n="call_live_coach">
             🤖 AI Live Coach Assistance
           </div>
-          <div id="ai-coach-prompt-text" style="font-size: 0.92rem; font-weight: 600; color: #ffffff; transition: opacity 0.3s ease;">
+          <div id="ai-coach-prompt-text" style="font-size: 0.92rem; font-weight: 600; color: #ffffff; transition: opacity 0.3s ease;" data-i18n="call_prompt_sample">
             💡 Discussion prompt: "What is your favorite travel destination and why?"
           </div>
         </div>
@@ -188,38 +188,38 @@
               <img src="../assets/avatars/alex.jpg" alt="Alex Rivera" class="avatar-img" />
               <span class="avatar-badge-flag" style="font-size: 1.2rem;">🇪🇸</span>
             </div>
-            <div style="font-size: 0.95rem; font-weight: 700;">Alex Rivera (You)</div>
+            <div style="font-size: 0.95rem; font-weight: 700;">Alex Rivera <span data-i18n="call_you_paren">(You)</span></div>
             <span class="status-indicator">
-              <span class="status-dot online"></span> Microphone active
+              <span class="status-dot online"></span> <span data-i18n="call_mic_active">Microphone active</span>
             </span>
           </div>
 
           <div style="position: absolute; top: 12px; left: 12px;">
-            <span class="crystal-badge" style="font-size: 0.7rem; background: rgba(0,0,0,0.6);">You</span>
+            <span class="crystal-badge" style="font-size: 0.7rem; background: rgba(0,0,0,0.6);" data-i18n="call_you">You</span>
           </div>
         </div>
 
         <!-- In-Call Practice Notes & Vocabulary Checklist -->
         <div class="glass-card" style="padding: 18px; flex: 1.2; overflow-y: auto;">
-          <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: var(--cyan-primary);">
+          <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: var(--cyan-primary);" data-i18n="call_goals_title">
             📝 Real-time Vocabulary Goals
           </h4>
           <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
             <label class="custom-checkbox-label">
               <input type="checkbox">
-              <span>Use <strong>"Look forward to"</strong></span>
+              <span data-i18n="call_goal_1">Phrasal verb: "Look forward to"</span>
             </label>
             <label class="custom-checkbox-label">
               <input type="checkbox">
-              <span>Ask an open-ended question</span>
+              <span data-i18n="call_goal_2">Ask an open-ended question</span>
             </label>
             <label class="custom-checkbox-label">
               <input type="checkbox">
-              <span>Use simple past correctly</span>
+              <span data-i18n="call_goal_3">Use simple past correctly</span>
             </label>
             <label class="custom-checkbox-label">
               <input type="checkbox">
-              <span>Give a 1-minute storytelling example</span>
+              <span data-i18n="call_goal_4">Give a 1-minute storytelling example</span>
             </label>
           </div>
         </div>
@@ -229,29 +229,30 @@
     <!-- CALL CONTROLS BAR -->
     <div class="call-controls-bar">
       <button id="btn-call-mute" class="call-ctrl-btn">
-        🎙️ <span class="btn-label">Mute</span>
+        🎙️ <span class="btn-label" data-i18n="call_btn_mute">Mute</span>
       </button>
 
       <button id="btn-call-video" class="call-ctrl-btn">
-        📹 <span class="btn-label">Camera</span>
+        📹 <span class="btn-label" data-i18n="call_btn_camera_off">Camera</span>
       </button>
 
       <button id="btn-call-screen" class="call-ctrl-btn">
-        🖥️ <span class="btn-label">Share Screen</span>
+        🖥️ <span class="btn-label" data-i18n="call_btn_screen">Share Screen</span>
       </button>
 
       <a href="chat.html" class="call-ctrl-btn">
-        💬 <span class="btn-label">Open Chat</span>
+        💬 <span class="btn-label" data-i18n="call_btn_chat">Open Chat</span>
       </a>
 
       <button id="btn-call-end" class="call-ctrl-btn btn-end">
-        🔴 <span class="btn-label">Leave Call</span>
+        🔴 <span class="btn-label" data-i18n="call_btn_leave">Leave Call</span>
       </button>
     </div>
   </main>
 
   <script src="../js/i18n.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js"></script>\n  <script src="../js/animations.js"></script>
+  <script src="../js/aiVoiceEngine.js"></script>
   <script src="../js/avatarManager.js"></script>
   <script src="../js/matching.js"></script>
   <script src="../js/webrtcCall.js"></script>

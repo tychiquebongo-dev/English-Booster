@@ -1,4 +1,6 @@
-/**
+const fs = require('fs');
+
+const animationsJsContent = `/**
  * ENGLISH BOOSTER — ADVANCED ANIMATIONS & DYNAMIC INTERACTION ENGINE (v2.5)
  * Features:
  * 1. 3D Glass Card Tilt & Holographic Specular Glare (Micro-interactions)
@@ -26,8 +28,8 @@
   }
 
   function resolvePath(relativePath) {
-    const inPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
-    const clean = relativePath.replace(/^(\.\.\/)+/, '');
+    const inPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\\\pages\\\\');
+    const clean = relativePath.replace(/^(\\.\\.\\/)+/, '');
     return inPages ? '../' + clean : clean;
   }
 
@@ -141,7 +143,7 @@
 
       orbs.forEach((orb, i) => {
         const factor = (i + 1) * 0.35;
-        orb.style.transform = `translate(${currentX * factor}px, ${currentY * factor}px)`;
+        orb.style.transform = \`translate(\${currentX * factor}px, \${currentY * factor}px)\`;
       });
 
       requestAnimationFrame(renderParallax);
@@ -182,14 +184,14 @@
           const pctX = Math.round((x / rect.width) * 100);
           const pctY = Math.round((y / rect.height) * 100);
 
-          card.style.setProperty('--mouse-x', `${pctX}%`);
-          card.style.setProperty('--mouse-y', `${pctY}%`);
+          card.style.setProperty('--mouse-x', \`\${pctX}%\`);
+          card.style.setProperty('--mouse-y', \`\${pctY}%\`);
 
           // Tilt angle (-7 to +7 deg)
           const rotX = ((y / rect.height) - 0.5) * -12;
           const rotY = ((x / rect.width) - 0.5) * 12;
 
-          card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+          card.style.transform = \`perspective(1000px) rotateX(\${rotX.toFixed(2)}deg) rotateY(\${rotY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)\`;
         });
       });
 
@@ -214,10 +216,10 @@
         const ripple = document.createElement('span');
         ripple.className = 'eb-ripple';
         const size = Math.max(rect.width, rect.height) * 1.6;
-        ripple.style.width = `${size}px`;
-        ripple.style.height = `${size}px`;
-        ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
-        ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+        ripple.style.width = \`\${size}px\`;
+        ripple.style.height = \`\${size}px\`;
+        ripple.style.left = \`\${e.clientX - rect.left - size / 2}px\`;
+        ripple.style.top = \`\${e.clientY - rect.top - size / 2}px\`;
         btn.appendChild(ripple);
 
         setTimeout(() => ripple.remove(), 600);
@@ -252,9 +254,9 @@
 
     const particle = document.createElement('div');
     particle.className = 'eb-xp-particle';
-    particle.style.left = `${startX}px`;
-    particle.style.top = `${startY}px`;
-    particle.innerHTML = `<span>✨</span> +${amount} XP`;
+    particle.style.left = \`\${startX}px\`;
+    particle.style.top = \`\${startY}px\`;
+    particle.innerHTML = \`<span>✨</span> +\${amount} XP\`;
     document.body.appendChild(particle);
 
     if (window.EnglishBooster && window.EnglishBooster.SoundFX) {
@@ -267,7 +269,7 @@
     const xpValEl = document.getElementById('dash-xp-val');
     if (xpValEl && window.EnglishBooster && window.EnglishBooster.currentUser) {
       const user = window.EnglishBooster.currentUser;
-      xpValEl.textContent = `${(user.xp || 2450).toLocaleString()} XP`;
+      xpValEl.textContent = \`\${(user.xp || 2450).toLocaleString()} XP\`;
     }
   }
 
@@ -296,7 +298,7 @@
       flag: '🇳🇬',
       avatar: 'assets/avatars/amara.jpg',
       en: 'Scored 98% in AI Fluency Coach session 🌟',
-      fr: "A obtenu 98% de fluidité avec l'AI Coach 🌟",
+      fr: 'A obtenu 98% de fluidité avec l\'AI Coach 🌟',
       xp: 75
     },
     {
@@ -312,7 +314,7 @@
       flag: '🇨🇮',
       avatar: 'assets/images/tychique-bongo.jpg',
       en: 'Hosting a Live WebRTC Practice Room 🎙️',
-      fr: "Anime un salon d'immersion WebRTC en direct 🎙️",
+      fr: 'Anime un salon d\'immersion WebRTC en direct 🎙️',
       xp: 80
     },
     {
@@ -320,7 +322,7 @@
       flag: '🇦🇷',
       avatar: 'assets/avatars/alex.jpg',
       en: 'Logged 25 mins speaking time today ⏱️',
-      fr: "A pratiqué 25 minutes d'expression orale ⏱️",
+      fr: 'A pratiqué 25 minutes d\'expression orale ⏱️',
       xp: 60
     },
     {
@@ -361,25 +363,25 @@
     const cheerText = isFrench ? 'Encourager 👏' : 'Cheer 👏';
     const avatarSrc = resolvePath(ev.avatar);
 
-    wrap.innerHTML = `
+    wrap.innerHTML = \`
       <div class="eb-live-ticker-card" id="eb-active-ticker-card">
         <div class="eb-live-dot" title="Live Global Network"></div>
         <div class="eb-ticker-avatar-wrap">
-          <img src="${avatarSrc}" alt="${ev.name}" class="eb-ticker-avatar" onerror="this.src='${resolvePath('assets/avatars/alex.jpg')}'" />
-          <span class="eb-ticker-flag">${ev.flag}</span>
+          <img src="\${avatarSrc}" alt="\${ev.name}" class="eb-ticker-avatar" onerror="this.src='\${resolvePath('assets/avatars/alex.jpg')}'" />
+          <span class="eb-ticker-flag">\${ev.flag}</span>
         </div>
         <div class="eb-ticker-body">
           <div class="eb-ticker-name">
-            <span>${ev.name}</span>
-            <span style="font-size: 0.7rem; color: #4ade80; font-weight: 800;">+${ev.xp} XP</span>
+            <span>\${ev.name}</span>
+            <span style="font-size: 0.7rem; color: #4ade80; font-weight: 800;">+\${ev.xp} XP</span>
           </div>
-          <div class="eb-ticker-text">${actionText}</div>
+          <div class="eb-ticker-text">\${actionText}</div>
         </div>
         <button type="button" class="eb-ticker-action-btn" id="eb-ticker-cheer-btn" title="Cheer learner">
-          ${cheerText}
+          \${cheerText}
         </button>
       </div>
-    `;
+    \`;
 
     const cheerBtn = wrap.querySelector('#eb-ticker-cheer-btn');
     if (cheerBtn) {
@@ -396,7 +398,7 @@
         // Reward the cheerer +5 XP!
         spawnXpFlyout(5, cheerBtn);
         if (window.EnglishBooster && window.EnglishBooster.showToast) {
-          const cheerMsg = isFrench ? `Vous avez encouragé ${ev.name} ! +5 XP bonus gagnés.` : `You cheered ${ev.name}! +5 bonus XP earned.`;
+          const cheerMsg = isFrench ? \`Vous avez encouragé \${ev.name} ! +5 XP bonus gagnés.\` : \`You cheered \${ev.name}! +5 bonus XP earned.\`;
           window.EnglishBooster.showToast('👏 Good Karma!', cheerMsg, 'success', 2500);
         }
       });
@@ -429,7 +431,7 @@
     const scanStatus = isFrench ? 'Recherche de fréquence à Tokyo, Madrid, Lagos, Berlin...' : 'Scanning radio frequencies across Tokyo, Madrid, Lagos, Berlin...';
     const closeBtnText = isFrench ? 'Fermer' : 'Close';
 
-    modal.innerHTML = `
+    modal.innerHTML = \`
       <div class="eb-radar-box">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <span class="crystal-badge" style="background: rgba(74, 222, 128, 0.15); color: #4ade80; border-color: rgba(74, 222, 128, 0.4);">
@@ -437,8 +439,8 @@
           </span>
           <button type="button" class="toast-close" id="eb-radar-close-btn" style="color: #ffffff; font-size: 1.6rem; cursor: pointer; border: none; background: transparent;">&times;</button>
         </div>
-        <h3 style="font-size: 1.45rem; margin: 0 0 6px;" class="text-gradient-cyan">${title}</h3>
-        <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0 0 16px;">${subtitle}</p>
+        <h3 style="font-size: 1.45rem; margin: 0 0 6px;" class="text-gradient-cyan">\${title}</h3>
+        <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0 0 16px;">\${subtitle}</p>
 
         <!-- RADAR SCREEN -->
         <div class="eb-radar-screen">
@@ -458,12 +460,12 @@
         </div>
 
         <div id="eb-radar-status" style="font-size: 0.9rem; color: #38bdf8; font-weight: 700; min-height: 24px; margin-bottom: 12px;">
-          ${scanStatus}
+          \${scanStatus}
         </div>
 
         <div id="eb-radar-result-container"></div>
       </div>
-    `;
+    \`;
 
     modal.style.display = 'flex';
 
@@ -492,16 +494,16 @@
       }
 
       const matchFoundText = isFrench ? '✨ Partenaire Idéal Trouvé ! Compatibilité 98%' : '✨ Perfect Match Found! 98% Compatibility';
-      statusEl.innerHTML = `<span style="color: #4ade80;">${matchFoundText}</span>`;
+      statusEl.innerHTML = \`<span style="color: #4ade80;">\${matchFoundText}</span>\`;
 
       const partnerAvatar = resolvePath('assets/avatars/kenji.jpg');
       const callPageUrl = resolvePath('pages/call.html');
       const chatPageUrl = resolvePath('pages/chat.html');
 
-      resultContainer.innerHTML = `
+      resultContainer.innerHTML = \`
         <div class="eb-radar-matched-card">
           <div class="partner-avatar" style="width: 54px; height: 54px; border: 2px solid #4ade80;">
-            <img src="${partnerAvatar}" alt="Kenji" class="avatar-img" />
+            <img src="\${partnerAvatar}" alt="Kenji" class="avatar-img" />
             <span class="avatar-badge-flag">🇯🇵</span>
           </div>
           <div style="flex: 1; min-width: 0;">
@@ -513,16 +515,16 @@
               Tokyo, Japan · Tech, Gaming & Travel
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <a href="${callPageUrl}?partner=kenji_jp&autocall=true" class="btn btn-primary btn-sm" style="font-size: 0.78rem; padding: 6px 14px;">
-                <span>🎙️</span> ${isFrench ? 'Lancer l\'Appel Direct' : 'Start Live Call'}
+              <a href="\${callPageUrl}?partner=kenji_jp&autocall=true" class="btn btn-primary btn-sm" style="font-size: 0.78rem; padding: 6px 14px;">
+                <span>🎙️</span> \${isFrench ? 'Lancer l\\'Appel Direct' : 'Start Live Call'}
               </a>
-              <a href="${chatPageUrl}?partner=kenji_jp" class="btn btn-secondary btn-sm" style="font-size: 0.78rem; padding: 6px 12px;">
-                <span>💬</span> ${isFrench ? 'Discuter en Chat' : 'Open Chat'}
+              <a href="\${chatPageUrl}?partner=kenji_jp" class="btn btn-secondary btn-sm" style="font-size: 0.78rem; padding: 6px 12px;">
+                <span>💬</span> \${isFrench ? 'Discuter en Chat' : 'Open Chat'}
               </a>
             </div>
           </div>
         </div>
-      `;
+      \`;
 
       if (window.EnglishBooster && window.EnglishBooster.launchConfetti) {
         window.EnglishBooster.launchConfetti(1500);
@@ -549,12 +551,12 @@
     }
 
     const isFrench = isFr();
-    const title = isFrench ? "Speaking Gym & Analyse Vocale en Direct" : "Interactive Speaking Gym & Voice Visualizer";
-    const subtitle = isFrench ? "Échauffez votre voix, visualisez vos fréquences orales et recevez le diagnostic de l'IA" : "Warm up your voice, analyze your pitch and test your speaking clarity in real-time";
+    const title = isFrench ? 'Speaking Gym & Analyse Vocale en Direct' : 'Interactive Speaking Gym & Voice Visualizer';
+    const subtitle = isFrench ? 'Échauffez votre voix, visualisez vos fréquences orales et recevez le diagnostic de l\'IA' : 'Warm up your voice, analyze your pitch and test your speaking clarity in real-time';
     const sentencePrompt = isFrench ? '"Today is a fantastic day to practice English and connect with the world!"' : '"Today is a fantastic day to practice English and connect with the world!"';
-    const startBtnText = isFrench ? '🎙️ Démarrer l\'Échauffement Vocal' : '🎙️ Start Speaking Warmup';
+    const startBtnText = isFrench ? '🎙️ Démarrer l\\'Échauffement Vocal' : '🎙️ Start Speaking Warmup';
 
-    modal.innerHTML = `
+    modal.innerHTML = \`
       <div class="eb-voice-gym-box">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <span class="crystal-badge crystal-badge-purple">
@@ -563,16 +565,16 @@
           <button type="button" class="toast-close" id="eb-voice-close-btn" style="color: #ffffff; font-size: 1.6rem; cursor: pointer; border: none; background: transparent;">&times;</button>
         </div>
 
-        <h3 style="font-size: 1.45rem; margin: 0 0 6px;" class="text-gradient-cyan">${title}</h3>
-        <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0 0 14px;">${subtitle}</p>
+        <h3 style="font-size: 1.45rem; margin: 0 0 6px;" class="text-gradient-cyan">\${title}</h3>
+        <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0 0 14px;">\${subtitle}</p>
 
         <!-- Speaking Prompt Card -->
         <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 12px 16px; margin-bottom: 14px;">
           <div style="font-size: 0.75rem; text-transform: uppercase; color: #4ade80; font-weight: 700; margin-bottom: 4px;">
-            ${isFrench ? 'Phrase d\'entraînement suggérée :' : 'Suggested Speaking Practice :'}
+            \${isFrench ? 'Phrase d\\'entraînement suggérée :' : 'Suggested Speaking Practice :'}
           </div>
           <div style="font-size: 1.05rem; font-style: italic; color: #ffffff; font-weight: 600;">
-            ${sentencePrompt}
+            \${sentencePrompt}
           </div>
         </div>
 
@@ -581,7 +583,7 @@
 
         <!-- dB Volume Meter -->
         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">
-          <span>${isFrench ? 'Volume Micro' : 'Mic Volume'}</span>
+          <span>\${isFrench ? 'Volume Micro' : 'Mic Volume'}</span>
           <span id="eb-voice-db-text">0 dB</span>
         </div>
         <div class="eb-voice-meter-wrap">
@@ -592,25 +594,25 @@
         <div class="eb-voice-stat-grid">
           <div class="eb-voice-stat-box">
             <div id="eb-voice-fluency-val" class="eb-voice-stat-val">0%</div>
-            <div class="eb-voice-stat-lbl">${isFrench ? 'Fluidité' : 'Fluency'}</div>
+            <div class="eb-voice-stat-lbl">\${isFrench ? 'Fluidité' : 'Fluency'}</div>
           </div>
           <div class="eb-voice-stat-box">
             <div id="eb-voice-clarity-val" class="eb-voice-stat-val">--</div>
-            <div class="eb-voice-stat-lbl">${isFrench ? 'Clarté Vocale' : 'Vocal Clarity'}</div>
+            <div class="eb-voice-stat-lbl">\${isFrench ? 'Clarté Vocale' : 'Vocal Clarity'}</div>
           </div>
           <div class="eb-voice-stat-box">
             <div id="eb-voice-score-val" class="eb-voice-stat-val">+0 XP</div>
-            <div class="eb-voice-stat-lbl">${isFrench ? 'Bonus XP' : 'XP Reward'}</div>
+            <div class="eb-voice-stat-lbl">\${isFrench ? 'Bonus XP' : 'XP Reward'}</div>
           </div>
         </div>
 
         <button type="button" id="eb-voice-toggle-btn" class="btn btn-primary" style="width: 100%; font-weight: 800; padding: 14px 20px; box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);">
-          ${startBtnText}
+          \${startBtnText}
         </button>
 
         <div id="eb-voice-ai-feedback" style="font-size: 0.85rem; color: #4ade80; margin-top: 14px; min-height: 20px;"></div>
       </div>
-    `;
+    \`;
 
     modal.style.display = 'flex';
 
@@ -663,7 +665,7 @@
     const isFrench = isFr();
     const toggleBtn = modal.querySelector('#eb-voice-toggle-btn');
     if (toggleBtn) {
-      toggleBtn.innerHTML = isFrench ? '⏹️ Terminer l\'Enregistrement' : '⏹️ Stop Recording';
+      toggleBtn.innerHTML = isFrench ? '⏹️ Terminer l\\'Enregistrement' : '⏹️ Stop Recording';
       toggleBtn.style.background = 'linear-gradient(135deg, #ef4444, #f97316)';
     }
 
@@ -760,14 +762,14 @@
 
       // Meter fill
       const meterPct = Math.min(100, Math.round((avg / 150) * 100));
-      if (meterFill) meterFill.style.width = `${meterPct}%`;
-      if (dbText) dbText.textContent = `-${Math.max(10, 60 - Math.round(avg / 3))} dB`;
+      if (meterFill) meterFill.style.width = \`\${meterPct}%\`;
+      if (dbText) dbText.textContent = \`-\${Math.max(10, 60 - Math.round(avg / 3))} dB\`;
 
       // Fluency progress
       const currentFluency = Math.min(96, Math.round(55 + secondsSpoken * 8));
-      if (fluencyEl) fluencyEl.textContent = `${currentFluency}%`;
+      if (fluencyEl) fluencyEl.textContent = \`\${currentFluency}%\`;
       if (clarityEl) clarityEl.textContent = secondsSpoken > 2 ? (isFrench ? 'Excellente' : 'High Clarity') : (isFrench ? 'Écoute...' : 'Listening...');
-      if (scoreEl) scoreEl.textContent = `+${Math.min(25, Math.round(secondsSpoken * 5))} XP`;
+      if (scoreEl) scoreEl.textContent = \`+\${Math.min(25, Math.round(secondsSpoken * 5))} XP\`;
 
       // Auto victory after 5 seconds
       if (secondsSpoken >= 5.5 && isVoiceRecording) {
@@ -801,7 +803,7 @@
       const toggleBtn = modal.querySelector('#eb-voice-toggle-btn');
       if (toggleBtn) {
         const isFrench = isFr();
-        toggleBtn.innerHTML = isFrench ? '🎙️ Démarrer l\'Échauffement Vocal' : '🎙️ Start Speaking Warmup';
+        toggleBtn.innerHTML = isFrench ? '🎙️ Démarrer l\\'Échauffement Vocal' : '🎙️ Start Speaking Warmup';
         toggleBtn.style.background = '';
       }
       drawIdleVisualizer(modal.querySelector('#eb-gym-canvas'));
@@ -834,34 +836,34 @@
 
     const challengesUrl = resolvePath('pages/challenges.html');
 
-    hub.innerHTML = `
+    hub.innerHTML = \`
       <div class="eb-hub-menu" id="eb-hub-menu">
         <button type="button" class="eb-hub-item" id="eb-hub-radar">
           <span class="eb-hub-item-icon">⚡</span>
-          <span>${radarLabel}</span>
+          <span>\${radarLabel}</span>
         </button>
         <button type="button" class="eb-hub-item" id="eb-hub-gym">
           <span class="eb-hub-item-icon">🎙️</span>
-          <span>${gymLabel}</span>
+          <span>\${gymLabel}</span>
         </button>
-        <a href="${challengesUrl}" class="eb-hub-item" id="eb-hub-challenge">
+        <a href="\${challengesUrl}" class="eb-hub-item" id="eb-hub-challenge">
           <span class="eb-hub-item-icon">🎯</span>
-          <span>${chalLabel}</span>
+          <span>\${chalLabel}</span>
         </a>
         <button type="button" class="eb-hub-item" id="eb-hub-sound">
           <span class="eb-hub-item-icon">🔊</span>
-          <span id="eb-hub-sound-label">${soundText}</span>
+          <span id="eb-hub-sound-label">\${soundText}</span>
         </button>
         <button type="button" class="eb-hub-item" id="eb-hub-lang">
           <span class="eb-hub-item-icon">🌐</span>
-          <span>${langLabel}</span>
+          <span>\${langLabel}</span>
         </button>
       </div>
 
       <button type="button" class="eb-hub-btn-main" id="eb-hub-toggle-btn" title="English Booster Quick Hub" aria-label="Quick Hub">
         ✨
       </button>
-    `;
+    \`;
 
     const toggleBtn = hub.querySelector('#eb-hub-toggle-btn');
     toggleBtn.addEventListener('click', (e) => {
@@ -929,37 +931,6 @@
     initMagneticAndRipples();
     initLiveActivityTicker();
     initQuickBoosterHub();
-
-    // Voice Gym triggers
-    document.querySelectorAll('.btn-trigger-voice-gym').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openVoiceGym();
-      });
-    });
-
-    // Radar triggers
-    document.querySelectorAll('.btn-trigger-radar-scanner').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openRadarScanner();
-      });
-    });
-
-    // Chat starter chips
-    document.querySelectorAll('.chat-starter-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const input = document.getElementById('chat-input-text');
-        const text = chip.getAttribute('data-text');
-        if (input && text) {
-          input.value = text;
-          input.focus();
-          if (window.EnglishBooster && window.EnglishBooster.SoundFX) {
-            window.EnglishBooster.SoundFX.playClick();
-          }
-        }
-      });
-    });
   }
 
   if (document.readyState === 'loading') {
@@ -982,3 +953,7 @@
   window.EnglishBooster.initCard3DTilt = initCard3DTilt;
 
 })();
+`;
+
+fs.writeFileSync('js/animations.js', animationsJsContent, 'utf8');
+console.log('Successfully written dynamic animations engine to js/animations.js');

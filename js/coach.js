@@ -37,8 +37,9 @@ class EnglishBoosterAICoach {
         this.isListening = false;
         const micBtn = document.getElementById('coach-mic-btn');
         if (micBtn) {
+          const isFr = (window.EnglishBooster?.isFrench ? window.EnglishBooster.isFrench() : (localStorage.getItem('eb_lang') === 'fr'));
           micBtn.classList.remove('recording');
-          micBtn.innerHTML = '🎙️ Speak to Coach';
+          micBtn.innerHTML = isFr ? '🎙️ Parler au Coach' : '🎙️ Speak to Coach';
         }
       };
 
@@ -46,8 +47,9 @@ class EnglishBoosterAICoach {
         this.isListening = false;
         const micBtn = document.getElementById('coach-mic-btn');
         if (micBtn) {
+          const isFr = (window.EnglishBooster?.isFrench ? window.EnglishBooster.isFrench() : (localStorage.getItem('eb_lang') === 'fr'));
           micBtn.classList.remove('recording');
-          micBtn.innerHTML = '🎙️ Speak to Coach';
+          micBtn.innerHTML = isFr ? '🎙️ Parler au Coach' : '🎙️ Speak to Coach';
         }
       };
     }
@@ -60,8 +62,13 @@ class EnglishBoosterAICoach {
 
     if (micBtn) {
       micBtn.addEventListener('click', () => {
+        const isFr = (window.EnglishBooster?.isFrench ? window.EnglishBooster.isFrench() : (localStorage.getItem('eb_lang') === 'fr'));
         if (!this.recognition) {
-          window.EnglishBooster.showToast('Microphone Mode', 'Speech recognition is active. You can also type your sentences!', 'info');
+          window.EnglishBooster.showToast(
+            isFr ? 'Mode Microphone' : 'Microphone Mode',
+            isFr ? 'La reconnaissance vocale est active. Vous pouvez également taper vos phrases !' : 'Speech recognition is active. You can also type your sentences!',
+            'info'
+          );
           return;
         }
 
@@ -70,14 +77,19 @@ class EnglishBoosterAICoach {
             this.recognition.start();
             this.isListening = true;
             micBtn.classList.add('recording');
-            micBtn.innerHTML = '⏹️ Listening...';
-            window.EnglishBooster.showToast('Listening...', 'Speak in English now!', 'info', 2000);
+            micBtn.innerHTML = isFr ? '⏹️ Écoute en cours...' : '⏹️ Listening...';
+            window.EnglishBooster.showToast(
+              isFr ? 'Écoute en cours...' : 'Listening...',
+              isFr ? 'Parlez en anglais maintenant !' : 'Speak in English now!',
+              'info',
+              2000
+            );
           } catch (e) {}
         } else {
           this.recognition.stop();
           this.isListening = false;
           micBtn.classList.remove('recording');
-          micBtn.innerHTML = '🎙️ Speak to Coach';
+          micBtn.innerHTML = isFr ? '🎙️ Parler au Coach' : '🎙️ Speak to Coach';
         }
       });
     }
@@ -115,12 +127,10 @@ class EnglishBoosterAICoach {
   }
 
   speakEnglish(text) {
-    if (!this.synth) return;
-    this.synth.cancel(); // stop previous
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.95; // slightly clear and natural for learners
-    this.synth.speak(utterance);
+    // Voix de l'IA désactivée
+    if (this.synth) {
+      try { this.synth.cancel(); } catch (e) {}
+    }
   }
 
   handleUserSubmit(userText) {
@@ -157,19 +167,17 @@ class EnglishBoosterAICoach {
         coachReply = `Great sentence! To make it sound even more native, you could say: "Certainly, that sounds like an inspiring perspective." What do you think?`;
       }
 
+      const isFr = (window.EnglishBooster?.isFrench ? window.EnglishBooster.isFrench() : (localStorage.getItem('eb_lang') === 'fr'));
       const coachMsg = document.createElement('div');
       coachMsg.className = 'chat-bubble-wrap incoming';
       coachMsg.innerHTML = `
         <div class="chat-bubble bubble-partner" style="border-left: 3px solid var(--purple-primary);">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-            <strong style="color: var(--cyan-primary); font-size: 0.82rem;">🤖 AI English Coach</strong>
-            <button class="speak-text-btn btn btn-sm btn-icon-only" data-text="${coachReply}" title="Hear Pronunciation" style="width: 28px; height: 28px; font-size: 0.8rem;">
-              🔊
-            </button>
+            <strong style="color: var(--cyan-primary); font-size: 0.82rem;">${isFr ? '🤖 Coach IA d\'Anglais' : '🤖 AI English Coach'}</strong>
           </div>
           <div class="chat-text">${coachReply}</div>
           ${corrections}
-          <div class="chat-time">AI Linguistic Feedback</div>
+          <div class="chat-time">${isFr ? 'Retour Linguistique IA' : 'AI Linguistic Feedback'}</div>
         </div>
       `;
       container.appendChild(coachMsg);
@@ -179,7 +187,7 @@ class EnglishBoosterAICoach {
       this.speakEnglish(coachReply);
 
       // Reward XP
-      window.EnglishBooster.addXP(20, 'Practiced with AI Coach');
+      window.EnglishBooster.addXP(20, isFr ? 'Pratique avec le Coach IA' : 'Practiced with AI Coach');
     }, 1000);
   }
 }

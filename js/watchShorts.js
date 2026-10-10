@@ -1485,25 +1485,40 @@ ${(dossier.lexicon || []).map(l => `• ${l.term || l.phrase}${l.phonetic ? ` [$
     }
   }
 
-  // Synthèse vocale de démonstration avec cadence ajustable
+  // Synthèse vocale de démonstration avec cadence ajustable et voix IA élevée
   function playSpeechCaptions(text, rate = currentPlaybackRate) {
-    if (!('speechSynthesis' in window) || !text) return;
-    window.speechSynthesis.cancel();
+    if (!text) return;
+    if (window.AIVoiceEngine) {
+      isSpeechPlaying = true;
+      window.AIVoiceEngine.speak(text, {
+        rate: rate,
+        onEnd: () => {
+          isSpeechPlaying = false;
+          const playState = document.querySelector('.play-state-symbol');
+          if (playState) playState.textContent = '▶️';
+        },
+        onError: () => {
+          isSpeechPlaying = false;
+          const playState = document.querySelector('.play-state-symbol');
+          if (playState) playState.textContent = '▶️';
+        }
+      });
+      return;
+    }
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = rate || 0.95;
-    utterance.onend = () => {
-      isSpeechPlaying = false;
-      const playState = document.querySelector('.play-state-symbol');
-      if (playState) playState.textContent = '▶️';
-    };
-
-    isSpeechPlaying = true;
-    window.speechSynthesis.speak(utterance);
+    // Voix de l'IA désactivée
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+    }
+    isSpeechPlaying = false;
+    const playState = document.querySelector('.play-state-symbol');
+    if (playState) playState.textContent = '▶️';
   }
 
   function stopSpeechCaptions() {
+    if (window.AIVoiceEngine) {
+      window.AIVoiceEngine.stop();
+    }
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
@@ -1525,7 +1540,7 @@ ${(dossier.lexicon || []).map(l => `• ${l.term || l.phrase}${l.phonetic ? ` [$
 
       short.userReaction = type;
       if (type === 'like') {
-        const isFr = (window.EnglishBooster?.i18n?.currentLang || localStorage.getItem('eb_language') || 'en') === 'fr';
+        const isFr = (window.EnglishBooster?.i18n?.getLang() === 'fr') || (localStorage.getItem('eb_lang') === 'fr') || (localStorage.getItem('eb_language') === 'fr');
         if (window.showToast) window.showToast('❤️ Vous avez liké ce Short !', isFr ? 'Regardez les vidéos' : 'Watch Videos', 'success');
       } else {
         short.dislikes += 1;

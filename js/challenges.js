@@ -584,69 +584,28 @@ class EnglishBoosterChallenges {
       }
     };
 
-    if (!this.voiceAudioEnabled || !('speechSynthesis' in window)) {
-      // Calculate realistic pause duration for simulated speech
-      const words = text ? text.split(/\s+/).length : 12;
-      const delayMs = Math.max(Math.min(words * 260, 4800), 2200);
-      setTimeout(notifyDone, delayMs);
-      return;
+    // Voix de l'IA désactivée : progression silencieuse et fluide sans synthèse vocale
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
     }
 
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.0;
-      utterance.pitch = 1.0;
-      utterance.lang = 'en-US';
+    const partnerWave = document.getElementById('wave-partner');
+    if (partnerWave) partnerWave.style.opacity = '0.35';
 
-      const voices = window.speechSynthesis.getVoices();
-      const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('David') || v.name.includes('Samantha')));
-      if (englishVoice) utterance.voice = englishVoice;
-
-      const partnerWave = document.getElementById('wave-partner');
-      if (partnerWave) partnerWave.style.opacity = '1';
-
-      utterance.onend = () => notifyDone();
-      utterance.onerror = () => notifyDone();
-
-      // Reliable failsafe timer in case browser delays speech synthesis onend
-      const wordCount = text.split(/\s+/).length;
-      const safetyTimeoutMs = Math.max(Math.min(wordCount * 340, 6800), 3200);
-      setTimeout(notifyDone, safetyTimeoutMs);
-
-      window.speechSynthesis.speak(utterance);
-    } catch (err) {
-      console.warn('SpeechSynthesis error:', err);
-      notifyDone();
-    }
+    const words = text ? text.split(/\s+/).length : 12;
+    const delayMs = Math.max(Math.min(words * 90, 2200), 900);
+    setTimeout(notifyDone, delayMs);
   }
 
   playPhoneticModelAudio() {
     const roundData = this.getCurrentRoundData();
-    const modelText = roundData?.partnerScript || "Thirty-three thoughtful brothers breathe thoroughly through the freezing northern weather.";
-    
     if (window.EnglishBooster?.SoundFX) {
       window.EnglishBooster.SoundFX.playClick();
     }
-    window.EnglishBooster.showToast('Phonetic Model', 'Listening to authentic native articulation cadence...', 'info');
-
-    if ('speechSynthesis' in window) {
-      try {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(modelText);
-        utterance.rate = 0.85; // Slightly slower for crisp articulation
-        utterance.pitch = 1.05;
-        utterance.lang = 'en-US';
-
-        const voices = window.speechSynthesis.getVoices();
-        const nativeVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha')));
-        if (nativeVoice) utterance.voice = nativeVoice;
-
-        window.speechSynthesis.speak(utterance);
-      } catch (e) {
-        console.warn('Phonetic audio error:', e);
-      }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
     }
+    window.EnglishBooster.showToast('Phonetic Model', 'Modèle textuel actif (Voix IA désactivée)', 'info');
   }
 
   /* ========================================================================

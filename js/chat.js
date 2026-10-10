@@ -92,7 +92,9 @@ class EnglishBoosterChat {
           <div style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">
             <span class="status-dot ${p.isOnline ? 'online' : 'offline'}" style="width: 6px; height: 6px;"></span>
             <span class="badge-level level-${p.level.toLowerCase()}" style="font-size: 0.65rem; padding: 1px 6px;">${p.level}</span>
-            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p.isOnline ? 'Online now' : 'Seen 2h ago'}</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+              ${p.isOnline ? ((window.EnglishBooster?.isFrench && window.EnglishBooster.isFrench()) ? 'En ligne' : 'Online now') : ((window.EnglishBooster?.isFrench && window.EnglishBooster.isFrench()) ? 'Vu il y a 2h' : 'Seen 2h ago')}
+            </span>
           </div>
         </div>
       </div>
@@ -110,6 +112,8 @@ class EnglishBoosterChat {
     const header = document.getElementById('chat-active-header');
     if (!header) return;
 
+    const isFr = (window.EnglishBooster?.isFrench ? window.EnglishBooster.isFrench() : (localStorage.getItem('eb_lang') === 'fr'));
+
     header.innerHTML = `
       <div style="display: flex; align-items: center; gap: 14px;">
         <div class="partner-avatar" style="width: 48px; height: 48px;">
@@ -123,16 +127,16 @@ class EnglishBoosterChat {
           </h4>
           <span class="status-indicator">
             <span class="status-dot ${this.currentPartner.isOnline ? 'online' : 'offline'}"></span>
-            ${this.currentPartner.isOnline ? 'Online — Ready to practice' : 'Offline'}
+            ${this.currentPartner.isOnline ? (isFr ? 'En ligne — Prêt à échanger' : 'Online — Ready to practice') : (isFr ? 'Hors ligne' : 'Offline')}
           </span>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
-        <button id="ai-quick-check-btn" class="btn btn-outline-cyan btn-sm" title="Analyze input for grammatical accuracy">
-          ✨ AI Grammar Check
+        <button id="ai-quick-check-btn" class="btn btn-outline-cyan btn-sm" title="${isFr ? 'Analyser la saisie pour détecter les fautes' : 'Analyze input for grammatical accuracy'}">
+          ${isFr ? '✨ Vérification IA' : '✨ AI Grammar Check'}
         </button>
-        <a href="call.html?partner=${this.currentPartner.id}" class="btn btn-secondary btn-sm" title="Start Live Call">
-          🎙️ Live Call
+        <a href="call.html?partner=${this.currentPartner.id}" class="btn btn-secondary btn-sm" title="${isFr ? 'Démarrer l\'Appel en Direct' : 'Start Live Call'}">
+          ${isFr ? '🎙️ Appel en Direct' : '🎙️ Live Call'}
         </a>
       </div>
     `;
@@ -196,15 +200,16 @@ class EnglishBoosterChat {
   }
 
   formatCorrectionCard(corr) {
+    const isFr = (window.EnglishBooster?.isFrench ? window.EnglishBooster.isFrench() : (localStorage.getItem('eb_lang') === 'fr'));
     return `
       <div class="ai-inline-correction-card" style="margin-top: 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; font-size: 0.85rem;">
         <div style="display: flex; align-items: center; gap: 6px; color: var(--cyan-primary); font-weight: 700; margin-bottom: 6px;">
-          ✨ AI English Correction
+          ${isFr ? '✨ Correction d\'anglais par l\'IA' : '✨ AI English Correction'}
         </div>
         <div style="color: #fda4af; text-decoration: line-through; margin-bottom: 4px;">❌ ${corr.wrong}</div>
         <div style="color: #6ee7b7; font-weight: 600; margin-bottom: 6px;">✓ ${corr.correct}</div>
         <div style="color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px;">
-          <strong>Explanation:</strong> ${corr.explanation}
+          <strong>${isFr ? 'Explication :' : 'Explanation:'}</strong> ${corr.explanation}
         </div>
       </div>
     `;

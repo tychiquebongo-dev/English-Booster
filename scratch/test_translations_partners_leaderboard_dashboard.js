@@ -140,8 +140,8 @@ const enBlock = enBlockMatch[1];
 const frBlock = frBlockMatch[1];
 
 requiredKeys.forEach(k => {
-  if (!enBlock.includes(`${k}:`)) missingInEn.push(k);
-  if (!frBlock.includes(`${k}:`)) missingInFr.push(k);
+  if (!enBlock.includes(`"${k}":`) && !enBlock.includes(`${k}:`)) missingInEn.push(k);
+  if (!frBlock.includes(`"${k}":`) && !frBlock.includes(`${k}:`)) missingInFr.push(k);
 });
 
 console.log(`[i18n check] Tested ${requiredKeys.length} keys.`);

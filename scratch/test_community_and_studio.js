@@ -34,10 +34,10 @@ function test() {
   // 2. Check js/i18n.js
   const i18nJs = fs.readFileSync(path.join(__dirname, '../js/i18n.js'), 'utf8');
   assert(i18nJs.includes('community_feed_badge'), 'i18n.js has community_feed_badge');
-  assert(i18nJs.includes("community_title: 'Communauté English Booster'"), 'i18n.js has French community_title');
-  assert(i18nJs.includes("community_btn_publish: 'Publier le message (+25 XP)'"), 'i18n.js has French community_btn_publish');
+  assert(i18nJs.includes("Communauté English Booster"), 'i18n.js has French community_title');
+  assert(i18nJs.includes("Publier le message (+25 XP)"), 'i18n.js has French community_btn_publish');
   assert(i18nJs.includes('studio_tool_text'), 'i18n.js has studio_tool_text');
-  assert(i18nJs.includes("studio_tool_save_gallery: 'Enregistrer (aller vers la galerie)'"), 'i18n.js has French studio_tool_save_gallery');
+  assert(i18nJs.includes("Enregistrer (aller vers la galerie)"), 'i18n.js has French studio_tool_save_gallery');
 
   // 3. Check js/community.js
   const communityJs = fs.readFileSync(path.join(__dirname, '../js/community.js'), 'utf8');

@@ -215,7 +215,7 @@ class RegisteredMembersApp {
   }
 
   isFrench() {
-    return (window.EnglishBooster?.i18n?.currentLang || localStorage.getItem('eb_language') || 'en') === 'fr';
+    return (window.EnglishBooster?.i18n?.getLang() === 'fr') || (localStorage.getItem('eb_lang') === 'fr') || (localStorage.getItem('eb_language') === 'fr');
   }
 
   init() {

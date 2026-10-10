@@ -28,8 +28,24 @@ class SoundFX {
     return window.EnglishBooster.activeAudioContext;
   }
 
+  static isEnabled() {
+    return localStorage.getItem('eb_sound_fx') !== 'false';
+  }
+
+  static toggleSound() {
+    const current = this.isEnabled();
+    const next = !current;
+    localStorage.setItem('eb_sound_fx', next ? 'true' : 'false');
+    if (next) {
+      this.playSuccess();
+    }
+    window.dispatchEvent(new CustomEvent('eb_sound_toggled', { detail: { enabled: next } }));
+    return next;
+  }
+
   // Gentle subtle UI Click
   static playClick() {
+    if (!this.isEnabled()) return;
     try {
       const ctx = this.getContext();
       if (!ctx) return;
@@ -44,13 +60,31 @@ class SoundFX {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.05);
-    } catch (e) {
-      // Audio might be blocked by browser autoplay policy before gesture
-    }
+    } catch (e) {}
+  }
+
+  // Soft high tick on hover
+  static playHover() {
+    if (!this.isEnabled()) return;
+    try {
+      const ctx = this.getContext();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1200, ctx.currentTime);
+      gain.gain.setValueAtTime(0.015, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.025);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.025);
+    } catch (e) {}
   }
 
   // Sparkling XP Chime
   static playSuccess() {
+    if (!this.isEnabled()) return;
     try {
       const ctx = this.getContext();
       if (!ctx) return;
@@ -71,8 +105,75 @@ class SoundFX {
     } catch (e) {}
   }
 
+  // Acoustic sonar radar ping
+  static playRadarPing() {
+    if (!this.isEnabled()) return;
+    try {
+      const ctx = this.getContext();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.35);
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.4);
+    } catch (e) {}
+  }
+
+  // Cheerful chime when cheering another learner
+  static playCheer() {
+    if (!this.isEnabled()) return;
+    try {
+      const ctx = this.getContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      [659.25, 880.00].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.09);
+        gain.gain.setValueAtTime(0.1, now + idx * 0.09);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + idx * 0.09);
+        osc.stop(now + idx * 0.09 + 0.25);
+      });
+    } catch (e) {}
+  }
+
+  // Audio start / stop beeps for mic
+  static playMicBeep(isStart = true) {
+    if (!this.isEnabled()) return;
+    try {
+      const ctx = this.getContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const f1 = isStart ? 440 : 880;
+      const f2 = isStart ? 880 : 440;
+      [f1, f2].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+        gain.gain.setValueAtTime(0.08, now + idx * 0.07);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.08);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + idx * 0.07);
+        osc.stop(now + idx * 0.07 + 0.08);
+      });
+    } catch (e) {}
+  }
+
   // Call Ringing Synthesizer
   static playCallRing(repeats = 2) {
+    if (!this.isEnabled()) return;
     try {
       const ctx = this.getContext();
       if (!ctx) return;
@@ -260,12 +361,15 @@ function updateUserState(updates) {
   return updated;
 }
 
-function addXP(amount, reason = '') {
+function addXP(amount, reason = '', sourceEl = null) {
   const user = window.EnglishBooster.currentUser || initUserState();
   const newXP = (user.xp || 0) + amount;
   updateUserState({ xp: newXP });
   showToast(`+${amount} XP Earned!`, reason || 'Keep practicing English!', 'success');
   launchConfetti(1800);
+  if (window.EnglishBooster && typeof window.EnglishBooster.spawnXpFlyout === 'function') {
+    window.EnglishBooster.spawnXpFlyout(amount, sourceEl);
+  }
 }
 
 // ==========================================================================

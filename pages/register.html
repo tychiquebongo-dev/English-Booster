@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Account — English Booster</title>
+  <title data-i18n="title_register">Create Your Account — English Booster</title>
   <meta name="description" content="Sign up for English Booster. Connect with international conversation partners and practice speaking English naturally.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
@@ -46,8 +46,8 @@
             </button>
           </div>
           <button class="theme-toggle-btn" aria-label="Toggle Theme">☀️</button>
-          <span style="font-size: 0.9rem; color: var(--text-muted);">Already a member?</span>
-          <a href="login.html" class="btn btn-secondary btn-sm">Log in</a>
+          <span data-i18n="reg_already_member" style="font-size: 0.9rem; color: var(--text-muted);">Already a member?</span>
+          <a href="login.html" class="btn btn-secondary btn-sm" data-i18n="reg_login_link">Log in</a>
         </div>
       </div>
     </nav>
@@ -56,9 +56,9 @@
   <main class="auth-wrapper">
     <div class="glass-card auth-card reveal-init">
       <div class="auth-header">
-        <span class="crystal-badge" style="margin-bottom: 12px;">Global English Community</span>
-        <h1 style="font-size: 2.2rem; letter-spacing: -0.02em;">Create your English Booster account</h1>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">
+        <span class="crystal-badge" data-i18n="reg_badge" style="margin-bottom: 12px;">Global English Community</span>
+        <h1 data-i18n="reg_title" style="font-size: 2.2rem; letter-spacing: -0.02em;">Create your English Booster account</h1>
+        <p data-i18n="reg_subtitle" style="color: var(--text-muted); font-size: 0.95rem; margin-top: 6px;">
           Start speaking English confidently with friendly international partners.
         </p>
       </div>
@@ -73,21 +73,21 @@
         </button>
       </div>
 
-      <div class="auth-divider">or register with email</div>
+      <div class="auth-divider" data-i18n="reg_or_email">or register with email</div>
 
       <!-- Registration Form -->
       <form id="register-form" novalidate>
         <div class="form-row">
           <!-- Full Name -->
           <div class="form-group">
-            <label class="form-label" for="reg-fullname">Full Name *</label>
+            <label class="form-label" for="reg-fullname" data-i18n="reg_fullname_label">Full Name *</label>
             <input type="text" id="reg-fullname" class="form-control" placeholder="Alex Rivera" required autocomplete="name">
             <div class="invalid-feedback"></div>
           </div>
 
           <!-- Email Address -->
           <div class="form-group">
-            <label class="form-label" for="reg-email">Email Address *</label>
+            <label class="form-label" for="reg-email" data-i18n="reg_email_label">Email Address *</label>
             <input type="email" id="reg-email" class="form-control" placeholder="alex@example.com" required autocomplete="email">
             <div class="invalid-feedback"></div>
           </div>
@@ -97,10 +97,10 @@
           <!-- Password -->
           <div class="form-group">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <label class="form-label" for="reg-password" style="margin-bottom: 0;">Password *</label>
+              <label class="form-label" for="reg-password" data-i18n="reg_password_label" style="margin-bottom: 0;">Password *</label>
               <button type="button" id="btn-toggle-register-pass" style="background: transparent; border: none; color: var(--cyan-primary); font-size: 0.82rem; cursor: pointer; padding: 0;">👁️ Show</button>
             </div>
-            <input type="password" id="reg-password" class="form-control" placeholder="Min. 8 characters" required autocomplete="new-password">
+            <input type="password" id="reg-password" class="form-control" placeholder="Min. 8 characters" data-i18n-placeholder="register_password_ph" required autocomplete="new-password">
             <div class="password-strength-bar">
               <div id="password-strength-fill" class="strength-indicator"></div>
             </div>
@@ -122,7 +122,7 @@
         <div class="form-row">
           <!-- Phone Number -->
           <div class="form-group">
-            <label class="form-label" for="reg-phone">Phone Number</label>
+            <label class="form-label" for="reg-phone" data-i18n="reg_phone_label">Phone Number</label>
             <input type="tel" id="reg-phone" class="form-control" placeholder="+225 07 05 88 46 87" autocomplete="tel">
             <div class="invalid-feedback"></div>
           </div>
@@ -130,7 +130,7 @@
         <div class="form-row">
           <!-- Country -->
           <div class="form-group">
-            <label class="form-label" for="reg-country">Country</label>
+            <label class="form-label" for="reg-country" data-i18n="reg_country_label">Country</label>
             <select id="reg-country" class="form-control">
               <option value="Spain 🇪🇸">Spain 🇪🇸</option>
               <option value="Ivory Coast 🇨🇮">Ivory Coast 🇨🇮</option>
@@ -151,7 +151,7 @@
 
           <!-- Native Language -->
           <div class="form-group">
-            <label class="form-label" for="reg-native-lang">Native Language</label>
+            <label class="form-label" for="reg-native-lang" data-i18n="reg_native_lang_label">Native Language</label>
             <select id="reg-native-lang" class="form-control">
               <option value="Spanish">Spanish</option>
               <option value="French">French</option>
@@ -168,7 +168,7 @@
 
         <!-- English Level Selector (A1-C2) -->
         <div class="form-group" style="margin-top: 10px;">
-          <label class="form-label">Select Your English Level (CEFR)</label>
+          <label class="form-label" data-i18n="reg_level_label">Select Your English Level (CEFR)</label>
           <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 6px;">
             <label style="cursor: pointer; text-align: center;">
               <input type="radio" name="englishLevel" value="A1" style="display: none;" id="level-a1">
@@ -195,14 +195,14 @@
               <div class="level-radio-card badge-level level-c2" style="padding: 10px 4px; border-radius: var(--radius-sm);">C2</div>
             </label>
           </div>
-          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;" data-i18n="reg_level_sub">
             A1/A2: Beginner/Elementary · B1/B2: Intermediate/Upper · C1/C2: Advanced/Proficient
           </div>
         </div>
 
         <!-- Main Goal -->
         <div class="form-group">
-          <label class="form-label" for="reg-goal">Main Learning Goal</label>
+          <label class="form-label" for="reg-goal" data-i18n="reg_goal_label">Main Learning Goal</label>
           <select id="reg-goal" class="form-control">
             <option value="Improve Speaking">Improve Speaking</option>
             <option value="Travel">Travel & Tourism</option>
@@ -216,7 +216,7 @@
 
         <!-- Interests Chips -->
         <div class="form-group">
-          <label class="form-label">Interests & Topics to Discuss</label>
+          <label class="form-label" data-i18n="reg_interests_label">Interests & Topics to Discuss</label>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;">
             <label class="interest-checkbox-label">
               <input type="checkbox" name="interests" value="Travel" checked>
@@ -256,11 +256,11 @@
         <div class="form-group" style="margin-top: 24px;">
           <label class="custom-checkbox-label" for="reg-terms">
             <input type="checkbox" id="reg-terms" required>
-            <span>I agree to the <a href="about.html#legal" style="color: var(--cyan-primary); text-decoration: underline;">Terms</a> and <a href="about.html#legal" style="color: var(--cyan-primary); text-decoration: underline;">Privacy Policy</a></span>
+            <span><span data-i18n="reg_terms_label">I agree to the</span> <a href="about.html#legal" style="color: var(--cyan-primary); text-decoration: underline;" data-i18n="reg_terms_link">Terms</a> <span data-i18n="reg_and">and</span> <a href="about.html#legal" style="color: var(--cyan-primary); text-decoration: underline;" data-i18n="reg_privacy_link">Privacy Policy</a></span>
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;">
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;" data-i18n="reg_btn_submit">
           Create Account
         </button>
       </form>
@@ -269,14 +269,14 @@
       <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--glass-border);">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
           <div>
-            <span class="crystal-badge" style="font-size: 0.72rem; margin-bottom: 4px;">Échauffement Vocal Immédiat</span>
-            <h3 style="font-size: 1.35rem; margin: 0;" class="text-gradient-cyan">Partie de Conversation en Direct</h3>
+            <span class="crystal-badge" style="font-size: 0.72rem; margin-bottom: 4px;" data-i18n="reg_warmup_badge">Échauffement Vocal Immédiat</span>
+            <h3 style="font-size: 1.35rem; margin: 0;" class="text-gradient-cyan" data-i18n="reg_warmup_title">Partie de Conversation en Direct</h3>
           </div>
           <span style="font-size: 0.8rem; color: var(--green-400); font-weight: 700; background: rgba(74, 222, 128, 0.1); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid rgba(74, 222, 128, 0.3);">
             ⚡ Voix & Micro Actifs
           </span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;" data-i18n="reg_warmup_sub">
           Testez votre anglais en direct dès maintenant ! Choisissez un interlocuteur ci-dessous, parlez au micro ou écrivez, écoutez ses réponses vocales et gagnez vos premiers points d'XP :
         </p>
         <div id="getstarted-conversation-container"></div>
@@ -318,7 +318,7 @@
   </style>
 
   <script src="../js/i18n.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js"></script>\n  <script src="../js/animations.js"></script>
   <script src="../js/avatarManager.js"></script>
   <script src="../js/auth.js"></script>
   <script src="../js/getStartedConversation.js"></script>

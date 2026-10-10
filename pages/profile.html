@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile — English Booster</title>
+  <title data-i18n="title_profile">My Profile — English Booster</title>
   <meta name="description" content="Manage your English Booster learner profile, check your CEFR level, view earned badges, and customize your learning preferences.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
@@ -36,14 +36,14 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-          <li><a href="inscrits.html" class="nav-link">Inscrivez-vous</a></li>
-          <li><a href="partners.html" class="nav-link">Find Partners</a></li>
-          <li><a href="chat.html" class="nav-link">Chat</a></li>
-          <li><a href="call.html" class="nav-link">Live Call</a></li>
-          <li><a href="challenges.html" class="nav-link">Challenges</a></li>
-          <li><a href="community.html" class="nav-link">Community</a></li>
-          <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+          <li><a href="dashboard.html" class="nav-link" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="inscrits.html" class="nav-link" data-i18n="nav_inscrits">Inscrivez-vous</a></li>
+          <li><a href="partners.html" class="nav-link" data-i18n="nav_partners">Find Partners</a></li>
+          <li><a href="chat.html" class="nav-link" data-i18n="nav_chat">Chat</a></li>
+          <li><a href="call.html" class="nav-link" data-i18n="nav_call">Live Call</a></li>
+          <li><a href="challenges.html" class="nav-link" data-i18n="nav_challenges">Challenges</a></li>
+          <li><a href="community.html" class="nav-link" data-i18n="nav_community">Community</a></li>
+          <li><a href="leaderboard.html" class="nav-link" data-i18n="nav_leaderboard">Leaderboard</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -117,11 +117,11 @@
           <div>
             <h1 id="prof-name" style="font-size: 1.8rem; margin-bottom: 4px;">Alex Rivera</h1>
             <div style="color: var(--text-muted); font-size: 0.95rem;">
-              <span id="prof-country">Spain 🇪🇸</span> · Native Language: <strong id="prof-lang">Spanish</strong>
+              <span id="prof-country">Spain 🇪🇸</span> · <span data-i18n="reg_native_lang_label">Native Language</span>: <strong id="prof-lang">Spanish</strong>
             </div>
             <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
               <span class="badge-level level-b1" id="prof-level-badge">B1 Intermediate</span>
-              <span class="crystal-badge" style="font-size: 0.72rem;">🔥 7 Day Streak</span>
+              <span class="crystal-badge" style="font-size: 0.72rem;" data-i18n="profile_badge_streak">🔥 7 Day Streak</span>
             </div>
           </div>
         </div>
@@ -130,10 +130,10 @@
           <button type="button" class="btn btn-primary btn-sm btn-open-avatar-modal" style="font-weight: 700; box-shadow: 0 4px 16px rgba(74, 222, 128, 0.35);">
             <span>📷</span> Changer ma photo
           </button>
-          <button id="btn-record-intro" class="btn btn-secondary btn-sm">
+          <button id="btn-record-intro" class="btn btn-secondary btn-sm" data-i18n="profile_audio_intro">
             🎙️ Audio Intro (0:20)
           </button>
-          <button id="btn-test-level" class="btn btn-outline-cyan btn-sm">
+          <button id="btn-test-level" class="btn btn-outline-cyan btn-sm" data-i18n="profile_take_test">
             📝 Take CEFR Test
           </button>
         </div>
@@ -143,41 +143,41 @@
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px;" class="reveal-init">
         <div class="glass-card" style="padding: 20px; text-align: center;">
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--cyan-primary);">124</div>
-          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Mins Spoken</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;" data-i18n="profile_stat_minutes">Mins Spoken</div>
         </div>
         <div class="glass-card" style="padding: 20px; text-align: center;">
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--purple-primary);">18</div>
-          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Conversations</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;" data-i18n="profile_stat_convs">Conversations</div>
         </div>
         <div class="glass-card" style="padding: 20px; text-align: center;">
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--amber-accent);">2,450</div>
-          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Total XP</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;" data-i18n="profile_stat_xp">Total XP</div>
         </div>
         <div class="glass-card" style="padding: 20px; text-align: center;">
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--emerald-accent);">4.9 ★</div>
-          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Partner Rating</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;" data-i18n="profile_stat_rating">Partner Rating</div>
         </div>
       </div>
 
       <!-- EDIT PROFILE DETAILS -->
       <div class="glass-card reveal-init" style="padding: 32px; margin-bottom: 30px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 20px;">Profile Settings & Learning Goals</h3>
+        <h3 style="font-size: 1.3rem; margin-bottom: 20px;" data-i18n="profile_settings_title">Profile Settings & Learning Goals</h3>
         
         <form id="profile-edit-form">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="edit-fullname">Full Name</label>
+              <label class="form-label" for="edit-fullname" data-i18n="profile_fullname">Full Name</label>
               <input type="text" id="edit-fullname" class="form-control" value="Alex Rivera">
             </div>
             <div class="form-group">
-              <label class="form-label" for="edit-email">Email Address</label>
+              <label class="form-label" for="edit-email" data-i18n="profile_email">Email Address</label>
               <input type="email" id="edit-email" class="form-control" value="alex.rivera@example.com" disabled>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="edit-goal">Primary Goal</label>
+              <label class="form-label" for="edit-goal" data-i18n="profile_primary_goal">Primary Goal</label>
               <select id="edit-goal" class="form-control">
                 <option value="Improve Speaking" selected>Improve Speaking & Conversational Comfort</option>
                 <option value="Career">Career Advancement</option>
@@ -187,7 +187,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="edit-level">Current CEFR Level</label>
+              <label class="form-label" for="edit-level" data-i18n="profile_cefr_level">Current CEFR Level</label>
               <select id="edit-level" class="form-control">
                 <option value="A1">A1 — Beginner</option>
                 <option value="A2">A2 — Elementary</option>
@@ -200,11 +200,11 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="edit-bio">Bio & Conversation Preferences</label>
-            <textarea id="edit-bio" class="form-control" rows="3">Hi, I'm Alex from Spain! I work in product design. I understand written English well, but want to become fully spontaneous when speaking. Love talking about cinema, technology, and good food!</textarea>
+            <label class="form-label" for="edit-bio" data-i18n="profile_bio_label">Bio & Conversation Preferences</label>
+            <textarea id="edit-bio" class="form-control" rows="3" data-i18n="profile_edit_bio_val">Hi, I'm Alex from Spain! I work in product design. I understand written English well, but want to become fully spontaneous when speaking. Love talking about cinema, technology, and good food!</textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+          <button type="submit" class="btn btn-primary" style="margin-top: 10px;" data-i18n="profile_btn_save">
             Save Profile Changes
           </button>
         </form>
@@ -212,27 +212,27 @@
 
       <!-- BADGES UNLOCKED -->
       <div class="glass-card reveal-init" style="padding: 32px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 20px;">My Unlocked Badges</h3>
+        <h3 style="font-size: 1.3rem; margin-bottom: 20px;" data-i18n="profile_badges_title">My Unlocked Badges</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 18px; border-radius: var(--radius-md); text-align: center;">
             <div style="font-size: 2.2rem; margin-bottom: 6px;">🎙️</div>
-            <strong>First Conversation</strong>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Completed 1st live call</p>
+            <strong data-i18n="profile_badge_first_call">First Conversation</strong>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" data-i18n="profile_badge_first_call_desc">Completed 1st live call</p>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 18px; border-radius: var(--radius-md); text-align: center;">
             <div style="font-size: 2.2rem; margin-bottom: 6px;">🔥</div>
-            <strong>7 Day Streak</strong>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Practiced 7 days in a row</p>
+            <strong data-i18n="profile_badge_streak">7 Day Streak</strong>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" data-i18n="profile_badge_streak_desc">Practiced 7 days in a row</p>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 18px; border-radius: var(--radius-md); text-align: center;">
             <div style="font-size: 2.2rem; margin-bottom: 6px;">🌍</div>
-            <strong>Global Speaker</strong>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Spoke with 5+ countries</p>
+            <strong data-i18n="profile_badge_global">Global Speaker</strong>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" data-i18n="profile_badge_global_desc">Spoke with 5+ countries</p>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 18px; border-radius: var(--radius-md); text-align: center;">
             <div style="font-size: 2.2rem; margin-bottom: 6px;">📚</div>
-            <strong>Vocabulary Builder</strong>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Mastered 50+ expressions</p>
+            <strong data-i18n="profile_badge_vocab">Vocabulary Builder</strong>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" data-i18n="profile_badge_vocab_desc">Mastered 50+ expressions</p>
           </div>
         </div>
       </div>
@@ -243,29 +243,29 @@
   <nav class="mobile-bottom-dock">
     <a href="dashboard.html" class="dock-item">
       <span class="dock-icon">🏠</span>
-      <span>Dashboard</span>
+      <span data-i18n="nav_dashboard">Dashboard</span>
     </a>
     <a href="partners.html" class="dock-item">
       <span class="dock-icon">🔎</span>
-      <span>Discover</span>
+      <span data-i18n="nav_discover">Discover</span>
     </a>
     <a href="chat.html" class="dock-item">
       <span class="dock-icon">💬</span>
       <span class="dock-badge">1</span>
-      <span>Chat</span>
+      <span data-i18n="nav_chat">Chat</span>
     </a>
     <a href="community.html" class="dock-item">
       <span class="dock-icon">👥</span>
-      <span>Community</span>
+      <span data-i18n="nav_community">Community</span>
     </a>
     <a href="profile.html" class="dock-item active">
       <span class="dock-icon">👤</span>
-      <span>Profile</span>
+      <span data-i18n="nav_profile">Profile</span>
     </a>
   </nav>
 
   <script src="../js/i18n.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js"></script>\n  <script src="../js/animations.js"></script>
   <script src="../js/avatarManager.js"></script>
   <script>
     // Load and update profile state

@@ -75,7 +75,7 @@ const passwordKeys = [
 ];
 
 passwordKeys.forEach(k => {
-  const count = (i18nJs.match(new RegExp(`\\b${k}:`, 'g')) || []).length;
+  const count = (i18nJs.match(new RegExp(`("${k}":|\\b${k}:)`, 'g')) || []).length;
   if (count >= 2) {
     console.log(`✓ [js/i18n.js] key '${k}' present in both EN and FR (count: ${count})`);
   } else {

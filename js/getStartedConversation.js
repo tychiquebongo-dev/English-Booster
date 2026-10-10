@@ -503,15 +503,10 @@ class GetStartedConversationArena {
   }
 
   speakText(text) {
-    if (!this.voiceAudioEnabled || !('speechSynthesis' in window)) return;
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.95;
-      utterance.pitch = 1.0;
-      window.speechSynthesis.speak(utterance);
-    } catch (e) {}
+    // Voix de l'IA désactivée
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+    }
   }
 
   switchPartner(partnerId) {

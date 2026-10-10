@@ -29,7 +29,11 @@ function initRegisterForm() {
   const togglePassBtn = document.getElementById('btn-toggle-register-pass');
   const matchMsg = document.getElementById('register-pass-match-msg');
 
-  // Toggle Password Visibility in Register
+function isFrenchMode() {
+  return (window.EnglishBooster?.isFrench && window.EnglishBooster.isFrench()) || (localStorage.getItem('eb_lang') === 'fr');
+}
+
+// Toggle Password Visibility in Register
   if (togglePassBtn && passwordInput) {
     let isVisible = false;
     togglePassBtn.addEventListener('click', () => {
@@ -37,7 +41,8 @@ function initRegisterForm() {
       const type = isVisible ? 'text' : 'password';
       passwordInput.type = type;
       if (confirmPasswordInput) confirmPasswordInput.type = type;
-      togglePassBtn.textContent = isVisible ? '🙈 Hide' : '👁️ Show';
+      const isFr = isFrenchMode();
+      togglePassBtn.textContent = isVisible ? (isFr ? '🙈 Masquer' : '🙈 Hide') : (isFr ? '👁️ Afficher' : '👁️ Show');
     });
   }
 
@@ -49,14 +54,15 @@ function initRegisterForm() {
         return;
       }
       if (matchMsg) {
+        const isFr = isFrenchMode();
         matchMsg.style.display = 'inline-block';
         if (confirmPasswordInput.value === passwordInput.value) {
           matchMsg.style.color = '#22c55e';
-          matchMsg.textContent = '✓ Match';
+          matchMsg.textContent = isFr ? '✓ Correspond' : '✓ Match';
           setValid(confirmPasswordInput);
         } else {
           matchMsg.style.color = '#ef4444';
-          matchMsg.textContent = '✕ No match';
+          matchMsg.textContent = isFr ? '✕ Ne correspond pas' : '✕ No match';
         }
       }
     });
@@ -65,9 +71,10 @@ function initRegisterForm() {
   // Real-time email validation
   if (emailInput) {
     emailInput.addEventListener('input', () => {
+      const isFr = isFrenchMode();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailInput.value.trim())) {
-        setInvalid(emailInput, 'Please enter a valid email address (e.g. name@example.com)');
+        setInvalid(emailInput, isFr ? 'Veuillez entrer une adresse email valide (ex : nom@exemple.com)' : 'Please enter a valid email address (e.g. name@example.com)');
       } else {
         setValid(emailInput);
       }
@@ -77,9 +84,10 @@ function initRegisterForm() {
   // Real-time phone validation (international pattern)
   if (phoneInput) {
     phoneInput.addEventListener('input', () => {
+      const isFr = isFrenchMode();
       const phoneRegex = /^\+?[0-9\s\-\(\)]{7,20}$/;
       if (phoneInput.value.trim() && !phoneRegex.test(phoneInput.value.trim())) {
-        setInvalid(phoneInput, 'Please enter a valid phone number (e.g. +225 07 05 88 46 87)');
+        setInvalid(phoneInput, isFr ? 'Veuillez entrer un numéro de téléphone valide (ex : +225 07 05 88 46 87)' : 'Please enter a valid phone number (e.g. +225 07 05 88 46 87)');
       } else if (phoneInput.value.trim()) {
         setValid(phoneInput);
       }
@@ -89,6 +97,7 @@ function initRegisterForm() {
   // Real-time password strength analyzer
   if (passwordInput && strengthBar) {
     passwordInput.addEventListener('input', () => {
+      const isFr = isFrenchMode();
       const val = passwordInput.value;
       const score = calculatePasswordStrength(val);
 
@@ -102,19 +111,19 @@ function initRegisterForm() {
       if (score < 40) {
         strengthBar.style.width = '33%';
         strengthBar.style.backgroundColor = 'var(--coral-accent)';
-        strengthText.textContent = 'Weak: Add numbers, symbols and min 8 characters';
+        strengthText.textContent = isFr ? 'Faible : Ajoutez des chiffres, symboles et min. 8 caractères' : 'Weak: Add numbers, symbols and min 8 characters';
         strengthText.style.color = 'var(--coral-accent)';
-        setInvalid(passwordInput, 'Password is too weak');
+        setInvalid(passwordInput, isFr ? 'Mot de passe trop faible' : 'Password is too weak');
       } else if (score < 80) {
         strengthBar.style.width = '66%';
         strengthBar.style.backgroundColor = 'var(--amber-accent)';
-        strengthText.textContent = 'Medium: Good, add a special character for strong';
+        strengthText.textContent = isFr ? 'Moyen : Bon, ajoutez un caractère spécial pour le renforcer' : 'Medium: Good, add a special character for strong';
         strengthText.style.color = 'var(--amber-accent)';
         setValid(passwordInput);
       } else {
         strengthBar.style.width = '100%';
         strengthBar.style.backgroundColor = 'var(--emerald-accent)';
-        strengthText.textContent = 'Strong password! 🛡️';
+        strengthText.textContent = isFr ? 'Mot de passe robuste ! 🛡️' : 'Strong password! 🛡️';
         strengthText.style.color = 'var(--emerald-accent)';
         setValid(passwordInput);
       }
@@ -124,11 +133,12 @@ function initRegisterForm() {
   // Form Submission
   registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const isFr = isFrenchMode();
     let isValid = true;
 
     // Validate Name
     if (!fullNameInput.value.trim()) {
-      setInvalid(fullNameInput, 'Full name is required');
+      setInvalid(fullNameInput, isFr ? 'Le nom complet est requis' : 'Full name is required');
       isValid = false;
     } else {
       setValid(fullNameInput);
@@ -137,7 +147,7 @@ function initRegisterForm() {
     // Validate Email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value.trim())) {
-      setInvalid(emailInput, 'A valid email address is required');
+      setInvalid(emailInput, isFr ? 'Une adresse email valide est requise' : 'A valid email address is required');
       isValid = false;
     } else {
       setValid(emailInput);
@@ -145,7 +155,7 @@ function initRegisterForm() {
 
     // Validate Password
     if (passwordInput.value.length < 6) {
-      setInvalid(passwordInput, 'Password must be at least 6 characters');
+      setInvalid(passwordInput, isFr ? 'Le mot de passe doit contenir au moins 6 caractères' : 'Password must be at least 6 characters');
       isValid = false;
     } else {
       setValid(passwordInput);
@@ -154,7 +164,7 @@ function initRegisterForm() {
     // Validate Confirm Password
     if (confirmPasswordInput) {
       if (!confirmPasswordInput.value || confirmPasswordInput.value !== passwordInput.value) {
-        setInvalid(confirmPasswordInput, 'Passwords do not match');
+        setInvalid(confirmPasswordInput, isFr ? 'Les mots de passe ne correspondent pas' : 'Passwords do not match');
         isValid = false;
       } else {
         setValid(confirmPasswordInput);
@@ -163,12 +173,20 @@ function initRegisterForm() {
 
     // Validate Terms
     if (termsCheckbox && !termsCheckbox.checked) {
-      window.EnglishBooster.showToast('Terms Required', 'Please accept the Terms & Privacy Policy to continue', 'warning');
+      window.EnglishBooster.showToast(
+        isFr ? 'Conditions Requises' : 'Terms Required',
+        isFr ? 'Veuillez accepter les Conditions & la Politique de confidentialité pour continuer' : 'Please accept the Terms & Privacy Policy to continue',
+        'warning'
+      );
       isValid = false;
     }
 
     if (!isValid) {
-      window.EnglishBooster.showToast('Validation Error', 'Please check highlighted fields in the form', 'error');
+      window.EnglishBooster.showToast(
+        isFr ? 'Erreur de Validation' : 'Validation Error',
+        isFr ? 'Veuillez vérifier les champs surlignés dans le formulaire' : 'Please check highlighted fields in the form',
+        'error'
+      );
       return;
     }
 
@@ -204,7 +222,12 @@ function initRegisterForm() {
     if (window.EnglishBoosterRegisterMember) {
       window.EnglishBoosterRegisterMember(newUser);
     }
-    window.EnglishBooster.showToast('Account Created!', `Welcome to English Booster, ${newUser.fullName}!`, 'success');
+    const isFrToast = isFrenchMode();
+    window.EnglishBooster.showToast(
+      isFrToast ? 'Compte Créé !' : 'Account Created!',
+      isFrToast ? `Bienvenue sur English Booster, ${newUser.fullName} !` : `Welcome to English Booster, ${newUser.fullName}!`,
+      'success'
+    );
     window.EnglishBooster.launchConfetti(2500);
 
     setTimeout(() => {
@@ -257,11 +280,16 @@ function initLoginForm() {
 
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const isFr = isFrenchMode();
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
 
     if (!email || !password) {
-      window.EnglishBooster.showToast('Missing Fields', 'Please enter your email and password', 'warning');
+      window.EnglishBooster.showToast(
+        isFr ? 'Champs Manquants' : 'Missing Fields',
+        isFr ? 'Veuillez entrer votre email et mot de passe' : 'Please enter your email and password',
+        'warning'
+      );
       return;
     }
 
@@ -272,7 +300,11 @@ function initLoginForm() {
       isLoggedIn: true
     });
 
-    window.EnglishBooster.showToast('Welcome back!', 'Logging into English Booster...', 'success');
+    window.EnglishBooster.showToast(
+      isFr ? 'Ravi de vous revoir !' : 'Welcome back!',
+      isFr ? 'Connexion à English Booster en cours...' : 'Logging into English Booster...',
+      'success'
+    );
     setTimeout(() => {
       window.location.href = 'dashboard.html';
     }, 800);
@@ -287,14 +319,23 @@ function initDemoLogins() {
   document.querySelectorAll('.btn-social-auth').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      const isFr = isFrenchMode();
       const provider = btn.getAttribute('data-provider') || 'Google';
-      window.EnglishBooster.showToast(`Connecting with ${provider}...`, 'Authenticating your account securely', 'info');
+      window.EnglishBooster.showToast(
+        isFr ? `Connexion avec ${provider}...` : `Connecting with ${provider}...`,
+        isFr ? 'Authentification sécurisée de votre compte' : 'Authenticating your account securely',
+        'info'
+      );
       setTimeout(() => {
         window.EnglishBooster.updateUserState({
           fullName: provider === 'Google' ? 'Alex Rivera (Google)' : 'Alex Rivera (Apple)',
           isLoggedIn: true
         });
-        window.EnglishBooster.showToast('Logged in!', `Successfully verified with ${provider}`, 'success');
+        window.EnglishBooster.showToast(
+          isFr ? 'Connecté !' : 'Logged in!',
+          isFr ? `Vérification réussie avec ${provider}` : `Successfully verified with ${provider}`,
+          'success'
+        );
         setTimeout(() => {
           window.location.href = 'dashboard.html';
         }, 600);
@@ -305,6 +346,7 @@ function initDemoLogins() {
   // Demo Accounts Quick Switcher
   document.querySelectorAll('.btn-demo-login').forEach(btn => {
     btn.addEventListener('click', () => {
+      const isFr = isFrenchMode();
       const demoType = btn.getAttribute('data-demo-user');
       let demoUser = {};
 
@@ -319,7 +361,7 @@ function initDemoLogins() {
           streakDays: 7,
           speakingMinutes: 124,
           xp: 2450,
-          mainGoal: 'Improve Speaking & Travel',
+          mainGoal: isFr ? 'Pratique Orale & Voyages' : 'Improve Speaking & Travel',
           interests: ['Travel', 'Music', 'Movies', 'Food'],
           isLoggedIn: true
         };
@@ -334,7 +376,7 @@ function initDemoLogins() {
           streakDays: 45,
           speakingMinutes: 980,
           xp: 15400,
-          mainGoal: 'EdTech Leadership & Global Business',
+          mainGoal: isFr ? 'Leadership EdTech & Affaires Internationales' : 'EdTech Leadership & Global Business',
           interests: ['Technology', 'Public Speaking', 'Startups', 'Education'],
           isLoggedIn: true
         };
@@ -349,14 +391,18 @@ function initDemoLogins() {
           streakDays: 14,
           speakingMinutes: 310,
           xp: 4120,
-          mainGoal: 'Career & Software Engineering',
+          mainGoal: isFr ? 'Carrière & Génie Logiciel' : 'Career & Software Engineering',
           interests: ['Coding', 'Gaming', 'Anime', 'Tech'],
           isLoggedIn: true
         };
       }
 
       window.EnglishBooster.updateUserState(demoUser);
-      window.EnglishBooster.showToast('Demo User Loaded', `Now logged in as ${demoUser.fullName} (${demoUser.englishLevel})`, 'success');
+      window.EnglishBooster.showToast(
+        isFr ? 'Compte Démo Chargé' : 'Demo User Loaded',
+        isFr ? `Connecté en tant que ${demoUser.fullName} (${demoUser.englishLevel})` : `Now logged in as ${demoUser.fullName} (${demoUser.englishLevel})`,
+        'success'
+      );
       setTimeout(() => {
         window.location.href = 'dashboard.html';
       }, 700);
