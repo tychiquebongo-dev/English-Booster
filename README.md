@@ -1,4 +1,4 @@
-# 🌎 English Booster — International Communication & Learning Platform
+# 🌎 English Booster : International Communication & Learning Platform
 
 > **"Connect. Speak. Improve."**
 > *"Improve your English by speaking with the world."*

@@ -1,9 +1,9 @@
 /**
- * ENGLISH BOOSTER — SERVICE WORKER (sw.js)
+ * ENGLISH BOOSTER | SERVICE WORKER (sw.js)
  * Caching & Offline Capabilities pour Mobile, Tablette et Ordinateur
  */
 
-const CACHE_NAME = 'english-booster-v1.2';
+const CACHE_NAME = 'englishbooster-v1.2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
